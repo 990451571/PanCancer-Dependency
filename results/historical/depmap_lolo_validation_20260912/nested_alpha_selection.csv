@@ -1,0 +1,286 @@
+heldout_lineage,method,alpha,inner_sse,selected
+Biliary Tract,background,10.0,5276.93129693113,False
+Biliary Tract,background,100.0,5222.433886725506,False
+Biliary Tract,background,1000.0,5118.900411303127,False
+Biliary Tract,background,10000.0,5118.325516750932,True
+Biliary Tract,background,100000.0,5125.075040367396,False
+Biliary Tract,targetwise_multiomics,10.0,5161.958724463135,False
+Biliary Tract,targetwise_multiomics,100.0,5103.289593290736,False
+Biliary Tract,targetwise_multiomics,1000.0,5038.29180219898,True
+Biliary Tract,targetwise_multiomics,10000.0,5099.94563237775,False
+Biliary Tract,targetwise_multiomics,100000.0,5122.953185928263,False
+Biliary Tract,shared_multiomics,10.0,20112.52959998158,False
+Biliary Tract,shared_multiomics,100.0,7854.025348336869,False
+Biliary Tract,shared_multiomics,1000.0,5014.654503300087,False
+Biliary Tract,shared_multiomics,10000.0,4844.986899460087,True
+Biliary Tract,shared_multiomics,100000.0,5051.727888852329,False
+Bladder/Urinary Tract,background,10.0,5303.668631273655,False
+Bladder/Urinary Tract,background,100.0,5244.607384880114,False
+Bladder/Urinary Tract,background,1000.0,5125.07458591184,False
+Bladder/Urinary Tract,background,10000.0,5118.865932879467,True
+Bladder/Urinary Tract,background,100000.0,5125.281068143426,False
+Bladder/Urinary Tract,targetwise_multiomics,10.0,5185.523780524807,False
+Bladder/Urinary Tract,targetwise_multiomics,100.0,5122.829425249397,False
+Bladder/Urinary Tract,targetwise_multiomics,1000.0,5043.505848436602,True
+Bladder/Urinary Tract,targetwise_multiomics,10000.0,5100.326575579576,False
+Bladder/Urinary Tract,targetwise_multiomics,100000.0,5123.14175434357,False
+Bladder/Urinary Tract,shared_multiomics,10.0,20837.67071113598,False
+Bladder/Urinary Tract,shared_multiomics,100.0,8025.054412522066,False
+Bladder/Urinary Tract,shared_multiomics,1000.0,5047.347107578991,False
+Bladder/Urinary Tract,shared_multiomics,10000.0,4847.237414270507,True
+Bladder/Urinary Tract,shared_multiomics,100000.0,5052.958696943984,False
+Bone,background,10.0,5308.259844024635,False
+Bone,background,100.0,5250.597114561839,False
+Bone,background,1000.0,5134.662591018819,False
+Bone,background,10000.0,5130.5087079737195,True
+Bone,background,100000.0,5137.2724869411,False
+Bone,targetwise_multiomics,10.0,5179.77917895839,False
+Bone,targetwise_multiomics,100.0,5120.134479897753,False
+Bone,targetwise_multiomics,1000.0,5048.472946756958,True
+Bone,targetwise_multiomics,10000.0,5111.038170659863,False
+Bone,targetwise_multiomics,100000.0,5135.028390434004,False
+Bone,shared_multiomics,10.0,20388.634992894054,False
+Bone,shared_multiomics,100.0,7998.267369299634,False
+Bone,shared_multiomics,1000.0,5049.954696374998,False
+Bone,shared_multiomics,10000.0,4856.369820319708,True
+Bone,shared_multiomics,100000.0,5063.8897288549415,False
+Bowel,background,10.0,5062.562480204749,False
+Bowel,background,100.0,5024.598494723116,False
+Bowel,background,1000.0,4950.88963411815,True
+Bowel,background,10000.0,4954.022785225754,False
+Bowel,background,100000.0,4960.153637186268,False
+Bowel,targetwise_multiomics,10.0,4935.446353453751,False
+Bowel,targetwise_multiomics,100.0,4896.697487345992,False
+Bowel,targetwise_multiomics,1000.0,4869.024823684072,True
+Bowel,targetwise_multiomics,10000.0,4935.979622043361,False
+Bowel,targetwise_multiomics,100000.0,4958.085146466342,False
+Bowel,shared_multiomics,10.0,20117.42092463257,False
+Bowel,shared_multiomics,100.0,7816.4706423349035,False
+Bowel,shared_multiomics,1000.0,4868.942581520707,False
+Bowel,shared_multiomics,10000.0,4677.938516407004,True
+Bowel,shared_multiomics,100000.0,4886.273742894629,False
+Breast,background,10.0,5215.748773891537,False
+Breast,background,100.0,5164.409863630992,False
+Breast,background,1000.0,5069.74549601437,True
+Breast,background,10000.0,5075.078298762179,False
+Breast,background,100000.0,5082.798213263556,False
+Breast,targetwise_multiomics,10.0,5102.686083403426,False
+Breast,targetwise_multiomics,100.0,5045.870718622671,False
+Breast,targetwise_multiomics,1000.0,4988.402255998024,True
+Breast,targetwise_multiomics,10000.0,5056.437242475822,False
+Breast,targetwise_multiomics,100000.0,5080.645730388089,False
+Breast,shared_multiomics,10.0,19578.39649804618,False
+Breast,shared_multiomics,100.0,7693.802070895101,False
+Breast,shared_multiomics,1000.0,4949.113911621546,False
+Breast,shared_multiomics,10000.0,4799.1951563467355,True
+Breast,shared_multiomics,100000.0,5007.451721315547,False
+CNS/Brain,background,10.0,4987.926174750811,False
+CNS/Brain,background,100.0,4953.702318568349,False
+CNS/Brain,background,1000.0,4891.653764295287,True
+CNS/Brain,background,10000.0,4894.755032806505,False
+CNS/Brain,background,100000.0,4899.644371809826,False
+CNS/Brain,targetwise_multiomics,10.0,4879.578409419656,False
+CNS/Brain,targetwise_multiomics,100.0,4841.505698997245,False
+CNS/Brain,targetwise_multiomics,1000.0,4817.520811865751,True
+CNS/Brain,targetwise_multiomics,10000.0,4878.304965069782,False
+CNS/Brain,targetwise_multiomics,100000.0,4897.761269316852,False
+CNS/Brain,shared_multiomics,10.0,18866.45144563114,False
+CNS/Brain,shared_multiomics,100.0,7489.915817926491,False
+CNS/Brain,shared_multiomics,1000.0,4798.62363194592,False
+CNS/Brain,shared_multiomics,10000.0,4640.11315358952,True
+CNS/Brain,shared_multiomics,100000.0,4830.2969688932835,False
+Esophagus/Stomach,background,10.0,5137.084106112194,False
+Esophagus/Stomach,background,100.0,5099.698520612841,False
+Esophagus/Stomach,background,1000.0,5029.26237156187,True
+Esophagus/Stomach,background,10000.0,5032.9371669510765,False
+Esophagus/Stomach,background,100000.0,5038.833831995954,False
+Esophagus/Stomach,targetwise_multiomics,10.0,5013.969864913562,False
+Esophagus/Stomach,targetwise_multiomics,100.0,4975.098108708236,False
+Esophagus/Stomach,targetwise_multiomics,1000.0,4948.3725860975965,True
+Esophagus/Stomach,targetwise_multiomics,10000.0,5014.976124066391,False
+Esophagus/Stomach,targetwise_multiomics,100000.0,5036.773547172217,False
+Esophagus/Stomach,shared_multiomics,10.0,20290.305347132937,False
+Esophagus/Stomach,shared_multiomics,100.0,7973.781694842284,False
+Esophagus/Stomach,shared_multiomics,1000.0,4963.706920191506,False
+Esophagus/Stomach,shared_multiomics,10000.0,4759.512899494157,True
+Esophagus/Stomach,shared_multiomics,100000.0,4964.602574836909,False
+Head and Neck,background,10.0,5113.935086300033,False
+Head and Neck,background,100.0,5072.00240123874,False
+Head and Neck,background,1000.0,4991.161926511591,True
+Head and Neck,background,10000.0,4993.124008932337,False
+Head and Neck,background,100000.0,4999.068396878969,False
+Head and Neck,targetwise_multiomics,10.0,4986.0752992937305,False
+Head and Neck,targetwise_multiomics,100.0,4942.804831484298,False
+Head and Neck,targetwise_multiomics,1000.0,4909.135485227984,True
+Head and Neck,targetwise_multiomics,10000.0,4975.146095961293,False
+Head and Neck,targetwise_multiomics,100000.0,4997.011109448357,False
+Head and Neck,shared_multiomics,10.0,19348.857855747323,False
+Head and Neck,shared_multiomics,100.0,7692.330889441713,False
+Head and Neck,shared_multiomics,1000.0,4909.107534139115,False
+Head and Neck,shared_multiomics,10000.0,4733.258041000479,True
+Head and Neck,shared_multiomics,100000.0,4930.039549515663,False
+Kidney,background,10.0,5177.434768042402,False
+Kidney,background,100.0,5148.273594430257,False
+Kidney,background,1000.0,5097.976671796248,True
+Kidney,background,10000.0,5104.621537103102,False
+Kidney,background,100000.0,5110.024559295418,False
+Kidney,targetwise_multiomics,10.0,5070.498617824849,False
+Kidney,targetwise_multiomics,100.0,5036.517881102512,False
+Kidney,targetwise_multiomics,1000.0,5020.996139733524,True
+Kidney,targetwise_multiomics,10000.0,5087.004829963662,False
+Kidney,targetwise_multiomics,100000.0,5107.991929421957,False
+Kidney,shared_multiomics,10.0,19705.981964996052,False
+Kidney,shared_multiomics,100.0,7749.998289907393,False
+Kidney,shared_multiomics,1000.0,4990.609685632409,False
+Kidney,shared_multiomics,10000.0,4834.211889934622,True
+Kidney,shared_multiomics,100000.0,5036.502121158699,False
+Liver,background,10.0,5228.043357839015,False
+Liver,background,100.0,5197.880329415434,False
+Liver,background,1000.0,5144.235391429522,True
+Liver,background,10000.0,5148.222027849557,False
+Liver,background,100000.0,5153.146226178131,False
+Liver,targetwise_multiomics,10.0,5107.886874487941,False
+Liver,targetwise_multiomics,100.0,5075.1494533748455,False
+Liver,targetwise_multiomics,1000.0,5062.261100216496,True
+Liver,targetwise_multiomics,10000.0,5129.755174799782,False
+Liver,targetwise_multiomics,100000.0,5151.021433718634,False
+Liver,shared_multiomics,10.0,20057.997707979313,False
+Liver,shared_multiomics,100.0,7878.612628278712,False
+Liver,shared_multiomics,1000.0,5045.745538449883,False
+Liver,shared_multiomics,10000.0,4869.965617672965,True
+Liver,shared_multiomics,100000.0,5077.51747676131,False
+Lung,background,10.0,4846.006361073457,False
+Lung,background,100.0,4804.754223445221,False
+Lung,background,1000.0,4738.577704839819,True
+Lung,background,10000.0,4750.246206696156,False
+Lung,background,100000.0,4757.301554655171,False
+Lung,targetwise_multiomics,10.0,4725.787943410503,False
+Lung,targetwise_multiomics,100.0,4684.937667986631,False
+Lung,targetwise_multiomics,1000.0,4660.932644078858,True
+Lung,targetwise_multiomics,10000.0,4732.980915075683,False
+Lung,targetwise_multiomics,100000.0,4755.324203936741,False
+Lung,shared_multiomics,10.0,19169.889537105075,False
+Lung,shared_multiomics,100.0,7605.8250730768505,False
+Lung,shared_multiomics,1000.0,4679.283900978036,False
+Lung,shared_multiomics,10000.0,4481.210212129231,True
+Lung,shared_multiomics,100000.0,4683.254428192278,False
+Lymphoid,background,10.0,4776.891613839932,False
+Lymphoid,background,100.0,4744.556264907563,False
+Lymphoid,background,1000.0,4684.49027059018,False
+Lymphoid,background,10000.0,4682.703705823486,True
+Lymphoid,background,100000.0,4685.612881093586,False
+Lymphoid,targetwise_multiomics,10.0,4663.964566070621,False
+Lymphoid,targetwise_multiomics,100.0,4627.80399739853,False
+Lymphoid,targetwise_multiomics,1000.0,4607.2318111356435,True
+Lymphoid,targetwise_multiomics,10000.0,4665.903037316213,False
+Lymphoid,targetwise_multiomics,100000.0,4683.70497487465,False
+Lymphoid,shared_multiomics,10.0,19180.88134108261,False
+Lymphoid,shared_multiomics,100.0,7543.094904407154,False
+Lymphoid,shared_multiomics,1000.0,4660.590677733035,False
+Lymphoid,shared_multiomics,10000.0,4466.334704081244,True
+Lymphoid,shared_multiomics,100000.0,4631.3960048027675,False
+Myeloid,background,10.0,5214.731682803689,False
+Myeloid,background,100.0,5163.876048101511,False
+Myeloid,background,1000.0,5063.79652883275,False
+Myeloid,background,10000.0,5058.357668137387,True
+Myeloid,background,100000.0,5063.306624549646,False
+Myeloid,targetwise_multiomics,10.0,5099.568891480249,False
+Myeloid,targetwise_multiomics,100.0,5044.853717352704,False
+Myeloid,targetwise_multiomics,1000.0,4983.144838522618,True
+Myeloid,targetwise_multiomics,10000.0,5040.1229308252005,False
+Myeloid,targetwise_multiomics,100000.0,5061.209249074708,False
+Myeloid,shared_multiomics,10.0,19427.715663098294,False
+Myeloid,shared_multiomics,100.0,7721.536177724828,False
+Myeloid,shared_multiomics,1000.0,4968.06937572674,False
+Myeloid,shared_multiomics,10000.0,4810.167800785696,True
+Myeloid,shared_multiomics,100000.0,4999.788076434491,False
+Ovary/Fallopian Tube,background,10.0,5138.856811026808,False
+Ovary/Fallopian Tube,background,100.0,5103.618017117777,False
+Ovary/Fallopian Tube,background,1000.0,5038.902033862764,True
+Ovary/Fallopian Tube,background,10000.0,5044.8169464812645,False
+Ovary/Fallopian Tube,background,100000.0,5051.028345194558,False
+Ovary/Fallopian Tube,targetwise_multiomics,10.0,5017.133517582165,False
+Ovary/Fallopian Tube,targetwise_multiomics,100.0,4980.334782163535,False
+Ovary/Fallopian Tube,targetwise_multiomics,1000.0,4958.182237320465,True
+Ovary/Fallopian Tube,targetwise_multiomics,10000.0,5026.594376134991,False
+Ovary/Fallopian Tube,targetwise_multiomics,100000.0,5048.929234817595,False
+Ovary/Fallopian Tube,shared_multiomics,10.0,19198.14148312848,False
+Ovary/Fallopian Tube,shared_multiomics,100.0,7620.428421856684,False
+Ovary/Fallopian Tube,shared_multiomics,1000.0,4922.080070918713,False
+Ovary/Fallopian Tube,shared_multiomics,10000.0,4770.562364794323,True
+Ovary/Fallopian Tube,shared_multiomics,100000.0,4976.332164040768,False
+Pancreas,background,10.0,5175.075776264688,False
+Pancreas,background,100.0,5138.883133891153,False
+Pancreas,background,1000.0,5074.552052248892,True
+Pancreas,background,10000.0,5081.983755405844,False
+Pancreas,background,100000.0,5088.447616211625,False
+Pancreas,targetwise_multiomics,10.0,5051.835105643505,False
+Pancreas,targetwise_multiomics,100.0,5012.831130112644,False
+Pancreas,targetwise_multiomics,1000.0,4991.070491889697,True
+Pancreas,targetwise_multiomics,10000.0,5063.206291338367,False
+Pancreas,targetwise_multiomics,100000.0,5086.288056744099,False
+Pancreas,shared_multiomics,10.0,19713.115694944387,False
+Pancreas,shared_multiomics,100.0,7713.105522053861,False
+Pancreas,shared_multiomics,1000.0,4970.0703064606705,False
+Pancreas,shared_multiomics,10000.0,4815.427033951994,True
+Pancreas,shared_multiomics,100000.0,5015.401151016717,False
+Peripheral Nervous System,background,10.0,5209.677605233035,False
+Peripheral Nervous System,background,100.0,5179.8480591619555,False
+Peripheral Nervous System,background,1000.0,5126.43970471727,True
+Peripheral Nervous System,background,10000.0,5130.162497880855,False
+Peripheral Nervous System,background,100000.0,5135.0943189413365,False
+Peripheral Nervous System,targetwise_multiomics,10.0,5089.523991007973,False
+Peripheral Nervous System,targetwise_multiomics,100.0,5056.41019950581,False
+Peripheral Nervous System,targetwise_multiomics,1000.0,5043.460221563878,True
+Peripheral Nervous System,targetwise_multiomics,10000.0,5111.47582918617,False
+Peripheral Nervous System,targetwise_multiomics,100000.0,5132.944393865721,False
+Peripheral Nervous System,shared_multiomics,10.0,19388.709274264023,False
+Peripheral Nervous System,shared_multiomics,100.0,7692.7825473382145,False
+Peripheral Nervous System,shared_multiomics,1000.0,4991.758089643097,False
+Peripheral Nervous System,shared_multiomics,10000.0,4847.4061976254925,True
+Peripheral Nervous System,shared_multiomics,100000.0,5060.377954760181,False
+Skin,background,10.0,4941.218048803146,False
+Skin,background,100.0,4912.379000379904,False
+Skin,background,1000.0,4868.849352216481,True
+Skin,background,10000.0,4880.578106379736,False
+Skin,background,100000.0,4886.679557929066,False
+Skin,targetwise_multiomics,10.0,4833.124074319777,False
+Skin,targetwise_multiomics,100.0,4799.108259558758,False
+Skin,targetwise_multiomics,1000.0,4794.271758289274,True
+Skin,targetwise_multiomics,10000.0,4863.965561905604,False
+Skin,targetwise_multiomics,100000.0,4884.772247866625,False
+Skin,shared_multiomics,10.0,19323.209916458974,False
+Skin,shared_multiomics,100.0,7531.170321907181,False
+Skin,shared_multiomics,1000.0,4793.9851902418495,False
+Skin,shared_multiomics,10000.0,4627.1354150357065,True
+Skin,shared_multiomics,100000.0,4817.444479921318,False
+Soft Tissue,background,10.0,5220.4610469315985,False
+Soft Tissue,background,100.0,5166.720240161819,False
+Soft Tissue,background,1000.0,5063.96328005468,True
+Soft Tissue,background,10000.0,5064.298524898128,False
+Soft Tissue,background,100000.0,5071.13803158702,False
+Soft Tissue,targetwise_multiomics,10.0,5112.870707798035,False
+Soft Tissue,targetwise_multiomics,100.0,5054.024265428245,False
+Soft Tissue,targetwise_multiomics,1000.0,4986.95168838336,True
+Soft Tissue,targetwise_multiomics,10000.0,5046.756211358156,False
+Soft Tissue,targetwise_multiomics,100000.0,5069.11394857065,False
+Soft Tissue,shared_multiomics,10.0,20357.60759547914,False
+Soft Tissue,shared_multiomics,100.0,7894.471188877169,False
+Soft Tissue,shared_multiomics,1000.0,4982.798072174654,False
+Soft Tissue,shared_multiomics,10000.0,4799.4084790968045,True
+Soft Tissue,shared_multiomics,100000.0,4999.4499002033435,False
+Uterus,background,10.0,5233.719604296812,False
+Uterus,background,100.0,5203.000016706729,False
+Uterus,background,1000.0,5145.345895136361,True
+Uterus,background,10000.0,5148.100708679409,False
+Uterus,background,100000.0,5153.103281294316,False
+Uterus,targetwise_multiomics,10.0,5112.891764179674,False
+Uterus,targetwise_multiomics,100.0,5079.984250117337,False
+Uterus,targetwise_multiomics,1000.0,5062.96783448126,True
+Uterus,targetwise_multiomics,10000.0,5129.466597755237,False
+Uterus,targetwise_multiomics,100000.0,5150.957270487968,False
+Uterus,shared_multiomics,10.0,19651.52169895267,False
+Uterus,shared_multiomics,100.0,7850.8337739861645,False
+Uterus,shared_multiomics,1000.0,5033.985950052835,False
+Uterus,shared_multiomics,10000.0,4866.480500430548,True
+Uterus,shared_multiomics,100000.0,5077.553644216319,False

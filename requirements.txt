@@ -1,0 +1,4 @@
+# Migration verified with Python 3.10.20 in the existing rl_genrisk environment.
+# Minimal third-party imports for the project scripts.
+numpy==1.23.0
+pandas==2.2.3

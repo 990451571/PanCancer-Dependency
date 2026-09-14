@@ -1,0 +1,13 @@
+scope,model,model_n,unique_selected_genes,mean_pairwise_topk_jaccard
+kidney_lineage,global_mean,24,10,1.0
+kidney_lineage,background,24,10,1.0
+kidney_lineage,shared_multiomics,24,16,0.7576867576867578
+kidney_lineage,targetwise_multiomics,24,17,0.7396685440163702
+rcc,global_mean,20,10,1.0
+rcc,background,20,10,1.0
+rcc,shared_multiomics,20,13,0.7949454054717214
+rcc,targetwise_multiomics,20,15,0.757857931542142
+ccrcc,global_mean,12,10,1.0
+ccrcc,background,12,10,1.0
+ccrcc,shared_multiomics,12,12,0.7961432506887053
+ccrcc,targetwise_multiomics,12,13,0.7758352758352759

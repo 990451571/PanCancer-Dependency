@@ -1,0 +1,23 @@
+{
+  "status": "exploratory_contextual_ranking_gate",
+  "training_scope": "all non-kidney DepMap models",
+  "holdout_scope": "all kidney-lineage DepMap models",
+  "candidate_count": 228,
+  "common_essentials_excluded": true,
+  "top_k": 10,
+  "models": [
+    "global_mean",
+    "background",
+    "shared_multiomics",
+    "targetwise_multiomics"
+  ],
+  "interpretation": "More negative GeneEffect is stronger dependency; positive improvement means better than a fixed global ranking.",
+  "rl_caveat": "DepMap observes all single-gene actions, so supervised ranking is statistically more direct than offline bandit learning unless sequential non-additive utility is introduced.",
+  "input_sha256": {
+    "dependency": "1e27b04bea0f69fdd418fdccce491d03baccea5c5dc9e35381ca7a54b9579ba0",
+    "mutation": "abf1779944c166c2ddeff3bef2d80244cfc1fe6f650468fbb60011f004346dae",
+    "expression": "8be9c9b8185d554bc210efe7a0cd8140cd9a6d20e3415c6ca7faf38f424fb10d",
+    "copy_number": "04dfcac6a6297229d358202d1606cf7e798b3e70f163c004dbd3cafe8393f1d7"
+  },
+  "script_sha256": "6efa3f21052483fad3d23f8147975b5934fef19f308103ab79bfdbaf97f846cb"
+}

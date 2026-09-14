@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+data/
+outputs/
+*.pt
+*.pth
+*.ckpt
+*.log
+# Historical result snapshots are deliberately retained under results/historical.

@@ -1,0 +1,58 @@
+{
+  "status": "cross_validated_exploratory_model",
+  "release": "DepMap 24Q4 Public CRISPRGeneEffect (Chronos)",
+  "model_n": 883,
+  "target_gene_n": 228,
+  "fold_unit": "DepMap ModelID",
+  "fold_stratification": "OncotreeLineage",
+  "folds": 5,
+  "seed": 20260911,
+  "alphas": [
+    10.0,
+    100.0,
+    1000.0,
+    10000.0,
+    100000.0
+  ],
+  "candidate_ranking_alphas": [
+    10000.0,
+    100000.0
+  ],
+  "candidate_stability_repeats": 50,
+  "candidate_stability_genes": [
+    "TLN1"
+  ],
+  "kidney_holdout": "all kidney-lineage models excluded from training; evaluated without kidney-lineage adaptation",
+  "candidate_ranking_rule": {
+    "A": "positive targetwise-context delta R2 in pan-cancer, RCC, and ccRCC at both strongest shrinkage values; ccRCC median Gene Effect <= -0.5; ccRCC selectivity delta <= -0.1; at least one TCGA context-adjusted omics |SMD| >= 0.5",
+    "B": "at least five of six context delta R2 values positive; ccRCC median Gene Effect <= -0.5; at least one TCGA context-adjusted omics |SMD| >= 0.5"
+  },
+  "common_essential_targets_excluded": true,
+  "models": {
+    "background": "lineage + five driver mutations + global mutation/CN/expression summaries",
+    "multiomics": "background + candidate expression, absolute CN, damaging mutation",
+    "context_interactions": "multiomics + candidate omics interactions with VHL, PBRM1, and kidney lineage",
+    "targetwise_multiomics": "background + each target's own expression, absolute CN, and damaging mutation",
+    "targetwise_context": "targetwise multiomics + its interactions with VHL, PBRM1, and kidney lineage"
+  },
+  "interpretation": "More negative CRISPR Gene Effect means stronger dependency. Prediction R2 measures dependency-profile prediction, not causal patient benefit.",
+  "limitations": [
+    "All results are internal cell-line cross-validation; TCGA and DepMap are different biological domains.",
+    "RCC and ccRCC estimates use only 20 and 12 models, respectively.",
+    "Bootstrap resamples ModelIDs within lineage and does not correct gene-level selection.",
+    "Alpha sensitivity is reported; this run is not a nested-CV hyperparameter estimate.",
+    "Cross-gene coefficients can capture correlation and do not establish a direct regulatory edge."
+  ],
+  "input_hashes": {
+    "audit.json": "e0c35e0af0a09b44d1537e5d6e29620b9ab6b6efc35643c8e4ed42ec9e5aaee4",
+    "copy_number.tsv.gz": "04dfcac6a6297229d358202d1606cf7e798b3e70f163c004dbd3cafe8393f1d7",
+    "dependency.tsv.gz": "1e27b04bea0f69fdd418fdccce491d03baccea5c5dc9e35381ca7a54b9579ba0",
+    "expression.tsv.gz": "8be9c9b8185d554bc210efe7a0cd8140cd9a6d20e3415c6ca7faf38f424fb10d",
+    "gene_coverage.csv": "4eb1376911d9eef31ece67d181523c2e68540e4619315af6ebdef4afdeb2e27d",
+    "models.csv": "684bfea25d341bb33c7fb2776ea5f16c23dbc1ddadb08cbf1c35db56ae253cd0",
+    "mutation.tsv.gz": "abf1779944c166c2ddeff3bef2d80244cfc1fe6f650468fbb60011f004346dae",
+    "prioritized_candidates.csv": "2f84b6e63194a5e71a24dde823a7af860b0d6d48a5bcf88315a0f97fe23ac5cc"
+  },
+  "script_sha256": "7a9b95aa8e8352ebebf370ade8b122317c3227c78c94e0fe04c93ec6c4a4cf8a",
+  "elapsed_seconds": 12.077999999979511
+}

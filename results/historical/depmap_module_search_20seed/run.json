@@ -1,0 +1,127 @@
+{
+  "status": "exploratory_kidney_lineage_holdout",
+  "selection_models": 859,
+  "kidney_holdout_models": 24,
+  "rcc_holdout_models": 20,
+  "ccrcc_holdout_models": 12,
+  "candidate_genes": 228,
+  "parameters": {
+    "depmap": "/mnt/e/projects/rl-genrisk-main/data/processed/depmap_bridge_24q4",
+    "ppi": "/mnt/e/projects/rl-genrisk-main/data/processed/context_module_stage0/ppi_edges.tsv.gz",
+    "output_dir": "/mnt/e/projects/rl-genrisk-main/outputs/depmap_module_search_20seed",
+    "alpha": 1000.0,
+    "node_budget": 8,
+    "node_penalty": 0.00025,
+    "beam_width": 4,
+    "folds": 5,
+    "seeds": [
+      20260911,
+      20260912,
+      20260913,
+      20260914,
+      20260915,
+      20260916,
+      20260917,
+      20260918,
+      20260919,
+      20260920,
+      20260921,
+      20260922,
+      20260923,
+      20260924,
+      20260925,
+      20260926,
+      20260927,
+      20260928,
+      20260929,
+      20260930
+    ],
+    "bootstrap": 2000,
+    "stability_bootstrap": 10000,
+    "required_seed": "TLN1",
+    "random_controls": 200,
+    "tracked_genes": [
+      "TLN1",
+      "AJUBA",
+      "CTNNA1",
+      "DSP",
+      "DSC3",
+      "TP53"
+    ]
+  },
+  "reward": "non-kidney 5-fold out-of-fold aggregate dependency delta R2 versus background ridge",
+  "feature_channels": [
+    "expression",
+    "absolute_copy_number",
+    "damaging_mutation"
+  ],
+  "background": [
+    "lineage",
+    "VHL",
+    "PBRM1",
+    "SETD2",
+    "BAP1",
+    "MTOR",
+    "mutation_burden",
+    "copy_number_deviation",
+    "expression_level"
+  ],
+  "rl_necessity_gate": {
+    "unrestricted": {
+      "seed_n": 20,
+      "adaptive_selection": "max non-kidney CV objective among greedy_ppi and beam_ppi",
+      "static_reference": "static_cv_ppi",
+      "adaptive_minus_static_mean": 0.00038959110305273323,
+      "algorithm_seed_bootstrap_lower": -0.0004383760273357842,
+      "algorithm_seed_bootstrap_upper": 0.0012808883835942226,
+      "stop_threshold": 0.005,
+      "stop_if": "mean < 0.005 OR bootstrap lower <= 0",
+      "decision": "STOP_DDQN_ROUTE"
+    },
+    "tln1_seeded": {
+      "seed_n": 20,
+      "adaptive_selection": "max non-kidney CV objective among greedy_ppi and beam_ppi",
+      "static_reference": "static_cv_ppi",
+      "adaptive_minus_static_mean": 0.0025834165206298,
+      "algorithm_seed_bootstrap_lower": 0.0013706599746769333,
+      "algorithm_seed_bootstrap_upper": 0.0038293062038465098,
+      "stop_threshold": 0.005,
+      "stop_if": "mean < 0.005 OR bootstrap lower <= 0",
+      "decision": "STOP_DDQN_ROUTE"
+    }
+  },
+  "tracked_gene_frequency": {
+    "genes": [
+      "TLN1",
+      "AJUBA",
+      "CTNNA1",
+      "DSP",
+      "DSC3",
+      "TP53"
+    ],
+    "event_gene_and_any_module_node_reported_separately": true
+  },
+  "stability_interval": "95% bootstrap over algorithm/CV split seeds; this measures algorithmic instability and is not a biological-sample confidence interval",
+  "action_interaction_pairs": 137,
+  "action_nonadditivity_abs_gt_0_001_fraction": 0.0,
+  "random_connected_module_controls": 2061,
+  "kidney_holdout_access": "after all module selections",
+  "limitations": [
+    "Cell lines are functional models rather than patients.",
+    "The kidney holdout contains 24 models and ccRCC contains 12.",
+    "Module selection optimizes an aggregate dependency endpoint across correlated target genes.",
+    "The lineage holdout compares search methods exploratorily and is not a second untouched confirmation set.",
+    "Random-module empirical upper-tail probabilities are unadjusted descriptive controls.",
+    "Twenty CV split seeds do not create twenty independent biological cohorts."
+  ],
+  "input_sha256": {
+    "dependency": "1e27b04bea0f69fdd418fdccce491d03baccea5c5dc9e35381ca7a54b9579ba0",
+    "mutation": "abf1779944c166c2ddeff3bef2d80244cfc1fe6f650468fbb60011f004346dae",
+    "expression": "8be9c9b8185d554bc210efe7a0cd8140cd9a6d20e3415c6ca7faf38f424fb10d",
+    "copy_number": "04dfcac6a6297229d358202d1606cf7e798b3e70f163c004dbd3cafe8393f1d7",
+    "models": "684bfea25d341bb33c7fb2776ea5f16c23dbc1ddadb08cbf1c35db56ae253cd0",
+    "ppi": "79103e852c040046c1e6adbc8a76553fe8a76e608f292745e814b14d198be901"
+  },
+  "script_sha256": "cad0ffb23bc63c91e822ca6eb900fd3388f06379a8744c563831a2d1fc909b06",
+  "elapsed_seconds": 90.86252501100535
+}

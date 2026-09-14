@@ -1,0 +1,74 @@
+{
+  "status": "nested_leave_one_lineage_out_validation",
+  "release": "DepMap 24Q4 Public CRISPRGeneEffect (Chronos)",
+  "outer_split": "one complete OncotreeLineage held out",
+  "eligible_rule": "OncotreeLineage sample count >= 20",
+  "eligible_lineages": {
+    "Biliary Tract": 26,
+    "Bladder/Urinary Tract": 29,
+    "Bone": 27,
+    "Bowel": 50,
+    "Breast": 34,
+    "CNS/Brain": 68,
+    "Esophagus/Stomach": 50,
+    "Head and Neck": 56,
+    "Kidney": 24,
+    "Liver": 22,
+    "Lung": 99,
+    "Lymphoid": 80,
+    "Myeloid": 30,
+    "Ovary/Fallopian Tube": 36,
+    "Pancreas": 35,
+    "Peripheral Nervous System": 22,
+    "Skin": 62,
+    "Soft Tissue": 33,
+    "Uterus": 23
+  },
+  "model_n": 883,
+  "target_gene_n": 228,
+  "common_essentials_excluded": true,
+  "methods": {
+    "global_mean": "per-target mean learned from outer-training lineages",
+    "background": "lineage + five driver mutations + global omics summaries",
+    "targetwise_multiomics": "background + the target's own expression/CN/mutation",
+    "shared_multiomics": "background + all candidate expression/CN/mutation"
+  },
+  "hyperparameter_selection": {
+    "rule": "minimum aggregate inner-validation SSE",
+    "inner_split_unit": "complete OncotreeLineage",
+    "inner_folds": 5,
+    "alphas": [
+      10.0,
+      100.0,
+      1000.0,
+      10000.0,
+      100000.0
+    ],
+    "heldout_lineage_used": false
+  },
+  "metric_definitions": {
+    "delta_r2": "heldout R2 improvement relative to outer-training per-target global mean",
+    "ndcg_at_10": "relevance=max(0,-Chronos GeneEffect); higher is better",
+    "top10_overlap": "fraction shared with the heldout model's true 10 strongest dependencies",
+    "dependency_precision": "fraction selected with GeneEffect <= -0.5",
+    "regret": "selected mean GeneEffect minus oracle mean; lower is better"
+  },
+  "kidney_interpretation": "Kidney is contextualized against all eligible heldout lineages; no universal-transfer claim is emitted automatically.",
+  "tcga_test_read": false,
+  "limitations": [
+    "Lineage LOLO estimates transfer to unseen cell-line lineages, not to patients.",
+    "The same DepMap release supplies training and heldout lineages; this is not an external laboratory replication.",
+    "The lineage bootstrap describes across-lineage variation; cell-line bootstrap describes within-lineage sampling variation.",
+    "Hyperparameters are selected for squared-error performance; ranking metrics are secondary endpoints."
+  ],
+  "input_sha256": {
+    "models.csv": "684bfea25d341bb33c7fb2776ea5f16c23dbc1ddadb08cbf1c35db56ae253cd0",
+    "dependency.tsv.gz": "1e27b04bea0f69fdd418fdccce491d03baccea5c5dc9e35381ca7a54b9579ba0",
+    "mutation.tsv.gz": "abf1779944c166c2ddeff3bef2d80244cfc1fe6f650468fbb60011f004346dae",
+    "expression.tsv.gz": "8be9c9b8185d554bc210efe7a0cd8140cd9a6d20e3415c6ca7faf38f424fb10d",
+    "copy_number.tsv.gz": "04dfcac6a6297229d358202d1606cf7e798b3e70f163c004dbd3cafe8393f1d7",
+    "gene_coverage.csv": "4eb1376911d9eef31ece67d181523c2e68540e4619315af6ebdef4afdeb2e27d"
+  },
+  "script_sha256": "e8df8fefc9b23c78fa04119c0f7f4e7f7b4f9f372a509ad5f51b57905e4fa793",
+  "elapsed_seconds": 21.641785567975603
+}

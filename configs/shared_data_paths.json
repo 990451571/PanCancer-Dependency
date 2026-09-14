@@ -1,0 +1,11 @@
+{
+  "note": "Reference only; supply these paths via script CLI flags. No automatic config loader.",
+  "source_project": "/mnt/e/projects/rl-genrisk-main",
+  "depmap_processed": "/mnt/e/projects/rl-genrisk-main/data/processed/depmap_bridge_24q4",
+  "depmap_baseline_v1": "/mnt/e/Projects/PanCancer-Dependency/data/processed/depmap_baseline_24q4_v1",
+  "depmap_raw": "/mnt/e/projects/rl-genrisk-main/data/raw/depmap_24q4",
+  "stage0": "/mnt/e/projects/rl-genrisk-main/data/processed/context_module_stage0",
+  "ppi": "/mnt/e/projects/rl-genrisk-main/data/processed/context_module_stage0/ppi_edges.tsv.gz",
+  "hgnc": "/mnt/e/projects/rl-genrisk-main/outputs/reassessment_20260911/hgnc_complete_set.tsv",
+  "test_policy": "Locked TCGA test excluded from training, adaptation and selection."
+}
