@@ -23,6 +23,84 @@ import pandas as pd
 
 METHODS = ("global_mean", "background", "shared_multiomics")
 DRIVERS = ("VHL", "PBRM1", "SETD2", "BAP1", "MTOR")
+TORCH = None
+
+
+def configure_device(device):
+    global TORCH
+    TORCH = None
+    if device == "cuda":
+        import torch
+        if not torch.cuda.is_available():
+            raise RuntimeError("CUDA 不可用；请检查显卡环境。程序不会自动退回 CPU。")
+        TORCH = torch
+        print(f"【计算设备】{torch.cuda.get_device_name(0)}｜CUDA｜双精度，保持原岭回归口径", flush=True)
+    else:
+        print("【计算设备】CPU（显式指定）", flush=True)
+
+
+def gpu_add_kernel(kernel, held_kernel, train_values, held_values, chunk):
+    torch = TORCH
+    used = 0
+    for start in range(0, train_values.shape[1], chunk):
+        x = torch.as_tensor(train_values[:, start:start + chunk], dtype=torch.float64, device="cuda")
+        hx = torch.as_tensor(held_values[:, start:start + chunk], dtype=torch.float64, device="cuda")
+        mean = torch.nan_to_num(torch.nanmean(x, dim=0), nan=0.0)
+        x = torch.where(torch.isfinite(x), x, mean) - mean
+        hx = torch.where(torch.isfinite(hx), hx, mean) - mean
+        sd = torch.sqrt((x * x).mean(dim=0))
+        keep = sd > 1e-8
+        x, hx = x[:, keep] / sd[keep], hx[:, keep] / sd[keep]
+        kernel.add_(x @ x.T)
+        held_kernel.add_(hx @ x.T)
+        used += int(keep.sum().item())
+    return used
+
+
+def gpu_masked_ridge(kernel, held_kernel, y, alphas):
+    torch = TORCH
+    predictions = {alpha: np.full((len(held_kernel), y.shape[1]), np.nan) for alpha in alphas}
+    observed = np.isfinite(y)
+    _, groups = np.unique(np.packbits(observed.T, axis=1), axis=0, return_inverse=True)
+    for group in np.unique(groups):
+        columns = np.flatnonzero(groups == group)
+        rows = np.flatnonzero(observed[:, columns[0]])
+        if len(rows) < 2:
+            continue
+        selected = torch.as_tensor(rows, device="cuda")
+        k = kernel[selected[:, None], selected[None, :]]
+        h = held_kernel[:, selected]
+        mean = k.mean(dim=0)
+        overall = mean.mean()
+        k = k - mean[None, :] - mean[:, None] + overall
+        h = h - mean[None, :] - h.mean(dim=1, keepdim=True) + overall
+        eigenvalues, eigenvectors = torch.linalg.eigh(k)
+        eigenvalues = eigenvalues.clamp_min(0)
+        outcomes = torch.as_tensor(y[np.ix_(rows, columns)], dtype=torch.float64, device="cuda")
+        ymean = outcomes.mean(dim=0)
+        projected = eigenvectors.T @ (outcomes - ymean)
+        held_projected = h @ eigenvectors
+        for alpha in alphas:
+            result = (held_projected / (eigenvalues + alpha)) @ projected + ymean
+            predictions[alpha][:, columns] = result.cpu().numpy()
+    return predictions
+
+
+def print_results(rows, scope):
+    """Compact terminal summary; full metrics remain in result files."""
+    names = {"global_mean": "均值基线", "background": "背景模型", "shared_multiomics": "多组学模型"}
+    current = {(row["method"], row["stratum"]): row for row in rows if row["scope"] == scope}
+    print(f"  【{'癌系整体' if scope == 'lineage' else '明确 ccRCC 子集'}】", flush=True)
+    print("  模型          全部靶点ΔR²   非普遍必需ΔR²   非普遍必需NDCG   非普遍必需命中率", flush=True)
+    for method in METHODS:
+        all_genes = current.get((method, "all"), {})
+        selective = current.get((method, "non_common_essential"), {})
+        values = [all_genes.get("delta_r2_vs_global_mean"), selective.get("delta_r2_vs_global_mean"),
+                  selective.get("ndcg"), selective.get("dependency_precision")]
+        # Preserve column positions when a stratum/metric is unavailable.
+        formatted = [(f"{value:+.4f}" if i < 2 else f"{value:.4f}")
+                     if value is not None and np.isfinite(value) else "不可评价" for i, value in enumerate(values)]
+        print(f"  {names[method]:　<7} " + "   ".join(f"{value:>10}" for value in formatted), flush=True)
 
 
 def sha256(path):
@@ -122,6 +200,8 @@ def background_features(models, genes, matrices, train, held):
 
 def add_kernel(kernel, held_kernel, train_values, held_values, chunk=1024):
     """Fit imputation/scale on training rows; accumulate a linear kernel."""
+    if TORCH is not None:
+        return gpu_add_kernel(kernel, held_kernel, train_values, held_values, chunk)
     used = 0
     for start in range(0, train_values.shape[1], chunk):
         x = np.asarray(train_values[:, start:start + chunk], dtype=float)
@@ -140,11 +220,16 @@ def add_kernel(kernel, held_kernel, train_values, held_values, chunk=1024):
 
 
 def kernels(models, genes, matrices, train, held, feature_indices):
-    kernel = np.zeros((len(train), len(train)))
-    held_kernel = np.zeros((len(held), len(train)))
+    if TORCH is not None:
+        kernel = TORCH.zeros((len(train), len(train)), dtype=TORCH.float64, device="cuda")
+        held_kernel = TORCH.zeros((len(held), len(train)), dtype=TORCH.float64, device="cuda")
+    else:
+        kernel = np.zeros((len(train), len(train)))
+        held_kernel = np.zeros((len(held), len(train)))
     x, hx = background_features(models, genes, matrices, train, held)
     background_n = add_kernel(kernel, held_kernel, x, hx)
-    result = {"background": (kernel.copy(), held_kernel.copy())}
+    result = {"background": (kernel.clone(), held_kernel.clone()) if TORCH is not None
+              else (kernel.copy(), held_kernel.copy())}
     feature_n = background_n
     for name in ("expression", "copy_number", "mutation"):
         # Column chunking limits temporary allocations for the wide omics input.
@@ -163,6 +248,8 @@ def masked_ridge(kernel, held_kernel, y, alphas):
     Training-feature normalization is common to all targets. Each outcome mask
     gets its own centering/intercept, using only rows where that target exists.
     """
+    if TORCH is not None:
+        return gpu_masked_ridge(kernel, held_kernel, y, alphas)
     predictions = {alpha: np.full((len(held_kernel), y.shape[1]), np.nan) for alpha in alphas}
     observed = np.isfinite(y)
     _, groups = np.unique(np.packbits(observed.T, axis=1), axis=0, return_inverse=True)
@@ -198,14 +285,16 @@ def tune(models, genes, matrices, y, train, folds, feature_indices, alphas, line
     errors = {method: {alpha: 0.0 for alpha in alphas} for method in METHODS[1:]}
     counts = {method: {alpha: 0 for alpha in alphas} for method in METHODS[1:]}
     for number, held in enumerate(folds, 1):
+        fold_started = time.monotonic()
         fitting = np.setdiff1d(train, held)
+        print(f"  内层验证 {number}/{len(folds)}：训练 {len(fitting)}，验证 {len(held)}，正在拟合…", flush=True)
         predictions, _ = fit_fold(models, genes, matrices, y, fitting, held, feature_indices, alphas)
         for method, by_alpha in predictions.items():
             for alpha, prediction in by_alpha.items():
                 valid = np.isfinite(y[held]) & np.isfinite(prediction)
                 errors[method][alpha] += float(((y[held][valid] - prediction[valid]) ** 2).sum())
                 counts[method][alpha] += int(valid.sum())
-        print(f"  inner {number}/{len(folds)} complete", flush=True)
+        print(f"  内层验证 {number}/{len(folds)} 完成｜耗时 {time.monotonic() - fold_started:.1f} 秒", flush=True)
     all_counts = {n for by_alpha in counts.values() for n in by_alpha.values()}
     if len(all_counts) != 1 or min(all_counts) == 0:
         raise ValueError("Tuning methods/alphas have inconsistent or empty evaluation coverage")
@@ -281,6 +370,8 @@ def parse_args():
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--dependency-threshold", type=float, default=-0.5)
     parser.add_argument("--seed", type=int, default=20260914)
+    parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda",
+                        help="默认 CUDA；CPU 仅供显式数值对照，不自动降级")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--smoke-test", action="store_true", help="Kidney by default; 128 targets, 256 feature genes, two inner folds; not research evidence")
     args = parser.parse_args()
@@ -298,7 +389,9 @@ def main():
     started = time.monotonic()
     source, output = args.input_dir.resolve(), args.output_dir.resolve()
     if output.exists() and not args.dry_run:
-        raise FileExistsError(f"Refusing to overwrite {output}")
+        raise FileExistsError(f"输出目录已存在，请使用新目录，避免覆盖：{output}")
+    configure_device(args.device)
+    print("【启动】正在校验并读取数据…", flush=True)
     models, all_genes, matrices, all_essential = load_data(source)
     labels, patients = models.OncotreeLineage.to_numpy(), models.PatientID.to_numpy()
     counts = models.OncotreeLineage.value_counts()
@@ -327,18 +420,25 @@ def main():
             split_rows.append({"heldout_lineage": lineage, "ModelID": model_id, "PatientID": patients[index],
                                "role": "test" if index in held else "train" if assignment[index] >= 0 else "patient_overlap_purged",
                                "inner_validation_fold": int(assignment[index])})
-    print(f"models={len(models)} targets={len(genes)} feature_genes={len(feature_indices)} outer_lineages={len(requested)} smoke={args.smoke_test}", flush=True)
+    mode = "仅检查输入" if args.dry_run else "小规模程序检查（不作为研究结果）" if args.smoke_test else "正式基线实验"
+    print(f"【{mode}】模型 {len(models)}｜靶点 {len(genes)}｜特征基因 {len(feature_indices)}｜癌系 {len(requested)}", flush=True)
     if args.dry_run:
         for lineage, (train, held, folds) in splits.items():
-            print(f"  {lineage}: train={len(train)} held={len(held)} patients={len(set(patients[held]))} inner_folds={len(folds)}")
-        print("DRY_RUN_OK: hashes, arrays, annotations and split isolation checked; no fitting or output")
+            print(f"  {lineage}：训练 {len(train)}｜留出 {len(held)}｜留出患者 {len(set(patients[held]))}｜内层 {len(folds)} 折", flush=True)
+        print("【检查通过】文件校验、数据维度、注释及分组隔离正常；未训练、未写入结果。", flush=True)
         return
+    print(f"【指标】ΔR² 相对均值基线，正值更好；排序指标基于已观测靶点；命中率为预测前 {args.top_k} 个中依赖评分 ≤ {args.dependency_threshold:g} 的比例。", flush=True)
     summaries, cells, gene_frames, tuning = [], [], [], []
     feature_counts = {}
     for number, (lineage, (train, held, folds)) in enumerate(splits.items(), 1):
-        print(f"[{number}/{len(splits)}] {lineage}: tuning", flush=True)
+        lineage_started = time.monotonic()
+        summary_start = len(summaries)
+        print(f"\n【癌系 {number}/{len(splits)}】{lineage}｜训练 {len(train)}｜留出 {len(held)}｜开始调参", flush=True)
         selected, rows = tune(models, all_genes, matrices, y, train, folds, feature_indices, args.alphas, lineage)
         tuning.extend(rows)
+        print(f"  已选参数：背景模型 α={selected['background']:g}｜多组学模型 α={selected['shared_multiomics']:g}；正在拟合外层模型…", flush=True)
+        if selected["shared_multiomics"] == max(args.alphas):
+            print("  【调参边界】多组学 α 达到搜索上限；尚不能确认最佳正则化强度。", flush=True)
         # Fit each method at its chosen alpha only.
         kernel_map, feature_counts[lineage] = kernels(models, all_genes, matrices, train, held, feature_indices)
         mean = observed_mean(y[train])
@@ -368,7 +468,11 @@ def main():
                     # Avoid duplicating gene-level rows across overlapping strata.
                     if stratum == "all":
                         gene_frames.append(gene_frame.assign(**context, common_essential=essential))
-        print(f"  finished {lineage}: {selected}", flush=True)
+        for scope, indices in scopes.items():
+            if len(indices):
+                print_results(summaries[summary_start:], scope)
+        print(f"【本癌系完成】耗时 {time.monotonic() - lineage_started:.1f} 秒｜累计 {(time.monotonic() - started) / 60:.1f} 分钟", flush=True)
+    print("【保存】正在写入评价结果与运行记录…", flush=True)
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=f".{output.name}-", dir=output.parent))
     try:
@@ -382,6 +486,9 @@ def main():
             "arguments": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
             "input_sha256": {name: sha256(source / name) for name in ("audit.json", "matrices.npz", "models.csv", "gene_coverage.csv")},
             "script_sha256": sha256(__file__), "numpy": np.__version__, "pandas": pd.__version__,
+            "compute": {"device": args.device, "dtype": "float64",
+                        "torch_version": TORCH.__version__ if TORCH is not None else None,
+                        "gpu_name": TORCH.cuda.get_device_name(0) if TORCH is not None else None},
             "model_n": len(models), "target_genes": genes.tolist(), "feature_genes": all_genes[feature_indices].tolist(),
             "usable_feature_counts": feature_counts, "elapsed_seconds": time.monotonic() - started,
             "rules": {
@@ -410,7 +517,8 @@ def main():
     except BaseException:
         shutil.rmtree(temporary)
         raise
-    print(f"Completed in {time.monotonic() - started:.1f}s -> {output}", flush=True)
+    print(f"【完成】{len(splits)} 个癌系｜总耗时 {(time.monotonic() - started) / 60:.1f} 分钟", flush=True)
+    print(f"结果目录：{output}\n主要结果：metrics.csv（含全部分层指标）", flush=True)
 
 
 if __name__ == "__main__":

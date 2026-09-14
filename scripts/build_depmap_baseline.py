@@ -50,7 +50,7 @@ def build(raw: Path, hgnc: Path, output: Path) -> None:
             raise ValueError(f"Source checksum mismatch: {path}")
         sources[name] = {"path": str(path), "bytes": size,
                          "figshare_file_id": file_id, **digest}
-        print(f"verified {name}", flush=True)
+        print(f"【校验通过】{name}", flush=True)
 
     canonicalizer = GeneCanonicalizer(hgnc)
     mappings, identifiers, row_ids = {}, {}, {}
@@ -143,7 +143,8 @@ def build(raw: Path, hgnc: Path, output: Path) -> None:
             "duplicate_gene_aggregation": aggregation, "shape": list(values.shape),
             "missing_values": int(np.isnan(values).sum()),
         }
-        print(f"loaded {modality}: {values.shape}, missing={matrix_audit[modality]['missing_values']}", flush=True)
+        modality_name = {"dependency": "依赖标签", "expression": "表达", "copy_number": "拷贝数", "mutation": "突变"}[modality]
+        print(f"【已读取】{modality_name}｜模型 {values.shape[0]}｜基因 {values.shape[1]}｜缺失值 {matrix_audit[modality]['missing_values']}", flush=True)
         del frame
 
     model_audit["exclusion_reason"] = reasons.str.rstrip(";")
@@ -198,8 +199,9 @@ def build(raw: Path, hgnc: Path, output: Path) -> None:
     except BaseException:
         shutil.rmtree(temporary)
         raise
-    print(json.dumps({key: report[key] for key in ("model_n", "gene_n", "common_essential_gene_n", "scope_counts", "patients_with_multiple_models_n")}), flush=True)
-    print(f"Saved {output}", flush=True)
+    print(f"【构建完成】癌症模型 {report['model_n']}｜基因 {report['gene_n']}｜普遍必需基因 {report['common_essential_gene_n']}", flush=True)
+    print(f"肾脏模型 {report['scope_counts']['kidney_lineage']}｜明确 ccRCC {report['scope_counts']['clear_cell_renal_cell_carcinoma']}｜存在多个模型的患者 {report['patients_with_multiple_models_n']}", flush=True)
+    print(f"保存目录：{output}", flush=True)
 
 
 def main() -> None:
