@@ -52,7 +52,7 @@
 
 验证：6 个 DepMap 原始文件大小及 MD5 均匹配迁入脚本固定的 24Q4 清单；输出数据文件 SHA-256 核对通过；四矩阵维度、类型、模型顺序、基因唯一性、缺失计数和突变二值检查通过；抽取驱动基因、TLN1、边界基因及有重复映射的基因，与原始 CSV 跨全部保留模型核对通过。确认非癌模型均已排除，`tests/` 已删除。
 
-限制与下一步：这是四模态交集，不能称为全基因组无偏覆盖；广覆盖没有增加 ccRCC 独立样本量。common-essential 注释来自整个发布版，用于分层描述，不能称为训练折内估计。保留 EngineeredModel 标记，尚未将所有工程化模型自动排除。下一步实现读取 NPZ 的基线训练入口，处理缺失标签、训练折内预处理、同患者分组及 ccRCC 子集评价；旧 TSV 版 LOLO 不兼容此 NPZ，也不应直接按全量靶点逐个回归扩展而忽视计算成本。
+限制：这是四模态交集，不能称为全基因组无偏覆盖；广覆盖没有增加 ccRCC 独立样本量。common-essential 注释来自整个发布版，用于分层描述，不能称为训练折内估计。保留 EngineeredModel 标记，尚未将所有工程化模型自动排除。旧 TSV 版 LOLO 不兼容此 NPZ；新的训练入口见下节。
 
 复现命令（已有输出时脚本拒绝覆盖；需重建时使用新的版本目录）：
 
@@ -62,6 +62,39 @@
   --hgnc /mnt/e/projects/rl-genrisk-main/outputs/reassessment_20260911/hgnc_complete_set.tsv \
   --output-dir data/processed/depmap_baseline_24q4_v1
 ```
+
+## 广覆盖基线训练入口（2026-09-14）
+
+目的：在新 NPZ 输入上比较逐靶点训练均值、背景岭回归、共享多组学岭回归，验证跨癌系预测；尚未实施患者跨域适配或复杂预训练。
+
+入口：`scripts/run_depmap_baseline.py`。外层完整留出癌系，同时从训练集剔除与留出模型同患者的其他模型；内层将存在共享患者的癌系连接为组，整组分折。每折独立拟合特征均值填补、标准化和常量列过滤；缺失依赖标签不填补，仅使用已观测标签拟合、调参和评价。背景包括训练癌系编码、五个驱动基因的 damaging 状态和每个模型的三种组学均值；共享模型再加入各基因表达、拷贝数和突变。
+
+计算方式：按靶点的观测样本集合分组，使用线性核岭回归求解并为各组拟合截距，避免构造约 47,000 维特征的方阵。完整输入有 30 种标签观测模式。内层以已观测标签总 SSE 选择 alpha，全部方法和候选 alpha 的评价覆盖必须相同；至少有两个训练标签才产生该靶点预测。
+
+评价：分别报告全部基因、common-essential 和其他基因；Kidney 额外报告明确 ccRCC 子集。输出包括 MSE、R²、相对均值/背景的 ΔR²、逐靶点跨模型 Pearson，以及 Top-k 排序指标。缺失标签下排序限定在每个模型共同可评价的靶点范围，同时报告不限制标签可用性的预测 Top-k 标签覆盖率。指标按模型/观测值加权，目前不含置信区间；同患者分组防止划分泄漏，不代表每位患者已被等权评价。
+
+本次验证结果：
+
+- 全量 dry-run 通过：873 个模型、15,835 个靶点、19 个外层癌系，全部内层患者/癌系隔离检查通过；不拟合模型、不写输出。
+- 一次数值检查通过：缺失特征和缺失标签下的核解与带截距的直接岭回归一致；扰动外层标签不改变内层 SSE 或 alpha；共享患者的不同癌系保持同组；缺失标签的排序覆盖和未定义 R² 正确处理。未创建测试文件或目录。
+- 端到端 smoke 检查通过：固定 seed 抽取 128 个靶点、256 个组学特征基因，Kidney 外层留出、两折内层调参，约 2.2 秒完成（仅代表本机缩小检查）；输出 18 行分层汇总，Kidney 23 个模型、明确 ccRCC 12 个。输出哈希、样本分组、汇总与逐基因误差一致性检查通过。结果保留于 `outputs/depmap_baseline_smoke_20260914/`，仅为程序验证，不作为研究结果。
+
+正式训练尚未运行。新入口不保存可部署的最终模型；当前用途是基线评价。全量耗时和内存峰值尚未实测，不能由 smoke 耗时直接推断。各输出目录仅保留 6 个文件：`metrics.csv`、`per_model_metrics.csv.gz`（含 Top-k 基因）、`gene_metrics.csv.gz`、`tuning.csv`、`splits.csv`、`run.json`。输出目录已存在时拒绝覆盖。
+
+检查输入：
+
+```bash
+/home/liliang/miniconda3/envs/rl_genrisk/bin/python scripts/run_depmap_baseline.py --dry-run
+```
+
+手动启动完整 19 癌系实验（默认五折内层，alpha 为 10、100、1000、10000、100000）：
+
+```bash
+OPENBLAS_NUM_THREADS=4 /home/liliang/miniconda3/envs/rl_genrisk/bin/python scripts/run_depmap_baseline.py \
+  --output-dir outputs/depmap_baseline_lolo_v1
+```
+
+可加 `--lineages Kidney` 仅运行 Kidney 外层；内层仍使用其余癌系。程序检查可用 `--smoke-test --output-dir outputs/depmap_baseline_smoke_v2`，此模式默认只留出 Kidney，并缩小靶点和特征范围。输入数据和运行输出不纳入 Git，代码与本 README 纳入版本保存。
 
 ## 环境与运行检查
 
