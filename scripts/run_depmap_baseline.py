@@ -373,6 +373,8 @@ def parse_args():
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda",
                         help="默认 CUDA；CPU 仅供显式数值对照，不自动降级")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--alpha-scan", action="store_true",
+                        help="额外对外层全部 α 打分并输出 ranking-vs-alpha 诊断表 alpha_scan.csv")
     parser.add_argument("--smoke-test", action="store_true", help="Kidney by default; 128 targets, 256 feature genes, two inner folds; not research evidence")
     args = parser.parse_args()
     if args.inner_folds < 2 or args.minimum_lineage_size < 2 or args.top_k < 1:
@@ -428,7 +430,7 @@ def main():
         print("【检查通过】文件校验、数据维度、注释及分组隔离正常；未训练、未写入结果。", flush=True)
         return
     print(f"【指标】ΔR² 相对均值基线，正值更好；排序指标基于已观测靶点；命中率为预测前 {args.top_k} 个中依赖评分 ≤ {args.dependency_threshold:g} 的比例。", flush=True)
-    summaries, cells, gene_frames, tuning = [], [], [], []
+    summaries, cells, gene_frames, tuning, alpha_scan = [], [], [], [], []
     feature_counts = {}
     for number, (lineage, (train, held, folds)) in enumerate(splits.items(), 1):
         lineage_started = time.monotonic()
@@ -468,6 +470,27 @@ def main():
                     # Avoid duplicating gene-level rows across overlapping strata.
                     if stratum == "all":
                         gene_frames.append(gene_frame.assign(**context, common_essential=essential))
+        if args.alpha_scan:
+            # 诊断：外层对全部 α 打分，比较 SSE 最优与排序最优是否一致。
+            # 复用已算好的 kernel_map，α 循环仅是除法，几乎不增加耗时。
+            by_alpha = {method: masked_ridge(*kernel_map[method], y[train], args.alphas)
+                        for method in METHODS[1:]}
+            for scope, row_indices in scopes.items():
+                if not len(row_indices):
+                    continue
+                for stratum, columns in strata.items():
+                    if not columns.any():
+                        continue
+                    ix = np.ix_(row_indices, np.flatnonzero(columns))
+                    for method in METHODS[1:]:
+                        for alpha in args.alphas:
+                            summary, _, _ = score_scope(
+                                y[held][ix], by_alpha[method][alpha][ix], predictions["global_mean"][ix],
+                                predictions["background"][ix], models.index.to_numpy()[held[row_indices]],
+                                patients[held[row_indices]], genes[columns], args.top_k, args.dependency_threshold)
+                            alpha_scan.append({"heldout_lineage": lineage, "scope": scope, "stratum": stratum,
+                                               "method": method, "alpha": alpha,
+                                               "selected_alpha": selected[method], **summary})
         for scope, indices in scopes.items():
             if len(indices):
                 print_results(summaries[summary_start:], scope)
@@ -481,6 +504,8 @@ def main():
         pd.concat(gene_frames, ignore_index=True).to_csv(temporary / "gene_metrics.csv.gz", index=False)
         pd.DataFrame(tuning).to_csv(temporary / "tuning.csv", index=False)
         pd.DataFrame(split_rows).to_csv(temporary / "splits.csv", index=False)
+        if args.alpha_scan:
+            pd.DataFrame(alpha_scan).to_csv(temporary / "alpha_scan.csv", index=False)
         manifest = {
             "status": "smoke_test_not_research_evidence" if args.smoke_test else "nested_lolo_baseline",
             "arguments": {key: str(value) if isinstance(value, Path) else value for key, value in vars(args).items()},
@@ -512,6 +537,9 @@ def main():
             ],
             "output_sha256": {path.name: sha256(path) for path in sorted(temporary.iterdir())},
         }
+        if args.alpha_scan:
+            manifest["rules"]["alpha_scan"] = ("Outer ranking/R2 scored at every alpha (not only the SSE-selected one) "
+                                               "for ridge methods; output alpha_scan.csv")
         (temporary / "run.json").write_text(json.dumps(manifest, indent=2, allow_nan=False) + "\n")
         temporary.rename(output)
     except BaseException:
@@ -519,6 +547,8 @@ def main():
         raise
     print(f"【完成】{len(splits)} 个癌系｜总耗时 {(time.monotonic() - started) / 60:.1f} 分钟", flush=True)
     print(f"结果目录：{output}\n主要结果：metrics.csv（含全部分层指标）", flush=True)
+    if args.alpha_scan:
+        print(f"排序-α 诊断：alpha_scan.csv", flush=True)
 
 
 if __name__ == "__main__":
