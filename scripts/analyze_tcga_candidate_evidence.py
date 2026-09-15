@@ -21,6 +21,8 @@ import pandas as pd
 import torch
 
 import run_depmap_baseline as baseline
+from build_context_module_stage0 import GeneCanonicalizer, sample_type
+from prepare_tcga_expression_bridge import align_expression
 
 
 MAPPINGS = ("nonkidney_shift_driver_neutral", "kidney_shift_driver_neutral")
@@ -93,16 +95,18 @@ def shared_external_top10(phase_a_top, phase_b_top):
 
 def parse_args():
     root = Path(__file__).resolve().parents[1]
-    source = Path("/mnt/e/projects/rl-genrisk-main/data/processed/context_module_stage0")
+    source = Path("/mnt/e/projects/rl-genrisk-main")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline-dir", type=Path, default=root / "data/processed/depmap_baseline_24q4_v1")
     parser.add_argument("--transfer-dir", type=Path, default=root / "outputs/tcga_patient_transfer_v1")
-    parser.add_argument("--expression-delta", type=Path, default=source / "expression_delta_log2.tsv.gz")
+    parser.add_argument("--bridge-dir", type=Path, default=root / "data/processed/tcga_kirc_expression_bridge_v1")
+    parser.add_argument("--expression", type=Path, default=source / "data/raw/HiSeqV2")
+    parser.add_argument("--hgnc", type=Path, default=source / "outputs/reassessment_20260911/hgnc_complete_set.tsv")
     parser.add_argument("--phase-a", type=Path, default=root / "outputs/sanger_phase_a_769p_v1/per_gene_predictions.csv.gz")
     parser.add_argument("--phase-b", type=Path, default=root / "outputs/sanger_phase_b_v1/per_gene_predictions.csv.gz")
     parser.add_argument("--phase-a-top", type=Path, default=root / "outputs/sanger_phase_a_769p_v1/top10_rankings.csv")
     parser.add_argument("--phase-b-top", type=Path, default=root / "outputs/sanger_phase_b_v1/top10_rankings.csv")
-    parser.add_argument("--output-dir", type=Path, default=root / "outputs/tcga_candidate_evidence_v1")
+    parser.add_argument("--output-dir", type=Path, default=root / "outputs/tcga_candidate_evidence_v2")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -123,6 +127,11 @@ def main():
         patient_ids = archive["patient_ids"].astype(str)
         split = archive["split"].astype(str)
         prediction_genes = archive["genes"].astype(str)
+    with np.load(args.bridge_dir / "expression_inputs.npz", allow_pickle=False) as archive:
+        bridge_ids = archive["patient_ids"].astype(str)
+        raw_tumor_expression = archive["raw_expression"].astype(float)
+    if bridge_ids.tolist() != patient_ids.tolist():
+        raise ValueError("患者预测与表达桥接顺序不一致")
     if set(split) != {"train", "validation"} or len(patient_ids) != 209:
         raise ValueError("患者队列或锁定 Test 隔离变化")
     models, genes, matrices, common_essential = baseline.load_data(args.baseline_dir)
@@ -188,11 +197,14 @@ def main():
     shared = shared_external_top10(args.phase_a_top, args.phase_b_top)
     evidence["shared_three_renal_absolute_prediction_top10"] = evidence.index.isin(shared)
 
-    expression = pd.read_csv(args.expression_delta, sep="\t", index_col=0)
-    if set(patient_ids) - set(expression.index.astype(str)):
-        raise ValueError("TCGA Train/Validation 表达差值未对齐")
-    expression.index = expression.index.astype(str)
-    expression = expression.reindex(patient_ids)
+    header = pd.read_csv(args.expression, sep="\t", nrows=0).columns.astype(str).tolist()
+    normal_samples = [sample for sample in header[1:] if sample_type(sample) == "11"]
+    if len(normal_samples) != 72:
+        raise ValueError(f"TCGA 正常表达样本数量变化：{len(normal_samples)}")
+    normal_expression, normal_audit = align_expression(
+        args.expression, normal_samples, genes, GeneCanonicalizer(args.hgnc))
+    normal_mean = np.nanmean(normal_expression.to_numpy(dtype=float), axis=0)
+    expression = pd.DataFrame(raw_tumor_expression - normal_mean, index=patient_ids, columns=genes)
     for subset in ("train", "validation"):
         values = expression.loc[patient_ids[split == subset]]
         evidence[f"tcga_{subset}_expression_delta_median"] = values.median(axis=0)
@@ -215,20 +227,23 @@ def main():
         "device": baseline.TORCH.cuda.get_device_name(0), "dtype": "float64",
         "design": {"patient_n": len(patient_ids), "train_n": int((split == "train").sum()),
                    "validation_n": int((split == "validation").sum()), "locked_test_n_used": 0,
-                   "depmap_ccrcc_n": int(ccrcc.sum()), "sanger_renal_n": len(SANGER_MODELS)},
+                   "depmap_ccrcc_n": int(ccrcc.sum()), "sanger_renal_n": len(SANGER_MODELS),
+                   "tcga_normal_expression_n": len(normal_samples),
+                   "tcga_normal_aligned_gene_n": normal_audit["aligned_finite_gene_n"]},
         "rules": {
             "discovery_order": "TCGA train cross-mapping patient Top-10 consensus frequency, then worst-map mean residual",
             "validation": "Reported separately; not included in discovery rank",
             "functional": "Observed DepMap ccRCC residual versus non-Kidney gene mean; leave-one-cell-line-out worst mean retained",
             "sanger": "Binary Project Score dependency for 769-P, LB1047-RCC and RCC-FG2",
-            "expression": "TCGA tumor-minus-normal log2 expression, Train and Validation separate",
+            "expression": "TCGA raw tumor log expression minus the 72-sample normal-tissue mean, Train and Validation separate",
             "aggregation": "No composite biological score and no final candidate threshold",
         },
         "source_sha256": {"transfer_run": sha256(args.transfer_dir / "run.json"),
                           "candidate_summary": sha256(args.transfer_dir / "candidate_summary.csv.gz"),
                           "patient_top10": sha256(args.transfer_dir / "patient_top10.csv.gz"),
                           "baseline_matrices": sha256(args.baseline_dir / "matrices.npz"),
-                          "expression_delta": sha256(args.expression_delta),
+                          "bridge_inputs": sha256(args.bridge_dir / "expression_inputs.npz"),
+                          "expression": sha256(args.expression), "hgnc": sha256(args.hgnc),
                           "phase_a": sha256(args.phase_a), "phase_b": sha256(args.phase_b),
                           "script": sha256(Path(__file__))},
         "limitations": [
