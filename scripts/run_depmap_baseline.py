@@ -22,8 +22,35 @@ import pandas as pd
 
 
 METHODS = ("global_mean", "background", "shared_multiomics")
+MODALITIES = ("expression", "copy_number", "mutation")
+# 消融配置：全部配置都保留 lineage 与 5 个 driver 指示作为共享注释基线，
+# 变化的只是基因级模态矩阵及其对应的逐模型均值。
+ABLATION_METHODS = ("drop_expression", "drop_copy_number", "drop_mutation",
+                    "only_expression", "only_copy_number", "only_mutation")
 DRIVERS = ("VHL", "PBRM1", "SETD2", "BAP1", "MTOR")
+LABELS = {"global_mean": "均值基线", "background": "背景模型", "shared_multiomics": "多组学模型",
+          "drop_expression": "去表达", "drop_copy_number": "去拷贝数", "drop_mutation": "去突变",
+          "only_expression": "仅表达", "only_copy_number": "仅拷贝数", "only_mutation": "仅突变"}
 TORCH = None
+
+
+def config_blocks(ablation):
+    """方法名 -> 该配置包含的特征块。
+
+    线性核满足 K(X)=X@X.T 对特征分块可加，故每个块只算一次核，任意配置由块相加得到。
+    lineage 在外层整癌系留出下是常数块、经逐行中心化后被精确抵消，保留只为与历史结果逐位可比。
+    """
+    annotation = ("lineage", "drivers")
+    means = tuple(f"{name}_mean" for name in MODALITIES)
+    configs = {"background": annotation + means,
+               "shared_multiomics": annotation + means + MODALITIES}
+    if ablation:
+        for name in MODALITIES:
+            others = tuple(other for other in MODALITIES if other != name)
+            configs[f"drop_{name}"] = (annotation + tuple(f"{other}_mean" for other in others)
+                                       + others)
+            configs[f"only_{name}"] = annotation + (f"{name}_mean", name)
+    return configs
 
 
 def configure_device(device):
@@ -86,13 +113,13 @@ def gpu_masked_ridge(kernel, held_kernel, y, alphas):
     return predictions
 
 
-def print_results(rows, scope):
+def print_results(rows, scope, methods):
     """Compact terminal summary; full metrics remain in result files."""
-    names = {"global_mean": "均值基线", "background": "背景模型", "shared_multiomics": "多组学模型"}
+    names = LABELS
     current = {(row["method"], row["stratum"]): row for row in rows if row["scope"] == scope}
     print(f"  【{'癌系整体' if scope == 'lineage' else '明确 ccRCC 子集'}】", flush=True)
     print("  模型          全部靶点ΔR²   非普遍必需ΔR²   非普遍必需NDCG   非普遍必需命中率", flush=True)
-    for method in METHODS:
+    for method in methods:
         all_genes = current.get((method, "all"), {})
         selective = current.get((method, "non_common_essential"), {})
         values = [all_genes.get("delta_r2_vs_global_mean"), selective.get("delta_r2_vs_global_mean"),
@@ -186,16 +213,18 @@ def inner_folds(indices, lineages, patients, count, seed):
     return result
 
 
-def background_features(models, genes, matrices, train, held):
+def annotation_features(models, genes, matrices, train, held):
+    """共享注释基线的分块特征；每块单独返回，便于按配置相加。"""
     labels = models.OncotreeLineage.to_numpy()
     categories = np.unique(labels[train])
-    lineage = (labels[:, None] == categories[None, :]).astype(float)
+    blocks = {"lineage": (labels[:, None] == categories[None, :]).astype(float)}
     gene_index = {gene: index for index, gene in enumerate(genes)}
     drivers = [matrices["mutation"][:, gene_index[gene]] for gene in DRIVERS if gene in gene_index]
-    summaries = [observed_mean(matrices[name], axis=1)
-                 for name in ("expression", "copy_number", "mutation")]
-    values = np.column_stack([lineage, *drivers, *summaries])
-    return values[train], values[held]
+    if drivers:
+        blocks["drivers"] = np.column_stack(drivers)
+    for name in MODALITIES:
+        blocks[f"{name}_mean"] = observed_mean(matrices[name], axis=1).reshape(-1, 1)
+    return {name: (values[train], values[held]) for name, values in blocks.items()}
 
 
 def add_kernel(kernel, held_kernel, train_values, held_values, chunk=1024):
@@ -219,27 +248,38 @@ def add_kernel(kernel, held_kernel, train_values, held_values, chunk=1024):
     return used
 
 
-def kernels(models, genes, matrices, train, held, feature_indices):
-    if TORCH is not None:
-        kernel = TORCH.zeros((len(train), len(train)), dtype=TORCH.float64, device="cuda")
-        held_kernel = TORCH.zeros((len(held), len(train)), dtype=TORCH.float64, device="cuda")
-    else:
-        kernel = np.zeros((len(train), len(train)))
-        held_kernel = np.zeros((len(held), len(train)))
-    x, hx = background_features(models, genes, matrices, train, held)
-    background_n = add_kernel(kernel, held_kernel, x, hx)
-    result = {"background": (kernel.clone(), held_kernel.clone()) if TORCH is not None
-              else (kernel.copy(), held_kernel.copy())}
-    feature_n = background_n
-    for name in ("expression", "copy_number", "mutation"):
+def kernels(models, genes, matrices, train, held, feature_indices, configs):
+    """每个特征块单独算核，再按配置相加；块共享使消融配置几乎不增加核计算成本。"""
+    def zeros(rows, cols):
+        if TORCH is not None:
+            return TORCH.zeros((rows, cols), dtype=TORCH.float64, device="cuda")
+        return np.zeros((rows, cols))
+
+    blocks, counts = {}, {}
+    for name, (x, hx) in annotation_features(models, genes, matrices, train, held).items():
+        kernel, held_kernel = zeros(len(train), len(train)), zeros(len(held), len(train))
+        counts[name] = add_kernel(kernel, held_kernel, x, hx)
+        blocks[name] = (kernel, held_kernel)
+    for name in MODALITIES:
+        kernel, held_kernel = zeros(len(train), len(train)), zeros(len(held), len(train))
+        used = 0
         # Column chunking limits temporary allocations for the wide omics input.
         for start in range(0, len(feature_indices), 1024):
             columns = feature_indices[start:start + 1024]
-            feature_n += add_kernel(kernel, held_kernel,
-                                    matrices[name][np.ix_(train, columns)],
-                                    matrices[name][np.ix_(held, columns)])
-    result["shared_multiomics"] = (kernel, held_kernel)
-    return result, {"background": background_n, "shared_multiomics": feature_n}
+            used += add_kernel(kernel, held_kernel,
+                               matrices[name][np.ix_(train, columns)],
+                               matrices[name][np.ix_(held, columns)])
+        counts[name] = used
+        blocks[name] = (kernel, held_kernel)
+    result, feature_counts = {}, {}
+    for method, members in configs.items():
+        kernel, held_kernel = zeros(len(train), len(train)), zeros(len(held), len(train))
+        for member in members:
+            kernel = kernel + blocks[member][0]
+            held_kernel = held_kernel + blocks[member][1]
+        result[method] = (kernel, held_kernel)
+        feature_counts[method] = sum(counts[member] for member in members)
+    return result, feature_counts
 
 
 def masked_ridge(kernel, held_kernel, y, alphas):
@@ -275,20 +315,21 @@ def masked_ridge(kernel, held_kernel, y, alphas):
     return predictions
 
 
-def fit_fold(models, genes, matrices, y, train, held, feature_indices, alphas):
-    kernel_map, feature_counts = kernels(models, genes, matrices, train, held, feature_indices)
-    predictions = {method: masked_ridge(*kernel_map[method], y[train], alphas) for method in METHODS[1:]}
+def fit_fold(models, genes, matrices, y, train, held, feature_indices, alphas, ridge_methods, configs):
+    kernel_map, feature_counts = kernels(models, genes, matrices, train, held, feature_indices, configs)
+    predictions = {method: masked_ridge(*kernel_map[method], y[train], alphas) for method in ridge_methods}
     return predictions, feature_counts
 
 
-def tune(models, genes, matrices, y, train, folds, feature_indices, alphas, lineage):
-    errors = {method: {alpha: 0.0 for alpha in alphas} for method in METHODS[1:]}
-    counts = {method: {alpha: 0 for alpha in alphas} for method in METHODS[1:]}
+def tune(models, genes, matrices, y, train, folds, feature_indices, alphas, lineage, ridge_methods, configs):
+    errors = {method: {alpha: 0.0 for alpha in alphas} for method in ridge_methods}
+    counts = {method: {alpha: 0 for alpha in alphas} for method in ridge_methods}
     for number, held in enumerate(folds, 1):
         fold_started = time.monotonic()
         fitting = np.setdiff1d(train, held)
         print(f"  内层验证 {number}/{len(folds)}：训练 {len(fitting)}，验证 {len(held)}，正在拟合…", flush=True)
-        predictions, _ = fit_fold(models, genes, matrices, y, fitting, held, feature_indices, alphas)
+        predictions, _ = fit_fold(models, genes, matrices, y, fitting, held, feature_indices, alphas,
+                                  ridge_methods, configs)
         for method, by_alpha in predictions.items():
             for alpha, prediction in by_alpha.items():
                 valid = np.isfinite(y[held]) & np.isfinite(prediction)
@@ -375,6 +416,8 @@ def parse_args():
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--alpha-scan", action="store_true",
                         help="额外对外层全部 α 打分并输出 ranking-vs-alpha 诊断表 alpha_scan.csv")
+    parser.add_argument("--ablation", action="store_true",
+                        help="增加模态消融配置（留一与单模态），共用分块核矩阵，成本几乎不变")
     parser.add_argument("--smoke-test", action="store_true", help="Kidney by default; 128 targets, 256 feature genes, two inner folds; not research evidence")
     args = parser.parse_args()
     if args.inner_folds < 2 or args.minimum_lineage_size < 2 or args.top_k < 1:
@@ -430,23 +473,31 @@ def main():
         print("【检查通过】文件校验、数据维度、注释及分组隔离正常；未训练、未写入结果。", flush=True)
         return
     print(f"【指标】ΔR² 相对均值基线，正值更好；排序指标基于已观测靶点；命中率为预测前 {args.top_k} 个中依赖评分 ≤ {args.dependency_threshold:g} 的比例。", flush=True)
+    configs = config_blocks(args.ablation)
+    ridge_methods = METHODS[1:] + (ABLATION_METHODS if args.ablation else ())
+    all_methods = ("global_mean",) + ridge_methods
+    if args.ablation:
+        print("【消融定义】所有配置均保留 lineage 与 5 个 driver 指示；drop_X 同时去掉 X 的基因级矩阵与逐模型均值。", flush=True)
     summaries, cells, gene_frames, tuning, alpha_scan = [], [], [], [], []
     feature_counts = {}
     for number, (lineage, (train, held, folds)) in enumerate(splits.items(), 1):
         lineage_started = time.monotonic()
         summary_start = len(summaries)
         print(f"\n【癌系 {number}/{len(splits)}】{lineage}｜训练 {len(train)}｜留出 {len(held)}｜开始调参", flush=True)
-        selected, rows = tune(models, all_genes, matrices, y, train, folds, feature_indices, args.alphas, lineage)
+        selected, rows = tune(models, all_genes, matrices, y, train, folds, feature_indices, args.alphas,
+                              lineage, ridge_methods, configs)
         tuning.extend(rows)
-        print(f"  已选参数：背景模型 α={selected['background']:g}｜多组学模型 α={selected['shared_multiomics']:g}；正在拟合外层模型…", flush=True)
-        if selected["shared_multiomics"] == max(args.alphas):
-            print("  【调参边界】多组学 α 达到搜索上限；尚不能确认最佳正则化强度。", flush=True)
+        print("  已选参数：" + "｜".join(f"{LABELS[method]} α={selected[method]:g}" for method in ridge_methods)
+              + "；正在拟合外层模型…", flush=True)
+        for method in ridge_methods:
+            if selected[method] == max(args.alphas):
+                print(f"  【调参边界】{LABELS[method]} α 达到搜索上限；尚不能确认最佳正则化强度。", flush=True)
         # Fit each method at its chosen alpha only.
-        kernel_map, feature_counts[lineage] = kernels(models, all_genes, matrices, train, held, feature_indices)
+        kernel_map, feature_counts[lineage] = kernels(models, all_genes, matrices, train, held, feature_indices, configs)
         mean = observed_mean(y[train])
         mean[np.isfinite(y[train]).sum(axis=0) < 2] = np.nan
         predictions = {"global_mean": np.broadcast_to(mean, (len(held), len(genes)))}
-        for method in METHODS[1:]:
+        for method in ridge_methods:
             predictions[method] = masked_ridge(*kernel_map[method], y[train], [selected[method]])[selected[method]]
         scopes = {"lineage": np.arange(len(held))}
         if lineage == "Kidney":
@@ -459,7 +510,7 @@ def main():
                 if not columns.any():
                     continue
                 ix = np.ix_(row_indices, np.flatnonzero(columns))
-                for method in METHODS:
+                for method in all_methods:
                     summary, cell_frame, gene_frame = score_scope(
                         y[held][ix], predictions[method][ix], predictions["global_mean"][ix],
                         predictions["background"][ix], models.index.to_numpy()[held[row_indices]],
@@ -474,7 +525,7 @@ def main():
             # 诊断：外层对全部 α 打分，比较 SSE 最优与排序最优是否一致。
             # 复用已算好的 kernel_map，α 循环仅是除法，几乎不增加耗时。
             by_alpha = {method: masked_ridge(*kernel_map[method], y[train], args.alphas)
-                        for method in METHODS[1:]}
+                        for method in ridge_methods}
             for scope, row_indices in scopes.items():
                 if not len(row_indices):
                     continue
@@ -482,7 +533,7 @@ def main():
                     if not columns.any():
                         continue
                     ix = np.ix_(row_indices, np.flatnonzero(columns))
-                    for method in METHODS[1:]:
+                    for method in ridge_methods:
                         for alpha in args.alphas:
                             summary, _, _ = score_scope(
                                 y[held][ix], by_alpha[method][alpha][ix], predictions["global_mean"][ix],
@@ -493,7 +544,7 @@ def main():
                                                "selected_alpha": selected[method], **summary})
         for scope, indices in scopes.items():
             if len(indices):
-                print_results(summaries[summary_start:], scope)
+                print_results(summaries[summary_start:], scope, all_methods)
         print(f"【本癌系完成】耗时 {time.monotonic() - lineage_started:.1f} 秒｜累计 {(time.monotonic() - started) / 60:.1f} 分钟", flush=True)
     print("【保存】正在写入评价结果与运行记录…", flush=True)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -515,6 +566,7 @@ def main():
                         "torch_version": TORCH.__version__ if TORCH is not None else None,
                         "gpu_name": TORCH.cuda.get_device_name(0) if TORCH is not None else None},
             "model_n": len(models), "target_genes": genes.tolist(), "feature_genes": all_genes[feature_indices].tolist(),
+            "feature_configs": {method: list(members) for method, members in configs.items()},
             "usable_feature_counts": feature_counts, "elapsed_seconds": time.monotonic() - started,
             "rules": {
                 "split": "Outer whole-lineage holdout with patient-overlap purging; inner whole connected lineage/patient groups",
@@ -534,6 +586,8 @@ def main():
                 "ccRCC evaluation is exploratory; it does not select hyperparameters or prove ccRCC specificity.",
                 "Expression/CN/mutation feature dimensions differ in retained variability and are not modality-balanced.",
                 "No deployable final model is saved; this entry point evaluates baselines only.",
+                "Ablation configs share the lineage and five driver-indicator annotation block by design; drop_X removes both the gene-level matrix and its per-model mean, so no modality is retained through the background means.",
+                "Ablation does not include a dimension-matched random-feature placebo; modality ranking may still mix information loss with a dimensionality effect.",
             ],
             "output_sha256": {path.name: sha256(path) for path in sorted(temporary.iterdir())},
         }
