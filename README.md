@@ -40,6 +40,12 @@
 
 范围：功能层只使用 DRIVE-only DEMETER2，不使用混合 Achilles、DRIVE 与 Marcotte 的 combined 结果；通过当前 DepMap 唯一 CCLEName 映射审计 ccRCC 身份，同时单列与现有基线患者不重叠的严格敏感性子集。正常组织层固定 GTEx v11 的 Kidney Cortex、Kidney Medulla 和全部组织中位 TPM，不把表达量直接解释为毒性，不设置综合分数或安全阈值。
 
+最终结果（2026-09-15）：DRIVE-only DEMETER2 共含 397 个模型，其中 16 个 Kidney；依据当前 DepMap 唯一 CCLEName 与 OncotreeCode 映射出 8 个 ccRCC。冻结前 20 候选中只有 10 个被 DRIVE 文库覆盖。以 DRIVE 非 Kidney 模型的逐基因均值为平台内基线，PAX8、HNF1B 和 FERMT2 的 ccRCC 平均残差分别为 -0.7883（模型 bootstrap 95% CI -1.1219 至 -0.4741）、-0.6934（-1.0620 至 -0.3442）和 -0.6822（-0.9256 至 -0.4589），支持这三个基因在该 RNAi 数据中的 Kidney/ccRCC 谱系依赖方向。PAX8 相对其他 Kidney 模型的残差差为 -0.3712（95% CI -0.7312 至 -0.0041）；HNF1B 和 FERMT2 的对应区间均跨 0，不能证明 ccRCC 亚型特异性。CCND1 的绝对 ccRCC 残差区间跨 0（均值 -0.1220，95% CI -0.3587 至 +0.1031），虽相对其他 Kidney 为负，仍不足以称为稳定 RNAi 依赖。其余覆盖候选未显示可靠的负向 ccRCC 残差；UBR5 和 WDR73 反而为正向。
+
+严格患者不重叠敏感性仅剩 2 个 ccRCC 模型，PAX8、HNF1B、FERMT2 的平均残差分别为 -0.8928、-0.9858、-0.8366；样本量过小，只能说明方向未反转，不能作为独立统计确认。DRIVE 与当前 CRISPR 基线有 7/16 个 Kidney 模型重叠，且 ccRCC 身份来自当前注释而非 DRIVE 原始亚型字段，因此本层属于独立扰动平台复现，不是独立样本队列验证。
+
+GTEx v11 的 68 个组织列显示明显正常肾脏暴露：PAX8 的 Kidney Cortex/Medulla 中位表达为 179.12/351.62 TPM，HNF1B 为 51.63/97.90 TPM，FERMT2 的肾脏最高中位表达为 33.46 TPM。PAX8 与 HNF1B 的功能支持同时伴随显著正常肾脏表达风险；GTEx bulk RNA 不能定位肾单位细胞类型，也不能把表达量换算成药物毒性或治疗窗。综合现有证据，PAX8 是当前跨 CRISPR、RNAi 和直接文献支持最一致的候选，但尚无正常肾脏治疗窗；HNF1B 和 FERMT2 是 Kidney 谱系候选，ccRCC 特异性与可成药性不足；当前没有任何候选达到“患者特异功能依赖”或“临床靶点”的证据标准。结果见 `outputs/candidate_orthogonal_validation_v1/`。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。

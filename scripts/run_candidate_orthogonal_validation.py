@@ -370,7 +370,8 @@ def main():
             "drive_residual": "Per-gene DRIVE non-Kidney mean subtracted from every model",
             "ccrcc_identity": "Unique current DepMap CCLEName mapping and OncotreeCode CCRCC",
             "strict_sensitivity": "Mapped ccRCC whose PatientID is absent from the current 873-model baseline",
-            "gtex": "GTEx v11 median TPM reported quantitatively for kidney cortex, medulla and all 66 tissues",
+            "gtex": ("GTEx v11 median TPM reported quantitatively for kidney cortex, "
+                     f"medulla and all {int(gtex.gtex_tissue_n.iloc[0])} tissue columns"),
             "aggregation": "No composite score, safety threshold, candidate removal or reranking",
         },
         "sources": source_audit,
@@ -384,7 +385,8 @@ def main():
             "DRIVE is an independent RNAi assay but seven of sixteen Kidney models occur in the current DepMap baseline.",
             "Only ten frozen candidates were targeted by the DRIVE library.",
             "Current-model annotations map eight DRIVE lines to ccRCC; historical DRIVE metadata only labels them Kidney carcinoma.",
-            "The strict patient-nonoverlap ccRCC sensitivity subset has only three models.",
+            ("The strict patient-nonoverlap ccRCC sensitivity subset has only "
+             f"{external_ccrcc_n} models."),
             "RNAi and CRISPR have different off-target effects and score scales; comparisons use within-platform residuals.",
             "GTEx bulk median expression does not identify the renal cell type exposed and does not prove toxicity.",
             "Bootstrap intervals are descriptive and are not multiplicity-adjusted confirmatory tests.",
