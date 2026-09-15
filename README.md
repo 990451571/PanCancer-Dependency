@@ -46,6 +46,14 @@
 
 GTEx v11 的 68 个组织列显示明显正常肾脏暴露：PAX8 的 Kidney Cortex/Medulla 中位表达为 179.12/351.62 TPM，HNF1B 为 51.63/97.90 TPM，FERMT2 的肾脏最高中位表达为 33.46 TPM。PAX8 与 HNF1B 的功能支持同时伴随显著正常肾脏表达风险；GTEx bulk RNA 不能定位肾单位细胞类型，也不能把表达量换算成药物毒性或治疗窗。综合现有证据，PAX8 是当前跨 CRISPR、RNAi 和直接文献支持最一致的候选，但尚无正常肾脏治疗窗；HNF1B 和 FERMT2 是 Kidney 谱系候选，ccRCC 特异性与可成药性不足；当前没有任何候选达到“患者特异功能依赖”或“临床靶点”的证据标准。结果见 `outputs/candidate_orthogonal_validation_v1/`。
 
+## 大型任务三：肾脏细胞类型暴露与肿瘤—正常表达审计
+
+开始日期：2026-09-15。
+
+目的：定位冻结前 20 候选在肾单位上皮细胞类型中的表达暴露，并修正既往 TCGA 邻近正常均值未按历史分组隔离的问题，为后续候选分层提供表达层风险证据。
+
+范围：HPA v25.1 仅使用在其来源表中只出现于 kidney 数据集的上皮细胞类型 nCPM；该 kidney 数据来自包含健康与损伤状态的 60,929 个单细胞核，不能称为纯正常供体队列。TCGA 只用历史 Train 参与者的邻近正常样本建立参考，Validation 肿瘤及配对正常单列报告，锁定 Test 的肿瘤和邻近正常均完全排除。不同平台单位不直接相除，不设置治疗窗阈值或综合分数，不改变候选顺序。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
