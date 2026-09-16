@@ -54,6 +54,12 @@ GTEx v11 的 68 个组织列显示明显正常肾脏暴露：PAX8 的 Kidney Cor
 
 范围：HPA v25.1 仅使用在其来源表中只出现于 kidney 数据集的上皮细胞类型 nCPM；该 kidney 数据来自包含健康与损伤状态的 60,929 个单细胞核，不能称为纯正常供体队列。TCGA 只用历史 Train 参与者的邻近正常样本建立参考，Validation 肿瘤及配对正常单列报告，锁定 Test 的肿瘤和邻近正常均完全排除。不同平台单位不直接相除，不设置治疗窗阈值或综合分数，不改变候选顺序。
 
+最终结果（2026-09-16）：HPA v25.1 kidney 数据共 60,929 个单细胞核和 49 个 cluster，其中 36 个进入汇总、33 个为 high-reliability；按来源表限定出 8 类只出现于 kidney 的肾单位上皮细胞类型，冻结 20 个候选全部覆盖。PAX8 在 8 类中均有表达，最高为集合管主细胞 1496.4 nCPM、近端小管为 1331.6 nCPM；HNF1B 最高为髓袢上皮 254.6 nCPM；FERMT2 最高为足细胞 360.0 nCPM、近端小管为 173.3 nCPM。三者均没有“肾脏低暴露”的表达证据。该 HPA kidney 来源混合健康与损伤状态且无供体级重复，nCPM 只能定位细胞类型，不能估计正常肾毒性。
+
+TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常用于冻结参考，14 个 Validation 正常只作配对验证，14 个锁定 Test 正常和 7 个冻结队列外正常完全排除；全部 51 个 Test 肿瘤同样未使用。配对肿瘤减正常的 Xena log-expression 中位差在 Train/Validation 分别为：PAX8 -1.3935/-0.9284、HNF1B -0.4545/-0.1222、FERMT2 -0.6546/-0.8716，三者均没有肿瘤高表达窗口。CCND1 则为 +2.5169/+2.2905，两个分组的 20,000 次 GPU bootstrap 区间均完全高于 0；但其 DRIVE ccRCC 绝对残差为 -0.1220（95% CI -0.3587 至 +0.1031），因此只支持肿瘤表达升高，不支持稳定的 RNAi ccRCC 依赖。SLC33A1 在 HPA 8 类中均为 0 nCPM、配对表达为正，但 GTEx 肾脏仍有 3.73–4.51 TPM 且缺少 DRIVE 覆盖，不能据此宣称安全或有效。
+
+审计同时确认，历史 `outputs/tcga_candidate_evidence_v2/` 的辅助肿瘤—正常字段使用过全部 72 个正常样本，其中包括 14 个 Test 参与者；这些表达字段已由本任务替代。该字段没有参与 discovery rank、模型训练、患者预测或前 20 冻结，因此候选顺序不变。综合功能与表达层证据：PAX8 是最一致的功能依赖候选，但正常肾脏暴露和肿瘤低表达反对清晰治疗窗；HNF1B、FERMT2 仍是 Kidney 谱系机制候选，尚非 ccRCC 特异治疗靶点；CCND1 是肿瘤表达和 tractability 候选，但功能复现不稳定。当前没有候选同时满足跨平台功能复现、ccRCC 特异性和正常肾脏治疗窗。结果见 `outputs/candidate_celltype_window_v1/`。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。

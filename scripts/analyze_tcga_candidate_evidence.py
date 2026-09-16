@@ -21,7 +21,7 @@ import pandas as pd
 import torch
 
 import run_depmap_baseline as baseline
-from build_context_module_stage0 import GeneCanonicalizer, sample_type
+from build_context_module_stage0 import GeneCanonicalizer, patient_id, sample_type
 from prepare_tcga_expression_bridge import align_expression
 
 
@@ -198,9 +198,11 @@ def main():
     evidence["shared_three_renal_absolute_prediction_top10"] = evidence.index.isin(shared)
 
     header = pd.read_csv(args.expression, sep="\t", nrows=0).columns.astype(str).tolist()
-    normal_samples = [sample for sample in header[1:] if sample_type(sample) == "11"]
-    if len(normal_samples) != 72:
-        raise ValueError(f"TCGA 正常表达样本数量变化：{len(normal_samples)}")
+    train_patients = set(patient_ids[split == "train"])
+    all_normal_samples = [sample for sample in header[1:] if sample_type(sample) == "11"]
+    normal_samples = [sample for sample in all_normal_samples if patient_id(sample) in train_patients]
+    if len(normal_samples) != 37:
+        raise ValueError(f"TCGA Train 正常表达样本数量变化：{len(normal_samples)}")
     normal_expression, normal_audit = align_expression(
         args.expression, normal_samples, genes, GeneCanonicalizer(args.hgnc))
     normal_mean = np.nanmean(normal_expression.to_numpy(dtype=float), axis=0)
@@ -235,7 +237,7 @@ def main():
             "validation": "Reported separately; not included in discovery rank",
             "functional": "Observed DepMap ccRCC residual versus non-Kidney gene mean; leave-one-cell-line-out worst mean retained",
             "sanger": "Binary Project Score dependency for 769-P, LB1047-RCC and RCC-FG2",
-            "expression": "TCGA raw tumor log expression minus the 72-sample normal-tissue mean, Train and Validation separate",
+            "expression": "TCGA raw tumor log expression minus the 37-sample historical-Train normal-tissue mean, Train and Validation separate",
             "aggregation": "No composite biological score and no final candidate threshold",
         },
         "source_sha256": {"transfer_run": sha256(args.transfer_dir / "run.json"),
@@ -252,6 +254,7 @@ def main():
             "TCGA Validation is a stability split, not a functional validation set.",
             "Sanger binary calls come from an older BAGEL pipeline and only three renal models are available.",
             "Tumor overexpression does not establish tumor-specific essentiality or normal-tissue safety.",
+            "The historical v2 output used all 72 adjacent-normal samples; its expression-only fields are superseded by candidate_celltype_window_v1.",
             "No multiplicity-adjusted inferential target selection is performed.",
         ],
     }
