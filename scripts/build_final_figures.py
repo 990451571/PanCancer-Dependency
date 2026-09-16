@@ -229,7 +229,7 @@ def figure_evidence_matrix(candidates: pd.DataFrame) -> plt.Figure:
     ]
     ax.legend(handles=legend, loc="upper left", bbox_to_anchor=(0, -0.045), ncol=3, frameon=False)
     fig.text(0.125, 0.025,
-             "Rows retain discovery rank. Empty cells are not proof of no effect. No composite score or reranking was used.",
+             "Rows retain discovery rank; no composite score or reranking was used. Locked Test marks prespecified median direction only; HNF1B CI crosses zero.",
              fontsize=8, color="#4B5563")
     fig.tight_layout(rect=[0, 0.07, 1, 0.95])
     return fig
@@ -316,11 +316,15 @@ def figure_baseline_generalization(internal: pd.DataFrame, external: pd.DataFram
     for row in data.itertuples():
         ax.scatter(row.depmap_ndcg, row.sanger_ndcg, s=75, color=colors[row.method],
                    edgecolor="white", linewidth=0.8, zorder=2)
-        offset = (0.006, 0.005 if row.method != "expression_kernel_ridge_tuned" else -0.015)
+        offsets = {
+            "expression_pcr_ridge": (0.006, -0.014),
+            "expression_kernel_ridge_tuned": (-0.052, 0.006),
+        }
+        offset = offsets.get(row.method, (0.006, 0.005))
         ax.text(row.depmap_ndcg + offset[0], row.sanger_ndcg + offset[1], labels[row.method], fontsize=8)
     ax.set_xlabel("DepMap whole-lineage NDCG@10")
     ax.set_ylabel("Sanger external-lineage NDCG@10")
-    ax.set_title("Baseline performance generalizes across CRISPR platforms", loc="left", fontweight="bold")
+    ax.set_title("Baseline performance across CRISPR platforms", loc="left", fontweight="bold")
     ax.grid(color="#E5E7EB", linewidth=0.7)
     ax.spines[["top", "right"]].set_visible(False)
     fig.text(0.12, 0.015,
