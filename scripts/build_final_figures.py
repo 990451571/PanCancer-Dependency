@@ -74,8 +74,34 @@ def select_one(frame: pd.DataFrame, **conditions) -> pd.Series:
 
 def figure_validation(internal: pd.DataFrame, external: pd.DataFrame,
                       cohort: pd.DataFrame, sensitivity: pd.DataFrame,
+                      benchmark: pd.DataFrame, locked_test_run: dict,
                       candidates: pd.DataFrame) -> plt.Figure:
-    fig, axes = plt.subplots(1, 3, figsize=(12.6, 4.25), gridspec_kw={"width_ratios": [1.45, 1.0, 1.0]})
+    fig, axes = plt.subplots(1, 4, figsize=(16.2, 4.4),
+                             gridspec_kw={"width_ratios": [1.1, 1.4, 1.1, 0.9]})
+
+    ax = axes[0]
+    labels = {
+        "training_selectivity_prior": "Selective prior",
+        "annotation_ridge": "Annotation ridge",
+        "expression_knn": "Expression kNN",
+        "expression_pcr_ridge": "Expression PCR-ridge",
+        "expression_kernel_ridge_frozen": "Frozen kernel ridge",
+        "expression_kernel_ridge_tuned": "Tuned kernel ridge",
+    }
+    current = benchmark.loc[benchmark["estimand"].eq("lineage_equal")].copy()
+    order = list(labels)
+    current = current.set_index("method").loc[order]
+    colors = [GRAY, GRAY, LIGHT_BLUE, GREEN, BLUE, ORANGE]
+    ypos = np.arange(len(order))[::-1]
+    bars = ax.barh(ypos, current["ndcg_at_10"], color=colors, height=0.62)
+    ax.set_yticks(ypos, [labels[x] for x in order])
+    ax.set_xlim(0, max(0.5, float(current["ndcg_at_10"].max()) * 1.18))
+    ax.set_xlabel("Lineage-equal NDCG@10")
+    ax.set_title("A  Fair baseline benchmark", loc="left", fontweight="bold")
+    ax.grid(axis="x", color="#E5E7EB", linewidth=0.7)
+    ax.spines[["top", "right"]].set_visible(False)
+    for bar, value in zip(bars, current["ndcg_at_10"]):
+        ax.text(value + 0.006, bar.get_y() + bar.get_height() / 2, f"{value:.3f}", va="center", fontsize=7.5)
 
     rows = [
         ("DepMap LOLO\n(patient equal)", select_one(internal, metric="ndcg_at_10_gain", estimand="patient_equal"), BLUE),
@@ -90,7 +116,7 @@ def figure_validation(internal: pd.DataFrame, external: pd.DataFrame,
             external, comparison="mapped_expression_z_residual_vs_training_standardized_prior",
             metric="ndcg_at_10_gain", estimand="model_weighted"), ORANGE),
     ]
-    ax = axes[0]
+    ax = axes[1]
     y = np.arange(len(rows))[::-1]
     for pos, (label, row, color) in zip(y, rows):
         mean, low, high = row["mean"], row["ci_low"], row["ci_high"]
@@ -99,28 +125,31 @@ def figure_validation(internal: pd.DataFrame, external: pd.DataFrame,
     ax.axvline(0, color="#6B7280", linewidth=0.9, linestyle="--")
     ax.set_yticks(y, [x[0] for x in rows])
     ax.set_xlabel("NDCG@10 gain vs selective prior")
-    ax.set_title("A  Cross-validation and external replication", loc="left", fontweight="bold")
+    ax.set_title("B  Internal and external gains", loc="left", fontweight="bold")
     ax.grid(axis="x", color="#E5E7EB", linewidth=0.7)
     ax.spines[["top", "right"]].set_visible(False)
 
-    ax = axes[1]
+    ax = axes[2]
     primary = select_one(cohort, method="nonkidney_shift_driver_neutral")
     mapping = sensitivity.loc[sensitivity["comparison"].eq("mapping_neutral")]
-    stability_labels = ["Top-100\ncohort overlap", "Frequency\nSpearman", "Top-10\nmapping overlap", "Rank\nmapping Spearman"]
-    stability_values = [primary["top100_frequency_overlap"], primary["active_frequency_spearman"],
-                        mapping["top10_overlap"].mean(), mapping["spearman"].mean()]
-    colors = [BLUE, BLUE, ORANGE, ORANGE]
+    test = locked_test_run["primary_results"]
+    stability_labels = ["Train-Val\nTop-100", "Train-Test\nTop-100", "Frozen20\nVal-Test rho",
+                        "Test map\nTop-10"]
+    stability_values = [primary["top100_frequency_overlap"], test["train_test_top100_overlap"],
+                        test["frozen20_validation_test_frequency_spearman"],
+                        test["test_mapping_top10_overlap_mean"]]
+    colors = [BLUE, BLUE, GREEN, ORANGE]
     bars = ax.bar(np.arange(4), stability_values, color=colors, width=0.68)
     ax.set_xticks(np.arange(4), stability_labels, rotation=20, ha="right")
     ax.set_ylim(0, 1.05)
     ax.set_ylabel("Agreement")
-    ax.set_title("B  Patient-transfer stability", loc="left", fontweight="bold")
+    ax.set_title("C  Locked patient stability", loc="left", fontweight="bold")
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.7)
     ax.spines[["top", "right"]].set_visible(False)
     for bar, value in zip(bars, stability_values):
         ax.text(bar.get_x() + bar.get_width() / 2, value + 0.025, f"{value:.2f}", ha="center", va="bottom", fontsize=8)
 
-    ax = axes[2]
+    ax = axes[3]
     attrition = [
         ("Frozen candidates", len(candidates), DARK),
         ("RNAi absolute support", int(candidates["orthogonal_rnai_support"].sum()), BLUE),
@@ -132,16 +161,16 @@ def figure_validation(internal: pd.DataFrame, external: pd.DataFrame,
     ax.set_yticks(ypos, [x[0] for x in attrition])
     ax.set_xlim(0, 21)
     ax.set_xlabel("Candidate count")
-    ax.set_title("C  Evidence attrition", loc="left", fontweight="bold")
+    ax.set_title("D  Evidence attrition", loc="left", fontweight="bold")
     ax.grid(axis="x", color="#E5E7EB", linewidth=0.7)
     ax.spines[["top", "right"]].set_visible(False)
     for bar, (_, value, _) in zip(bars, attrition):
         ax.text(max(value + 0.45, 0.45), bar.get_y() + bar.get_height() / 2, str(value), va="center", fontsize=9)
 
-    fig.suptitle("Validation performance, transfer instability, and the patient-evidence ceiling",
+    fig.suptitle("Benchmark performance, external replication, and the patient-evidence ceiling",
                  x=0.04, ha="left", fontweight="bold")
     fig.text(0.04, 0.005,
-             "Intervals are 95% bootstrap intervals. Patient-transfer agreement is stability, not functional accuracy.",
+             "Baseline models use identical whole-lineage splits. Intervals are 95% bootstrap intervals; patient agreement is not functional accuracy.",
              fontsize=8, color="#4B5563")
     fig.tight_layout(rect=[0, 0.04, 1, 0.93], w_pad=2.0)
     return fig
@@ -150,6 +179,7 @@ def figure_validation(internal: pd.DataFrame, external: pd.DataFrame,
 def figure_evidence_matrix(candidates: pd.DataFrame) -> plt.Figure:
     columns = [
         ("Validation\nTop-100", "validation_top100_retained", "support"),
+        ("Locked Test\ndirection", "prespecified_direction_replicated", "support"),
         ("DepMap Kidney\ndirection", "depmap_kidney_lineage_direction", "support"),
         ("Sanger\n3/3", "sanger_all_three_support", "support"),
         ("RNAi\nabsolute", "orthogonal_rnai_support", "support"),
@@ -162,7 +192,7 @@ def figure_evidence_matrix(candidates: pd.DataFrame) -> plt.Figure:
     ]
     data = np.zeros((len(candidates), len(columns)), dtype=int)
     for j, (_, field, kind) in enumerate(columns):
-        present = candidates[field].astype(bool).to_numpy()
+        present = candidates[field].fillna(False).astype(bool).to_numpy()
         data[present, j] = -1 if kind == "risk" else 1
 
     fig, ax = plt.subplots(figsize=(10.4, 7.3))
@@ -266,7 +296,7 @@ def parse_args():
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--evidence-dir", type=Path,
-                        default=root / "results/historical/final_evidence_synthesis_v1")
+                        default=root / "outputs/final_evidence_synthesis_v2")
     parser.add_argument("--internal-bootstrap", type=Path,
                         default=root / "outputs/selective_dependency_analysis_v1/bootstrap.csv")
     parser.add_argument("--external-bootstrap", type=Path,
@@ -275,8 +305,12 @@ def parse_args():
                         default=root / "outputs/tcga_patient_transfer_v1/cohort_stability.csv")
     parser.add_argument("--input-sensitivity", type=Path,
                         default=root / "outputs/tcga_patient_transfer_v1/input_sensitivity.csv")
+    parser.add_argument("--benchmark-summary", type=Path,
+                        default=root / "outputs/selective_dependency_benchmark_v1/overall_summary.csv")
+    parser.add_argument("--locked-test-run", type=Path,
+                        default=root / "results/historical/tcga_locked_test_v1/run.json")
     parser.add_argument("--output-dir", type=Path,
-                        default=root / "outputs/final_figures_v1")
+                        default=root / "outputs/final_figures_v2")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -291,6 +325,8 @@ def main():
         "external_bootstrap": args.external_bootstrap,
         "cohort_stability": args.cohort_stability,
         "input_sensitivity": args.input_sensitivity,
+        "baseline_benchmark": args.benchmark_summary,
+        "locked_test_run": args.locked_test_run,
     }
     if args.output_dir.exists() and not args.dry_run:
         raise FileExistsError(f"拒绝覆盖已有结果：{args.output_dir.resolve()}")
@@ -310,7 +346,9 @@ def main():
     print("【阶段 2/4】绘制模型验证与证据上限图", flush=True)
     generated = save_figure(
         figure_validation(pd.read_csv(args.internal_bootstrap), pd.read_csv(args.external_bootstrap),
-                          pd.read_csv(args.cohort_stability), pd.read_csv(args.input_sensitivity), candidates),
+                          pd.read_csv(args.cohort_stability), pd.read_csv(args.input_sensitivity),
+                          pd.read_csv(args.benchmark_summary), json.loads(args.locked_test_run.read_text()),
+                          candidates),
         args.output_dir, "figure1_validation_and_evidence_ceiling")
     print("【阶段 3/4】绘制候选证据矩阵和功能—正常肾暴露图", flush=True)
     generated += save_figure(figure_evidence_matrix(candidates), args.output_dir, "figure2_candidate_evidence_matrix")
@@ -321,13 +359,13 @@ def main():
     manifest = pd.DataFrame([
         {
             "figure": "Figure 1", "stem": "figure1_validation_and_evidence_ceiling",
-            "caption": ("Internal and external NDCG@10 gains, patient-transfer stability, and evidence attrition. "
-                        "Bootstrap intervals quantify sampling uncertainty; patient stability is not functional accuracy."),
+            "caption": ("Fair whole-lineage baseline performance, internal and external NDCG@10 gains, locked patient "
+                        "stability, and evidence attrition. Patient stability is not functional accuracy."),
         },
         {
             "figure": "Figure 2", "stem": "figure2_candidate_evidence_matrix",
-            "caption": ("Frozen top-20 candidate evidence matrix retaining discovery order. Blue denotes supporting evidence; "
-                        "red denotes direct opposition or normal-kidney organoid liability. No composite score was used."),
+            "caption": ("Frozen top-20 candidate evidence matrix retaining discovery order and descriptive locked-Test "
+                        "expression-direction replication. Blue denotes support; red denotes opposition or normal-kidney liability."),
         },
         {
             "figure": "Figure 3", "stem": "figure3_dependency_vs_normal_kidney_exposure",
@@ -348,7 +386,9 @@ def main():
             "formats": ["png_300dpi", "pdf_vector"],
             "candidate_reranking": False,
             "composite_score": False,
-            "locked_tcga_test_used": False,
+            "locked_tcga_test_used": True,
+            "locked_tcga_test_use": "descriptive stability and prespecified expression direction only",
+            "baseline_benchmark_used": True,
         },
         "source_sha256": {name: sha256(path) for name, path in inputs.items()},
         "output_sha256": {name: sha256(args.output_dir / name) for name in generated},

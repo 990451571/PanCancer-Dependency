@@ -79,8 +79,8 @@ def evidence_class(row: pd.Series) -> tuple[str, str, str]:
     )
 
 
-def build_matrix(celltype: pd.DataFrame, frozen: pd.DataFrame,
-                 liability: pd.DataFrame, eligible_patient_resource_n: int) -> pd.DataFrame:
+def build_matrix(celltype: pd.DataFrame, frozen: pd.DataFrame, liability: pd.DataFrame,
+                 locked_test: pd.DataFrame, eligible_patient_resource_n: int) -> pd.DataFrame:
     needed = [
         "Gene", "discovery_rank", "train_patient_consensus_top10_frequency",
         "validation_patient_consensus_top10_frequency",
@@ -105,10 +105,21 @@ def build_matrix(celltype: pd.DataFrame, frozen: pd.DataFrame,
         raise ValueError("细胞类型审计与冻结候选集合不一致")
     if frozen["common_essential"].fillna(False).astype(bool).any():
         raise ValueError("冻结候选中意外包含 common-essential 基因")
+    require_columns(locked_test, [
+        "Gene", "discovery_rank", "test_top10_frequency", "test_sensitivity_top10_frequency",
+        "test_paired_n", "test_paired_tumor_minus_normal_median",
+        "test_paired_median_bootstrap_low", "test_paired_median_bootstrap_median",
+        "test_paired_median_bootstrap_high", "prespecified_expression_direction",
+        "prespecified_direction_replicated",
+    ], "locked_test_candidates")
+    if len(locked_test) != 20 or set(locked_test["Gene"]) != set(celltype["Gene"]):
+        raise ValueError("Locked Test候选与冻结20候选不一致")
 
     out = celltype[needed].merge(
         frozen[["Gene", "validation_rank", "common_essential"]],
         on="Gene", how="left", validate="one_to_one")
+    test_columns = [column for column in locked_test.columns if column not in {"discovery_rank"}]
+    out = out.merge(locked_test[test_columns], on="Gene", how="left", validate="one_to_one")
     out["validation_top100_retained"] = out["validation_rank"].le(100)
     out["depmap_kidney_lineage_direction"] = (
         finite_lt_zero(out["depmap_ccrcc_leave1out_worst_mean_residual"])
@@ -129,6 +140,8 @@ def build_matrix(celltype: pd.DataFrame, frozen: pd.DataFrame,
         & out["tcga_validation_paired_median"].gt(0))
     out["clinical_stage_tractability"] = out["clinical_stage_tractability_true_n"].gt(0)
     out["patient_derived_functional_truth_available"] = eligible_patient_resource_n > 0
+    out["locked_test_used_for_reranking"] = False
+    out["locked_test_functional_truth"] = False
 
     classified = out.apply(evidence_class, axis=1, result_type="expand")
     classified.columns = ["evidence_class", "final_interpretation", "required_next_evidence"]
@@ -152,8 +165,9 @@ def select_metric(frame: pd.DataFrame, **conditions) -> pd.Series:
 
 
 def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFrame,
-                 cohort: pd.DataFrame, sensitivity: pd.DataFrame,
-                 renal_context: pd.DataFrame, eligible_patient_resource_n: int) -> pd.DataFrame:
+                 cohort: pd.DataFrame, sensitivity: pd.DataFrame, renal_context: pd.DataFrame,
+                 benchmark_summary: pd.DataFrame, benchmark_bootstrap: pd.DataFrame,
+                 locked_test_run: dict, eligible_patient_resource_n: int) -> pd.DataFrame:
     internal = select_metric(
         internal_bootstrap, metric="ndcg_at_10_gain", estimand="patient_equal")
     external = select_metric(
@@ -169,6 +183,20 @@ def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFr
     mapping = sensitivity.loc[sensitivity["comparison"].eq("mapping_neutral")]
     if len(mapping) == 0:
         raise ValueError("缺少患者表达映射敏感性结果")
+    benchmark = benchmark_summary.loc[benchmark_summary["estimand"].eq("lineage_equal")].copy()
+    frozen_method = "expression_kernel_ridge_frozen"
+    competitors = benchmark.loc[benchmark["method"].isin(
+        ["annotation_ridge", "expression_knn", "expression_pcr_ridge"])]
+    if len(competitors) != 3 or not benchmark["method"].eq(frozen_method).any():
+        raise ValueError("baseline benchmark方法集合不完整")
+    strongest = competitors.sort_values("ndcg_at_10", ascending=False).iloc[0]
+    frozen_row = benchmark.loc[benchmark["method"].eq(frozen_method)].iloc[0]
+    head_to_head = select_metric(
+        benchmark_bootstrap,
+        comparison=f"{frozen_method}_vs_{strongest['method']}",
+        metric="ndcg_at_10", estimand="patient_equal")
+    test_primary = locked_test_run["primary_results"]
+    baseline_verdict = "优于最强baseline" if head_to_head["ci_low"] > 0 else "未显示优于最强baseline"
 
     rows = [
         {
@@ -178,6 +206,16 @@ def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFr
             "basis": (f"内部完整癌系留出患者等权 ΔNDCG={internal['mean']:+.4f}，"
                       f"95%区间[{internal['ci_low']:+.4f},{internal['ci_high']:+.4f}]") ,
             "boundary": "目标是细胞系选择性残差排序，不是患者功能依赖。",
+        },
+        {
+            "claim": "冻结表达核岭模型优于公平比较中的最强baseline",
+            "verdict": baseline_verdict,
+            "evidence_type": "事实",
+            "basis": (f"癌系等权NDCG：冻结核岭={frozen_row['ndcg_at_10']:.4f}，"
+                      f"最强baseline {strongest['method']}={strongest['ndcg_at_10']:.4f}；"
+                      f"患者等权配对差={head_to_head['mean']:+.4f}，"
+                      f"95%区间[{head_to_head['ci_low']:+.4f},{head_to_head['ci_high']:+.4f}]") ,
+            "boundary": "比较限于同一DepMap 24Q4完整癌系留出；不是对Nature Cancer或DeepDEP论文结果的直接胜负判断。",
         },
         {
             "claim": "该泛癌信号可跨CRISPR平台复现",
@@ -195,6 +233,16 @@ def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFr
                       f"映射敏感性Top-10重叠均值={mapping['top10_overlap'].mean():.4f}，"
                       f"Spearman均值={mapping['spearman'].mean():.4f}") ,
             "boundary": "稳定性不是准确率，TCGA没有依赖标签，且映射选择显著改变头部候选。",
+        },
+        {
+            "claim": "冻结候选在未见TCGA Test患者中保持稳定",
+            "verdict": "支持相对稳定性，不支持功能准确率",
+            "evidence_type": "事实",
+            "basis": (f"Train/Test Top-100重叠={test_primary['train_test_top100_overlap']:.2f}；"
+                      f"冻结20 Validation/Test频率Spearman="
+                      f"{test_primary['frozen20_validation_test_frequency_spearman']:.4f}；"
+                      f"Test映射Top-10重叠={test_primary['test_mapping_top10_overlap_mean']:.4f}"),
+            "boundary": "Test没有基因扰动标签，且映射敏感性仍高；新baseline不得把已访问Test当作前瞻确认集。",
         },
         {
             "claim": "模型已证明ccRCC相对其他Kidney具有额外预测优势",
@@ -251,8 +299,22 @@ def parse_args():
                         default=root / "outputs/tcga_patient_transfer_v1/cohort_stability.csv")
     parser.add_argument("--input-sensitivity", type=Path,
                         default=root / "outputs/tcga_patient_transfer_v1/input_sensitivity.csv")
+    parser.add_argument("--locked-test-candidates", type=Path,
+                        default=root / "results/historical/tcga_locked_test_v1/frozen_candidate_test.csv")
+    parser.add_argument("--locked-test-run", type=Path,
+                        default=root / "results/historical/tcga_locked_test_v1/run.json")
+    parser.add_argument("--benchmark-summary", type=Path,
+                        default=root / "outputs/selective_dependency_benchmark_v1/overall_summary.csv")
+    parser.add_argument("--benchmark-bootstrap", type=Path,
+                        default=root / "outputs/selective_dependency_benchmark_v1/bootstrap.csv")
+    parser.add_argument("--benchmark-run", type=Path,
+                        default=root / "outputs/selective_dependency_benchmark_v1/run.json")
+    parser.add_argument("--prior-work", type=Path,
+                        default=root / "configs/prior_work_comparison_20260916.csv")
+    parser.add_argument("--benchmark-protocol", type=Path,
+                        default=root / "configs/dependency_benchmark_protocol_20260916.json")
     parser.add_argument("--output-dir", type=Path,
-                        default=root / "outputs/final_evidence_synthesis_v1")
+                        default=root / "outputs/final_evidence_synthesis_v2")
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -270,6 +332,13 @@ def main():
         "external_bootstrap": args.external_bootstrap,
         "cohort_stability": args.cohort_stability,
         "input_sensitivity": args.input_sensitivity,
+        "locked_test_candidates": args.locked_test_candidates,
+        "locked_test_run": args.locked_test_run,
+        "baseline_benchmark_summary": args.benchmark_summary,
+        "baseline_benchmark_bootstrap": args.benchmark_bootstrap,
+        "baseline_benchmark_run": args.benchmark_run,
+        "prior_work_comparison": args.prior_work,
+        "baseline_benchmark_protocol": args.benchmark_protocol,
     }
     if args.output_dir.exists() and not args.dry_run:
         raise FileExistsError(f"拒绝覆盖已有结果：{args.output_dir.resolve()}")
@@ -285,18 +354,21 @@ def main():
     frozen = pd.read_csv(args.frozen)
     celltype = pd.read_csv(args.celltype)
     liability = pd.read_csv(args.liability)
+    locked_test = pd.read_csv(args.locked_test_candidates)
+    locked_test_run = json.loads(args.locked_test_run.read_text())
     resource_run = json.loads(args.resource_run.read_text())
     eligible_n = int(resource_run["counts"]["eligible_patient_derived_ccrcc_gene_perturbation_resource_n"])
 
     print("【阶段 2/4】构建逐候选功能、特异性、暴露和可成药证据矩阵", flush=True)
-    matrix = build_matrix(celltype, frozen, liability, eligible_n)
+    matrix = build_matrix(celltype, frozen, liability, locked_test, eligible_n)
     print("【冻结规则】保留 discovery rank｜证据分类不改变排名｜患者功能真值不可用", flush=True)
 
     print("【阶段 3/4】审计项目级可支持与不可支持结论", flush=True)
     claims = build_claims(
         pd.read_csv(args.internal_bootstrap), pd.read_csv(args.external_bootstrap),
         pd.read_csv(args.cohort_stability), pd.read_csv(args.input_sensitivity),
-        pd.read_csv(args.renal_context), eligible_n)
+        pd.read_csv(args.renal_context), pd.read_csv(args.benchmark_summary),
+        pd.read_csv(args.benchmark_bootstrap), locked_test_run, eligible_n)
     class_summary = (matrix.groupby("evidence_class", sort=False)
                      .agg(candidate_n=("Gene", "size"), genes=("Gene", lambda x: ";".join(x)))
                      .reset_index())
@@ -306,7 +378,9 @@ def main():
     matrix.to_csv(args.output_dir / "candidate_evidence_matrix.csv", index=False)
     class_summary.to_csv(args.output_dir / "evidence_class_summary.csv", index=False)
     claims.to_csv(args.output_dir / "project_claims.csv", index=False)
-    output_names = ["candidate_evidence_matrix.csv", "evidence_class_summary.csv", "project_claims.csv"]
+    pd.read_csv(args.prior_work).to_csv(args.output_dir / "prior_work_comparison.csv", index=False)
+    output_names = ["candidate_evidence_matrix.csv", "evidence_class_summary.csv",
+                    "project_claims.csv", "prior_work_comparison.csv"]
     run = {
         "status": "final_evidence_synthesis_complete",
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -316,7 +390,10 @@ def main():
             "frozen_candidate_n": int(len(matrix)),
             "candidate_reranking": False,
             "composite_score": False,
-            "locked_tcga_test_used": False,
+            "locked_tcga_test_used": True,
+            "locked_tcga_test_use": "evidence integration only; no reranking, model selection or evidence-class change",
+            "baseline_benchmark_used": True,
+            "evidence_class_changes_from_test": False,
             "eligible_patient_functional_resource_n": eligible_n,
         },
         "classification_rules": {
@@ -326,6 +403,7 @@ def main():
             "direct_support_or_opposition": "manually adjudicated peer-reviewed direct loss-of-function evidence",
             "normal_organoid_liability": "at least one frozen direct normal-kidney organoid perturbation record",
             "paired_tumor_upregulation": "Train paired-median lower bound > 0 and Validation paired median > 0",
+            "locked_test_expression": "Descriptive replication of four prespecified expression directions; never functional truth",
             "patient_truth": "requires an eligible patient-derived ccRCC gene-perturbation resource",
         },
         "class_counts": dict(zip(class_summary["evidence_class"], class_summary["candidate_n"].astype(int))),
