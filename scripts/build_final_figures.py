@@ -292,6 +292,44 @@ def figure_dependency_exposure(candidates: pd.DataFrame) -> plt.Figure:
     return fig
 
 
+def figure_baseline_generalization(internal: pd.DataFrame, external: pd.DataFrame) -> plt.Figure:
+    labels = {
+        "training_selectivity_prior": "Selective prior",
+        "annotation_ridge": "Annotation ridge",
+        "expression_knn": "Expression kNN",
+        "expression_pcr_ridge": "Expression PCR-ridge",
+        "expression_kernel_ridge_frozen": "Frozen kernel ridge",
+        "expression_kernel_ridge_tuned": "Tuned kernel ridge",
+    }
+    left = internal.loc[internal["estimand"].eq("lineage_equal"), ["method", "ndcg_at_10"]].rename(
+        columns={"ndcg_at_10": "depmap_ndcg"})
+    right = external.loc[external["estimand"].eq("lineage_equal"), ["method", "ndcg_at_10"]].rename(
+        columns={"ndcg_at_10": "sanger_ndcg"})
+    data = left.merge(right, on="method", validate="one_to_one")
+    data = data.loc[data["method"].isin(labels)].copy()
+    colors = {
+        "training_selectivity_prior": GRAY, "annotation_ridge": GRAY,
+        "expression_knn": LIGHT_BLUE, "expression_pcr_ridge": GREEN,
+        "expression_kernel_ridge_frozen": BLUE, "expression_kernel_ridge_tuned": ORANGE,
+    }
+    fig, ax = plt.subplots(figsize=(7.0, 5.5))
+    for row in data.itertuples():
+        ax.scatter(row.depmap_ndcg, row.sanger_ndcg, s=75, color=colors[row.method],
+                   edgecolor="white", linewidth=0.8, zorder=2)
+        offset = (0.006, 0.005 if row.method != "expression_kernel_ridge_tuned" else -0.015)
+        ax.text(row.depmap_ndcg + offset[0], row.sanger_ndcg + offset[1], labels[row.method], fontsize=8)
+    ax.set_xlabel("DepMap whole-lineage NDCG@10")
+    ax.set_ylabel("Sanger external-lineage NDCG@10")
+    ax.set_title("Baseline performance generalizes across CRISPR platforms", loc="left", fontweight="bold")
+    ax.grid(color="#E5E7EB", linewidth=0.7)
+    ax.spines[["top", "right"]].set_visible(False)
+    fig.text(0.12, 0.015,
+             "Both axes are lineage-equal. Sanger comparison covers 64/66 models; two lineages lacked eligible DepMap tuning cohorts.",
+             fontsize=8, color="#4B5563")
+    fig.tight_layout(rect=[0, 0.05, 1, 1])
+    return fig
+
+
 def parse_args():
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
@@ -307,6 +345,8 @@ def parse_args():
                         default=root / "outputs/tcga_patient_transfer_v1/input_sensitivity.csv")
     parser.add_argument("--benchmark-summary", type=Path,
                         default=root / "outputs/selective_dependency_benchmark_v1/overall_summary.csv")
+    parser.add_argument("--external-benchmark-summary", type=Path,
+                        default=root / "outputs/sanger_baseline_benchmark_v1/overall_summary.csv")
     parser.add_argument("--locked-test-run", type=Path,
                         default=root / "results/historical/tcga_locked_test_v1/run.json")
     parser.add_argument("--output-dir", type=Path,
@@ -326,6 +366,7 @@ def main():
         "cohort_stability": args.cohort_stability,
         "input_sensitivity": args.input_sensitivity,
         "baseline_benchmark": args.benchmark_summary,
+        "external_baseline_benchmark": args.external_benchmark_summary,
         "locked_test_run": args.locked_test_run,
     }
     if args.output_dir.exists() and not args.dry_run:
@@ -338,7 +379,7 @@ def main():
     if len(candidates) != 20 or candidates["Gene"].nunique() != 20:
         raise ValueError("最终证据矩阵不是唯一的20个冻结候选")
     if args.dry_run:
-        print("【检查通过】候选 20｜图 3｜PNG+PDF｜未写入结果", flush=True)
+        print("【检查通过】候选 20｜图 4｜PNG+PDF｜未写入结果", flush=True)
         return
 
     setup_style()
@@ -354,6 +395,10 @@ def main():
     generated += save_figure(figure_evidence_matrix(candidates), args.output_dir, "figure2_candidate_evidence_matrix")
     generated += save_figure(figure_dependency_exposure(candidates), args.output_dir,
                              "figure3_dependency_vs_normal_kidney_exposure")
+    generated += save_figure(
+        figure_baseline_generalization(pd.read_csv(args.benchmark_summary),
+                                       pd.read_csv(args.external_benchmark_summary)),
+        args.output_dir, "figure4_baseline_generalization")
 
     print("【阶段 4/4】保存图注、来源哈希和运行记录", flush=True)
     manifest = pd.DataFrame([
@@ -372,6 +417,11 @@ def main():
             "caption": ("DRIVE ccRCC dependency strength versus GTEx normal-kidney exposure for covered candidates. "
                         "Expression indicates exposure, not toxicity, and no therapeutic-window threshold is defined."),
         },
+        {
+            "figure": "Figure 4", "stem": "figure4_baseline_generalization",
+            "caption": ("Lineage-equal selective-dependency NDCG@10 across the internal DepMap whole-lineage and "
+                        "external Sanger benchmarks. PCR-ridge and tuned kernel ridge outperform the historical frozen model."),
+        },
     ])
     manifest.to_csv(args.output_dir / "figure_manifest.csv", index=False)
     generated.append("figure_manifest.csv")
@@ -382,7 +432,7 @@ def main():
         "compute": "CPU vector/raster rendering; GPU acceleration is not applicable",
         "design": {
             "frozen_candidate_n": 20,
-            "figure_n": 3,
+            "figure_n": 4,
             "formats": ["png_300dpi", "pdf_vector"],
             "candidate_reranking": False,
             "composite_score": False,
@@ -402,7 +452,7 @@ def main():
     }
     with (args.output_dir / "run.json").open("w", encoding="utf-8") as handle:
         json.dump(run, handle, ensure_ascii=False, indent=2)
-    print("【图件完成】主图 3｜PNG 300dpi 3｜矢量PDF 3｜不改变候选排序", flush=True)
+    print("【图件完成】主图 4｜PNG 300dpi 4｜矢量PDF 4｜不改变候选排序", flush=True)
     print(f"【完成】耗时 {time.monotonic() - started:.1f}秒｜结果 {args.output_dir.resolve()}", flush=True)
     print("【结论边界】图件只汇总既有证据，不增加患者功能真值或临床证据。", flush=True)
 

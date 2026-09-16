@@ -167,6 +167,8 @@ def select_metric(frame: pd.DataFrame, **conditions) -> pd.Series:
 def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFrame,
                  cohort: pd.DataFrame, sensitivity: pd.DataFrame, renal_context: pd.DataFrame,
                  benchmark_summary: pd.DataFrame, benchmark_bootstrap: pd.DataFrame,
+                 external_benchmark_summary: pd.DataFrame,
+                 external_benchmark_bootstrap: pd.DataFrame,
                  locked_test_run: dict, eligible_patient_resource_n: int) -> pd.DataFrame:
     internal = select_metric(
         internal_bootstrap, metric="ndcg_at_10_gain", estimand="patient_equal")
@@ -195,6 +197,16 @@ def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFr
         benchmark_bootstrap,
         comparison=f"{frozen_method}_vs_{strongest['method']}",
         metric="ndcg_at_10", estimand="patient_equal")
+    external_benchmark = external_benchmark_summary.loc[
+        external_benchmark_summary["estimand"].eq("lineage_equal")].copy()
+    external_frozen = external_benchmark.loc[
+        external_benchmark["method"].eq(frozen_method)].iloc[0]
+    external_pcr = external_benchmark.loc[
+        external_benchmark["method"].eq("expression_pcr_ridge")].iloc[0]
+    external_head_to_head = select_metric(
+        external_benchmark_bootstrap,
+        comparison=f"{frozen_method}_vs_expression_pcr_ridge",
+        metric="ndcg_at_10", estimand="patient_equal")
     test_primary = locked_test_run["primary_results"]
     baseline_verdict = "优于最强baseline" if head_to_head["ci_low"] > 0 else "未显示优于最强baseline"
 
@@ -216,6 +228,17 @@ def build_claims(internal_bootstrap: pd.DataFrame, external_bootstrap: pd.DataFr
                       f"患者等权配对差={head_to_head['mean']:+.4f}，"
                       f"95%区间[{head_to_head['ci_low']:+.4f},{head_to_head['ci_high']:+.4f}]") ,
             "boundary": "比较限于同一DepMap 24Q4完整癌系留出；不是对Nature Cancer或DeepDEP论文结果的直接胜负判断。",
+        },
+        {
+            "claim": "冻结表达核岭模型相对PCR-ridge的性能关系可跨Sanger平台保持",
+            "verdict": "PCR-ridge在内部和外部均更好",
+            "evidence_type": "事实",
+            "basis": (f"64个可公平比较Sanger模型的癌系等权NDCG：冻结核岭="
+                      f"{external_frozen['ndcg_at_10']:.4f}，PCR-ridge={external_pcr['ndcg_at_10']:.4f}；"
+                      f"患者等权冻结核岭减PCR={external_head_to_head['mean']:+.4f}，"
+                      f"95%区间[{external_head_to_head['ci_low']:+.4f},"
+                      f"{external_head_to_head['ci_high']:+.4f}]") ,
+            "boundary": "Pleura和Prostate因DepMap样本不足20而未借用其他癌系参数；比较覆盖64/66个冻结外部模型。",
         },
         {
             "claim": "该泛癌信号可跨CRISPR平台复现",
@@ -309,6 +332,12 @@ def parse_args():
                         default=root / "outputs/selective_dependency_benchmark_v1/bootstrap.csv")
     parser.add_argument("--benchmark-run", type=Path,
                         default=root / "outputs/selective_dependency_benchmark_v1/run.json")
+    parser.add_argument("--external-benchmark-summary", type=Path,
+                        default=root / "outputs/sanger_baseline_benchmark_v1/overall_summary.csv")
+    parser.add_argument("--external-benchmark-bootstrap", type=Path,
+                        default=root / "outputs/sanger_baseline_benchmark_v1/bootstrap.csv")
+    parser.add_argument("--external-benchmark-run", type=Path,
+                        default=root / "outputs/sanger_baseline_benchmark_v1/run.json")
     parser.add_argument("--prior-work", type=Path,
                         default=root / "configs/prior_work_comparison_20260916.csv")
     parser.add_argument("--benchmark-protocol", type=Path,
@@ -337,6 +366,9 @@ def main():
         "baseline_benchmark_summary": args.benchmark_summary,
         "baseline_benchmark_bootstrap": args.benchmark_bootstrap,
         "baseline_benchmark_run": args.benchmark_run,
+        "external_baseline_benchmark_summary": args.external_benchmark_summary,
+        "external_baseline_benchmark_bootstrap": args.external_benchmark_bootstrap,
+        "external_baseline_benchmark_run": args.external_benchmark_run,
         "prior_work_comparison": args.prior_work,
         "baseline_benchmark_protocol": args.benchmark_protocol,
     }
@@ -368,7 +400,8 @@ def main():
         pd.read_csv(args.internal_bootstrap), pd.read_csv(args.external_bootstrap),
         pd.read_csv(args.cohort_stability), pd.read_csv(args.input_sensitivity),
         pd.read_csv(args.renal_context), pd.read_csv(args.benchmark_summary),
-        pd.read_csv(args.benchmark_bootstrap), locked_test_run, eligible_n)
+        pd.read_csv(args.benchmark_bootstrap), pd.read_csv(args.external_benchmark_summary),
+        pd.read_csv(args.external_benchmark_bootstrap), locked_test_run, eligible_n)
     class_summary = (matrix.groupby("evidence_class", sort=False)
                      .agg(candidate_n=("Gene", "size"), genes=("Gene", lambda x: ";".join(x)))
                      .reset_index())
