@@ -1,0 +1,63 @@
+{
+  "protocol": "TCGA-KIRC locked Test confirmation",
+  "version": "1.0",
+  "frozen_date": "2026-09-16",
+  "status": "frozen_before_test_expression_access",
+  "test_patient_n": 51,
+  "test_access_rule": "Run once after this protocol and the analysis script are committed; no tuning, reranking, feature selection, mapping selection or result-dependent code changes.",
+  "model": {
+    "training_models": "850 DepMap 24Q4 non-Kidney models",
+    "alpha": 100000.0,
+    "primary_input": "nonkidney_shift_driver_neutral",
+    "sensitivity_input": "kidney_shift_driver_neutral",
+    "expression_shift_fit": "Existing TCGA Train-only shifts from tcga_kirc_expression_bridge_v1",
+    "driver_rule": "All five driver indicators fixed to their non-Kidney training means",
+    "ranking": "Lower predicted residual among TCGA-covered non-common-essential genes",
+    "top_k": 10,
+    "common_essential": "DepMap release-wide annotation already frozen upstream"
+  },
+  "frozen_candidates": [
+    "SEPHS2", "GRB2", "HNF1B", "SEPSECS", "CFLAR", "YRDC", "PAX8", "EEFSEC", "SLC33A1", "CHMP7",
+    "YPEL5", "HSD17B12", "PSTK", "FOXA1", "UBR5", "CCND1", "GCN1", "UXS1", "FERMT2", "WDR73"
+  ],
+  "priority_expression_directions": {
+    "PAX8": "paired_tumor_minus_normal_negative",
+    "HNF1B": "paired_tumor_minus_normal_negative",
+    "FERMT2": "paired_tumor_minus_normal_negative",
+    "CCND1": "paired_tumor_minus_normal_positive"
+  },
+  "primary_endpoints": [
+    "Primary-input Train-versus-Test selection-frequency Spearman among genes active in either cohort",
+    "Primary-input Train-versus-Test Top-100 selection-frequency overlap",
+    "Frozen-20 Validation-versus-Test selection-frequency Spearman",
+    "Test per-patient primary-versus-sensitivity mapping Top-10 overlap and full-ranking Spearman",
+    "Frozen-20 paired Test tumor-minus-adjacent-normal medians and 20000-draw bootstrap intervals"
+  ],
+  "reporting": {
+    "binary_global_success_threshold": null,
+    "reason": "TCGA has no functional dependency labels; arbitrary agreement thresholds would not establish accuracy.",
+    "candidate_reranking": false,
+    "multiplicity_claim": "Bootstrap intervals are descriptive and no gene-level confirmatory p-values are claimed.",
+    "patient_functional_claim": false,
+    "clinical_claim": false
+  },
+  "bootstrap": {
+    "draws": 20000,
+    "seed": 20260916,
+    "unit": "patient or paired patient as applicable",
+    "device": "cuda",
+    "dtype": "float64"
+  },
+  "expected_input_sha256": {
+    "baseline_matrices": "4dd2c0294e8b9e594ea2708bf1bdd800d7821c43fef88a2681f1c575f991b26d",
+    "bridge_gene_mapping": "6f1712d837194ac71a1dc11446fb59884a521ebe3419de4f9cd1a5207e93d60d",
+    "bridge_run": "1b5137812aa09bb7fe9762e7f693ebd2b6d903eb5c5dadfb1006429186288d61",
+    "prior_candidate_summary": "9e96fe39b2042614c07dd6bb04dfff961791ab03433909bf15f31d51a6d1cd82",
+    "prior_patient_transfer_run": "91dd5dc9306bb0a2f84c885729f4faed1f92362508e976242a8d0f6762d57287",
+    "frozen_candidates": "1923cc4e5c22a15d32470ce39c52974e848ff83829e294e2f99f6be6cec455e4",
+    "patients": "75bbed5f771b85039a8d78ef1cbda959a00f8e9017f5927a530988441b23d186",
+    "expression": "0f8cdb5d996b0eb9ce0339fea82439b6e509226f4725c8e18de0a9be3d367987",
+    "hgnc": "6a1423507780773fbcb373eaef84dba5f9357b36e7219db2aeaae13d8a42d62b"
+  },
+  "interpretation_ceiling": "This Test analysis can confirm prediction stability and expression directions only. It cannot validate patient functional dependency, efficacy, toxicity or a therapeutic window."
+}

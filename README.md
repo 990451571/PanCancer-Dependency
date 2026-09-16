@@ -96,6 +96,14 @@ TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常�
 
 最终结果（2026-09-16）：生成 3 张 300 dpi PNG 和 3 份矢量 PDF。图 1 直观显示内部和直接表达外部增益均为正，但映射表达外部区间跨 0，且 20 个冻结候选经过 RNAi 绝对支持、RNAi 亚型特异和患者来源真值后依次只剩 3、1、0 个。图 2 保留 PAX8 功能支持与正常肾风险同时存在的冲突，并区分 YPEL5 的直接反向证据。图 3 显示 PAX8、HNF1B 和 FERMT2 的 RNAi 依赖信号伴随明显正常肾表达暴露，不能从功能强度直接推导治疗窗。图像已完成分辨率、文字布局和输出哈希复核；它们只汇总既有证据，不增加患者功能或临床证据。结果见 `outputs/final_figures_v1/`，Git 版本化图件见 `results/historical/final_figures_v1/`。
 
+## 大型任务七：一次性 TCGA 锁定 Test 确认
+
+开始日期：2026-09-16。
+
+目的：在全部模型、映射、候选与证据分层冻结后，一次性解锁此前从未进入患者预测的 51 个 TCGA-KIRC Test 患者，检验患者候选频率、输入映射敏感性及四个重点候选的肿瘤—邻近正常表达方向能否在未见队列复现。
+
+冻结范围：协议保存在 `configs/tcga_locked_test_protocol_20260916.json`。主输入固定为 Train-only 非 Kidney 均值偏移和 driver 中性化，敏感性输入固定为 Kidney 均值偏移；模型仍为 850 个非 Kidney DepMap 24Q4 模型、α=1e5、14,349 个 TCGA 覆盖的非 common-essential 基因。候选顺序、20,000 次 GPU bootstrap、评价端点和 PAX8/HNF1B/FERMT2/CCND1 的配对表达预期方向均在 Test 表达访问前固定。Test 不用于调参、选择映射、特征筛选或候选重排；由于没有功能标签，本任务只能确认稳定性和表达方向，不能确认依赖准确率。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
