@@ -1,0 +1,104 @@
+{
+  "status": "public_primary_ccrcc_functional_resource_audit_complete",
+  "created_utc": "2026-09-16T04:08:08.723470+00:00",
+  "elapsed_seconds": 1.2753279419848695,
+  "compute": "CPU metadata and table audit; GPU acceleration is not applicable",
+  "frozen_candidate_n": 20,
+  "eligibility_rule": {
+    "model": "human patient-derived ccRCC organoid, PDX or short-term primary model",
+    "perturbation": "gene-level loss-of-function covering a frozen candidate",
+    "endpoint": "viability, growth or tumor endpoint",
+    "independence": "not a reuse of the current DepMap baseline or its established cell lines"
+  },
+  "counts": {
+    "audited_resource_n": 9,
+    "eligible_patient_derived_ccrcc_gene_perturbation_resource_n": 0,
+    "normal_kidney_organoid_liability_record_n": 5,
+    "targeted_literature_record_n": 12,
+    "sanger": {
+      "organoid_crispr_model_n": 162,
+      "kidney_organoid_crispr_model_n": 0,
+      "tissue_n": 5,
+      "tissue_counts": {
+        "Large Intestine": 85,
+        "Esophagus": 59,
+        "Ovary": 11,
+        "Pancreas": 4,
+        "Stomach": 3
+      }
+    },
+    "broad": {
+      "all_model_n": 1999,
+      "nextgen_model_n": 314,
+      "nextgen_crispr_model_n": 147,
+      "nextgen_screen_n": 149,
+      "nextgen_qc_screen_n": 147,
+      "kidney_model_n": 53,
+      "kidney_nextgen_model_n": 0,
+      "kidney_nextgen_qc_screen_n": 0,
+      "ccrcc_model_n": 20,
+      "ccrcc_nextgen_model_n": 0
+    }
+  },
+  "sources": {
+    "sanger_model_list": {
+      "path": "/mnt/e/projects/pancancer-dependency/data/raw/external_sanger_20260914/model_list_20260814.csv",
+      "bytes": 957555,
+      "sha256": "eb43e92042ab430adabbbcf65e577459ac52d57df802eb388aea5865ff9b49aa"
+    },
+    "sanger_availability": {
+      "path": "/mnt/e/projects/pancancer-dependency/data/raw/external_sanger_20260914/model_dataset_availability_20260727.csv",
+      "bytes": 305142,
+      "sha256": "4fc3a65df0c48f1ea6a01ff87fc5d77c20eb83e90b148a857c4c1cadd6c28159"
+    },
+    "frozen_candidates": {
+      "path": "/mnt/e/projects/pancancer-dependency/outputs/candidate_external_validation_frozen_v1/candidates.csv",
+      "bytes": 9279,
+      "sha256": "1923cc4e5c22a15d32470ce39c52974e848ff83829e294e2f99f6be6cec455e4"
+    },
+    "europe_pmc_targeted_records": {
+      "path": "/mnt/e/projects/pancancer-dependency/data/raw/ccrcc_primary_functional_audit_20260916/europe_pmc_targeted_records.json.gz",
+      "bytes": 24518,
+      "sha256": "e1aca5d1a66b6a91720f99c7b833c143606d0638f80e60d7813bc58c898a74bc",
+      "cache_reused": true
+    },
+    "model_metadata": {
+      "url": "https://ndownloader.figshare.com/files/64494438",
+      "filename": "model_metadata.csv",
+      "bytes": 272338,
+      "sha256": "a000a5ee1ebe2b2488a146b2a413ec4b93472488e6ad31b56126f522d652557c",
+      "path": "/mnt/e/projects/pancancer-dependency/data/raw/ccrcc_primary_functional_audit_20260916/model_metadata.csv",
+      "cache_reused": true
+    },
+    "screen_metadata": {
+      "url": "https://ndownloader.figshare.com/files/64494441",
+      "filename": "screen_metadata.csv",
+      "bytes": 259986,
+      "sha256": "af29e349dd19676029950d6799fec4efcefcb9b314f7622b4fcc6d564803472a",
+      "path": "/mnt/e/projects/pancancer-dependency/data/raw/ccrcc_primary_functional_audit_20260916/screen_metadata.csv",
+      "cache_reused": true
+    }
+  },
+  "official_resource_urls": {
+    "sanger_organoid_matrix": "https://cog.sanger.ac.uk/cmp/download/Organoids_fitness_scores_20260723.zip",
+    "sanger_article_doi": "10.1038/s41586-026-10830-y",
+    "broad_figshare_article": "https://api.figshare.com/v2/articles/29472362",
+    "broad_article_doi": "10.1038/s41586-026-10843-7",
+    "europe_pmc_api": "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+  },
+  "conclusion": "Within the frozen audit scope, zero public systematic patient-derived ccRCC gene-perturbation resources satisfy all validation criteria. Existing RCC organoids provide drug-response models without gene-dependency screens; published ccRCC screens use established cell lines.",
+  "limitations": [
+    "This is a targeted public-resource audit, not a registered systematic review and not proof that no unpublished dataset exists.",
+    "A zero eligible count is an availability result, not evidence that the frozen candidates lack biological effects.",
+    "Drug-conditional resistance screens answer a different question from untreated baseline dependency.",
+    "Kidney organoids are developmental or fetal-like models and cannot quantify adult renal toxicity or a clinical therapeutic window.",
+    "Normal-organoid evidence for PAX8 and HNF1B increases liability concern but does not establish drug-dose toxicity."
+  ],
+  "output_sha256": {
+    "resource_inventory.csv": "ec54e6a4068b037aacb84d4f46d0b9dcf24ad7726dd52a12c95853d1a63784b9",
+    "normal_kidney_organoid_liability.csv": "6b673b02df8ce71b6ad6be01d75aa81c94954b01fcd4a556b373baae22d069ff",
+    "broad_nextgen_lineage_coverage.csv": "8ab06ca39ccd12e0831dbe3f73cd3fc6d9b6ae4f9a8b9033a2cb181bec3f0dad",
+    "sanger_organoid_tissue_coverage.csv": "a74453e2cecb32bfd3ddd002e0edccc7c0d79bfc3ec09f0d8c7e21cbe149d6a3"
+  },
+  "script_sha256": "cfcd3fedff3c2858a6e390c3bf03b562af91b9384e8d2767b17012350bcc1175"
+}
