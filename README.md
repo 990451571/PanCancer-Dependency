@@ -60,6 +60,20 @@ TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常�
 
 审计同时确认，历史 `outputs/tcga_candidate_evidence_v2/` 的辅助肿瘤—正常字段使用过全部 72 个正常样本，其中包括 14 个 Test 参与者；这些表达字段已由本任务替代。该字段没有参与 discovery rank、模型训练、患者预测或前 20 冻结，因此候选顺序不变。综合功能与表达层证据：PAX8 是最一致的功能依赖候选，但正常肾脏暴露和肿瘤低表达反对清晰治疗窗；HNF1B、FERMT2 仍是 Kidney 谱系机制候选，尚非 ccRCC 特异治疗靶点；CCND1 是肿瘤表达和 tractability 候选，但功能复现不稳定。当前没有候选同时满足跨平台功能复现、ccRCC 特异性和正常肾脏治疗窗。结果见 `outputs/candidate_celltype_window_v1/`。
 
+## 大型任务四：患者来源 ccRCC 功能验证资源审计
+
+开始日期：2026-09-16。
+
+目的：在继续增加预测模型之前，核实公开数据是否存在能够为冻结候选提供患者来源功能真值的 ccRCC 类器官、PDX 或短期原代模型基因扰动数据。预先固定合格条件为：人患者来源 ccRCC 模型、候选基因层面的 loss-of-function、细胞活力/生长/肿瘤终点，以及独立于当前 DepMap 基线和既有传统细胞系。
+
+范围：用固定文件哈希复算 Sanger 2026 肿瘤类器官 CRISPR 队列和 Broad 2026 NextGen Dependency Map 的模型与筛选元数据；另对冻结的 RCC 类器官、PDX、药物条件筛选及正常肾类器官论文逐一核对 Europe PMC 题录。该范围是针对性公开资源审计，不是注册系统综述，也不覆盖未公开或未来数据。
+
+最终结果（2026-09-16）：Sanger 的 162 个肿瘤类器官 CRISPR 筛选来自大肠、食管、卵巢、胰腺和胃，Kidney 为 0。Broad 元数据含 314 个 NextGen 模型，其中 147 个具有 CRISPR 数据；149 个 NextGen 筛选中 147 个通过 QC，但 Kidney 和 ccRCC NextGen 模型均为 0。两项 RCC 患者来源类器官研究提供药物或 CAR-T 反应，没有基因扰动筛选；一项 ccRCC PDX 研究在 PDX 中建立替西罗莫司耐药，但候选基因扰动仍在 786-O 完成。其余已核对的 genome-wide 或 kinome 筛选均使用 786-O、Caki-1R/786-OR 或 UMRC6 等传统细胞系，并且多为药物条件耐药问题，不能充当未经治疗的患者来源依赖真值。按冻结规则，9 类资源中合格者为 0。
+
+正常肾功能风险层发现 5 条直接类器官扰动记录：PAX8 的 CRISPRi 会影响人 iPSC 肾类器官的间充质到上皮转化，PAX8 depletion 也涉及正常人肾上皮类器官增殖；HNF1B 的杂合编辑、CRISPRi 或 knockout 会影响肾小管形成、分化或细胞周转。这些发育期或胎儿样模型不能换算成人肾毒性或药物治疗窗，但与既有 HPA、GTEx 和 TCGA 表达结果方向一致，进一步反对把 PAX8 或 HNF1B 直接表述为已有安全窗的治疗靶点。
+
+结论：在本次冻结审计范围内，没有公开的系统性患者来源 ccRCC 基因依赖数据可以完成最终功能真值验证。这是数据可用性的负结果，不是候选无效的证据。继续提高患者预测模型复杂度不能填补这一证据缺口；项目的计算发现阶段应在此收束，后续若要升级为治疗靶点结论，需要新的患者来源扰动实验或未来公开数据。结果见 `outputs/ccrcc_primary_functional_audit_v1/`。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
