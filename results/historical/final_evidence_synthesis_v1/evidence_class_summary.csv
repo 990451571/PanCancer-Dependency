@@ -1,0 +1,8 @@
+evidence_class,candidate_n,genes
+E5_计算候选证据不足,11,SEPHS2;SEPSECS;EEFSEC;SLC33A1;HSD17B12;PSTK;FOXA1;UBR5;GCN1;UXS1;WDR73
+E3_细胞系跨平台信号,4,GRB2;CFLAR;YRDC;CHMP7
+E2_肾谱系功能复现伴正常肾风险,1,HNF1B
+E1_功能最一致但无治疗窗,1,PAX8
+E4_直接反向证据,1,YPEL5
+E2_可成药与肿瘤表达支持但功能复现不足,1,CCND1
+E2_肾谱系功能复现但特异性不足,1,FERMT2

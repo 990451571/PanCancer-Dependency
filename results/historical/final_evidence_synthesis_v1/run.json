@@ -1,0 +1,49 @@
+{
+  "status": "final_evidence_synthesis_complete",
+  "created_utc": "2026-09-16T06:15:18.218862+00:00",
+  "elapsed_seconds": 0.043163544964045286,
+  "compute": "CPU evidence-table integration; GPU acceleration is not applicable",
+  "design": {
+    "frozen_candidate_n": 20,
+    "candidate_reranking": false,
+    "composite_score": false,
+    "locked_tcga_test_used": false,
+    "eligible_patient_functional_resource_n": 0
+  },
+  "classification_rules": {
+    "orthogonal_rnai_support": "DRIVE ccRCC residual 95% bootstrap upper bound < 0",
+    "rnai_ccrcc_specific_support": "absolute RNAi support and ccRCC-minus-other-Kidney upper bound < 0",
+    "sanger_all_three_support": "dependent in all three frozen Sanger renal models",
+    "direct_support_or_opposition": "manually adjudicated peer-reviewed direct loss-of-function evidence",
+    "normal_organoid_liability": "at least one frozen direct normal-kidney organoid perturbation record",
+    "paired_tumor_upregulation": "Train paired-median lower bound > 0 and Validation paired median > 0",
+    "patient_truth": "requires an eligible patient-derived ccRCC gene-perturbation resource"
+  },
+  "class_counts": {
+    "E5_计算候选证据不足": 11,
+    "E3_细胞系跨平台信号": 4,
+    "E2_肾谱系功能复现伴正常肾风险": 1,
+    "E1_功能最一致但无治疗窗": 1,
+    "E4_直接反向证据": 1,
+    "E2_可成药与肿瘤表达支持但功能复现不足": 1,
+    "E2_肾谱系功能复现但特异性不足": 1
+  },
+  "source_sha256": {
+    "frozen_candidates": "1923cc4e5c22a15d32470ce39c52974e848ff83829e294e2f99f6be6cec455e4",
+    "celltype_window": "ca07c33d41f05e4c7983a61c4f9428fc99f7976b2cc35da456f13e749c140fa5",
+    "normal_organoid_liability": "6b673b02df8ce71b6ad6be01d75aa81c94954b01fcd4a556b373baae22d069ff",
+    "primary_resource_audit": "064fa620758ece2b98e0db143c43a96cb820107370dd6e44ba0172b85af9320b",
+    "internal_bootstrap": "a52680a1c1681728ad65c27db7ab0f099f24163ef437153c8d2caa10b8d804b8",
+    "renal_context": "1d45a3af73893aba3d58cc559887561d9fb0426adc0bba5a7c2f975c73a9d845",
+    "external_bootstrap": "d0ad1ddedd55ae792cd3d97b59e7f2d7e212b67d90a414011ddc0fa4a0a49047",
+    "cohort_stability": "99b82a575646a52baae77ed9a5bbb37afbbdf987f5c198786ec9c47e2d0ae22f",
+    "input_sensitivity": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d"
+  },
+  "output_sha256": {
+    "candidate_evidence_matrix.csv": "31ee2e3b3bfbc9b3f5774bbd96d248db9293ebd3c163797ac2ea4aea993bada7",
+    "evidence_class_summary.csv": "ace97a9ab025a585d70296809625a2b45fd63671eb084671d0a64b0a53e15992",
+    "project_claims.csv": "683ff0c940b56053a069923a15773d78a424aba923fe019fb9b6c9a279c415eb"
+  },
+  "script_sha256": "47ebd57288290f1cae0330a15b3195e493664d51d30180417b6f0825d4fa6bb4",
+  "final_boundary": "The project supports a cross-platform expression-based selective-dependency prioritization workflow and a frozen experimental shortlist. It does not establish patient-specific ccRCC dependencies, a normal-kidney therapeutic window, clinical efficacy or clinical safety."
+}

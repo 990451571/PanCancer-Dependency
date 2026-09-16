@@ -74,6 +74,18 @@ TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常�
 
 结论：在本次冻结审计范围内，没有公开的系统性患者来源 ccRCC 基因依赖数据可以完成最终功能真值验证。这是数据可用性的负结果，不是候选无效的证据。继续提高患者预测模型复杂度不能填补这一证据缺口；项目的计算发现阶段应在此收束，后续若要升级为治疗靶点结论，需要新的患者来源扰动实验或未来公开数据。结果见 `outputs/ccrcc_primary_functional_audit_v1/`，Git 版本化快照见 `results/historical/ccrcc_primary_functional_audit_v1/`。
 
+## 大型任务五：最终证据整合与结论冻结
+
+开始日期：2026-09-16。
+
+目的：将冻结前 20 候选的计算排序、Broad/DepMap CRISPR、Sanger CRISPR、DRIVE RNAi、直接文献、TCGA 肿瘤—正常表达、HPA/GTEx 正常肾暴露、正常肾类器官扰动和 tractability 证据合并为可审计的最终矩阵，明确项目可以支持和不能支持的结论。
+
+范围：保留既有 discovery rank，不按外部证据重排，不生成综合分数。RNAi 功能复现要求 DRIVE ccRCC 残差的 95% bootstrap 上界低于 0；RNAi ccRCC 特异方向还要求相对其他 Kidney 的区间上界低于 0。Sanger 强支持要求三个冻结肾癌模型全部依赖；直接支持与反向证据沿用人工核读结果；患者功能真值必须来自合格患者来源 ccRCC 基因扰动资源。锁定 TCGA Test 未使用。
+
+最终结果（2026-09-16）：20 个候选中，PAX8 是唯一同时具有 RNAi 绝对依赖、相对其他 Kidney 的负向区间和同行评议直接 loss-of-function 支持的候选，但它同时具有正常肾类器官功能风险、高正常肾表达和肿瘤相对正常低表达，因此归为“功能最一致但无治疗窗”，不能升级为治疗靶点。HNF1B 的 RNAi 绝对依赖得到复现，但亚型比较区间跨 0，且存在正常肾类器官风险；FERMT2 的 RNAi 绝对依赖得到复现，但缺少亚型特异、直接文献和患者来源证据。CCND1 具有直接文献、临床阶段 tractability 和一致肿瘤高表达，但 DRIVE 绝对依赖区间跨 0，归为“可成药与肿瘤表达支持但功能复现不足”。YPEL5 存在同行评议的直接反向证据。GRB2、CFLAR、YRDC、CHMP7 只达到三个 Sanger 肾癌模型一致的细胞系跨平台信号；其余 11 个仍属于正交功能证据不足的计算候选。
+
+项目级结论：内部完整癌系留出支持表达残差模型优于选择性先验（患者等权 ΔNDCG +0.1926，95% 区间 +0.1792 至 +0.2060）；66 个纯 Sanger 模型提供有限的跨平台支持（ΔNDCG +0.1065，95% 区间 +0.0776 至 +0.1360）。患者表达迁移的 Train/Validation Top-100 重叠为 0.74，但映射敏感性 Top-10 重叠仅 0.3651，稳定性不能解释为准确率。ccRCC 相对其他 Kidney 的额外 NDCG 增量区间跨 0；合格患者来源 ccRCC 基因扰动资源为 0。因此，项目支持“跨平台表达驱动的选择性依赖优先级流程”和“冻结实验候选集”，不支持患者特异功能依赖、已建立的正常肾治疗窗、临床疗效或临床安全性结论。结果见 `outputs/final_evidence_synthesis_v1/`，Git 版本化快照见 `results/historical/final_evidence_synthesis_v1/`。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
