@@ -1,0 +1,105 @@
+{
+  "name": "Selective-dependency baseline benchmark and final synthesis v2 protocol",
+  "version": "1.0",
+  "frozen_date": "2026-09-16",
+  "status": "frozen_before_baseline_benchmark_execution",
+  "objective": "Compare the frozen expression-kernel selective-dependency model with simple and strong expression baselines under identical leakage-safe splits, then integrate the already completed locked TCGA Test into final evidence synthesis v2 without reranking candidates.",
+  "primary_benchmark": {
+    "dataset": "DepMap 24Q4",
+    "outer_split": "Whole-lineage holdout for lineages with at least 20 models, with patient-overlap purging",
+    "inner_split": "Whole connected lineage/patient groups within each outer training set",
+    "target": "Dependency minus the outer-training gene mean",
+    "primary_gene_stratum": "Release-wide non-common-essential genes",
+    "ranking_direction": "Lower predicted residual means stronger selective dependency",
+    "primary_endpoint": "Lineage-equal paired NDCG@10",
+    "secondary_endpoints": [
+      "Selective precision@10 at true residual <= -0.5",
+      "True Top-10 overlap",
+      "Within-model Spearman correlation",
+      "Regret relative to the true Top-10",
+      "Prediction coverage",
+      "Wall-clock time and peak GPU memory"
+    ],
+    "methods": [
+      {
+        "id": "training_selectivity_prior",
+        "role": "minimum-complexity baseline",
+        "definition": "Training-only 10th percentile of gene-centered dependency"
+      },
+      {
+        "id": "annotation_ridge",
+        "role": "nuisance/context baseline",
+        "definition": "Linear-kernel ridge using training lineage indicators, five kidney driver indicators and expression mean",
+        "alpha_grid": [100.0, 1000.0, 10000.0, 100000.0, 1000000.0]
+      },
+      {
+        "id": "expression_knn",
+        "role": "strong nonparametric expression baseline",
+        "definition": "Cosine-nearest training models in fold-standardized genome-wide expression, with missing outcomes averaged over available neighbors",
+        "k_grid": [5, 10, 25, 50]
+      },
+      {
+        "id": "expression_pcr_ridge",
+        "role": "strong low-rank linear expression baseline",
+        "definition": "Ridge regression on a training-only truncated eigenspace of the standardized expression kernel",
+        "rank_grid": [32, 64, 128, 256],
+        "alpha_grid": [100.0, 1000.0, 10000.0, 100000.0]
+      },
+      {
+        "id": "expression_kernel_ridge",
+        "role": "current method",
+        "definition": "Full standardized expression kernel plus the same annotation block",
+        "alpha_grid": [1000.0, 10000.0, 100000.0, 1000000.0],
+        "frozen_historical_alpha": 100000.0
+      }
+    ],
+    "tuning": "Each nontrivial method is selected independently by mean inner-validation NDCG@10 on non-common-essential genes; ties choose the simpler or more regularized setting. No Sanger or TCGA outcome is used.",
+    "uncertainty": "Paired bootstrap by patient and sensitivity bootstrap by lineage; 20000 GPU draws with seed 20260916"
+  },
+  "external_benchmark": {
+    "dataset": "Frozen 66-model pure-Sanger cohort with direct Broad expression",
+    "scope": "Only methods whose selected DepMap hyperparameters and preprocessing can be applied without Sanger labels",
+    "selection_rule": "Use the corresponding DepMap outer-lineage selected hyperparameters; never tune on Sanger BAGEL labels",
+    "primary_endpoint": "Paired NDCG@10 gain over the same training selectivity prior",
+    "mapped_expression_subset": "Secondary sensitivity analysis only"
+  },
+  "prior_work_positioning": {
+    "nature_cancer_2024": {
+      "citation": "Shi X et al. Building a translational cancer dependency map for The Cancer Genome Atlas. Nature Cancer 5, 1176-1194 (2024).",
+      "doi": "10.1038/s43018-024-00789-y",
+      "comparison_rule": "Compare scientific question, input, target definition, validation design, domain alignment, model coverage and evidence ceiling. Do not compare published metric values as if they came from the same release or split.",
+      "direct_metric_claim": false
+    },
+    "deepdep": {
+      "citation": "Chiu YC et al. Predicting and characterizing a cancer dependency map of tumors with deep learning. Science Advances 7 (2021).",
+      "comparison_rule": "Treat DeepDEP as prior tumor-dependency transfer work. Do not claim superiority without a same-data implementation and split."
+    },
+    "elastic_net_note": "The Nature Cancer release contains a selected 1966-model map trained on an older DepMap release and a different alignment pipeline. It is a prior-work reference, not a numerically interchangeable baseline for the full 24Q4 residual-ranking universe."
+  },
+  "locked_tcga_test": {
+    "formal_access_n": 1,
+    "allowed_use": "Integrate the already recorded frozen-method results into evidence synthesis and figures v2",
+    "forbidden_use": [
+      "Baseline hyperparameter selection",
+      "Baseline inclusion or exclusion",
+      "Candidate reranking",
+      "Model or mapping revision",
+      "Claiming newly implemented baselines were prospectively confirmed on Test"
+    ],
+    "new_baseline_test_results": "If calculated later, they must be labeled post-hoc exploratory and excluded from model selection."
+  },
+  "final_v2_rules": {
+    "candidate_n": 20,
+    "candidate_reranking": false,
+    "composite_score": false,
+    "evidence_class_changes_from_test": false,
+    "required_outputs": [
+      "Baseline benchmark metrics and paired uncertainty",
+      "Prior-work comparison table",
+      "final_evidence_synthesis_v2",
+      "final_figures_v2",
+      "Updated publication release manifest and one-command verifier"
+    ],
+    "claim_ceiling": "Cross-platform expression-based selective-dependency prioritization with unseen-patient stability confirmation; no patient functional dependency, therapeutic-window, efficacy or safety claim."
+  }
+}
