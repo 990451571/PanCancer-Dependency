@@ -1,0 +1,3 @@
+comparison,active_gene_n,active_frequency_spearman,top100_frequency_overlap
+train_vs_test,267,0.5449817413239026,0.75
+validation_vs_test,208,0.4499816026482745,0.7

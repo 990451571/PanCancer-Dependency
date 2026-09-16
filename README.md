@@ -104,6 +104,10 @@ TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常�
 
 冻结范围：协议保存在 `configs/tcga_locked_test_protocol_20260916.json`。主输入固定为 Train-only 非 Kidney 均值偏移和 driver 中性化，敏感性输入固定为 Kidney 均值偏移；模型仍为 850 个非 Kidney DepMap 24Q4 模型、α=1e5、14,349 个 TCGA 覆盖的非 common-essential 基因。候选顺序、20,000 次 GPU bootstrap、评价端点和 PAX8/HNF1B/FERMT2/CCND1 的配对表达预期方向均在 Test 表达访问前固定。Test 不用于调参、选择映射、特征筛选或候选重排；由于没有功能标签，本任务只能确认稳定性和表达方向，不能确认依赖准确率。
 
+最终结果（2026-09-16）：冻结协议与脚本先以提交 `73f9972` 推送，随后按协议 SHA256 `516e0af94b8aebf3a4ce465e5292082123882eacd363b8fdb210636bd7ae0d35` 正式访问 Test 一次。主输入的 Train↔Test 活跃基因频率 Spearman 为 0.5450、Top-100 重叠 0.75；Validation↔Test 分别为 0.4500 和 0.70。冻结前 20 的 Validation↔Test 选择频率 Spearman 为 0.7984，说明固定候选在未见队列中的相对频率较稳定，但这仍不是功能准确率。
+
+映射不确定性在 Test 中原样复现：非 Kidney 与 Kidney 映射的患者 Top-10 平均重叠只有 0.3608（患者 bootstrap 95% 区间 0.3157 至 0.4098），全基因 Spearman 为 0.8221（0.8026 至 0.8413）。14 个 Test 配对肿瘤—邻近正常样本中，PAX8、HNF1B、FERMT2、CCND1 的中位差分别为 -1.3644、-0.1932、-1.0870、+2.0455，均与预设方向相同；PAX8、FERMT2、CCND1 的 bootstrap 区间不跨 0，HNF1B 为 -1.1491 至 +0.4379、仍不确定。Test 因而支持候选频率和三个重点基因表达方向的未见队列稳定性，同时确认表达映射仍是主要局限；它没有提供患者依赖标签，也不改变“尚未证明患者特异功能依赖或治疗窗”的最终边界。结果见 `outputs/tcga_locked_test_v1/`，Git 版本化快照见 `results/historical/tcga_locked_test_v1/`。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
