@@ -1,0 +1,4 @@
+figure,stem,caption
+Figure 1,figure1_validation_and_evidence_ceiling,"Internal and external NDCG@10 gains, patient-transfer stability, and evidence attrition. Bootstrap intervals quantify sampling uncertainty; patient stability is not functional accuracy."
+Figure 2,figure2_candidate_evidence_matrix,Frozen top-20 candidate evidence matrix retaining discovery order. Blue denotes supporting evidence; red denotes direct opposition or normal-kidney organoid liability. No composite score was used.
+Figure 3,figure3_dependency_vs_normal_kidney_exposure,"DRIVE ccRCC dependency strength versus GTEx normal-kidney exposure for covered candidates. Expression indicates exposure, not toxicity, and no therapeutic-window threshold is defined."

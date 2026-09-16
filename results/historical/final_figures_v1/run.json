@@ -1,0 +1,41 @@
+{
+  "status": "final_publication_figures_complete",
+  "created_utc": "2026-09-16T06:23:38.550982+00:00",
+  "elapsed_seconds": 1.255265487008728,
+  "compute": "CPU vector/raster rendering; GPU acceleration is not applicable",
+  "design": {
+    "frozen_candidate_n": 20,
+    "figure_n": 3,
+    "formats": [
+      "png_300dpi",
+      "pdf_vector"
+    ],
+    "candidate_reranking": false,
+    "composite_score": false,
+    "locked_tcga_test_used": false
+  },
+  "source_sha256": {
+    "candidate_evidence_matrix": "31ee2e3b3bfbc9b3f5774bbd96d248db9293ebd3c163797ac2ea4aea993bada7",
+    "evidence_run": "9a28714981fa56aef1a5595d7c7816d1d2c8ca565388e81a49ce7d975c28eea9",
+    "internal_bootstrap": "a52680a1c1681728ad65c27db7ab0f099f24163ef437153c8d2caa10b8d804b8",
+    "external_bootstrap": "d0ad1ddedd55ae792cd3d97b59e7f2d7e212b67d90a414011ddc0fa4a0a49047",
+    "cohort_stability": "99b82a575646a52baae77ed9a5bbb37afbbdf987f5c198786ec9c47e2d0ae22f",
+    "input_sensitivity": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d"
+  },
+  "output_sha256": {
+    "figure1_validation_and_evidence_ceiling.png": "a80932273edd003ff94eade1dd1ab745f3d39054795772fab7444335ce151949",
+    "figure1_validation_and_evidence_ceiling.pdf": "4d754f6e053ad788afa15bf458c3835c93de4e7fd8d8e667b2db4a4449254be2",
+    "figure2_candidate_evidence_matrix.png": "9a5f5048773c5d6f0abbc29915b65161ff39e61b7433a8b687b9401b7c88e0e1",
+    "figure2_candidate_evidence_matrix.pdf": "60184db89a0337b4782fff5203007a750ebcdb5381c83433cfe89afca306cbe6",
+    "figure3_dependency_vs_normal_kidney_exposure.png": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd",
+    "figure3_dependency_vs_normal_kidney_exposure.pdf": "e8d00e8c3ab66db2f27d95e113e68f20f51807406eead652e0636592e964bd0b",
+    "figure_manifest.csv": "1d3d1510a8f2bd7d58c709058f9d7e8a15304962d2fac07d1ad6e9bdc06bc0eb"
+  },
+  "script_sha256": "c89c88d5f7892ca16cbee3a6c79d8dc8b8519d7b2b661fe092d07ce7e3e0d3a9",
+  "limitations": [
+    "Figures summarize frozen analyses and do not add independent biological evidence.",
+    "Patient-transfer agreement is stability without functional ground truth.",
+    "GTEx expression is normal-tissue exposure, not drug toxicity.",
+    "The evidence matrix deliberately does not collapse heterogeneous evidence into a score."
+  ]
+}
