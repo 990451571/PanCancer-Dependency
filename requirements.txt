@@ -2,5 +2,6 @@
 # Minimal third-party imports for the project scripts.
 numpy==1.23.0
 pandas==2.2.3
+matplotlib==3.9.2
 # GPU runner additionally uses torch; verified in the existing environment:
 # torch==2.11.0+cu130 (CUDA build). Do not replace it with a CPU-only wheel.

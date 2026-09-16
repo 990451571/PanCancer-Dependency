@@ -21,6 +21,8 @@ import numpy as np
 import pandas as pd
 import torch
 
+from runtime_paths import source_project_root
+
 
 SOURCES = {
     "gtex_v11_median_tpm": {
@@ -273,7 +275,7 @@ def gtex_evidence(candidates, hpa_path, gtex_path):
 
 def parse_args():
     root = Path(__file__).resolve().parents[1]
-    source = Path("/mnt/e/projects/rl-genrisk-main")
+    source = source_project_root(root)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--frozen-dir", type=Path,
                         default=root / "outputs/candidate_external_validation_frozen_v1")

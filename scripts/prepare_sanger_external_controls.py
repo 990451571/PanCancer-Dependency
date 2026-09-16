@@ -16,6 +16,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from runtime_paths import source_project_root
+
 import run_depmap_baseline as baseline
 from prepare_sanger_phase_b import (TARGETS as PHASE_B_TARGETS, apply_mapping,
                                     fit_mapping, read_sanger_expression)
@@ -175,10 +177,11 @@ def read_broad_features(raw_dir, baseline_dir, model_ids, genes):
 
 def parse_args():
     root = Path(__file__).resolve().parents[1]
+    source = source_project_root(root)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline-dir", type=Path, default=root / "data/processed/depmap_baseline_24q4_v1")
     parser.add_argument("--raw-dir", type=Path,
-                        default=Path("/mnt/e/projects/rl-genrisk-main/data/raw/depmap_24q4"))
+                        default=source / "data/raw/depmap_24q4")
     parser.add_argument("--external-dir", type=Path, default=root / "data/raw/external_sanger_20260914")
     parser.add_argument("--audit-dir", type=Path, default=root / "outputs/external_dependency_audit_v1")
     parser.add_argument("--phase-b-preparation", type=Path,

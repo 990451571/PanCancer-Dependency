@@ -11,6 +11,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from runtime_paths import source_project_root
+
 
 def fingerprint(path):
     digest = hashlib.sha256()
@@ -22,13 +24,15 @@ def fingerprint(path):
 
 
 def main():
+    root = Path(__file__).resolve().parents[1]
+    source = source_project_root(root)
     parser = argparse.ArgumentParser(description='外部功能数据覆盖审计（仅元数据，不训练）')
     parser.add_argument('--metadata-dir', type=Path,
                         default=Path('data/raw/external_sanger_20260914'))
     parser.add_argument('--baseline-dir', type=Path,
                         default=Path('data/processed/depmap_baseline_24q4_v1'))
     parser.add_argument('--broad-dir', type=Path,
-                        default=Path('/mnt/e/projects/rl-genrisk-main/data/raw/depmap_24q4'))
+                        default=source / 'data/raw/depmap_24q4')
     parser.add_argument('--output-dir', type=Path,
                         default=Path('outputs/external_dependency_audit_v1'))
     args = parser.parse_args()

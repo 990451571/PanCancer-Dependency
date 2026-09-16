@@ -19,6 +19,7 @@ import torch
 import run_depmap_baseline as baseline
 from run_selective_dependency import average_ranks
 from run_tcga_patient_transfer import build_kernel, rank_agreement
+from runtime_paths import source_project_root
 
 
 ALPHA = 100000.0
@@ -125,7 +126,7 @@ def active_stability(left: np.ndarray, right: np.ndarray, genes: np.ndarray) -> 
 
 def parse_args():
     root = Path(__file__).resolve().parents[1]
-    source = Path("/mnt/e/projects/rl-genrisk-main")
+    source = source_project_root(root)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--protocol", type=Path,
                         default=root / "configs/tcga_locked_test_protocol_20260916.json")

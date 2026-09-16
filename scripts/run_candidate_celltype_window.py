@@ -21,6 +21,8 @@ import numpy as np
 import pandas as pd
 import torch
 
+from runtime_paths import source_project_root
+
 from build_context_module_stage0 import GeneCanonicalizer, patient_id, sample_type
 from prepare_tcga_expression_bridge import align_expression
 
@@ -218,7 +220,7 @@ def tcga_evidence(candidates: pd.DataFrame, patients_path: Path, expression_path
 
 def parse_args():
     root = Path(__file__).resolve().parents[1]
-    source = Path("/mnt/e/projects/rl-genrisk-main")
+    source = source_project_root(root)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--frozen-dir", type=Path,
                         default=root / "outputs/candidate_external_validation_frozen_v1")

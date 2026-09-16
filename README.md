@@ -108,6 +108,16 @@ TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常�
 
 映射不确定性在 Test 中原样复现：非 Kidney 与 Kidney 映射的患者 Top-10 平均重叠只有 0.3608（患者 bootstrap 95% 区间 0.3157 至 0.4098），全基因 Spearman 为 0.8221（0.8026 至 0.8413）。14 个 Test 配对肿瘤—邻近正常样本中，PAX8、HNF1B、FERMT2、CCND1 的中位差分别为 -1.3644、-0.1932、-1.0870、+2.0455，均与预设方向相同；PAX8、FERMT2、CCND1 的 bootstrap 区间不跨 0，HNF1B 为 -1.1491 至 +0.4379、仍不确定。Test 因而支持候选频率和三个重点基因表达方向的未见队列稳定性，同时确认表达映射仍是主要局限；它没有提供患者依赖标签，也不改变“尚未证明患者特异功能依赖或治疗窗”的最终边界。结果见 `outputs/tcga_locked_test_v1/`，Git 版本化快照见 `results/historical/tcga_locked_test_v1/`。
 
+## 大型任务八：投稿发布包与独立复现审计
+
+开始日期：2026-09-16。
+
+目的：消除关键运行入口对个人机器绝对路径的依赖，固定成功运行环境和公开数据版本，并提供无需重新下载大型原始数据即可检查论文结果完整性的一条命令入口。
+
+最终结果（2026-09-16）：9 个曾指向旧工程绝对路径的脚本已统一读取 `PANCANCER_SOURCE_ROOT`；未设置时使用仓库内相对默认目录 `data/external/rl-genrisk-main`，所有脚本仍允许命令行覆盖。`configs/environment_lock.json` 固定 Python 3.10.20、NumPy 1.23.0、pandas 2.2.3、PyTorch 2.11.0+cu130、Matplotlib 3.9.2 和 CUDA 13.0；`configs/public_data_sources.json` 固定 DepMap 24Q4 的文件编号、大小、MD5，以及 TCGA 表达、历史患者分组和 HGNC 文件的 SHA256。
+
+发布快照校验入口 `scripts/verify_publication_release.py` 已通过：复核 4 个版本化结果目录中的 19 个文件哈希、冻结候选、结论上限、一次性 Test 协议、环境版本、机器路径和 PNG/PDF 文件签名。外部输入入口 `scripts/verify_external_inputs.py` 另行核验 9 个主流程文件共 1.33 GiB，当前全部通过。该封装显著改善结果审计和路径可移植性，但尚未在第二台机器或全新环境完成从原始数据开始的 clean-room 重跑，因此不能宣称完全独立复现已经实现。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
@@ -120,14 +130,16 @@ TCGA 重新按历史分组审计 72 个邻近正常样本：37 个 Train 正常�
 - 新版入口读取 NPZ；历史 `run_depmap_lolo_validation.py` 读取旧 TSV，二者输入不兼容。
 - 正式训练由用户手动启动。输出目录已存在时拒绝覆盖。训练入口用于评价，不保存可部署的最终模型。
 - 主要结果为 `metrics.csv`，必要明细与运行信息保存在同目录的压缩表、`tuning.csv`、`splits.csv` 和 `run.json`；启用 `--alpha-scan` 时另有 `alpha_scan.csv`。`run.json` 的 `feature_configs` 逐方法记录该配置包含哪些特征块，是消融结果可复现的必要依据。
-- 输入数据和运行输出不纳入 Git；代码和本 README 纳入版本保存。
+- 原始输入和常规运行输出不纳入 Git；关键论文结果与图件的版本化快照保存在 `results/historical/`。
+- 一条命令核验发布快照：`python scripts/verify_publication_release.py`。
+- 完整重跑前设置 `PANCANCER_SOURCE_ROOT=/absolute/path/to/rl-genrisk-main`，再用 `python scripts/verify_external_inputs.py` 核验外部输入。
 
 ## 数据与结论边界
 
 - 路径清单见 `configs/shared_data_paths.json`，仅供参考，不会自动加载；需要时通过命令行显式指定。
 - 旧项目共享数据保持只读，修改处理方式时另建版本，不删除原始数据。
-- `results/historical/` 是旧项目结果快照，不代表在本项目重新运行；`docs/protocols/` 为历史协议，以当前研究定位为准。迁移来源记录见 `docs/migration_manifest.md`。
-- TCGA 锁定 Test 不参与训练、无监督适配、参数或模型选择。
+- `results/historical/` 同时保存旧项目迁移快照和本项目明确版本化的关键结果；以各目录 `run.json`、README 任务记录及 `docs/migration_manifest.md` 区分来源。
+- TCGA 锁定 Test 不参与训练、无监督适配、参数或模型选择；它在协议提交后只访问一次，用于稳定性和表达方向确认。
 - 历史 ccRCC 结果已参与探索，不能重新标为独立确认集；TLN1 强制锚定结果不等于独立发现。
 - 四模态交集存在可用性选择偏差，不能称为全基因组无偏覆盖；common-essential 注释来自整个发布版，不能称为训练折内估计。
 - 模态消融未包含维度匹配的随机特征安慰剂，故模态排序仍可能混入维度效应；但三个模态保留的可变特征数接近（表达 15,832、拷贝数 15,833、突变 12,884），该威胁被实质削弱。消融结论限于线性核岭回归这一类模型，不能推广为"该模态在生物学上无用"。

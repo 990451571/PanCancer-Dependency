@@ -1,11 +1,18 @@
 {
-  "note": "Reference only; supply these paths via script CLI flags. No automatic config loader.",
-  "source_project": "/mnt/e/projects/rl-genrisk-main",
-  "depmap_processed": "/mnt/e/projects/rl-genrisk-main/data/processed/depmap_bridge_24q4",
-  "depmap_baseline_v1": "/mnt/e/Projects/PanCancer-Dependency/data/processed/depmap_baseline_24q4_v1",
-  "depmap_raw": "/mnt/e/projects/rl-genrisk-main/data/raw/depmap_24q4",
-  "stage0": "/mnt/e/projects/rl-genrisk-main/data/processed/context_module_stage0",
-  "ppi": "/mnt/e/projects/rl-genrisk-main/data/processed/context_module_stage0/ppi_edges.tsv.gz",
-  "hgnc": "/mnt/e/projects/rl-genrisk-main/outputs/reassessment_20260911/hgnc_complete_set.tsv",
-  "test_policy": "Locked TCGA test excluded from training, adaptation and selection."
+  "note": "Scripts resolve the external input root from PANCANCER_SOURCE_ROOT. If unset, the portable repository-local default data/external/rl-genrisk-main is used. Every relevant script also accepts explicit CLI paths.",
+  "source_project_environment_variable": "PANCANCER_SOURCE_ROOT",
+  "default_source_project": "data/external/rl-genrisk-main",
+  "paths_relative_to_source_project": {
+    "depmap_processed": "data/processed/depmap_bridge_24q4",
+    "depmap_raw": "data/raw/depmap_24q4",
+    "stage0": "data/processed/context_module_stage0",
+    "ppi": "data/processed/context_module_stage0/ppi_edges.tsv.gz",
+    "hgnc": "outputs/reassessment_20260911/hgnc_complete_set.tsv",
+    "tcga_expression": "data/raw/HiSeqV2"
+  },
+  "repository_paths": {
+    "depmap_baseline_v1": "data/processed/depmap_baseline_24q4_v1",
+    "versioned_results": "results/historical"
+  },
+  "test_policy": "TCGA Test was accessed once under configs/tcga_locked_test_protocol_20260916.json and is never used for tuning or reranking."
 }

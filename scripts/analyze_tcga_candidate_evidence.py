@@ -20,6 +20,8 @@ import numpy as np
 import pandas as pd
 import torch
 
+from runtime_paths import source_project_root
+
 import run_depmap_baseline as baseline
 from build_context_module_stage0 import GeneCanonicalizer, patient_id, sample_type
 from prepare_tcga_expression_bridge import align_expression
@@ -95,7 +97,7 @@ def shared_external_top10(phase_a_top, phase_b_top):
 
 def parse_args():
     root = Path(__file__).resolve().parents[1]
-    source = Path("/mnt/e/projects/rl-genrisk-main")
+    source = source_project_root(root)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--baseline-dir", type=Path, default=root / "data/processed/depmap_baseline_24q4_v1")
     parser.add_argument("--transfer-dir", type=Path, default=root / "outputs/tcga_patient_transfer_v1")

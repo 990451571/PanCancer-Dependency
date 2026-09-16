@@ -1,0 +1,15 @@
+{
+  "status": "captured_from_successful_publication_run",
+  "python": "3.10.20",
+  "platform": "Linux/WSL2 x86_64",
+  "packages": {
+    "numpy": "1.23.0",
+    "pandas": "2.2.3",
+    "torch": "2.11.0+cu130",
+    "matplotlib": "3.9.2"
+  },
+  "cuda_runtime_reported_by_torch": "13.0",
+  "gpu_used": "NVIDIA GeForce RTX 5070 Ti",
+  "installation_note": "Install the PyTorch CUDA build from the official PyTorch channel that matches the host driver. A CPU-only torch build is not an equivalent environment for model runs.",
+  "scope": "Exact environment record, not a claim that a fresh installation has been tested on another machine."
+}
