@@ -78,7 +78,7 @@
   "engineering": {
     "device": "CUDA required for fitting and bootstrap; no silent CPU fallback",
     "precision": "float32 neural optimization; float64 scoring, analytic decomposition and bootstrap where feasible",
-    "elastic_net_numerical_check": "GPU proximal solver must agree with sklearn ElasticNet on a deterministic small synthetic problem before formal execution",
+    "elastic_net_numerical_check": "GPU proximal solver must agree with sklearn ElasticNet on a deterministic small synthetic problem before formal execution; formal paths use at most 5,000 iterations and a 1e-4 relative coefficient-change tolerance, with every mask group required to converge",
     "output_policy": "Refuse overwrite, write atomically, hash all inputs/scripts/outputs, retain only final research outputs and necessary audit tables"
   }
 }

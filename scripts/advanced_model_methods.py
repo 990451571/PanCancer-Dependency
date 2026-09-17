@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import math
+from collections import defaultdict
 from dataclasses import dataclass
 
 import numpy as np
@@ -53,47 +54,73 @@ def elastic_net_path(
     count_np = observed_np.sum(0)
     if (count_np < 2).any():
         raise ValueError("Elastic Net target with fewer than two observations")
-    mean_np = np.divide(np.nansum(y, axis=0), count_np)
-    centered_np = np.where(observed_np, y - mean_np, 0).astype(np.float32)
-    observed = torch.as_tensor(observed_np, dtype=torch.float32, device="cuda")
-    outcomes = torch.as_tensor(centered_np, device="cuda")
-    counts = torch.as_tensor(count_np, dtype=torch.float32, device="cuda")
-    spectral = float(torch.linalg.eigvalsh(x @ x.T)[-1].item())
-    minimum_n = float(counts.min().item())
-    weight = torch.zeros((x.shape[1], y.shape[1]), dtype=torch.float32, device="cuda")
-    outputs, diagnostics = {}, {}
-    for alpha in sorted(alphas, reverse=True):
-        current = weight.clone()
-        accelerated = current.clone()
-        momentum = 1.0
-        lipschitz = spectral / minimum_n + alpha * (1.0 - l1_ratio)
-        step = 1.0 / lipschitz
-        converged = False
-        relative = math.inf
-        for iteration in range(1, maximum_iterations + 1):
-            residual = (x @ accelerated - outcomes) * observed
-            gradient = x.T @ (residual / counts[None, :])
-            gradient.add_(accelerated, alpha=alpha * (1.0 - l1_ratio))
-            updated = _soft_threshold(accelerated - step * gradient, step * alpha * l1_ratio)
-            next_momentum = 0.5 * (1.0 + math.sqrt(1.0 + 4.0 * momentum * momentum))
-            accelerated = updated + ((momentum - 1.0) / next_momentum) * (updated - current)
-            if iteration % 10 == 0 or iteration == maximum_iterations:
-                denominator = max(float(torch.linalg.vector_norm(updated).item()), 1e-12)
-                relative = float(torch.linalg.vector_norm(updated - current).item()) / denominator
-                if relative <= tolerance:
-                    converged = True
-                    current = updated
-                    break
-            current, momentum = updated, next_momentum
-        weight = current
-        prediction = hx @ weight + torch.as_tensor(mean_np, dtype=torch.float32, device="cuda")
-        outputs[alpha] = prediction.cpu().numpy()
+    outputs = {alpha: np.full((len(hx), y.shape[1]), np.nan, dtype=np.float32) for alpha in alphas}
+    group_diagnostics = defaultdict(list)
+    _, groups = np.unique(np.packbits(observed_np.T, axis=1), axis=0, return_inverse=True)
+    for group in np.unique(groups):
+        columns = np.flatnonzero(groups == group)
+        rows = np.flatnonzero(observed_np[:, columns[0]])
+        gx = x[torch.as_tensor(rows, device="cuda")]
+        group_feature_mean = gx.mean(0)
+        gx = gx - group_feature_mean
+        ghx = hx - group_feature_mean
+        gy_np = y[np.ix_(rows, columns)]
+        mean_np = gy_np.mean(0)
+        outcomes = torch.as_tensor(gy_np - mean_np, dtype=torch.float32, device="cuda")
+        spectral = float(torch.linalg.eigvalsh(gx @ gx.T)[-1].item())
+        weight = torch.zeros((x.shape[1], len(columns)), dtype=torch.float32, device="cuda")
+        for alpha in sorted(alphas, reverse=True):
+            current = weight.clone()
+            accelerated = current.clone()
+            momentum = 1.0
+            lipschitz = spectral / len(rows) + alpha * (1.0 - l1_ratio)
+            step = 1.0 / lipschitz
+            converged = False
+            relative = math.inf
+            for iteration in range(1, maximum_iterations + 1):
+                residual = gx @ accelerated - outcomes
+                gradient = gx.T @ residual / len(rows)
+                gradient.add_(accelerated, alpha=alpha * (1.0 - l1_ratio))
+                updated = _soft_threshold(accelerated - step * gradient, step * alpha * l1_ratio)
+                next_momentum = 0.5 * (1.0 + math.sqrt(1.0 + 4.0 * momentum * momentum))
+                candidate = updated + ((momentum - 1.0) / next_momentum) * (updated - current)
+                # Adaptive restart suppresses FISTA oscillation without changing the objective.
+                if torch.sum((updated - current) * (candidate - updated)) > 0:
+                    accelerated, next_momentum = updated, 1.0
+                else:
+                    accelerated = candidate
+                if iteration % 10 == 0 or iteration == maximum_iterations:
+                    denominator = max(float(torch.linalg.vector_norm(updated).item()), 1e-12)
+                    relative = float(torch.linalg.vector_norm(updated - current).item()) / denominator
+                    if relative <= tolerance:
+                        converged = True
+                        current = updated
+                        break
+                current, momentum = updated, next_momentum
+            weight = current
+            prediction = ghx @ weight + torch.as_tensor(mean_np, dtype=torch.float32, device="cuda")
+            outputs[alpha][:, columns] = prediction.cpu().numpy()
+            group_diagnostics[alpha].append({
+                "iterations": iteration,
+                "relative_change": relative,
+                "converged": converged,
+                "nonzero_n": int((weight != 0).sum().item()),
+                "coefficient_n": weight.numel(),
+                "lipschitz": lipschitz,
+                "target_n": len(columns),
+                "observed_model_n": len(rows),
+            })
+    diagnostics = {}
+    for alpha, records in group_diagnostics.items():
         diagnostics[alpha] = {
-            "iterations": iteration,
-            "relative_change": relative,
-            "converged": converged,
-            "nonzero_fraction": float((weight != 0).float().mean().item()),
-            "lipschitz": lipschitz,
+            "iterations": max(record["iterations"] for record in records),
+            "relative_change": max(record["relative_change"] for record in records),
+            "converged": all(record["converged"] for record in records),
+            "nonzero_fraction": sum(record["nonzero_n"] for record in records)
+                                / sum(record["coefficient_n"] for record in records),
+            "lipschitz": max(record["lipschitz"] for record in records),
+            "mask_group_n": len(records),
+            "minimum_observed_model_n": min(record["observed_model_n"] for record in records),
         }
     return outputs, diagnostics
 
