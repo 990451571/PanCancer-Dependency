@@ -68,12 +68,12 @@ def read_reference(reference_dir: Path):
         str(reference_dir / "ccle_exp_for_missing_value_6016.RData"))["exp.index"]
     default_targets = pyreadr.read_r(
         str(reference_dir / "default_dep_genes_1298.RData"))["dep.data"]
-    feature_genes = expression_index["Gene"].astype(str).str.upper().to_numpy()
+    feature_genes = expression_index["Gene"].astype(str).str.upper().to_numpy(str)
     feature_means = pd.to_numeric(expression_index["Mean"], errors="raise").to_numpy(np.float32)
-    target_symbols = default_targets["Gene"].astype(str).str.upper().to_numpy()
+    target_symbols = default_targets["Gene"].astype(str).str.upper().to_numpy(str)
 
-    fingerprint_genes = fingerprint_raw.iloc[0, 1:].astype(str).str.upper().to_numpy()
-    fingerprint_sets = fingerprint_raw.iloc[1:, 0].astype(str).to_numpy()
+    fingerprint_genes = fingerprint_raw.iloc[0, 1:].astype(str).str.upper().to_numpy(str)
+    fingerprint_sets = fingerprint_raw.iloc[1:, 0].astype(str).to_numpy(str)
     values = fingerprint_raw.iloc[1:, 1:].apply(pd.to_numeric, errors="raise").to_numpy(np.uint8).T
     if values.shape != (len(fingerprint_genes), 3115) or not np.isin(values, [0, 1]).all():
         raise ValueError("官方CGP指纹维度或取值异常")
