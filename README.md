@@ -144,6 +144,10 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 
 结果位于 `outputs/selective_dependency_benchmark_v1/`、`outputs/sanger_baseline_benchmark_v1/`、`outputs/final_evidence_synthesis_v2/` 和 `outputs/final_figures_v2/`，冻结协议见 `configs/dependency_benchmark_protocol_20260916.json`。
 
+### 阶段十：同数据高级模型复现（进行中）
+
+本阶段检验增加算法复杂度能否在完全相同的 DepMap 24Q4、完整癌系留出和选择性残差评价中超过 PCR-ridge。预注册方法包括逐靶点 Elastic Net、使用官方表达编码器与 CGP 指纹结构的 Exp-DeepDEP 同数据适配版，以及共享靶点低秩结构的多任务 reduced-rank ridge。主比较限定在官方 DeepDEP 1,298 个默认靶点与当前 DepMap 的交集，所有方法共享输入、外层模型和评价基因；不读取或重新使用 TCGA KIRC Locked Test。冻结协议见 `configs/advanced_model_benchmark_protocol_20260917.json`。
+
 ## 最终成果
 
 ### 方法层面的结论
@@ -195,7 +199,7 @@ GRB2、CFLAR、YRDC 和 CHMP7 目前只有三个冻结 Sanger 肾癌模型一致
 
 ## 下一步工作
 
-计算分析、强 baseline 比较、Locked Test 整合、最终矩阵、论文图件和发布校验均已完成。下一步应开始论文写作，以“表达驱动的选择性依赖排序与 ccRCC 证据审计”为主线，明确报告 PCR-ridge 优于历史冻结核岭这一负结果，并把 TCGA-DEPMAP 和 DeepDEP 作为同问题的既有工作，而不是把患者依赖迁移包装成首次提出。
+当前正在进行同数据高级模型复现，以判断逐靶点 Elastic Net、Exp-DeepDEP 同数据适配版和多任务低秩模型能否在冻结口径下超过 PCR-ridge。该阶段完成前，不把模型复杂度写成性能改进；新模型不得再次使用已经访问的 Locked Test 进行选择或确认。
 
 如果目标是把论文结论从“计算优先排序”提升为“ccRCC 功能靶点”，下一步所需的不是继续训练相似模型，而是新的实验数据：优先在患者来源 ccRCC 类器官或短期原代模型中对 PAX8、HNF1B、FERMT2、CCND1 等候选进行 loss-of-function 验证，并在正常肾类器官中使用相同扰动和可比较终点评估治疗窗。
 

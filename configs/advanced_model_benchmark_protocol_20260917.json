@@ -1,0 +1,84 @@
+{
+  "name": "Same-data advanced selective-dependency model benchmark",
+  "version": "1.0",
+  "frozen_date": "2026-09-17",
+  "status": "frozen_before_model_implementation_and_result_access",
+  "objective": "Test whether per-target Elastic Net, an expression-only DeepDEP adaptation, or multi-task reduced-rank regression improves over PCR-ridge under the same DepMap 24Q4 lineage-held-out benchmark.",
+  "scientific_boundary": {
+    "primary_question": "Does added estimator complexity improve cell-line selective-dependency ranking over PCR-ridge?",
+    "not_tested": [
+      "Patient functional dependency accuracy",
+      "Therapeutic efficacy or safety",
+      "Superiority over published metric values obtained from different releases or splits"
+    ]
+  },
+  "data": {
+    "labels": "DepMap 24Q4 CRISPRGeneEffect",
+    "models": "The same 873 four-modality cancer models used by selective_dependency_benchmark_v1",
+    "outer_split": "Reuse the exact 19 whole-lineage holdouts and patient-overlap purging recorded in selective_dependency_benchmark_v1/splits.csv.gz",
+    "target": "Dependency minus the outer-training gene mean",
+    "target_universe": "The 1,298 default DeepDEP DepOIs intersected with DepMap 24Q4 targets; expected 1,148 before common-essential stratification",
+    "primary_gene_stratum": "Release-wide non-common-essential targets in the shared DeepDEP-overlap universe; expected 871",
+    "expression_features": "Official DeepDEP 6,016-feature order, canonical-symbol matched to DepMap 24Q4 expression; unavailable features filled with the official CCLE reference mean and audited",
+    "gene_fingerprints": "Official Prep4DeepDEP 3,115-dimensional CGP fingerprints at pinned source commit f713c84b733a90d7644db789925a2fb4f9f41a68",
+    "unlabeled_pretraining": "TCGA pan-cancer primary tumors excluding every KIRC sample and every frozen KIRC Train/Validation/Test identifier; no dependency or outcome label is used",
+    "locked_test_rule": "No TCGA KIRC Locked Test expression, label, frequency or result may be read, used for tuning, or used for confirmation"
+  },
+  "methods": [
+    {
+      "id": "expression_pcr_ridge",
+      "role": "current strongest internal baseline",
+      "definition": "Training-only PCA scores followed by per-target ridge",
+      "rank_grid": [32, 64, 128, 256],
+      "alpha_grid": [100.0, 1000.0, 10000.0, 100000.0]
+    },
+    {
+      "id": "per_target_elastic_net",
+      "role": "TCGA-DEPMAP-style sparse linear baseline",
+      "definition": "Separate coefficient vector per dependency target, optimized on GPU with the sklearn-scaled elastic-net objective and intercept",
+      "l1_ratio": 0.5,
+      "alpha_grid": [0.0001, 0.001, 0.01, 0.1],
+      "selection": "Report both shared-alpha lineage-equal NDCG selection and target-specific inner-MSE selection; the shared-alpha version is primary for ranking"
+    },
+    {
+      "id": "multitask_reduced_rank_ridge",
+      "role": "joint low-rank dependency model",
+      "definition": "Ridge fitted values projected onto a training-only target SVD subspace, sharing statistical strength across targets",
+      "rank_grid": [16, 32, 64, 128],
+      "alpha_grid": [100.0, 1000.0, 10000.0, 100000.0],
+      "missing_rule": "Training residual missing values are filled by the training-target mean after centering and the fraction is reported"
+    },
+    {
+      "id": "exp_deepdep_adapted",
+      "role": "same-data adaptation of published Exp-DeepDEP",
+      "definition": "Official 6016-500-200-50 ReLU expression encoder initialized by a tumor-expression autoencoder; official 3115-1000-100-50 CGP fingerprint encoder; concatenated 250-250-linear dependency head",
+      "optimizer": "Adam, learning rate 0.001",
+      "batch_size": 500,
+      "maximum_epochs": 100,
+      "early_stopping_patience": 3,
+      "seeds": [20260917, 20260918, 20260919],
+      "selection": "One deterministic whole-lineage inner fold selects epoch count; refit on all outer-training models for that epoch count; average three frozen seeds",
+      "naming_boundary": "This is not a byte-identical rerun of the 2021 paper because the DepMap release, dependency target and split differ"
+    }
+  ],
+  "evaluation": {
+    "primary_endpoint": "Lineage-equal NDCG@10 on the shared non-common-essential target universe",
+    "secondary_endpoints": [
+      "Selective precision@10 at true residual <= -0.5",
+      "True Top-10 overlap",
+      "Within-model Spearman correlation",
+      "Regret relative to true Top-10",
+      "Prediction coverage",
+      "Wall-clock time and peak GPU memory"
+    ],
+    "uncertainty": "Paired bootstrap by patient and sensitivity bootstrap by lineage; 20,000 GPU draws",
+    "external_validation": "Apply outer-lineage selected/refitted models to matching frozen Sanger lineages without Sanger label tuning when expression coverage permits",
+    "decision_rule": "A complex model is considered better than PCR-ridge only if its paired NDCG difference has a positive 95% interval internally and does not reverse direction in eligible Sanger models"
+  },
+  "engineering": {
+    "device": "CUDA required for fitting and bootstrap; no silent CPU fallback",
+    "precision": "float32 neural optimization; float64 scoring, analytic decomposition and bootstrap where feasible",
+    "elastic_net_numerical_check": "GPU proximal solver must agree with sklearn ElasticNet on a deterministic small synthetic problem before formal execution",
+    "output_policy": "Refuse overwrite, write atomically, hash all inputs/scripts/outputs, retain only final research outputs and necessary audit tables"
+  }
+}
