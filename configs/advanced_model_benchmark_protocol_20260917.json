@@ -53,12 +53,12 @@
       "role": "same-data adaptation of published Exp-DeepDEP",
       "definition": "Official 6016-500-200-50 ReLU expression encoder initialized by a tumor-expression autoencoder; official 3115-1000-100-50 CGP fingerprint encoder; concatenated 250-250-linear dependency head",
       "optimizer": "Adam, learning rate 0.001",
-      "batch_size": 500,
+      "batching": "Structured batches of 32 cell lines crossed with all shared targets; each target fingerprint is encoded once per step instead of being redundantly repeated for individual pairs",
       "maximum_epochs": 100,
       "early_stopping_patience": 3,
       "seeds": [20260917, 20260918, 20260919],
       "selection": "One deterministic whole-lineage inner fold selects epoch count; refit on all outer-training models for that epoch count; average three frozen seeds",
-      "naming_boundary": "This is not a byte-identical rerun of the 2021 paper because the DepMap release, dependency target and split differ"
+      "naming_boundary": "This is not a byte-identical rerun of the 2021 paper because the DepMap release, dependency target, split and compute-efficient structured batching differ"
     }
   ],
   "evaluation": {
