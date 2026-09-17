@@ -1,0 +1,552 @@
+heldout_lineage,method,config,inner_lineage_equal_ndcg_at_10,selected
+Biliary Tract,annotation_ridge,100.0,0.1735720236399189,True
+Biliary Tract,annotation_ridge,1000.0,0.1726335346616144,False
+Biliary Tract,annotation_ridge,10000.0,0.16929700585627436,False
+Biliary Tract,annotation_ridge,100000.0,0.16949414453699244,False
+Biliary Tract,annotation_ridge,1000000.0,0.1693956886013272,False
+Biliary Tract,expression_knn,5,0.3166755007133902,False
+Biliary Tract,expression_knn,10,0.3336115007279617,True
+Biliary Tract,expression_knn,25,0.32634745643761537,False
+Biliary Tract,expression_knn,50,0.3285414231010764,False
+Biliary Tract,expression_pcr_ridge,32|100.0,0.3802080637467779,False
+Biliary Tract,expression_pcr_ridge,32|1000.0,0.37992686314833085,False
+Biliary Tract,expression_pcr_ridge,32|10000.0,0.3821648781696559,False
+Biliary Tract,expression_pcr_ridge,32|100000.0,0.36361717115653736,False
+Biliary Tract,expression_pcr_ridge,64|100.0,0.3946410268671119,False
+Biliary Tract,expression_pcr_ridge,64|1000.0,0.39965830887308457,False
+Biliary Tract,expression_pcr_ridge,64|10000.0,0.4027855255371233,False
+Biliary Tract,expression_pcr_ridge,64|100000.0,0.3886314031283479,False
+Biliary Tract,expression_pcr_ridge,128|100.0,0.3976332778079438,False
+Biliary Tract,expression_pcr_ridge,128|1000.0,0.41536051891346826,False
+Biliary Tract,expression_pcr_ridge,128|10000.0,0.41896435347697814,False
+Biliary Tract,expression_pcr_ridge,128|100000.0,0.40060003414712625,False
+Biliary Tract,expression_pcr_ridge,256|100.0,0.40011613673821417,False
+Biliary Tract,expression_pcr_ridge,256|1000.0,0.4185734694094212,False
+Biliary Tract,expression_pcr_ridge,256|10000.0,0.4285733464642036,True
+Biliary Tract,expression_pcr_ridge,256|100000.0,0.4033218681793219,False
+Biliary Tract,expression_kernel_ridge_tuned,1000.0,0.38969310023904635,False
+Biliary Tract,expression_kernel_ridge_tuned,10000.0,0.42453594290555263,True
+Biliary Tract,expression_kernel_ridge_tuned,100000.0,0.4037714006266918,False
+Biliary Tract,expression_kernel_ridge_tuned,1000000.0,0.34009916576193194,False
+Bladder/Urinary Tract,annotation_ridge,100.0,0.1718201991277747,False
+Bladder/Urinary Tract,annotation_ridge,1000.0,0.17254706706615563,True
+Bladder/Urinary Tract,annotation_ridge,10000.0,0.1691048622599719,False
+Bladder/Urinary Tract,annotation_ridge,100000.0,0.16942348768751872,False
+Bladder/Urinary Tract,annotation_ridge,1000000.0,0.1691614066848764,False
+Bladder/Urinary Tract,expression_knn,5,0.31073733023325517,False
+Bladder/Urinary Tract,expression_knn,10,0.32764058559131576,False
+Bladder/Urinary Tract,expression_knn,25,0.32811903843662205,True
+Bladder/Urinary Tract,expression_knn,50,0.3249363821228981,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|100.0,0.38353171935307134,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|1000.0,0.38179103382980034,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|10000.0,0.3830590221067967,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|100000.0,0.36669907737634166,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|100.0,0.40555898384358957,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|1000.0,0.4093871768542194,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|10000.0,0.4074434823653625,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|100000.0,0.38774137729538644,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|100.0,0.40503346463153406,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|1000.0,0.41654124774645135,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|10000.0,0.4182503572813511,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|100000.0,0.3988648346549687,False
+Bladder/Urinary Tract,expression_pcr_ridge,256|100.0,0.3972255187448258,False
+Bladder/Urinary Tract,expression_pcr_ridge,256|1000.0,0.41619223763706303,False
+Bladder/Urinary Tract,expression_pcr_ridge,256|10000.0,0.4290313494434543,True
+Bladder/Urinary Tract,expression_pcr_ridge,256|100000.0,0.40615048898309986,False
+Bladder/Urinary Tract,expression_kernel_ridge_tuned,1000.0,0.39406871555587225,False
+Bladder/Urinary Tract,expression_kernel_ridge_tuned,10000.0,0.42876884361906464,True
+Bladder/Urinary Tract,expression_kernel_ridge_tuned,100000.0,0.4071492448460507,False
+Bladder/Urinary Tract,expression_kernel_ridge_tuned,1000000.0,0.3358826837631199,False
+Bone,annotation_ridge,100.0,0.1689635236593763,True
+Bone,annotation_ridge,1000.0,0.16032222155777762,False
+Bone,annotation_ridge,10000.0,0.1626808319830161,False
+Bone,annotation_ridge,100000.0,0.1613267639316842,False
+Bone,annotation_ridge,1000000.0,0.1614891905669119,False
+Bone,expression_knn,5,0.3268429148347601,False
+Bone,expression_knn,10,0.3400706071126838,False
+Bone,expression_knn,25,0.3372140704845574,False
+Bone,expression_knn,50,0.34264320555493577,True
+Bone,expression_pcr_ridge,32|100.0,0.38815917845855474,False
+Bone,expression_pcr_ridge,32|1000.0,0.387418764568056,False
+Bone,expression_pcr_ridge,32|10000.0,0.38868921048888333,False
+Bone,expression_pcr_ridge,32|100000.0,0.37298928591777325,False
+Bone,expression_pcr_ridge,64|100.0,0.4117833187293934,False
+Bone,expression_pcr_ridge,64|1000.0,0.4152247983559832,False
+Bone,expression_pcr_ridge,64|10000.0,0.41701865834816265,False
+Bone,expression_pcr_ridge,64|100000.0,0.3940789140782305,False
+Bone,expression_pcr_ridge,128|100.0,0.4099419634953463,False
+Bone,expression_pcr_ridge,128|1000.0,0.4225133963269723,False
+Bone,expression_pcr_ridge,128|10000.0,0.4304403048256533,False
+Bone,expression_pcr_ridge,128|100000.0,0.4004979255538333,False
+Bone,expression_pcr_ridge,256|100.0,0.4051622048398788,False
+Bone,expression_pcr_ridge,256|1000.0,0.42286214729855115,False
+Bone,expression_pcr_ridge,256|10000.0,0.43666162649793744,True
+Bone,expression_pcr_ridge,256|100000.0,0.40644856967013054,False
+Bone,expression_kernel_ridge_tuned,1000.0,0.39824457330018165,False
+Bone,expression_kernel_ridge_tuned,10000.0,0.4329690306147341,True
+Bone,expression_kernel_ridge_tuned,100000.0,0.40954002429363706,False
+Bone,expression_kernel_ridge_tuned,1000000.0,0.3438072005339678,False
+Bowel,annotation_ridge,100.0,0.16735218757596845,False
+Bowel,annotation_ridge,1000.0,0.16891755998257613,True
+Bowel,annotation_ridge,10000.0,0.16343376492115028,False
+Bowel,annotation_ridge,100000.0,0.16185405422762533,False
+Bowel,annotation_ridge,1000000.0,0.1620380494210876,False
+Bowel,expression_knn,5,0.31407646708379144,False
+Bowel,expression_knn,10,0.334789619345289,False
+Bowel,expression_knn,25,0.3385953146178303,True
+Bowel,expression_knn,50,0.33599026806308957,False
+Bowel,expression_pcr_ridge,32|100.0,0.3838040085237245,False
+Bowel,expression_pcr_ridge,32|1000.0,0.3855016400691912,False
+Bowel,expression_pcr_ridge,32|10000.0,0.38665131767094324,False
+Bowel,expression_pcr_ridge,32|100000.0,0.3704153291610699,False
+Bowel,expression_pcr_ridge,64|100.0,0.4062533505010376,False
+Bowel,expression_pcr_ridge,64|1000.0,0.4106437349383455,False
+Bowel,expression_pcr_ridge,64|10000.0,0.41162472479565365,False
+Bowel,expression_pcr_ridge,64|100000.0,0.3915856626801509,False
+Bowel,expression_pcr_ridge,128|100.0,0.4004655772330737,False
+Bowel,expression_pcr_ridge,128|1000.0,0.41636204073789285,False
+Bowel,expression_pcr_ridge,128|10000.0,0.4236380725209042,False
+Bowel,expression_pcr_ridge,128|100000.0,0.39893607036420514,False
+Bowel,expression_pcr_ridge,256|100.0,0.4012153339950523,False
+Bowel,expression_pcr_ridge,256|1000.0,0.416418186700279,False
+Bowel,expression_pcr_ridge,256|10000.0,0.4280688156057173,True
+Bowel,expression_pcr_ridge,256|100000.0,0.4030829246791607,False
+Bowel,expression_kernel_ridge_tuned,1000.0,0.3956387645329625,False
+Bowel,expression_kernel_ridge_tuned,10000.0,0.4278576232606364,True
+Bowel,expression_kernel_ridge_tuned,100000.0,0.404742455447288,False
+Bowel,expression_kernel_ridge_tuned,1000000.0,0.3481721660240261,False
+Breast,annotation_ridge,100.0,0.16763616008018614,True
+Breast,annotation_ridge,1000.0,0.16406553790408346,False
+Breast,annotation_ridge,10000.0,0.15900622606090706,False
+Breast,annotation_ridge,100000.0,0.15778806021081684,False
+Breast,annotation_ridge,1000000.0,0.15788355364843923,False
+Breast,expression_knn,5,0.3079670450825333,False
+Breast,expression_knn,10,0.321416716481338,False
+Breast,expression_knn,25,0.33097575309018273,True
+Breast,expression_knn,50,0.3226773069885743,False
+Breast,expression_pcr_ridge,32|100.0,0.37937030254485343,False
+Breast,expression_pcr_ridge,32|1000.0,0.38117028047586965,False
+Breast,expression_pcr_ridge,32|10000.0,0.3816547448592778,False
+Breast,expression_pcr_ridge,32|100000.0,0.36949872484408147,False
+Breast,expression_pcr_ridge,64|100.0,0.40479031777530033,False
+Breast,expression_pcr_ridge,64|1000.0,0.41020139819215434,False
+Breast,expression_pcr_ridge,64|10000.0,0.40808322415288006,False
+Breast,expression_pcr_ridge,64|100000.0,0.3880324845577431,False
+Breast,expression_pcr_ridge,128|100.0,0.3926798359843104,False
+Breast,expression_pcr_ridge,128|1000.0,0.4133999707268248,False
+Breast,expression_pcr_ridge,128|10000.0,0.41919312398031855,False
+Breast,expression_pcr_ridge,128|100000.0,0.39636788853051214,False
+Breast,expression_pcr_ridge,256|100.0,0.39564165816847136,False
+Breast,expression_pcr_ridge,256|1000.0,0.4110876976013187,False
+Breast,expression_pcr_ridge,256|10000.0,0.4264948929194102,True
+Breast,expression_pcr_ridge,256|100000.0,0.4006413848841472,False
+Breast,expression_kernel_ridge_tuned,1000.0,0.38541870062274175,False
+Breast,expression_kernel_ridge_tuned,10000.0,0.4223249504660797,True
+Breast,expression_kernel_ridge_tuned,100000.0,0.400439637154667,False
+Breast,expression_kernel_ridge_tuned,1000000.0,0.34234133104145287,False
+CNS/Brain,annotation_ridge,100.0,0.16093834690429176,True
+CNS/Brain,annotation_ridge,1000.0,0.1607842086481721,False
+CNS/Brain,annotation_ridge,10000.0,0.1514211378436072,False
+CNS/Brain,annotation_ridge,100000.0,0.14907723092936595,False
+CNS/Brain,annotation_ridge,1000000.0,0.14927753927932783,False
+CNS/Brain,expression_knn,5,0.31544688519731057,False
+CNS/Brain,expression_knn,10,0.3378028497622401,True
+CNS/Brain,expression_knn,25,0.3311093178300336,False
+CNS/Brain,expression_knn,50,0.33537339204329514,False
+CNS/Brain,expression_pcr_ridge,32|100.0,0.3850759134468719,False
+CNS/Brain,expression_pcr_ridge,32|1000.0,0.3865866030872161,False
+CNS/Brain,expression_pcr_ridge,32|10000.0,0.3864076745969527,False
+CNS/Brain,expression_pcr_ridge,32|100000.0,0.37174616524459414,False
+CNS/Brain,expression_pcr_ridge,64|100.0,0.402793039216303,False
+CNS/Brain,expression_pcr_ridge,64|1000.0,0.4086371827124929,False
+CNS/Brain,expression_pcr_ridge,64|10000.0,0.4086337724472131,False
+CNS/Brain,expression_pcr_ridge,64|100000.0,0.3907473442711972,False
+CNS/Brain,expression_pcr_ridge,128|100.0,0.40683975130800804,False
+CNS/Brain,expression_pcr_ridge,128|1000.0,0.4223147580389745,False
+CNS/Brain,expression_pcr_ridge,128|10000.0,0.42190522385148366,False
+CNS/Brain,expression_pcr_ridge,128|100000.0,0.4003478492974232,False
+CNS/Brain,expression_pcr_ridge,256|100.0,0.3956067665219318,False
+CNS/Brain,expression_pcr_ridge,256|1000.0,0.4137554684561284,False
+CNS/Brain,expression_pcr_ridge,256|10000.0,0.42676852866417364,True
+CNS/Brain,expression_pcr_ridge,256|100000.0,0.40428113031132895,False
+CNS/Brain,expression_kernel_ridge_tuned,1000.0,0.38730787085816376,False
+CNS/Brain,expression_kernel_ridge_tuned,10000.0,0.4244233893780199,True
+CNS/Brain,expression_kernel_ridge_tuned,100000.0,0.4053761020821688,False
+CNS/Brain,expression_kernel_ridge_tuned,1000000.0,0.34634891191953115,False
+Esophagus/Stomach,annotation_ridge,100.0,0.15947547035100842,True
+Esophagus/Stomach,annotation_ridge,1000.0,0.15833592961772391,False
+Esophagus/Stomach,annotation_ridge,10000.0,0.15488930264208817,False
+Esophagus/Stomach,annotation_ridge,100000.0,0.15449014924306995,False
+Esophagus/Stomach,annotation_ridge,1000000.0,0.1544698159615391,False
+Esophagus/Stomach,expression_knn,5,0.313986841826203,False
+Esophagus/Stomach,expression_knn,10,0.32812402001609997,False
+Esophagus/Stomach,expression_knn,25,0.3286720934777793,False
+Esophagus/Stomach,expression_knn,50,0.33248381655897996,True
+Esophagus/Stomach,expression_pcr_ridge,32|100.0,0.36544106993162523,False
+Esophagus/Stomach,expression_pcr_ridge,32|1000.0,0.36738066814234793,False
+Esophagus/Stomach,expression_pcr_ridge,32|10000.0,0.36806698148625444,False
+Esophagus/Stomach,expression_pcr_ridge,32|100000.0,0.35671857604024093,False
+Esophagus/Stomach,expression_pcr_ridge,64|100.0,0.4065846826854256,False
+Esophagus/Stomach,expression_pcr_ridge,64|1000.0,0.4093378900070646,False
+Esophagus/Stomach,expression_pcr_ridge,64|10000.0,0.40812682669862166,False
+Esophagus/Stomach,expression_pcr_ridge,64|100000.0,0.38546645716066413,False
+Esophagus/Stomach,expression_pcr_ridge,128|100.0,0.4062492870176149,False
+Esophagus/Stomach,expression_pcr_ridge,128|1000.0,0.4206337779398986,False
+Esophagus/Stomach,expression_pcr_ridge,128|10000.0,0.4244595100388423,False
+Esophagus/Stomach,expression_pcr_ridge,128|100000.0,0.39750385855512654,False
+Esophagus/Stomach,expression_pcr_ridge,256|100.0,0.39843630419001286,False
+Esophagus/Stomach,expression_pcr_ridge,256|1000.0,0.4162628593622031,False
+Esophagus/Stomach,expression_pcr_ridge,256|10000.0,0.4288349146835866,True
+Esophagus/Stomach,expression_pcr_ridge,256|100000.0,0.40511873023485073,False
+Esophagus/Stomach,expression_kernel_ridge_tuned,1000.0,0.3976448879844764,False
+Esophagus/Stomach,expression_kernel_ridge_tuned,10000.0,0.42939230905543474,True
+Esophagus/Stomach,expression_kernel_ridge_tuned,100000.0,0.40604213339491185,False
+Esophagus/Stomach,expression_kernel_ridge_tuned,1000000.0,0.3413244274862142,False
+Head and Neck,annotation_ridge,100.0,0.16378064655587313,False
+Head and Neck,annotation_ridge,1000.0,0.16755027149896076,True
+Head and Neck,annotation_ridge,10000.0,0.1606940419966874,False
+Head and Neck,annotation_ridge,100000.0,0.163057419656313,False
+Head and Neck,annotation_ridge,1000000.0,0.16299546107556895,False
+Head and Neck,expression_knn,5,0.3126740434746911,False
+Head and Neck,expression_knn,10,0.3314183016684448,False
+Head and Neck,expression_knn,25,0.33918208930389865,True
+Head and Neck,expression_knn,50,0.3321519824116898,False
+Head and Neck,expression_pcr_ridge,32|100.0,0.38351139287192165,False
+Head and Neck,expression_pcr_ridge,32|1000.0,0.38476080694824233,False
+Head and Neck,expression_pcr_ridge,32|10000.0,0.3840987192891817,False
+Head and Neck,expression_pcr_ridge,32|100000.0,0.3690847521923111,False
+Head and Neck,expression_pcr_ridge,64|100.0,0.3982774521879445,False
+Head and Neck,expression_pcr_ridge,64|1000.0,0.4024856011912327,False
+Head and Neck,expression_pcr_ridge,64|10000.0,0.4028956372603301,False
+Head and Neck,expression_pcr_ridge,64|100000.0,0.38674901417747654,False
+Head and Neck,expression_pcr_ridge,128|100.0,0.4016157178987228,False
+Head and Neck,expression_pcr_ridge,128|1000.0,0.41185542688804183,False
+Head and Neck,expression_pcr_ridge,128|10000.0,0.42101267203751935,False
+Head and Neck,expression_pcr_ridge,128|100000.0,0.39451530390897493,False
+Head and Neck,expression_pcr_ridge,256|100.0,0.40826194297143265,False
+Head and Neck,expression_pcr_ridge,256|1000.0,0.4188426826139835,False
+Head and Neck,expression_pcr_ridge,256|10000.0,0.42942338665095514,True
+Head and Neck,expression_pcr_ridge,256|100000.0,0.40215743457886466,False
+Head and Neck,expression_kernel_ridge_tuned,1000.0,0.3930304874722457,False
+Head and Neck,expression_kernel_ridge_tuned,10000.0,0.4274988193676768,True
+Head and Neck,expression_kernel_ridge_tuned,100000.0,0.4046298816527401,False
+Head and Neck,expression_kernel_ridge_tuned,1000000.0,0.3443002455691516,False
+Kidney,annotation_ridge,100.0,0.16435477489024444,False
+Kidney,annotation_ridge,1000.0,0.16991444573076464,True
+Kidney,annotation_ridge,10000.0,0.16419594079225863,False
+Kidney,annotation_ridge,100000.0,0.164023944635657,False
+Kidney,annotation_ridge,1000000.0,0.16401747842945189,False
+Kidney,expression_knn,5,0.31164026205950485,False
+Kidney,expression_knn,10,0.32605745788787716,True
+Kidney,expression_knn,25,0.32406287225520586,False
+Kidney,expression_knn,50,0.321856115040097,False
+Kidney,expression_pcr_ridge,32|100.0,0.376640350350618,False
+Kidney,expression_pcr_ridge,32|1000.0,0.37693744211930025,False
+Kidney,expression_pcr_ridge,32|10000.0,0.37613097067602913,False
+Kidney,expression_pcr_ridge,32|100000.0,0.36537683642461444,False
+Kidney,expression_pcr_ridge,64|100.0,0.3946226652053704,False
+Kidney,expression_pcr_ridge,64|1000.0,0.3987631334635115,False
+Kidney,expression_pcr_ridge,64|10000.0,0.39822355904353596,False
+Kidney,expression_pcr_ridge,64|100000.0,0.3822350679087557,False
+Kidney,expression_pcr_ridge,128|100.0,0.39868534744208145,False
+Kidney,expression_pcr_ridge,128|1000.0,0.41239061995470105,False
+Kidney,expression_pcr_ridge,128|10000.0,0.4142899929339098,False
+Kidney,expression_pcr_ridge,128|100000.0,0.3948633550617396,False
+Kidney,expression_pcr_ridge,256|100.0,0.39870108819925215,False
+Kidney,expression_pcr_ridge,256|1000.0,0.4151524926981806,False
+Kidney,expression_pcr_ridge,256|10000.0,0.4236415867232325,True
+Kidney,expression_pcr_ridge,256|100000.0,0.3995799467341923,False
+Kidney,expression_kernel_ridge_tuned,1000.0,0.389466035692048,False
+Kidney,expression_kernel_ridge_tuned,10000.0,0.4216861878932605,True
+Kidney,expression_kernel_ridge_tuned,100000.0,0.4013875978650226,False
+Kidney,expression_kernel_ridge_tuned,1000000.0,0.33874675230827966,False
+Liver,annotation_ridge,100.0,0.1596323353068307,False
+Liver,annotation_ridge,1000.0,0.16005308012487773,True
+Liver,annotation_ridge,10000.0,0.15089555157498213,False
+Liver,annotation_ridge,100000.0,0.14973754380307971,False
+Liver,annotation_ridge,1000000.0,0.14995810505892918,False
+Liver,expression_knn,5,0.3056808905573678,False
+Liver,expression_knn,10,0.3247073630589796,False
+Liver,expression_knn,25,0.32514251981027137,True
+Liver,expression_knn,50,0.3243212441926518,False
+Liver,expression_pcr_ridge,32|100.0,0.3755339362476426,False
+Liver,expression_pcr_ridge,32|1000.0,0.37843208932652744,False
+Liver,expression_pcr_ridge,32|10000.0,0.37935462328209657,False
+Liver,expression_pcr_ridge,32|100000.0,0.3604095679678768,False
+Liver,expression_pcr_ridge,64|100.0,0.39618315442662283,False
+Liver,expression_pcr_ridge,64|1000.0,0.3994506469120052,False
+Liver,expression_pcr_ridge,64|10000.0,0.39902187339662315,False
+Liver,expression_pcr_ridge,64|100000.0,0.37956418409194775,False
+Liver,expression_pcr_ridge,128|100.0,0.3974654247348442,False
+Liver,expression_pcr_ridge,128|1000.0,0.4109355953233913,False
+Liver,expression_pcr_ridge,128|10000.0,0.41599789493755784,False
+Liver,expression_pcr_ridge,128|100000.0,0.3920400089146568,False
+Liver,expression_pcr_ridge,256|100.0,0.3879258566480437,False
+Liver,expression_pcr_ridge,256|1000.0,0.40917809361533936,False
+Liver,expression_pcr_ridge,256|10000.0,0.42087055462891826,True
+Liver,expression_pcr_ridge,256|100000.0,0.39982966870820047,False
+Liver,expression_kernel_ridge_tuned,1000.0,0.38238781123604604,False
+Liver,expression_kernel_ridge_tuned,10000.0,0.42258808965200145,True
+Liver,expression_kernel_ridge_tuned,100000.0,0.40077007187353253,False
+Liver,expression_kernel_ridge_tuned,1000000.0,0.3381849418138581,False
+Lung,annotation_ridge,100.0,0.16667629505493475,False
+Lung,annotation_ridge,1000.0,0.17433334643263082,True
+Lung,annotation_ridge,10000.0,0.17261394986364828,False
+Lung,annotation_ridge,100000.0,0.17277749459250222,False
+Lung,annotation_ridge,1000000.0,0.17231432257325527,False
+Lung,expression_knn,5,0.32099093237522425,False
+Lung,expression_knn,10,0.34384797453567767,True
+Lung,expression_knn,25,0.3385277421544754,False
+Lung,expression_knn,50,0.3336443436791246,False
+Lung,expression_pcr_ridge,32|100.0,0.38294715554275954,False
+Lung,expression_pcr_ridge,32|1000.0,0.38141913150999573,False
+Lung,expression_pcr_ridge,32|10000.0,0.382109361137402,False
+Lung,expression_pcr_ridge,32|100000.0,0.3680917823950332,False
+Lung,expression_pcr_ridge,64|100.0,0.40111382715658706,False
+Lung,expression_pcr_ridge,64|1000.0,0.4084989261429166,False
+Lung,expression_pcr_ridge,64|10000.0,0.40974407237966026,False
+Lung,expression_pcr_ridge,64|100000.0,0.3861180688130356,False
+Lung,expression_pcr_ridge,128|100.0,0.404200414861129,False
+Lung,expression_pcr_ridge,128|1000.0,0.41583804907273897,False
+Lung,expression_pcr_ridge,128|10000.0,0.4243753377989329,False
+Lung,expression_pcr_ridge,128|100000.0,0.3959500713804735,False
+Lung,expression_pcr_ridge,256|100.0,0.39951241179851105,False
+Lung,expression_pcr_ridge,256|1000.0,0.40970773817228556,False
+Lung,expression_pcr_ridge,256|10000.0,0.42549006257337124,True
+Lung,expression_pcr_ridge,256|100000.0,0.4006330775264342,False
+Lung,expression_kernel_ridge_tuned,1000.0,0.3883183203237621,False
+Lung,expression_kernel_ridge_tuned,10000.0,0.42070915037200146,True
+Lung,expression_kernel_ridge_tuned,100000.0,0.4025356466407502,False
+Lung,expression_kernel_ridge_tuned,1000000.0,0.34351824745090437,False
+Lymphoid,annotation_ridge,100.0,0.15452746238352866,True
+Lymphoid,annotation_ridge,1000.0,0.1514308840892364,False
+Lymphoid,annotation_ridge,10000.0,0.15174084455502904,False
+Lymphoid,annotation_ridge,100000.0,0.15198156167393662,False
+Lymphoid,annotation_ridge,1000000.0,0.15207017539984383,False
+Lymphoid,expression_knn,5,0.2928394838286137,False
+Lymphoid,expression_knn,10,0.3146960654198608,True
+Lymphoid,expression_knn,25,0.3124110353117089,False
+Lymphoid,expression_knn,50,0.30039840770390497,False
+Lymphoid,expression_pcr_ridge,32|100.0,0.36466080750635516,False
+Lymphoid,expression_pcr_ridge,32|1000.0,0.3652558889583777,False
+Lymphoid,expression_pcr_ridge,32|10000.0,0.36730223968175646,False
+Lymphoid,expression_pcr_ridge,32|100000.0,0.3519451651360582,False
+Lymphoid,expression_pcr_ridge,64|100.0,0.3898968602265552,False
+Lymphoid,expression_pcr_ridge,64|1000.0,0.39217914470103665,False
+Lymphoid,expression_pcr_ridge,64|10000.0,0.39342354683143843,False
+Lymphoid,expression_pcr_ridge,64|100000.0,0.37540869980285485,False
+Lymphoid,expression_pcr_ridge,128|100.0,0.3897619053738446,False
+Lymphoid,expression_pcr_ridge,128|1000.0,0.40319991855993814,False
+Lymphoid,expression_pcr_ridge,128|10000.0,0.4032217861132313,False
+Lymphoid,expression_pcr_ridge,128|100000.0,0.3816088082399834,False
+Lymphoid,expression_pcr_ridge,256|100.0,0.3910448101445447,False
+Lymphoid,expression_pcr_ridge,256|1000.0,0.40876657695036395,False
+Lymphoid,expression_pcr_ridge,256|10000.0,0.41764843333246543,True
+Lymphoid,expression_pcr_ridge,256|100000.0,0.3881579031154209,False
+Lymphoid,expression_kernel_ridge_tuned,1000.0,0.3805537909925146,False
+Lymphoid,expression_kernel_ridge_tuned,10000.0,0.41497778632276344,True
+Lymphoid,expression_kernel_ridge_tuned,100000.0,0.39046595152755514,False
+Lymphoid,expression_kernel_ridge_tuned,1000000.0,0.3277363454102031,False
+Myeloid,annotation_ridge,100.0,0.173363692850478,True
+Myeloid,annotation_ridge,1000.0,0.16874006869670877,False
+Myeloid,annotation_ridge,10000.0,0.16319178330070153,False
+Myeloid,annotation_ridge,100000.0,0.16317526983344252,False
+Myeloid,annotation_ridge,1000000.0,0.16303974249421369,False
+Myeloid,expression_knn,5,0.2951311796908753,False
+Myeloid,expression_knn,10,0.31516362395071207,False
+Myeloid,expression_knn,25,0.3152306798981297,True
+Myeloid,expression_knn,50,0.3094646493768291,False
+Myeloid,expression_pcr_ridge,32|100.0,0.3701999309866406,False
+Myeloid,expression_pcr_ridge,32|1000.0,0.3727821160859787,False
+Myeloid,expression_pcr_ridge,32|10000.0,0.3752166997738299,False
+Myeloid,expression_pcr_ridge,32|100000.0,0.3594807710023526,False
+Myeloid,expression_pcr_ridge,64|100.0,0.3921531027423211,False
+Myeloid,expression_pcr_ridge,64|1000.0,0.39386584541572806,False
+Myeloid,expression_pcr_ridge,64|10000.0,0.3968352851044615,False
+Myeloid,expression_pcr_ridge,64|100000.0,0.3773188763338818,False
+Myeloid,expression_pcr_ridge,128|100.0,0.3939868942513969,False
+Myeloid,expression_pcr_ridge,128|1000.0,0.40801806807573593,False
+Myeloid,expression_pcr_ridge,128|10000.0,0.4127167628053036,False
+Myeloid,expression_pcr_ridge,128|100000.0,0.3884493972030573,False
+Myeloid,expression_pcr_ridge,256|100.0,0.390522037193925,False
+Myeloid,expression_pcr_ridge,256|1000.0,0.4078686164406431,False
+Myeloid,expression_pcr_ridge,256|10000.0,0.42060763762678727,True
+Myeloid,expression_pcr_ridge,256|100000.0,0.39262781128345625,False
+Myeloid,expression_kernel_ridge_tuned,1000.0,0.3906406951275318,False
+Myeloid,expression_kernel_ridge_tuned,10000.0,0.41677888571970056,True
+Myeloid,expression_kernel_ridge_tuned,100000.0,0.39190724649042286,False
+Myeloid,expression_kernel_ridge_tuned,1000000.0,0.3283116657075673,False
+Ovary/Fallopian Tube,annotation_ridge,100.0,0.155790628068187,False
+Ovary/Fallopian Tube,annotation_ridge,1000.0,0.16524960637359576,True
+Ovary/Fallopian Tube,annotation_ridge,10000.0,0.1619359385787456,False
+Ovary/Fallopian Tube,annotation_ridge,100000.0,0.16020425881085285,False
+Ovary/Fallopian Tube,annotation_ridge,1000000.0,0.1601368052595347,False
+Ovary/Fallopian Tube,expression_knn,5,0.3197106534130673,False
+Ovary/Fallopian Tube,expression_knn,10,0.3351140129890529,False
+Ovary/Fallopian Tube,expression_knn,25,0.3373651689831937,False
+Ovary/Fallopian Tube,expression_knn,50,0.342814919455522,True
+Ovary/Fallopian Tube,expression_pcr_ridge,32|100.0,0.38856876658167044,False
+Ovary/Fallopian Tube,expression_pcr_ridge,32|1000.0,0.39058843103935625,False
+Ovary/Fallopian Tube,expression_pcr_ridge,32|10000.0,0.38806938968252497,False
+Ovary/Fallopian Tube,expression_pcr_ridge,32|100000.0,0.37440553585721903,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|100.0,0.4121999174851175,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|1000.0,0.4169684039743255,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|10000.0,0.41589421150813777,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|100000.0,0.3900823273121368,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|100.0,0.4152006301487053,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|1000.0,0.4283779800479316,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|10000.0,0.4285377486239606,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|100000.0,0.40065234253757426,False
+Ovary/Fallopian Tube,expression_pcr_ridge,256|100.0,0.4066265007415783,False
+Ovary/Fallopian Tube,expression_pcr_ridge,256|1000.0,0.42452628348811317,False
+Ovary/Fallopian Tube,expression_pcr_ridge,256|10000.0,0.4332376292023905,True
+Ovary/Fallopian Tube,expression_pcr_ridge,256|100000.0,0.4055489848326871,False
+Ovary/Fallopian Tube,expression_kernel_ridge_tuned,1000.0,0.4070918000138614,False
+Ovary/Fallopian Tube,expression_kernel_ridge_tuned,10000.0,0.43716934658459145,True
+Ovary/Fallopian Tube,expression_kernel_ridge_tuned,100000.0,0.4088476746673834,False
+Ovary/Fallopian Tube,expression_kernel_ridge_tuned,1000000.0,0.34617271196006466,False
+Pancreas,annotation_ridge,100.0,0.1610161362143966,False
+Pancreas,annotation_ridge,1000.0,0.16438396012501166,True
+Pancreas,annotation_ridge,10000.0,0.16136879330313117,False
+Pancreas,annotation_ridge,100000.0,0.16152306503383865,False
+Pancreas,annotation_ridge,1000000.0,0.16150171833531018,False
+Pancreas,expression_knn,5,0.3131172966394426,False
+Pancreas,expression_knn,10,0.330969329422334,False
+Pancreas,expression_knn,25,0.3302991797604421,False
+Pancreas,expression_knn,50,0.3323973404131942,True
+Pancreas,expression_pcr_ridge,32|100.0,0.3753195594496252,False
+Pancreas,expression_pcr_ridge,32|1000.0,0.37564372305270405,False
+Pancreas,expression_pcr_ridge,32|10000.0,0.3741556437362404,False
+Pancreas,expression_pcr_ridge,32|100000.0,0.3594760545571417,False
+Pancreas,expression_pcr_ridge,64|100.0,0.40224300026794363,False
+Pancreas,expression_pcr_ridge,64|1000.0,0.4058093715424284,False
+Pancreas,expression_pcr_ridge,64|10000.0,0.40548506186266586,False
+Pancreas,expression_pcr_ridge,64|100000.0,0.381146118058425,False
+Pancreas,expression_pcr_ridge,128|100.0,0.40015981541091505,False
+Pancreas,expression_pcr_ridge,128|1000.0,0.41775612636035775,False
+Pancreas,expression_pcr_ridge,128|10000.0,0.4205503378252651,False
+Pancreas,expression_pcr_ridge,128|100000.0,0.3914344177482722,False
+Pancreas,expression_pcr_ridge,256|100.0,0.4061366302345591,False
+Pancreas,expression_pcr_ridge,256|1000.0,0.421238672108793,False
+Pancreas,expression_pcr_ridge,256|10000.0,0.4230691085037772,True
+Pancreas,expression_pcr_ridge,256|100000.0,0.3949248188331392,False
+Pancreas,expression_kernel_ridge_tuned,1000.0,0.39746874208442845,False
+Pancreas,expression_kernel_ridge_tuned,10000.0,0.4282915177922965,True
+Pancreas,expression_kernel_ridge_tuned,100000.0,0.3979408874656708,False
+Pancreas,expression_kernel_ridge_tuned,1000000.0,0.34141546181171045,False
+Peripheral Nervous System,annotation_ridge,100.0,0.16340950917561456,False
+Peripheral Nervous System,annotation_ridge,1000.0,0.16914114361041316,True
+Peripheral Nervous System,annotation_ridge,10000.0,0.16613856598331156,False
+Peripheral Nervous System,annotation_ridge,100000.0,0.16518034396368192,False
+Peripheral Nervous System,annotation_ridge,1000000.0,0.16502439190870286,False
+Peripheral Nervous System,expression_knn,5,0.32079725430097494,False
+Peripheral Nervous System,expression_knn,10,0.3378874348784486,True
+Peripheral Nervous System,expression_knn,25,0.33709196383653045,False
+Peripheral Nervous System,expression_knn,50,0.33576440722756046,False
+Peripheral Nervous System,expression_pcr_ridge,32|100.0,0.38834853486529897,False
+Peripheral Nervous System,expression_pcr_ridge,32|1000.0,0.38951725391193115,False
+Peripheral Nervous System,expression_pcr_ridge,32|10000.0,0.39118084314012264,False
+Peripheral Nervous System,expression_pcr_ridge,32|100000.0,0.3704250633591883,False
+Peripheral Nervous System,expression_pcr_ridge,64|100.0,0.4069208223734538,False
+Peripheral Nervous System,expression_pcr_ridge,64|1000.0,0.411221248432156,False
+Peripheral Nervous System,expression_pcr_ridge,64|10000.0,0.4129588869300214,False
+Peripheral Nervous System,expression_pcr_ridge,64|100000.0,0.3918976685032093,False
+Peripheral Nervous System,expression_pcr_ridge,128|100.0,0.4076208340423593,False
+Peripheral Nervous System,expression_pcr_ridge,128|1000.0,0.4208701709091229,False
+Peripheral Nervous System,expression_pcr_ridge,128|10000.0,0.42290279366482947,False
+Peripheral Nervous System,expression_pcr_ridge,128|100000.0,0.4039135677958055,False
+Peripheral Nervous System,expression_pcr_ridge,256|100.0,0.40522755944193684,False
+Peripheral Nervous System,expression_pcr_ridge,256|1000.0,0.42535103224071286,False
+Peripheral Nervous System,expression_pcr_ridge,256|10000.0,0.4351758667188604,True
+Peripheral Nervous System,expression_pcr_ridge,256|100000.0,0.41041437423461885,False
+Peripheral Nervous System,expression_kernel_ridge_tuned,1000.0,0.4025662929473189,False
+Peripheral Nervous System,expression_kernel_ridge_tuned,10000.0,0.4357543210363352,True
+Peripheral Nervous System,expression_kernel_ridge_tuned,100000.0,0.41438944807055433,False
+Peripheral Nervous System,expression_kernel_ridge_tuned,1000000.0,0.3384598731682831,False
+Skin,annotation_ridge,100.0,0.16862357105348705,True
+Skin,annotation_ridge,1000.0,0.16846145054426706,False
+Skin,annotation_ridge,10000.0,0.1618271648717101,False
+Skin,annotation_ridge,100000.0,0.161305699326048,False
+Skin,annotation_ridge,1000000.0,0.16146384075854014,False
+Skin,expression_knn,5,0.30258916556515075,False
+Skin,expression_knn,10,0.3207577694164062,False
+Skin,expression_knn,25,0.32810521314558977,True
+Skin,expression_knn,50,0.3277817887366282,False
+Skin,expression_pcr_ridge,32|100.0,0.3780979835101339,False
+Skin,expression_pcr_ridge,32|1000.0,0.3775551946663404,False
+Skin,expression_pcr_ridge,32|10000.0,0.37830510915238874,False
+Skin,expression_pcr_ridge,32|100000.0,0.3694073240429349,False
+Skin,expression_pcr_ridge,64|100.0,0.3975586833346499,False
+Skin,expression_pcr_ridge,64|1000.0,0.40106762558110925,False
+Skin,expression_pcr_ridge,64|10000.0,0.40250455496375886,False
+Skin,expression_pcr_ridge,64|100000.0,0.38186237904787007,False
+Skin,expression_pcr_ridge,128|100.0,0.40241619388167205,False
+Skin,expression_pcr_ridge,128|1000.0,0.41372848281012786,False
+Skin,expression_pcr_ridge,128|10000.0,0.4191528432952895,False
+Skin,expression_pcr_ridge,128|100000.0,0.393713411773875,False
+Skin,expression_pcr_ridge,256|100.0,0.39854800286456116,False
+Skin,expression_pcr_ridge,256|1000.0,0.4128762146325393,False
+Skin,expression_pcr_ridge,256|10000.0,0.42042054113707006,True
+Skin,expression_pcr_ridge,256|100000.0,0.39830823295692025,False
+Skin,expression_kernel_ridge_tuned,1000.0,0.3821053993512181,False
+Skin,expression_kernel_ridge_tuned,10000.0,0.41567763375429106,True
+Skin,expression_kernel_ridge_tuned,100000.0,0.39955371136106616,False
+Skin,expression_kernel_ridge_tuned,1000000.0,0.3376502079842943,False
+Soft Tissue,annotation_ridge,100.0,0.17238379037875184,True
+Soft Tissue,annotation_ridge,1000.0,0.17229992399944097,False
+Soft Tissue,annotation_ridge,10000.0,0.16091658280520774,False
+Soft Tissue,annotation_ridge,100000.0,0.16211903216705745,False
+Soft Tissue,annotation_ridge,1000000.0,0.16237077260323982,False
+Soft Tissue,expression_knn,5,0.306791137184786,False
+Soft Tissue,expression_knn,10,0.32758735450947196,False
+Soft Tissue,expression_knn,25,0.3246881391708251,False
+Soft Tissue,expression_knn,50,0.3278177779017208,True
+Soft Tissue,expression_pcr_ridge,32|100.0,0.3833618333228054,False
+Soft Tissue,expression_pcr_ridge,32|1000.0,0.3836874638400887,False
+Soft Tissue,expression_pcr_ridge,32|10000.0,0.3849532965119628,False
+Soft Tissue,expression_pcr_ridge,32|100000.0,0.37116995841488454,False
+Soft Tissue,expression_pcr_ridge,64|100.0,0.39679835629659577,False
+Soft Tissue,expression_pcr_ridge,64|1000.0,0.4022885535825458,False
+Soft Tissue,expression_pcr_ridge,64|10000.0,0.4055183798315029,False
+Soft Tissue,expression_pcr_ridge,64|100000.0,0.3864623306911565,False
+Soft Tissue,expression_pcr_ridge,128|100.0,0.40874555359936454,False
+Soft Tissue,expression_pcr_ridge,128|1000.0,0.4215352601553259,True
+Soft Tissue,expression_pcr_ridge,128|10000.0,0.418574886131803,False
+Soft Tissue,expression_pcr_ridge,128|100000.0,0.3978812808464109,False
+Soft Tissue,expression_pcr_ridge,256|100.0,0.398582087309208,False
+Soft Tissue,expression_pcr_ridge,256|1000.0,0.41445701743289853,False
+Soft Tissue,expression_pcr_ridge,256|10000.0,0.4205793747571396,False
+Soft Tissue,expression_pcr_ridge,256|100000.0,0.40345988592318416,False
+Soft Tissue,expression_kernel_ridge_tuned,1000.0,0.3875683862114037,False
+Soft Tissue,expression_kernel_ridge_tuned,10000.0,0.41826239636363105,True
+Soft Tissue,expression_kernel_ridge_tuned,100000.0,0.4016821797479927,False
+Soft Tissue,expression_kernel_ridge_tuned,1000000.0,0.33208643676986366,False
+Uterus,annotation_ridge,100.0,0.165635594939104,False
+Uterus,annotation_ridge,1000.0,0.1659302022808752,True
+Uterus,annotation_ridge,10000.0,0.1635037631244638,False
+Uterus,annotation_ridge,100000.0,0.16294144260159163,False
+Uterus,annotation_ridge,1000000.0,0.16290530399774472,False
+Uterus,expression_knn,5,0.3283614495149926,False
+Uterus,expression_knn,10,0.3390842537936236,False
+Uterus,expression_knn,25,0.3441927124113224,True
+Uterus,expression_knn,50,0.3394297576244413,False
+Uterus,expression_pcr_ridge,32|100.0,0.39044599726900087,False
+Uterus,expression_pcr_ridge,32|1000.0,0.3912242691265084,False
+Uterus,expression_pcr_ridge,32|10000.0,0.39039280723844055,False
+Uterus,expression_pcr_ridge,32|100000.0,0.37938049359156306,False
+Uterus,expression_pcr_ridge,64|100.0,0.40469324076582097,False
+Uterus,expression_pcr_ridge,64|1000.0,0.41026421181454426,False
+Uterus,expression_pcr_ridge,64|10000.0,0.40988524328407433,False
+Uterus,expression_pcr_ridge,64|100000.0,0.3916335891994064,False
+Uterus,expression_pcr_ridge,128|100.0,0.4106689017018851,False
+Uterus,expression_pcr_ridge,128|1000.0,0.4212077777070251,False
+Uterus,expression_pcr_ridge,128|10000.0,0.4265450020572296,False
+Uterus,expression_pcr_ridge,128|100000.0,0.4040887248960673,False
+Uterus,expression_pcr_ridge,256|100.0,0.40552616627780746,False
+Uterus,expression_pcr_ridge,256|1000.0,0.42478963855741014,False
+Uterus,expression_pcr_ridge,256|10000.0,0.43799816713058415,True
+Uterus,expression_pcr_ridge,256|100000.0,0.40915894985696005,False
+Uterus,expression_kernel_ridge_tuned,1000.0,0.3929872082690114,False
+Uterus,expression_kernel_ridge_tuned,10000.0,0.4289005702967493,True
+Uterus,expression_kernel_ridge_tuned,100000.0,0.4115537525730066,False
+Uterus,expression_kernel_ridge_tuned,1000000.0,0.35071767419593425,False

@@ -1,24 +1,29 @@
 {
   "release_name": "PanCancer-Dependency computational publication package",
-  "version": "2026-09-16-v1",
+  "version": "2026-09-16-v2",
   "snapshot_directories": [
     "results/historical/ccrcc_primary_functional_audit_v1",
-    "results/historical/final_evidence_synthesis_v1",
-    "results/historical/final_figures_v1",
+    "results/historical/selective_dependency_benchmark_v1",
+    "results/historical/sanger_baseline_benchmark_v1",
+    "results/historical/final_evidence_synthesis_v2",
+    "results/historical/final_figures_v2",
     "results/historical/tcga_locked_test_v1"
   ],
   "frozen_protocols": [
-    "configs/tcga_locked_test_protocol_20260916.json"
+    "configs/tcga_locked_test_protocol_20260916.json",
+    "configs/dependency_benchmark_protocol_20260916.json"
   ],
   "required_scripts": [
     "scripts/audit_ccrcc_primary_functional_resources.py",
     "scripts/summarize_final_evidence.py",
     "scripts/build_final_figures.py",
     "scripts/run_tcga_locked_test.py",
+    "scripts/run_selective_dependency_benchmark.py",
+    "scripts/run_sanger_baseline_benchmark.py",
     "scripts/runtime_paths.py",
     "scripts/verify_external_inputs.py",
     "scripts/verify_publication_release.py"
   ],
-  "release_claim": "Cross-platform expression-based selective-dependency prioritization with an unseen-patient stability confirmation.",
+  "release_claim": "Cross-platform expression-based selective-dependency prioritization with fair baseline comparison and unseen-patient stability confirmation.",
   "claim_ceiling": "No patient functional dependency, therapeutic-window, efficacy or safety claim."
 }

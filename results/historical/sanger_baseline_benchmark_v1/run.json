@@ -1,0 +1,44 @@
+{
+  "status": "sanger_selective_dependency_baseline_benchmark_complete",
+  "created_utc": "2026-09-16T10:53:31.532655+00:00",
+  "elapsed_seconds": 36.82577473507263,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "dtype": "float64",
+  "protocol_sha256": "a8140fb6c6f438beb572578d3f9aef82bc7033cd6e26be38e731509054b3ae08",
+  "depmap_benchmark_run_sha256": "c42229bded68452bbf1b211c8589b320da763d5d843ef629c898d04b6703bdf8",
+  "script_sha256": "1ea0787c233cfd7c08230b2a2c3eaaba7a6ea9941c32f65c5756dea294ee2270",
+  "design": {
+    "frozen_external_model_n": 66,
+    "benchmark_external_model_n": 64,
+    "excluded_external_model_n": 2,
+    "external_lineage_n": 13,
+    "primary_gene_n": 13120,
+    "sanger_label_used_for_tuning": false
+  },
+  "label_audit": {
+    "source_gene_n": 17995,
+    "exact_overlap_gene_n": 14350
+  },
+  "rules": {
+    "hyperparameters": "Copied from the corresponding DepMap whole-lineage outer fold",
+    "truth": "Sanger loss standardized with non-target paired Sanger moments",
+    "prediction": "Direct Broad expression prediction standardized with paired Broad moments",
+    "test_isolation": "Sanger labels were used only after all hyperparameters were fixed"
+  },
+  "limitations": [
+    "Cross-platform z calibration is descriptive and does not make BAGEL and Chronos biologically identical.",
+    "The 66-model cohort is availability-selected and contains too few ccRCC models for subtype claims.",
+    "This benchmark cannot validate patient functional dependency.",
+    "Pleura and Prostate each lacked a >=20-model DepMap outer lineage and were excluded rather than borrowing another lineage's hyperparameters."
+  ],
+  "output_sha256": {
+    "bootstrap.csv": "3a16dabd63e3fce69352e84bb6ce4bdefd129f052d68b033bb49ae36e53b8a23",
+    "excluded_models.csv": "c4886d688634120e41e1b48aefa9f090068f1618027f54c389621c4160fc92c6",
+    "folds.csv": "69fc267040d2da793c557fb19d5558c929fe2d5bab2cb22d239c33a34b1115a2",
+    "lineage_summary.csv": "0e90be077c28283c858e93bf973b87c045a5727e33c84258a3a8fa12d269cd0e",
+    "overall_summary.csv": "c928e3dc080041d10334583b677071d17320b5bf1a01c5f93e945822f5c92bf2",
+    "paired_deltas.csv.gz": "e95272f16049a280284b02218861111f5b28c7d5d5151082921875632c32e365",
+    "per_model_metrics.csv.gz": "7d9e80362c65d9cf611263a36cab3274a3d9c527d5565b0881929820ddd7839e",
+    "top10_rankings.csv.gz": "d3e7d69d61e0188074d2a5443dfbff716ea2b475e51eaf582f5d01b231ce2d7e"
+  }
+}

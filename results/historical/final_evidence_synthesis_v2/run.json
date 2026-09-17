@@ -1,0 +1,64 @@
+{
+  "status": "final_evidence_synthesis_complete",
+  "created_utc": "2026-09-16T10:56:00.654670+00:00",
+  "elapsed_seconds": 0.06985931796953082,
+  "compute": "CPU evidence-table integration; GPU acceleration is not applicable",
+  "design": {
+    "frozen_candidate_n": 20,
+    "candidate_reranking": false,
+    "composite_score": false,
+    "locked_tcga_test_used": true,
+    "locked_tcga_test_use": "evidence integration only; no reranking, model selection or evidence-class change",
+    "baseline_benchmark_used": true,
+    "evidence_class_changes_from_test": false,
+    "eligible_patient_functional_resource_n": 0
+  },
+  "classification_rules": {
+    "orthogonal_rnai_support": "DRIVE ccRCC residual 95% bootstrap upper bound < 0",
+    "rnai_ccrcc_specific_support": "absolute RNAi support and ccRCC-minus-other-Kidney upper bound < 0",
+    "sanger_all_three_support": "dependent in all three frozen Sanger renal models",
+    "direct_support_or_opposition": "manually adjudicated peer-reviewed direct loss-of-function evidence",
+    "normal_organoid_liability": "at least one frozen direct normal-kidney organoid perturbation record",
+    "paired_tumor_upregulation": "Train paired-median lower bound > 0 and Validation paired median > 0",
+    "locked_test_expression": "Descriptive replication of four prespecified expression directions; never functional truth",
+    "patient_truth": "requires an eligible patient-derived ccRCC gene-perturbation resource"
+  },
+  "class_counts": {
+    "E5_计算候选证据不足": 11,
+    "E3_细胞系跨平台信号": 4,
+    "E2_肾谱系功能复现伴正常肾风险": 1,
+    "E1_功能最一致但无治疗窗": 1,
+    "E4_直接反向证据": 1,
+    "E2_可成药与肿瘤表达支持但功能复现不足": 1,
+    "E2_肾谱系功能复现但特异性不足": 1
+  },
+  "source_sha256": {
+    "frozen_candidates": "1923cc4e5c22a15d32470ce39c52974e848ff83829e294e2f99f6be6cec455e4",
+    "celltype_window": "ca07c33d41f05e4c7983a61c4f9428fc99f7976b2cc35da456f13e749c140fa5",
+    "normal_organoid_liability": "6b673b02df8ce71b6ad6be01d75aa81c94954b01fcd4a556b373baae22d069ff",
+    "primary_resource_audit": "064fa620758ece2b98e0db143c43a96cb820107370dd6e44ba0172b85af9320b",
+    "internal_bootstrap": "a52680a1c1681728ad65c27db7ab0f099f24163ef437153c8d2caa10b8d804b8",
+    "renal_context": "1d45a3af73893aba3d58cc559887561d9fb0426adc0bba5a7c2f975c73a9d845",
+    "external_bootstrap": "d0ad1ddedd55ae792cd3d97b59e7f2d7e212b67d90a414011ddc0fa4a0a49047",
+    "cohort_stability": "99b82a575646a52baae77ed9a5bbb37afbbdf987f5c198786ec9c47e2d0ae22f",
+    "input_sensitivity": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d",
+    "locked_test_candidates": "176f04223d5f7fa6de03521a2cbf41f78a712aeadad18d2c00af275b2580a219",
+    "locked_test_run": "437007f387a5b7fa6dd7c5257f44699bf3fdcc9634afc814407f7fcc670a8ae8",
+    "baseline_benchmark_summary": "04f346d218870fd8317b01a993fd01aaa890e56d68cdd2622fdd938604568da7",
+    "baseline_benchmark_bootstrap": "7c5c86a6283b96de383a0573686ba553e5eb9f958958fd4880a100e98d04998c",
+    "baseline_benchmark_run": "c42229bded68452bbf1b211c8589b320da763d5d843ef629c898d04b6703bdf8",
+    "external_baseline_benchmark_summary": "c928e3dc080041d10334583b677071d17320b5bf1a01c5f93e945822f5c92bf2",
+    "external_baseline_benchmark_bootstrap": "3a16dabd63e3fce69352e84bb6ce4bdefd129f052d68b033bb49ae36e53b8a23",
+    "external_baseline_benchmark_run": "f524ff95cab3b55d64c24a6cb704df13faec6e16fb9147a7d5873ed5bd582e83",
+    "prior_work_comparison": "00dcffc88db88d2b25b550f5a48f99d78b921747d8ccfb669d83e1868b884ffc",
+    "baseline_benchmark_protocol": "a8140fb6c6f438beb572578d3f9aef82bc7033cd6e26be38e731509054b3ae08"
+  },
+  "output_sha256": {
+    "candidate_evidence_matrix.csv": "6601aeb00698c89c1dbf909047643820c7f87b6b295a7771c823d97b90e39895",
+    "evidence_class_summary.csv": "ace97a9ab025a585d70296809625a2b45fd63671eb084671d0a64b0a53e15992",
+    "project_claims.csv": "f15d2a2a02ecb9bc267fd0b31d24da7a563b3372947ac2f9ab3dae9d39e3870d",
+    "prior_work_comparison.csv": "00dcffc88db88d2b25b550f5a48f99d78b921747d8ccfb669d83e1868b884ffc"
+  },
+  "script_sha256": "195ca4a454b06313d77c686e154fff8098ad096a001f092a71c9b2534e708a79",
+  "final_boundary": "The project supports a cross-platform expression-based selective-dependency prioritization workflow and a frozen experimental shortlist. It does not establish patient-specific ccRCC dependencies, a normal-kidney therapeutic window, clinical efficacy or clinical safety."
+}

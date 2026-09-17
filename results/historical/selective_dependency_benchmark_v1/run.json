@@ -1,0 +1,447 @@
+{
+  "status": "selective_dependency_baseline_benchmark_complete",
+  "created_utc": "2026-09-16T10:50:56.985101+00:00",
+  "elapsed_seconds": 4528.042021485046,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "dtype": "float64",
+  "protocol_sha256": "a8140fb6c6f438beb572578d3f9aef82bc7033cd6e26be38e731509054b3ae08",
+  "input_sha256": {
+    "audit.json": "72ee34f6acfbe03659576bfd16ef5463f296a4b49942faa2a0d8101c6d1089f5",
+    "matrices.npz": "4dd2c0294e8b9e594ea2708bf1bdd800d7821c43fef88a2681f1c575f991b26d",
+    "models.csv": "0480c58279537f1579eec99a60b869a3254b682c75c1bde6ead546b1d5a9366c",
+    "gene_coverage.csv": "8458b7d76592096a9f76c1c434a90c25bb17423792c839007aa0e65c267552cf"
+  },
+  "script_sha256": "0b8e27941ca162866cedad40eb252d68f5902c36dcaaee30fcdc18766a1b355f",
+  "model_n": 805,
+  "lineage_n": 19,
+  "gene_n": 15835,
+  "primary_gene_n": 14507,
+  "selected_parameters": {
+    "Biliary Tract": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        10
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Bladder/Urinary Tract": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Bone": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        50
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Bowel": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Breast": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "CNS/Brain": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        10
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Esophagus/Stomach": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        50
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Head and Neck": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Kidney": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        10
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Liver": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Lung": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        10
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Lymphoid": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        10
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Myeloid": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Ovary/Fallopian Tube": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        50
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Pancreas": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        50
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Peripheral Nervous System": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        10
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Skin": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Soft Tissue": {
+      "annotation_ridge": [
+        100.0
+      ],
+      "expression_knn": [
+        50
+      ],
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    },
+    "Uterus": {
+      "annotation_ridge": [
+        1000.0
+      ],
+      "expression_knn": [
+        25
+      ],
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "expression_kernel_ridge_tuned": [
+        10000.0
+      ]
+    }
+  },
+  "feature_counts": {
+    "Biliary Tract": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Bladder/Urinary Tract": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Bone": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Bowel": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Breast": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "CNS/Brain": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Esophagus/Stomach": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Head and Neck": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Kidney": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Liver": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Lung": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15832
+    },
+    "Lymphoid": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Myeloid": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15833
+    },
+    "Ovary/Fallopian Tube": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Pancreas": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Peripheral Nervous System": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Skin": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Soft Tissue": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    },
+    "Uterus": {
+      "lineage": 27,
+      "drivers": 5,
+      "expression_mean": 1,
+      "expression": 15834
+    }
+  },
+  "rules": {
+    "test_isolation": "No TCGA or Sanger label was read by this script",
+    "outer_split": "Whole-lineage holdout with patient-overlap purging",
+    "inner_split": "Whole connected lineage/patient groups",
+    "selection": "Inner lineage-equal NDCG@10 on non-common-essential residuals",
+    "current_frozen_model": "Expression kernel ridge alpha=100000",
+    "paired_universe": "All methods share the same finite prediction/truth universe within each model",
+    "bootstrap": "20000 GPU draws by patient and by lineage"
+  },
+  "limitations": [
+    "The benchmark compares estimators on the current DepMap release; it is not a direct rerun of the 2024 Nature Cancer or DeepDEP pipelines.",
+    "The locked TCGA Test was already accessed for the historical frozen model and is not an untouched confirmation set for newly implemented baselines.",
+    "Common-essential annotation is release-wide rather than fold-estimated.",
+    "Cell-line benchmark superiority would not establish patient functional accuracy."
+  ],
+  "output_sha256": {
+    "bootstrap.csv": "7c5c86a6283b96de383a0573686ba553e5eb9f958958fd4880a100e98d04998c",
+    "lineage_summary.csv": "dbc12a90449dd562cd75afef8650515a7ef5c6ec76552d30295abe72c6713fff",
+    "overall_summary.csv": "04f346d218870fd8317b01a993fd01aaa890e56d68cdd2622fdd938604568da7",
+    "paired_deltas.csv.gz": "6e3e62fc05ad5d17477044b39265c2cf3baaa0d3e039e335c4c9c5aec8a0b21d",
+    "per_model_metrics.csv.gz": "42954496ac269065d499219cc2b61d5bde320d62ab7686a19c7de0268dee4fcd",
+    "splits.csv.gz": "62d533df639843d9b23a4d94a76e2348b9cd6cb92dcaafa8a895becb99d24fae",
+    "top10_rankings.csv.gz": "f3a119b495d42e2a30dac9bd76c3050d8c5f9c37b01092b4e9ddfbda787f9919",
+    "tuning.csv": "2037c2346df3f044a1d8e6e80e10fdc8f4160867b51e9f3ae189de1566dd2b02"
+  }
+}

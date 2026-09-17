@@ -1,0 +1,48 @@
+{
+  "status": "final_publication_figures_complete",
+  "created_utc": "2026-09-16T10:58:28.436830+00:00",
+  "elapsed_seconds": 1.7520945459837094,
+  "compute": "CPU vector/raster rendering; GPU acceleration is not applicable",
+  "design": {
+    "frozen_candidate_n": 20,
+    "figure_n": 4,
+    "formats": [
+      "png_300dpi",
+      "pdf_vector"
+    ],
+    "candidate_reranking": false,
+    "composite_score": false,
+    "locked_tcga_test_used": true,
+    "locked_tcga_test_use": "descriptive stability and prespecified expression direction only",
+    "baseline_benchmark_used": true
+  },
+  "source_sha256": {
+    "candidate_evidence_matrix": "6601aeb00698c89c1dbf909047643820c7f87b6b295a7771c823d97b90e39895",
+    "evidence_run": "c68fa892d1352c2d6c387ff7d97144df644dce8f20da16669662f109bdad6f30",
+    "internal_bootstrap": "a52680a1c1681728ad65c27db7ab0f099f24163ef437153c8d2caa10b8d804b8",
+    "external_bootstrap": "d0ad1ddedd55ae792cd3d97b59e7f2d7e212b67d90a414011ddc0fa4a0a49047",
+    "cohort_stability": "99b82a575646a52baae77ed9a5bbb37afbbdf987f5c198786ec9c47e2d0ae22f",
+    "input_sensitivity": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d",
+    "baseline_benchmark": "04f346d218870fd8317b01a993fd01aaa890e56d68cdd2622fdd938604568da7",
+    "external_baseline_benchmark": "c928e3dc080041d10334583b677071d17320b5bf1a01c5f93e945822f5c92bf2",
+    "locked_test_run": "437007f387a5b7fa6dd7c5257f44699bf3fdcc9634afc814407f7fcc670a8ae8"
+  },
+  "output_sha256": {
+    "figure1_validation_and_evidence_ceiling.png": "07933442aba0cd68077c80596603005deaf39b8bda37aa90b6997853d29c2027",
+    "figure1_validation_and_evidence_ceiling.pdf": "099eb82a069f5a17f88401d8928197988ee4cb60df061aa019d8928824e52bb2",
+    "figure2_candidate_evidence_matrix.png": "9b3d4a17a8d7bf75f7061018734acd9178ca92fe5eceff98aa7aeed0e4d6628d",
+    "figure2_candidate_evidence_matrix.pdf": "b597ac2637b463a7db0c85a731cd60fbdb10c6d3421f6ed07ecf0c661f1388bd",
+    "figure3_dependency_vs_normal_kidney_exposure.png": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd",
+    "figure3_dependency_vs_normal_kidney_exposure.pdf": "c6034b25bba8923d70c3fb0055384b96969a46e46d1468ca500bc192047dcaa0",
+    "figure4_baseline_generalization.png": "374619f401dafdbc295d87a65a3f9bff34dac12dafd8a99b6c2ef750c2fd3129",
+    "figure4_baseline_generalization.pdf": "bc3f53cd222c6f581002979524c0dc282ee78b0ff5152ca3fdde68fe543d79e0",
+    "figure_manifest.csv": "ccf2d24e27588720f7d47de45b9e53429d9d4816a00bba06efb3b17c1e41337a"
+  },
+  "script_sha256": "5d7021e08920237f1523981d75961cdf47a21b044607fed4b15685eba61c2069",
+  "limitations": [
+    "Figures summarize frozen analyses and do not add independent biological evidence.",
+    "Patient-transfer agreement is stability without functional ground truth.",
+    "GTEx expression is normal-tissue exposure, not drug toxicity.",
+    "The evidence matrix deliberately does not collapse heterogeneous evidence into a score."
+  ]
+}

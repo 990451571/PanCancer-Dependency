@@ -126,13 +126,23 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 
 ### 阶段八：证据整合、图件和复现封装
 
-项目把 20 个冻结候选的计算排序、CRISPR、RNAi、直接文献、TCGA 表达、HPA/GTEx 正常肾暴露、正常肾类器官风险和可成药性整理成不使用综合分数的证据矩阵，并制作了 3 张 300 dpi PNG 和 3 份矢量 PDF。
+项目把 20 个冻结候选的计算排序、CRISPR、RNAi、直接文献、TCGA 表达、HPA/GTEx 正常肾暴露、正常肾类器官风险和可成药性整理成不使用综合分数的证据矩阵。历史 v1 生成在锁定 Test 之前并保留为审计版本；当前 v2 已加入 Test 候选频率、映射敏感性和四个预设基因的表达方向，但没有改变候选顺序、功能证据等级或结论上限。
 
-发布校验脚本已核对 4 个版本化结果目录中的 19 个文件哈希、冻结候选、结论上限、Test 协议、环境版本和图像文件签名。外部输入校验覆盖 9 个主流程文件，共 1.33 GiB。关键脚本已移除个人机器绝对路径，并固定公开数据与软件版本。
+论文图件 v2 包含 4 张 300 dpi PNG 和 4 份矢量 PDF，分别展示公平 baseline、内部与外部复现、Locked Test 稳定性、证据递减、候选证据矩阵和功能—正常肾暴露关系。发布校验脚本已核对 6 个版本化结果目录中的 38 个文件哈希、冻结候选、结论上限、两份冻结协议、环境版本和图像文件签名。外部输入校验覆盖 9 个主流程文件，共 1.33 GiB。关键脚本已移除个人机器绝对路径，并固定公开数据与软件版本。
 
-需要特别说明：`final_evidence_synthesis_v1` 和 `final_figures_v1` 生成在锁定 Test 之前，运行记录明确标记 `locked_tcga_test_used=false`。Test 结果已独立保存并进入发布快照，但尚未合并进最终证据矩阵和论文图。因此 v1 仍是可审计的历史版本，不应被描述为包含全部最新结果的论文终稿。
+相关产物位于 `outputs/final_evidence_synthesis_v2/`、`outputs/final_figures_v2/`、`results/historical/` 和 `configs/publication_release_manifest.json`。v1 仍保留用于追踪 Test 解锁前后的变化。
 
-相关产物位于 `outputs/final_evidence_synthesis_v1/`、`outputs/final_figures_v1/`、`results/historical/` 和 `configs/publication_release_manifest.json`。
+### 阶段九：强 baseline、公平比较与既有工作定位
+
+比较协议在运行前以 Git 提交 `170d62e` 固定。19 个 DepMap 完整癌系使用相同训练/留出模型、相同患者隔离、相同非 common-essential 基因、相同选择性残差目标和相同 NDCG@10 主指标。非平凡 baseline 的参数只在对应外层训练数据内按完整癌系分组选择，不读取 Sanger 或 TCGA Test 标签。比较方法包括训练选择性先验、仅注释岭回归、表达近邻、低秩表达 PCR-ridge、历史冻结表达核岭和训练内调参表达核岭。
+
+癌系等权 NDCG 分别为 0.2248、0.1713、0.3350、0.4411、0.4177 和 0.4401。历史冻结核岭仍显著优于选择性先验，患者等权 ΔNDCG 为 +0.1926（95%区间 +0.1792 至 +0.2059），也优于表达近邻 +0.0771（+0.0684 至 +0.0857）；但它稳定低于 PCR-ridge，冻结核岭减 PCR 的差为 -0.0233（-0.0288 至 -0.0180）。因此原结论“表达包含可迁移的选择性依赖信息”成立，但“历史固定核岭是最强实现”不成立。训练内调参核岭达到 0.4401，说明主要差异来自正则化和低秩控制，而不是需要更复杂的深度模型。
+
+同一批 DepMap 所选参数随后原样用于冻结 Sanger 外部队列。Pleura 和 Prostate 各只有一个外部模型，但在 DepMap 中没有达到20模型的合法调参癌系，因此没有借用其他癌系参数；公平比较覆盖 64/66 个模型、13个癌系。癌系等权 NDCG 中，选择性先验为 0.0566、表达近邻 0.1820、PCR-ridge 0.2287、冻结核岭 0.1982、调参核岭 0.2367。冻结核岭减 PCR 的患者等权差为 -0.0355（95%区间 -0.0577 至 -0.0148），确认 PCR 的相对优势能够跨到 Sanger；但所有外部绝对指标仍不足以直接给出患者治疗靶点。
+
+与 Shi 等人在 2024 年 Nature Cancer 发表的 TCGA-DEPMAP 工作相比，两者都发现表达是依赖预测的主要信息，并把细胞系模型迁移到 TCGA。该工作使用较早 DepMap 的绝对 CERES 依赖、逐靶点 elastic net、筛选后的 1,966 个可预测模型，以及 quantile normalization 和 contrastive PCA，覆盖泛癌 TCGA、PDX、GTEx、药物反应和合成致死实验。本项目使用 DepMap 24Q4，重点预测 common-essential 校正后的选择性残差，采用更严格的完整癌系留出、Sanger CRISPR 和 DRIVE RNAi 复现、ccRCC 冻结候选、一次性患者 Test 与正常肾风险审计。DeepDEP 则通过 TCGA 无标签预训练和深度网络完成泛癌迁移。由于三者的数据版本、靶点集合、目标定义和划分不同，本项目没有把论文中已发表的指标伪装成同数据胜负比较，也不宣称全面优于 TCGA-DEPMAP 或 DeepDEP。差异表位于 `configs/prior_work_comparison_20260916.csv`。
+
+结果位于 `outputs/selective_dependency_benchmark_v1/`、`outputs/sanger_baseline_benchmark_v1/`、`outputs/final_evidence_synthesis_v2/` 和 `outputs/final_figures_v2/`，冻结协议见 `configs/dependency_benchmark_protocol_20260916.json`。
 
 ## 最终成果
 
@@ -143,6 +153,7 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 3. common-essential 校正是必要步骤；未校正时，较好的 Top-10 指标会被跨模型共享依赖显著影响。
 4. 患者迁移可以产生具有一定队列稳定性的候选，但结果对表达域映射明显敏感。
 5. 锁定 Test 支持候选频率和部分表达方向的未见队列稳定性，没有提供患者功能准确率。
+6. 历史冻结核岭不是最强 baseline；PCR-ridge 和训练内调参核岭在内部和 Sanger 外部均更好。项目贡献应定位为严格评价、跨平台审计和 ccRCC 候选证据整合，而不是新的最优预测算法。
 
 ### 候选层面的结论
 
@@ -178,13 +189,13 @@ GRB2、CFLAR、YRDC 和 CHMP7 目前只有三个冻结 Sanger 肾癌模型一致
 6. **细胞系不能完整代表患者肿瘤。** 培养条件、克隆选择、免疫和微环境缺失都会限制外推。
 7. **common-essential 注释来自整个 DepMap 发布版。** 它不是每个训练折内部重新估计，因此存在轻微的信息边界问题。
 8. **候选文献审查不是系统综述。** 固定关键词可能漏掉摘要中未写出基因或扰动方式的研究，零命中不等于零证据。
-9. **模型范围有限。** 当前结论来自线性核岭回归；没有证据表明更复杂模型一定更好，也不能把模态消融结果推广到所有算法。
+9. **baseline 范围仍有限。** 本次已公平比较先验、注释岭回归、表达近邻、PCR-ridge 和核岭，但没有在相同 DepMap 24Q4 与完整癌系留出下重建 TCGA-DEPMAP 的逐靶点 elastic net 或 DeepDEP。现有结果不能用于宣称优于这些已发表方法。
 10. **尚未完成第二台机器 clean-room 重跑。** 哈希、环境和入口校验均已通过，但还不能宣称从原始公开数据到最终结果已经被独立机器完整复现。
-11. **论文汇总版本尚未同步 Test。** 现有最终矩阵和图件 v1 比锁定 Test 更早，提交论文前必须生成 v2，且不得借 Test 重新选择候选。
+11. **Locked Test 不能再用于新模型确认。** Test 已按冻结协议正式访问一次；v2 可以汇总原冻结模型的既有结果，但之后开发的 PCR 或调参核岭即使在 Test 上运行，也只能标为事后探索，不能作为新的前瞻验证。
 
 ## 下一步工作
 
-当前最优先的工程任务是生成 `final_evidence_synthesis_v2` 和 `final_figures_v2`：把锁定 Test 的候选频率、映射敏感性和预设表达方向加入最终矩阵与图件，同时保持 20 个候选的顺序、功能证据分类和结论上限不变。随后更新发布清单与校验器，再开始撰写论文方法和结果部分。
+计算分析、强 baseline 比较、Locked Test 整合、最终矩阵、论文图件和发布校验均已完成。下一步应开始论文写作，以“表达驱动的选择性依赖排序与 ccRCC 证据审计”为主线，明确报告 PCR-ridge 优于历史冻结核岭这一负结果，并把 TCGA-DEPMAP 和 DeepDEP 作为同问题的既有工作，而不是把患者依赖迁移包装成首次提出。
 
 如果目标是把论文结论从“计算优先排序”提升为“ccRCC 功能靶点”，下一步所需的不是继续训练相似模型，而是新的实验数据：优先在患者来源 ccRCC 类器官或短期原代模型中对 PAX8、HNF1B、FERMT2、CCND1 等候选进行 loss-of-function 验证，并在正常肾类器官中使用相同扰动和可比较终点评估治疗窗。
 

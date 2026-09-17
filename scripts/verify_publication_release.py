@@ -69,7 +69,7 @@ def verify_environment(root: Path, strict: bool) -> None:
 
 
 def verify_claims(root: Path) -> None:
-    evidence_dir = root / "results/historical/final_evidence_synthesis_v1"
+    evidence_dir = root / "results/historical/final_evidence_synthesis_v2"
     matrix = pd.read_csv(evidence_dir / "candidate_evidence_matrix.csv")
     if len(matrix) != 20 or matrix.Gene.nunique() != 20:
         raise ValueError("最终证据矩阵不是唯一的20个候选")
@@ -81,6 +81,39 @@ def verify_claims(root: Path) -> None:
         raise ValueError("RNAi ccRCC特异方向候选集合发生变化")
     if matrix.patient_derived_functional_truth_available.astype(bool).any():
         raise ValueError("患者功能真值状态被意外升级")
+    if matrix.locked_test_used_for_reranking.astype(bool).any():
+        raise ValueError("Locked Test被意外用于候选重排")
+    if set(matrix.loc[matrix.prespecified_direction_replicated.astype(bool), "Gene"]) != {
+            "PAX8", "HNF1B", "FERMT2", "CCND1"}:
+        raise ValueError("Locked Test预设表达方向集合发生变化")
+
+    benchmark_dir = root / "results/historical/selective_dependency_benchmark_v1"
+    benchmark = pd.read_csv(benchmark_dir / "overall_summary.csv")
+    benchmark = benchmark.loc[benchmark.estimand.eq("lineage_equal")].set_index("method")
+    expected_internal = {
+        "training_selectivity_prior": 0.224758,
+        "expression_pcr_ridge": 0.441074,
+        "expression_kernel_ridge_frozen": 0.417736,
+        "expression_kernel_ridge_tuned": 0.440145,
+    }
+    for method, expected_value in expected_internal.items():
+        if abs(float(benchmark.loc[method, "ndcg_at_10"]) - expected_value) > 1e-6:
+            raise ValueError(f"内部baseline关键结果发生变化：{method}")
+    internal_bootstrap = pd.read_csv(benchmark_dir / "bootstrap.csv")
+    comparison = internal_bootstrap.loc[
+        internal_bootstrap.comparison.eq(
+            "expression_kernel_ridge_frozen_vs_expression_pcr_ridge")
+        & internal_bootstrap.metric.eq("ndcg_at_10")
+        & internal_bootstrap.estimand.eq("patient_equal")].iloc[0]
+    if not (comparison.ci_high < 0):
+        raise ValueError("冻结核岭相对PCR的内部结论发生变化")
+
+    external_dir = root / "results/historical/sanger_baseline_benchmark_v1"
+    external = pd.read_csv(external_dir / "overall_summary.csv")
+    external = external.loc[external.estimand.eq("lineage_equal")].set_index("method")
+    if not (external.loc["expression_pcr_ridge", "ndcg_at_10"]
+            > external.loc["expression_kernel_ridge_frozen", "ndcg_at_10"]):
+        raise ValueError("PCR相对冻结核岭的Sanger顺序发生变化")
 
     test_dir = root / "results/historical/tcga_locked_test_v1"
     test_run = json.loads((test_dir / "run.json").read_text())
@@ -119,7 +152,7 @@ def verify_portability(root: Path) -> None:
 
 
 def verify_artifacts(root: Path) -> None:
-    figures = root / "results/historical/final_figures_v1"
+    figures = root / "results/historical/final_figures_v2"
     for path in figures.glob("*.png"):
         if path.read_bytes()[:8] != b"\x89PNG\r\n\x1a\n":
             raise ValueError(f"PNG签名无效：{path}")
