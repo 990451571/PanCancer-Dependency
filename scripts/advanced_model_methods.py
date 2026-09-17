@@ -232,18 +232,22 @@ def pretrain_expression_autoencoder(
     return model.encoder.cpu(), losses
 
 
-def _deepdep_loss(model, expression, fingerprints, outcomes, observed, batch_models, train):
+def _deepdep_loss(model, expression, fingerprints, outcomes, observed, batch_models, optimizer=None):
+    train = optimizer is not None
     model.train(train)
     total_sse = torch.zeros((), dtype=torch.float32, device="cuda")
     total_n = 0
     order = torch.randperm(len(expression), device="cuda") if train else torch.arange(len(expression), device="cuda")
     for indices in order.split(batch_models):
+        if train:
+            optimizer.zero_grad(set_to_none=True)
         prediction = model.cartesian(expression[indices], fingerprints)
         mask = observed[indices]
         error = prediction[mask] - outcomes[indices][mask]
         loss = torch.mean(error * error)
         if train:
             loss.backward()
+            optimizer.step()
         total_sse += (error.detach() * error.detach()).sum()
         total_n += int(mask.sum().item())
     return float((total_sse / total_n).item())
@@ -280,13 +284,11 @@ def train_exp_deepdep(
     best_state, best_loss, stale, best_epoch = None, math.inf, 0, epochs
     train_loss = math.nan
     for epoch in range(1, epochs + 1):
-        optimizer.zero_grad(set_to_none=True)
-        train_loss = _deepdep_loss(model, x, fp, y, mask, batch_models, True)
-        optimizer.step()
+        train_loss = _deepdep_loss(model, x, fp, y, mask, batch_models, optimizer)
         if validation_expression is None:
             continue
         with torch.no_grad():
-            validation_loss = _deepdep_loss(model, vx, fp, vy, vm, batch_models, False)
+            validation_loss = _deepdep_loss(model, vx, fp, vy, vm, batch_models, None)
         if validation_loss < best_loss - 1e-7:
             best_loss, stale, best_epoch = validation_loss, 0, epoch
             best_state = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
