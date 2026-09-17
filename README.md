@@ -146,7 +146,7 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 
 ### 阶段十：同数据高级模型复现（进行中）
 
-本阶段检验增加算法复杂度能否在完全相同的 DepMap 24Q4、完整癌系留出和选择性残差评价中超过 PCR-ridge。预注册方法包括逐靶点 Elastic Net、使用官方表达编码器与 CGP 指纹结构的 Exp-DeepDEP 同数据适配版，以及共享靶点低秩结构的多任务 reduced-rank ridge。主比较限定在官方 DeepDEP 1,298 个默认靶点与当前 DepMap 的交集，所有方法共享输入、外层模型和评价基因；不读取或重新使用 TCGA KIRC Locked Test。冻结协议见 `configs/advanced_model_benchmark_protocol_20260917.json`。
+本阶段检验增加算法复杂度能否在完全相同的 DepMap 24Q4、完整癌系留出和选择性残差评价中超过 PCR-ridge。预注册方法包括逐靶点 Elastic Net、使用官方表达编码器与 CGP 指纹结构的 Exp-DeepDEP 同数据适配版，以及共享靶点低秩结构的多任务 reduced-rank ridge。主比较限定在官方 DeepDEP 1,298 个默认靶点经 HGNC 规范化后与当前 DepMap 相交的 1,204 个靶点，其中 911 个非 common-essential 为主评价集；所有方法共享输入、外层模型和评价基因，不读取或重新使用 TCGA KIRC Locked Test。冻结协议见 `configs/advanced_model_benchmark_protocol_20260917.json`。
 
 ## 最终成果
 
