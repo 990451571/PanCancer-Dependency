@@ -1,0 +1,14 @@
+{
+  "scope": "Audit the frozen shared-alpha Elastic Net outer refits on all 19 real DepMap holdouts; do not retune alpha or inspect TCGA Test.",
+  "reference_run": "results/historical/advanced_model_benchmark_v1/run.json",
+  "alpha_rule": "Copy each outer fold's selected shared alpha; the historical maximum alpha is first in its descending warm-start path.",
+  "old_solver": "Reproduce the historical float32 solver with 5000 iterations and group relative coefficient-change tolerance 1e-4.",
+  "refinement": "Optimize the identical rounded centered design in float64 on CUDA with correctly restarted accelerated proximal gradient.",
+  "kkt_absolute_tolerance": 1e-6,
+  "relative_suboptimality_bound_tolerance": 1e-7,
+  "maximum_refinement_iterations": 10000,
+  "certificate": "For each target, use the minimum-norm subgradient s of squared error/(2n) + lambda1*L1 + lambda2*L2_squared/2. Strong convexity gives objective suboptimality <= ||s||^2/(2*lambda2). Also report maximum absolute KKT residual.",
+  "checks": ["CUDA orthogonal-design closed-form check", "Historical per-model metric reproduction", "All targets satisfy refined training-only certificate", "Objective nonincrease", "Report paired ranking sensitivity without selecting settings from heldout metrics"],
+  "limitations": ["Does not certify the inner alpha-selection paths or the secondary targetwise-alpha variant", "Affects interpretation of the shared-alpha refit only", "Existing holdouts are development data, not new confirmation"],
+  "objective_source": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html"
+}
