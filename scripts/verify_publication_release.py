@@ -166,6 +166,34 @@ def verify_advanced_comparison(root: Path) -> None:
     print("【高级模型审计】内部805｜外部64｜覆盖及均值一致｜无可靠主指标增益", flush=True)
 
 
+def verify_elastic_numerical_audit(root: Path) -> None:
+    directory = root / "results/historical/elastic_net_numerical_audit_v1"
+    protocol_path = root / "configs/elastic_net_numerical_audit_protocol_20260920.json"
+    protocol = json.loads(protocol_path.read_text())
+    run = json.loads((directory / "run.json").read_text())
+    if sha256(protocol_path) != run["protocol_sha256"]:
+        raise ValueError("数值审计协议不一致")
+    historical = root / "results/historical/advanced_model_benchmark_v1/run.json"
+    if sha256(historical) != run["historical_run_sha256"]:
+        raise ValueError("数值审计历史运行不一致")
+    certificate = pd.read_csv(directory / "per_target_certificate.csv.gz")
+    if len(certificate) != 19 * 1204 or certificate.duplicated(["heldout_lineage", "Gene"]).any():
+        raise ValueError("数值证书覆盖不完整")
+    fields = ["refined_kkt", "refined_relative_bound", "old_objective", "refined_objective"]
+    if certificate[fields].isna().any().any():
+        raise ValueError("数值证书缺失")
+    if (certificate.refined_kkt > protocol["kkt_absolute_tolerance"]).any():
+        raise ValueError("精化解未达到KKT阈值")
+    if (certificate.refined_relative_bound > protocol["relative_suboptimality_bound_tolerance"]).any():
+        raise ValueError("精化解误差上界超阈值")
+    if (certificate.refined_objective > certificate.old_objective + 1e-10).any():
+        raise ValueError("精化目标函数增大")
+    folds = pd.read_csv(directory / "folds.csv")
+    if len(folds) != 19 or (folds.historical_metric_max_error > 1e-6).any():
+        raise ValueError("历史指标复算不一致")
+    print("【数值审计】19癌系×1204靶点精化证书通过｜历史指标复算一致", flush=True)
+
+
 def verify_portability(root: Path) -> None:
     offenders = []
     for base in (root / "scripts", root / "configs"):
@@ -219,6 +247,8 @@ def main():
     print("【阶段 2/4】核验冻结候选、结论边界和一次性Test协议", flush=True)
     verify_claims(root)
     verify_advanced_comparison(root)
+    if "results/historical/elastic_net_numerical_audit_v1" in manifest["snapshot_directories"]:
+        verify_elastic_numerical_audit(root)
     print("【科学边界】候选20｜RNAi复现3｜亚型特异方向1｜患者功能真值0", flush=True)
 
     print("【阶段 3/4】核验环境与机器路径可移植性", flush=True)

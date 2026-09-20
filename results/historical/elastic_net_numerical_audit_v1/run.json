@@ -1,0 +1,22 @@
+{
+  "status": "frozen_shared_alpha_outer_refit_numerical_audit_complete",
+  "created_utc": "2026-09-20T07:44:50.886058+00:00",
+  "elapsed_seconds": 739.2597600570007,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "protocol_sha256": "ffb39691acffd7a4787944e8235ef28a356d35494e1b236df360401d75502ed5",
+  "historical_run_sha256": "cd7d017ad7705edba069dc5b0471357924b2fb0c6dd343df8f742a449dbc39c7",
+  "script_sha256": "dd431c604e3558fd221e86a23817ea7bf235a612780bd7e349123af450aba1d4",
+  "methods_sha256": "141f337111fa0d7895be8e931fb55a458f12833f6b376cde0e4471c5a6d1ccbc",
+  "closed_form_max_error": 1.942890293094024e-16,
+  "target_fold_certificate_n": 22876,
+  "scope": "Only frozen shared-alpha outer refits; inner alpha selection and secondary targetwise fits remain unaudited.",
+  "output_sha256": {
+    "per_target_certificate.csv.gz": "f12527c7392fd6115842f7e1f126d1d95f4aa5c6ed83cc82d3f87dd816c9079f",
+    "folds.csv": "f8979b6c2b3e7472e53e78fe683985a5a826ef3c0c7232f90bcf08da4f6a3556",
+    "per_model_metrics.csv.gz": "a77bbc3e368ea40ed491f17b4c0d8243bd1852f61d6f44b281c98e4254ce9016",
+    "overall_summary.csv": "16904636ae96f95a41fdeb8434391b277bed9244e7e4408c4d3cdc16b6b1c148",
+    "lineage_summary.csv": "bbab2e5134455f7d36cf60c84ccf3881293c6433e2090868d8a400e6afe15fd6",
+    "paired_deltas.csv.gz": "994895d0b83da8af71357eb27f55add9c997ff9f9fc4aaabeb555928f281c50b",
+    "bootstrap.csv": "51f6b43edace48891378a033f33492ab0704e27e109cee2d62adbeeb49974f8e"
+  }
+}

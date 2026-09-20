@@ -42,11 +42,14 @@ def elastic_net_path(
     l1_ratio: float = 0.5,
     maximum_iterations: int = 1000,
     tolerance: float = 1e-5,
+    audit_callback=None,
 ):
-    """Multi-output FISTA with the sklearn-scaled per-target Elastic Net objective.
+    """Historical proximal solver with the sklearn-scaled per-target objective.
 
     Each target has its own coefficient vector. The vectorized implementation
     shares matrix multiplications but does not couple target coefficients.
+    The historical restart cancels acceleration; retained for reproducibility.
+    An optional read-only callback supports numerical audits without altering fits.
     """
     if x.dtype != torch.float32 or hx.dtype != torch.float32:
         raise ValueError("Elastic Net expects float32 CUDA expression matrices")
@@ -100,6 +103,8 @@ def elastic_net_path(
             weight = current
             prediction = ghx @ weight + torch.as_tensor(mean_np, dtype=torch.float32, device="cuda")
             outputs[alpha][:, columns] = prediction.cpu().numpy()
+            if audit_callback is not None:
+                audit_callback(alpha, columns, gx, outcomes, weight, ghx, mean_np)
             group_diagnostics[alpha].append({
                 "iterations": iteration,
                 "relative_change": relative,
