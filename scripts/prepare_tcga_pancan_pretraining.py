@@ -170,7 +170,8 @@ def main():
             "imputed_feature_n": int((~found).sum()),
             "transform": "log2(TPM+0.001) converted to log2(TPM+1)",
             "dependency_labels_read": False,
-            "tcga_kirc_expression_values_read": False,
+            "tcga_kirc_source_values_parsed_before_column_exclusion": True,
+            "tcga_kirc_expression_used_for_training_or_statistics": False,
             "input_sha256": {
                 "benchmark_input": sha256(args.benchmark_input),
                 "benchmark_audit": sha256(args.benchmark_audit),

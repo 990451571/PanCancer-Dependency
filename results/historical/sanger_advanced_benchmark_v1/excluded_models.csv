@@ -1,0 +1,3 @@
+model_id,model_name,matched_broad_id,BroadPatientID,BroadLineage,tissue,cancer_type,cancer_type_detail,strict_ccrcc,sanger_expression_mapped
+SIDM00139,NCI-H226,ACH-000367,PT-hfcpvz,Pleura,Lung,Mesothelioma,Pleural Epithelioid Mesothelioma,False,False
+SIDM00499,22RV1,ACH-000956,PT-FFSOW0,Prostate,Prostate,Prostate Carcinoma,Prostate Carcinoma,False,False

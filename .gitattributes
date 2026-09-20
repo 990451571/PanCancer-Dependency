@@ -1,0 +1,5 @@
+# Preserve exact bytes of hashed research snapshots on every platform.
+results/historical/** -text
+scripts/*.py text eol=lf
+configs/*.json text eol=lf
+README.md text eol=lf

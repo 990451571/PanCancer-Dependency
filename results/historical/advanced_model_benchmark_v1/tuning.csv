@@ -1,0 +1,685 @@
+heldout_lineage,method,config,inner_lineage_equal_ndcg_at_10,selected
+Biliary Tract,expression_pcr_ridge,32|100.0,0.4253768652121553,False
+Biliary Tract,expression_pcr_ridge,32|1000.0,0.42539249772090343,False
+Biliary Tract,expression_pcr_ridge,32|10000.0,0.4210894294606679,False
+Biliary Tract,expression_pcr_ridge,32|100000.0,0.3848647713322042,False
+Biliary Tract,expression_pcr_ridge,64|100.0,0.44154521855270773,False
+Biliary Tract,expression_pcr_ridge,64|1000.0,0.44300660032015376,False
+Biliary Tract,expression_pcr_ridge,64|10000.0,0.43684089582692115,False
+Biliary Tract,expression_pcr_ridge,64|100000.0,0.39373495341717374,False
+Biliary Tract,expression_pcr_ridge,128|100.0,0.44205537819249874,False
+Biliary Tract,expression_pcr_ridge,128|1000.0,0.445077391844605,False
+Biliary Tract,expression_pcr_ridge,128|10000.0,0.4489845588253514,True
+Biliary Tract,expression_pcr_ridge,128|100000.0,0.39849665405696366,False
+Biliary Tract,expression_pcr_ridge,256|100.0,0.42952662421514787,False
+Biliary Tract,expression_pcr_ridge,256|1000.0,0.4386917973877672,False
+Biliary Tract,expression_pcr_ridge,256|10000.0,0.4486208164969992,False
+Biliary Tract,expression_pcr_ridge,256|100000.0,0.39825799628863906,False
+Biliary Tract,multitask_reduced_rank_ridge,16|100.0,0.3629717556878904,False
+Biliary Tract,multitask_reduced_rank_ridge,32|100.0,0.3820813031696807,False
+Biliary Tract,multitask_reduced_rank_ridge,64|100.0,0.39626372803233056,False
+Biliary Tract,multitask_reduced_rank_ridge,128|100.0,0.39400771710263904,False
+Biliary Tract,multitask_reduced_rank_ridge,16|1000.0,0.4012691716956005,False
+Biliary Tract,multitask_reduced_rank_ridge,32|1000.0,0.4209161941109703,False
+Biliary Tract,multitask_reduced_rank_ridge,64|1000.0,0.43485077875387007,False
+Biliary Tract,multitask_reduced_rank_ridge,128|1000.0,0.4337264466362564,False
+Biliary Tract,multitask_reduced_rank_ridge,16|10000.0,0.40656225574492716,False
+Biliary Tract,multitask_reduced_rank_ridge,32|10000.0,0.4289237926060579,False
+Biliary Tract,multitask_reduced_rank_ridge,64|10000.0,0.4457656652183957,False
+Biliary Tract,multitask_reduced_rank_ridge,128|10000.0,0.45074189825476857,True
+Biliary Tract,multitask_reduced_rank_ridge,16|100000.0,0.3730165802497447,False
+Biliary Tract,multitask_reduced_rank_ridge,32|100000.0,0.389656290489232,False
+Biliary Tract,multitask_reduced_rank_ridge,64|100000.0,0.3967188857485279,False
+Biliary Tract,multitask_reduced_rank_ridge,128|100000.0,0.39912237259089384,False
+Biliary Tract,per_target_elastic_net_shared,0.0001,0.38577848763960404,False
+Biliary Tract,per_target_elastic_net_shared,0.001,0.39050882225922945,False
+Biliary Tract,per_target_elastic_net_shared,0.01,0.4130656213276439,False
+Biliary Tract,per_target_elastic_net_shared,0.1,0.431560010717235,True
+Bladder/Urinary Tract,expression_pcr_ridge,32|100.0,0.41348641769412947,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|1000.0,0.4130548117261072,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|10000.0,0.40841195042898426,False
+Bladder/Urinary Tract,expression_pcr_ridge,32|100000.0,0.36963702992274683,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|100.0,0.4245154340983586,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|1000.0,0.4283274733316009,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|10000.0,0.4234210505778196,False
+Bladder/Urinary Tract,expression_pcr_ridge,64|100000.0,0.37563330160200664,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|100.0,0.43554709683059856,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|1000.0,0.44149207127500667,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|10000.0,0.4377278177470504,False
+Bladder/Urinary Tract,expression_pcr_ridge,128|100000.0,0.38726247609852166,False
+Bladder/Urinary Tract,expression_pcr_ridge,256|100.0,0.4207753870973802,False
+Bladder/Urinary Tract,expression_pcr_ridge,256|1000.0,0.4347717630305714,False
+Bladder/Urinary Tract,expression_pcr_ridge,256|10000.0,0.44235174592146925,True
+Bladder/Urinary Tract,expression_pcr_ridge,256|100000.0,0.3870751181524103,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,16|100.0,0.3498770401221726,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,32|100.0,0.3683664093851546,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,64|100.0,0.3798778220384672,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,128|100.0,0.38961618971854145,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,16|1000.0,0.386099111931328,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,32|1000.0,0.4143478311025943,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,64|1000.0,0.4280978457657114,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,128|1000.0,0.4319263929663641,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,16|10000.0,0.3916275593431826,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,32|10000.0,0.42014510411283024,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,64|10000.0,0.4345762525141372,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,128|10000.0,0.4416309187370309,True
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,16|100000.0,0.3504998133181111,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,32|100000.0,0.37282782651652485,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,64|100000.0,0.38052511564627034,False
+Bladder/Urinary Tract,multitask_reduced_rank_ridge,128|100000.0,0.3872238806873898,False
+Bladder/Urinary Tract,per_target_elastic_net_shared,0.0001,0.3756778319709372,False
+Bladder/Urinary Tract,per_target_elastic_net_shared,0.001,0.37927830820868424,False
+Bladder/Urinary Tract,per_target_elastic_net_shared,0.01,0.4075996363354811,False
+Bladder/Urinary Tract,per_target_elastic_net_shared,0.1,0.4268629315333258,True
+Bone,expression_pcr_ridge,32|100.0,0.4165132267886068,False
+Bone,expression_pcr_ridge,32|1000.0,0.41615095239207134,False
+Bone,expression_pcr_ridge,32|10000.0,0.4121256950505615,False
+Bone,expression_pcr_ridge,32|100000.0,0.3773362430478955,False
+Bone,expression_pcr_ridge,64|100.0,0.4444406502103772,False
+Bone,expression_pcr_ridge,64|1000.0,0.44634593537201833,False
+Bone,expression_pcr_ridge,64|10000.0,0.43704311700308246,False
+Bone,expression_pcr_ridge,64|100000.0,0.3871571238871436,False
+Bone,expression_pcr_ridge,128|100.0,0.4415292774146984,False
+Bone,expression_pcr_ridge,128|1000.0,0.44534938089650294,False
+Bone,expression_pcr_ridge,128|10000.0,0.44286002512439177,False
+Bone,expression_pcr_ridge,128|100000.0,0.39122105133280133,False
+Bone,expression_pcr_ridge,256|100.0,0.42969306431454535,False
+Bone,expression_pcr_ridge,256|1000.0,0.44427108144600747,False
+Bone,expression_pcr_ridge,256|10000.0,0.4480476212212282,True
+Bone,expression_pcr_ridge,256|100000.0,0.3935212037733895,False
+Bone,multitask_reduced_rank_ridge,16|100.0,0.3598167604919728,False
+Bone,multitask_reduced_rank_ridge,32|100.0,0.3802417829002394,False
+Bone,multitask_reduced_rank_ridge,64|100.0,0.38747298461160584,False
+Bone,multitask_reduced_rank_ridge,128|100.0,0.38977814407669475,False
+Bone,multitask_reduced_rank_ridge,16|1000.0,0.3941973348511682,False
+Bone,multitask_reduced_rank_ridge,32|1000.0,0.41880711721843117,False
+Bone,multitask_reduced_rank_ridge,64|1000.0,0.4325877765404282,False
+Bone,multitask_reduced_rank_ridge,128|1000.0,0.4296551028508511,False
+Bone,multitask_reduced_rank_ridge,16|10000.0,0.4047347761953453,False
+Bone,multitask_reduced_rank_ridge,32|10000.0,0.430237174325929,False
+Bone,multitask_reduced_rank_ridge,64|10000.0,0.44330363106259524,False
+Bone,multitask_reduced_rank_ridge,128|10000.0,0.44623725303671014,True
+Bone,multitask_reduced_rank_ridge,16|100000.0,0.36864252265485253,False
+Bone,multitask_reduced_rank_ridge,32|100000.0,0.3828646974597304,False
+Bone,multitask_reduced_rank_ridge,64|100000.0,0.39091087452393575,False
+Bone,multitask_reduced_rank_ridge,128|100000.0,0.39337331855898855,False
+Bone,per_target_elastic_net_shared,0.0001,0.3745999177959269,False
+Bone,per_target_elastic_net_shared,0.001,0.378731863074746,False
+Bone,per_target_elastic_net_shared,0.01,0.4095709522842678,False
+Bone,per_target_elastic_net_shared,0.1,0.42986990826338106,True
+Bowel,expression_pcr_ridge,32|100.0,0.4114868834195831,False
+Bowel,expression_pcr_ridge,32|1000.0,0.4108944045731352,False
+Bowel,expression_pcr_ridge,32|10000.0,0.41004580202054014,False
+Bowel,expression_pcr_ridge,32|100000.0,0.3804391760368632,False
+Bowel,expression_pcr_ridge,64|100.0,0.44409650149533253,False
+Bowel,expression_pcr_ridge,64|1000.0,0.4448160840464413,False
+Bowel,expression_pcr_ridge,64|10000.0,0.44079447490278945,False
+Bowel,expression_pcr_ridge,64|100000.0,0.39247962177832063,False
+Bowel,expression_pcr_ridge,128|100.0,0.4429162919526642,False
+Bowel,expression_pcr_ridge,128|1000.0,0.4482670820761104,True
+Bowel,expression_pcr_ridge,128|10000.0,0.4458165719386432,False
+Bowel,expression_pcr_ridge,128|100000.0,0.3957167312692961,False
+Bowel,expression_pcr_ridge,256|100.0,0.4280650255724104,False
+Bowel,expression_pcr_ridge,256|1000.0,0.4391080750887828,False
+Bowel,expression_pcr_ridge,256|10000.0,0.44701437278515965,False
+Bowel,expression_pcr_ridge,256|100000.0,0.39672215623150225,False
+Bowel,multitask_reduced_rank_ridge,16|100.0,0.3593557063885617,False
+Bowel,multitask_reduced_rank_ridge,32|100.0,0.3820452296096119,False
+Bowel,multitask_reduced_rank_ridge,64|100.0,0.3871178612236838,False
+Bowel,multitask_reduced_rank_ridge,128|100.0,0.39215661511436645,False
+Bowel,multitask_reduced_rank_ridge,16|1000.0,0.3910462467800723,False
+Bowel,multitask_reduced_rank_ridge,32|1000.0,0.41817669059769313,False
+Bowel,multitask_reduced_rank_ridge,64|1000.0,0.43571144022632785,False
+Bowel,multitask_reduced_rank_ridge,128|1000.0,0.4283805566880715,False
+Bowel,multitask_reduced_rank_ridge,16|10000.0,0.4034569959092102,False
+Bowel,multitask_reduced_rank_ridge,32|10000.0,0.4262987794094056,False
+Bowel,multitask_reduced_rank_ridge,64|10000.0,0.44313268893233615,False
+Bowel,multitask_reduced_rank_ridge,128|10000.0,0.44696362348806984,True
+Bowel,multitask_reduced_rank_ridge,16|100000.0,0.37246419362907757,False
+Bowel,multitask_reduced_rank_ridge,32|100000.0,0.38307472898583794,False
+Bowel,multitask_reduced_rank_ridge,64|100000.0,0.39663794742707276,False
+Bowel,multitask_reduced_rank_ridge,128|100000.0,0.396518328490831,False
+Bowel,per_target_elastic_net_shared,0.0001,0.37710222475947863,False
+Bowel,per_target_elastic_net_shared,0.001,0.3802331895368142,False
+Bowel,per_target_elastic_net_shared,0.01,0.4069623613786973,False
+Bowel,per_target_elastic_net_shared,0.1,0.43779431766542837,True
+Breast,expression_pcr_ridge,32|100.0,0.41956163450264256,False
+Breast,expression_pcr_ridge,32|1000.0,0.4198795654744806,False
+Breast,expression_pcr_ridge,32|10000.0,0.4149317969224261,False
+Breast,expression_pcr_ridge,32|100000.0,0.38548817749160036,False
+Breast,expression_pcr_ridge,64|100.0,0.4350074033475426,False
+Breast,expression_pcr_ridge,64|1000.0,0.4363514011051994,False
+Breast,expression_pcr_ridge,64|10000.0,0.43512842456969103,False
+Breast,expression_pcr_ridge,64|100000.0,0.3942329062099706,False
+Breast,expression_pcr_ridge,128|100.0,0.4504307087290081,False
+Breast,expression_pcr_ridge,128|1000.0,0.45183629469259157,True
+Breast,expression_pcr_ridge,128|10000.0,0.44723201709548405,False
+Breast,expression_pcr_ridge,128|100000.0,0.39817370375493993,False
+Breast,expression_pcr_ridge,256|100.0,0.43184191781214776,False
+Breast,expression_pcr_ridge,256|1000.0,0.44349407820389397,False
+Breast,expression_pcr_ridge,256|10000.0,0.45024036900788034,False
+Breast,expression_pcr_ridge,256|100000.0,0.3996049964889423,False
+Breast,multitask_reduced_rank_ridge,16|100.0,0.3774420714165657,False
+Breast,multitask_reduced_rank_ridge,32|100.0,0.39335277432134214,False
+Breast,multitask_reduced_rank_ridge,64|100.0,0.3946062210805853,False
+Breast,multitask_reduced_rank_ridge,128|100.0,0.3990357901278362,False
+Breast,multitask_reduced_rank_ridge,16|1000.0,0.40241404166203704,False
+Breast,multitask_reduced_rank_ridge,32|1000.0,0.42895175574395317,False
+Breast,multitask_reduced_rank_ridge,64|1000.0,0.4412669003116247,False
+Breast,multitask_reduced_rank_ridge,128|1000.0,0.43274540768985936,False
+Breast,multitask_reduced_rank_ridge,16|10000.0,0.4077554932673842,False
+Breast,multitask_reduced_rank_ridge,32|10000.0,0.4324155134790274,False
+Breast,multitask_reduced_rank_ridge,64|10000.0,0.4455851729149114,False
+Breast,multitask_reduced_rank_ridge,128|10000.0,0.4511484133187064,True
+Breast,multitask_reduced_rank_ridge,16|100000.0,0.3743694187813566,False
+Breast,multitask_reduced_rank_ridge,32|100000.0,0.39061815231588803,False
+Breast,multitask_reduced_rank_ridge,64|100000.0,0.396492347800586,False
+Breast,multitask_reduced_rank_ridge,128|100000.0,0.3986902632967649,False
+Breast,per_target_elastic_net_shared,0.0001,0.37759255706892436,False
+Breast,per_target_elastic_net_shared,0.001,0.38205507670791145,False
+Breast,per_target_elastic_net_shared,0.01,0.4087494384538337,False
+Breast,per_target_elastic_net_shared,0.1,0.4297582860327507,True
+CNS/Brain,expression_pcr_ridge,32|100.0,0.41956448873859886,False
+CNS/Brain,expression_pcr_ridge,32|1000.0,0.4189521121885773,False
+CNS/Brain,expression_pcr_ridge,32|10000.0,0.415418977340009,False
+CNS/Brain,expression_pcr_ridge,32|100000.0,0.3768271414305448,False
+CNS/Brain,expression_pcr_ridge,64|100.0,0.43287605967046844,False
+CNS/Brain,expression_pcr_ridge,64|1000.0,0.436183338192808,False
+CNS/Brain,expression_pcr_ridge,64|10000.0,0.43454782816031945,False
+CNS/Brain,expression_pcr_ridge,64|100000.0,0.38682506009545164,False
+CNS/Brain,expression_pcr_ridge,128|100.0,0.447391575056806,False
+CNS/Brain,expression_pcr_ridge,128|1000.0,0.4523803165034652,True
+CNS/Brain,expression_pcr_ridge,128|10000.0,0.4436751722675046,False
+CNS/Brain,expression_pcr_ridge,128|100000.0,0.39081737351046725,False
+CNS/Brain,expression_pcr_ridge,256|100.0,0.43078000373285913,False
+CNS/Brain,expression_pcr_ridge,256|1000.0,0.4390709502293053,False
+CNS/Brain,expression_pcr_ridge,256|10000.0,0.4481718030660215,False
+CNS/Brain,expression_pcr_ridge,256|100000.0,0.3892058295327121,False
+CNS/Brain,multitask_reduced_rank_ridge,16|100.0,0.3692872186753237,False
+CNS/Brain,multitask_reduced_rank_ridge,32|100.0,0.38778535174202156,False
+CNS/Brain,multitask_reduced_rank_ridge,64|100.0,0.39222193449408305,False
+CNS/Brain,multitask_reduced_rank_ridge,128|100.0,0.38530949043177337,False
+CNS/Brain,multitask_reduced_rank_ridge,16|1000.0,0.39349558117613487,False
+CNS/Brain,multitask_reduced_rank_ridge,32|1000.0,0.4248770660845266,False
+CNS/Brain,multitask_reduced_rank_ridge,64|1000.0,0.4365806889525738,False
+CNS/Brain,multitask_reduced_rank_ridge,128|1000.0,0.4345632841878794,False
+CNS/Brain,multitask_reduced_rank_ridge,16|10000.0,0.407491361932705,False
+CNS/Brain,multitask_reduced_rank_ridge,32|10000.0,0.42796421876688345,False
+CNS/Brain,multitask_reduced_rank_ridge,64|10000.0,0.4458564691701939,False
+CNS/Brain,multitask_reduced_rank_ridge,128|10000.0,0.44804110822479665,True
+CNS/Brain,multitask_reduced_rank_ridge,16|100000.0,0.3675212521035774,False
+CNS/Brain,multitask_reduced_rank_ridge,32|100000.0,0.3802045686233188,False
+CNS/Brain,multitask_reduced_rank_ridge,64|100000.0,0.3875573189977309,False
+CNS/Brain,multitask_reduced_rank_ridge,128|100000.0,0.3910678250008163,False
+CNS/Brain,per_target_elastic_net_shared,0.0001,0.379461939717974,False
+CNS/Brain,per_target_elastic_net_shared,0.001,0.38303313211903356,False
+CNS/Brain,per_target_elastic_net_shared,0.01,0.4107311963432096,False
+CNS/Brain,per_target_elastic_net_shared,0.1,0.4316656112989492,True
+Esophagus/Stomach,expression_pcr_ridge,32|100.0,0.4056312210453517,False
+Esophagus/Stomach,expression_pcr_ridge,32|1000.0,0.40809393634345875,False
+Esophagus/Stomach,expression_pcr_ridge,32|10000.0,0.4035355336476853,False
+Esophagus/Stomach,expression_pcr_ridge,32|100000.0,0.368166388682134,False
+Esophagus/Stomach,expression_pcr_ridge,64|100.0,0.4420786482263553,False
+Esophagus/Stomach,expression_pcr_ridge,64|1000.0,0.4412291209855753,False
+Esophagus/Stomach,expression_pcr_ridge,64|10000.0,0.4352572143002702,False
+Esophagus/Stomach,expression_pcr_ridge,64|100000.0,0.38183778756375614,False
+Esophagus/Stomach,expression_pcr_ridge,128|100.0,0.4350502159824923,False
+Esophagus/Stomach,expression_pcr_ridge,128|1000.0,0.4392612885027243,False
+Esophagus/Stomach,expression_pcr_ridge,128|10000.0,0.4440231648041167,False
+Esophagus/Stomach,expression_pcr_ridge,128|100000.0,0.38462814139113555,False
+Esophagus/Stomach,expression_pcr_ridge,256|100.0,0.42355781107486196,False
+Esophagus/Stomach,expression_pcr_ridge,256|1000.0,0.43356611185690097,False
+Esophagus/Stomach,expression_pcr_ridge,256|10000.0,0.44607411042512446,True
+Esophagus/Stomach,expression_pcr_ridge,256|100000.0,0.3873459570341055,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,16|100.0,0.3628930768683406,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,32|100.0,0.37964833770371176,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,64|100.0,0.3953089673630426,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,128|100.0,0.39962301389963073,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,16|1000.0,0.39479476558976867,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,32|1000.0,0.41406045529564656,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,64|1000.0,0.4337385796024319,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,128|1000.0,0.4336421744012262,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,16|10000.0,0.397825286491966,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,32|10000.0,0.423027699772553,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,64|10000.0,0.4410640858836469,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,128|10000.0,0.44184886578237753,True
+Esophagus/Stomach,multitask_reduced_rank_ridge,16|100000.0,0.3615670645009228,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,32|100000.0,0.3722590297023775,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,64|100000.0,0.3836305879989927,False
+Esophagus/Stomach,multitask_reduced_rank_ridge,128|100000.0,0.3868789190950768,False
+Esophagus/Stomach,per_target_elastic_net_shared,0.0001,0.37431090727033517,False
+Esophagus/Stomach,per_target_elastic_net_shared,0.001,0.37871874323442717,False
+Esophagus/Stomach,per_target_elastic_net_shared,0.01,0.40685923454795286,False
+Esophagus/Stomach,per_target_elastic_net_shared,0.1,0.43215439752276763,True
+Head and Neck,expression_pcr_ridge,32|100.0,0.4146258521170536,False
+Head and Neck,expression_pcr_ridge,32|1000.0,0.41480959733012157,False
+Head and Neck,expression_pcr_ridge,32|10000.0,0.41167593553773557,False
+Head and Neck,expression_pcr_ridge,32|100000.0,0.3812741924812322,False
+Head and Neck,expression_pcr_ridge,64|100.0,0.4338912328859404,False
+Head and Neck,expression_pcr_ridge,64|1000.0,0.4353539573759364,False
+Head and Neck,expression_pcr_ridge,64|10000.0,0.43360411647654395,False
+Head and Neck,expression_pcr_ridge,64|100000.0,0.3924315536140082,False
+Head and Neck,expression_pcr_ridge,128|100.0,0.4478339688136127,False
+Head and Neck,expression_pcr_ridge,128|1000.0,0.45406535696074773,True
+Head and Neck,expression_pcr_ridge,128|10000.0,0.44389200565281245,False
+Head and Neck,expression_pcr_ridge,128|100000.0,0.3971302698523565,False
+Head and Neck,expression_pcr_ridge,256|100.0,0.4344463817017462,False
+Head and Neck,expression_pcr_ridge,256|1000.0,0.44672314597408347,False
+Head and Neck,expression_pcr_ridge,256|10000.0,0.4520685350516668,False
+Head and Neck,expression_pcr_ridge,256|100000.0,0.39828820255795605,False
+Head and Neck,multitask_reduced_rank_ridge,16|100.0,0.3761738104264328,False
+Head and Neck,multitask_reduced_rank_ridge,32|100.0,0.391847118740824,False
+Head and Neck,multitask_reduced_rank_ridge,64|100.0,0.39939271757513267,False
+Head and Neck,multitask_reduced_rank_ridge,128|100.0,0.4022139222232582,False
+Head and Neck,multitask_reduced_rank_ridge,16|1000.0,0.40193585336215143,False
+Head and Neck,multitask_reduced_rank_ridge,32|1000.0,0.4263664209760631,False
+Head and Neck,multitask_reduced_rank_ridge,64|1000.0,0.4388858485421134,False
+Head and Neck,multitask_reduced_rank_ridge,128|1000.0,0.43647441435188056,False
+Head and Neck,multitask_reduced_rank_ridge,16|10000.0,0.40980452780169974,False
+Head and Neck,multitask_reduced_rank_ridge,32|10000.0,0.42980398871181424,False
+Head and Neck,multitask_reduced_rank_ridge,64|10000.0,0.44331731925106876,False
+Head and Neck,multitask_reduced_rank_ridge,128|10000.0,0.4514452295377577,True
+Head and Neck,multitask_reduced_rank_ridge,16|100000.0,0.3723751893541099,False
+Head and Neck,multitask_reduced_rank_ridge,32|100000.0,0.38671300009526904,False
+Head and Neck,multitask_reduced_rank_ridge,64|100000.0,0.39425495822585216,False
+Head and Neck,multitask_reduced_rank_ridge,128|100000.0,0.39809707457427124,False
+Head and Neck,per_target_elastic_net_shared,0.0001,0.3837535148696563,False
+Head and Neck,per_target_elastic_net_shared,0.001,0.38680500732370454,False
+Head and Neck,per_target_elastic_net_shared,0.01,0.41228141978235266,False
+Head and Neck,per_target_elastic_net_shared,0.1,0.43656398622167186,True
+Kidney,expression_pcr_ridge,32|100.0,0.41098873034197186,False
+Kidney,expression_pcr_ridge,32|1000.0,0.41128826185262285,False
+Kidney,expression_pcr_ridge,32|10000.0,0.407288330642218,False
+Kidney,expression_pcr_ridge,32|100000.0,0.37130394838327685,False
+Kidney,expression_pcr_ridge,64|100.0,0.4259086997941204,False
+Kidney,expression_pcr_ridge,64|1000.0,0.4268839260569358,False
+Kidney,expression_pcr_ridge,64|10000.0,0.4230318331166923,False
+Kidney,expression_pcr_ridge,64|100000.0,0.3804539910689836,False
+Kidney,expression_pcr_ridge,128|100.0,0.44044754878068765,False
+Kidney,expression_pcr_ridge,128|1000.0,0.4422015510501183,True
+Kidney,expression_pcr_ridge,128|10000.0,0.4364905873000139,False
+Kidney,expression_pcr_ridge,128|100000.0,0.38281641323989146,False
+Kidney,expression_pcr_ridge,256|100.0,0.4297602583531962,False
+Kidney,expression_pcr_ridge,256|1000.0,0.44065483548243795,False
+Kidney,expression_pcr_ridge,256|10000.0,0.4395986339835478,False
+Kidney,expression_pcr_ridge,256|100000.0,0.3842095916712325,False
+Kidney,multitask_reduced_rank_ridge,16|100.0,0.3419418282689231,False
+Kidney,multitask_reduced_rank_ridge,32|100.0,0.3704691160918397,False
+Kidney,multitask_reduced_rank_ridge,64|100.0,0.3831409200411721,False
+Kidney,multitask_reduced_rank_ridge,128|100.0,0.3893653935512378,False
+Kidney,multitask_reduced_rank_ridge,16|1000.0,0.376911461490663,False
+Kidney,multitask_reduced_rank_ridge,32|1000.0,0.4114041203999601,False
+Kidney,multitask_reduced_rank_ridge,64|1000.0,0.42551971282969303,False
+Kidney,multitask_reduced_rank_ridge,128|1000.0,0.4297476077937695,False
+Kidney,multitask_reduced_rank_ridge,16|10000.0,0.3873694868635653,False
+Kidney,multitask_reduced_rank_ridge,32|10000.0,0.41940594611788123,False
+Kidney,multitask_reduced_rank_ridge,64|10000.0,0.43432987683109153,False
+Kidney,multitask_reduced_rank_ridge,128|10000.0,0.4394225715826577,True
+Kidney,multitask_reduced_rank_ridge,16|100000.0,0.35387617202422095,False
+Kidney,multitask_reduced_rank_ridge,32|100000.0,0.3765752019393056,False
+Kidney,multitask_reduced_rank_ridge,64|100000.0,0.3853595014063757,False
+Kidney,multitask_reduced_rank_ridge,128|100000.0,0.3844352172107269,False
+Kidney,per_target_elastic_net_shared,0.0001,0.3718012529884689,False
+Kidney,per_target_elastic_net_shared,0.001,0.3793170018710699,False
+Kidney,per_target_elastic_net_shared,0.01,0.40423987676953843,False
+Kidney,per_target_elastic_net_shared,0.1,0.42124021837016035,True
+Liver,expression_pcr_ridge,32|100.0,0.4135154524467265,False
+Liver,expression_pcr_ridge,32|1000.0,0.4149972202087326,False
+Liver,expression_pcr_ridge,32|10000.0,0.4103262248777136,False
+Liver,expression_pcr_ridge,32|100000.0,0.3741800879688043,False
+Liver,expression_pcr_ridge,64|100.0,0.42485448265713727,False
+Liver,expression_pcr_ridge,64|1000.0,0.4273189481405893,False
+Liver,expression_pcr_ridge,64|10000.0,0.42539555390265177,False
+Liver,expression_pcr_ridge,64|100000.0,0.3779429999872917,False
+Liver,expression_pcr_ridge,128|100.0,0.4361856759293487,False
+Liver,expression_pcr_ridge,128|1000.0,0.4416398127638378,True
+Liver,expression_pcr_ridge,128|10000.0,0.4354208468690586,False
+Liver,expression_pcr_ridge,128|100000.0,0.3815763929076199,False
+Liver,expression_pcr_ridge,256|100.0,0.4267982397406963,False
+Liver,expression_pcr_ridge,256|1000.0,0.4357628511327556,False
+Liver,expression_pcr_ridge,256|10000.0,0.44130665510514516,False
+Liver,expression_pcr_ridge,256|100000.0,0.386952661917745,False
+Liver,multitask_reduced_rank_ridge,16|100.0,0.3513432817839014,False
+Liver,multitask_reduced_rank_ridge,32|100.0,0.368191217658111,False
+Liver,multitask_reduced_rank_ridge,64|100.0,0.38265643124659837,False
+Liver,multitask_reduced_rank_ridge,128|100.0,0.38682667918792696,False
+Liver,multitask_reduced_rank_ridge,16|1000.0,0.38013339161650184,False
+Liver,multitask_reduced_rank_ridge,32|1000.0,0.40958238790964097,False
+Liver,multitask_reduced_rank_ridge,64|1000.0,0.4271018659110157,False
+Liver,multitask_reduced_rank_ridge,128|1000.0,0.4286685163049874,False
+Liver,multitask_reduced_rank_ridge,16|10000.0,0.3979192666246394,False
+Liver,multitask_reduced_rank_ridge,32|10000.0,0.41897653684487274,False
+Liver,multitask_reduced_rank_ridge,64|10000.0,0.4342804366137933,False
+Liver,multitask_reduced_rank_ridge,128|10000.0,0.4375725086976685,True
+Liver,multitask_reduced_rank_ridge,16|100000.0,0.3557699642976276,False
+Liver,multitask_reduced_rank_ridge,32|100000.0,0.37801315316753414,False
+Liver,multitask_reduced_rank_ridge,64|100000.0,0.3834865879125436,False
+Liver,multitask_reduced_rank_ridge,128|100000.0,0.3879263038231603,False
+Liver,per_target_elastic_net_shared,0.0001,0.3690733442129648,False
+Liver,per_target_elastic_net_shared,0.001,0.3736433939267857,False
+Liver,per_target_elastic_net_shared,0.01,0.40319458995868807,False
+Liver,per_target_elastic_net_shared,0.1,0.42749055408160896,True
+Lung,expression_pcr_ridge,32|100.0,0.4119121028299758,False
+Lung,expression_pcr_ridge,32|1000.0,0.4134572851752349,False
+Lung,expression_pcr_ridge,32|10000.0,0.41009932397675375,False
+Lung,expression_pcr_ridge,32|100000.0,0.3772157633195152,False
+Lung,expression_pcr_ridge,64|100.0,0.4294862863946368,False
+Lung,expression_pcr_ridge,64|1000.0,0.4298966394410002,False
+Lung,expression_pcr_ridge,64|10000.0,0.4252363611126613,False
+Lung,expression_pcr_ridge,64|100000.0,0.3880748389013759,False
+Lung,expression_pcr_ridge,128|100.0,0.43065429132931504,False
+Lung,expression_pcr_ridge,128|1000.0,0.43492785755557745,False
+Lung,expression_pcr_ridge,128|10000.0,0.4350974238233505,False
+Lung,expression_pcr_ridge,128|100000.0,0.3890399015384992,False
+Lung,expression_pcr_ridge,256|100.0,0.4245309298273437,False
+Lung,expression_pcr_ridge,256|1000.0,0.4388419236399628,False
+Lung,expression_pcr_ridge,256|10000.0,0.44071999070258566,True
+Lung,expression_pcr_ridge,256|100000.0,0.39115409606712176,False
+Lung,multitask_reduced_rank_ridge,16|100.0,0.3675943811374257,False
+Lung,multitask_reduced_rank_ridge,32|100.0,0.3844961865043037,False
+Lung,multitask_reduced_rank_ridge,64|100.0,0.3916253262118357,False
+Lung,multitask_reduced_rank_ridge,128|100.0,0.38761640323539753,False
+Lung,multitask_reduced_rank_ridge,16|1000.0,0.40353200104080333,False
+Lung,multitask_reduced_rank_ridge,32|1000.0,0.4193639652579236,False
+Lung,multitask_reduced_rank_ridge,64|1000.0,0.42871769866919013,False
+Lung,multitask_reduced_rank_ridge,128|1000.0,0.42666618942059203,False
+Lung,multitask_reduced_rank_ridge,16|10000.0,0.40959022315431953,False
+Lung,multitask_reduced_rank_ridge,32|10000.0,0.42412065290250467,False
+Lung,multitask_reduced_rank_ridge,64|10000.0,0.4351452542140877,False
+Lung,multitask_reduced_rank_ridge,128|10000.0,0.4404994870396171,True
+Lung,multitask_reduced_rank_ridge,16|100000.0,0.3712427730160737,False
+Lung,multitask_reduced_rank_ridge,32|100000.0,0.3833457224606931,False
+Lung,multitask_reduced_rank_ridge,64|100000.0,0.3897795063923774,False
+Lung,multitask_reduced_rank_ridge,128|100000.0,0.3908960192225151,False
+Lung,per_target_elastic_net_shared,0.0001,0.38358965495410235,False
+Lung,per_target_elastic_net_shared,0.001,0.38626147811693373,False
+Lung,per_target_elastic_net_shared,0.01,0.40735369596833143,False
+Lung,per_target_elastic_net_shared,0.1,0.431658344622189,True
+Lymphoid,expression_pcr_ridge,32|100.0,0.3987313127609938,False
+Lymphoid,expression_pcr_ridge,32|1000.0,0.3981703655029182,False
+Lymphoid,expression_pcr_ridge,32|10000.0,0.3970238652453801,False
+Lymphoid,expression_pcr_ridge,32|100000.0,0.36207923419561155,False
+Lymphoid,expression_pcr_ridge,64|100.0,0.42080026730712805,False
+Lymphoid,expression_pcr_ridge,64|1000.0,0.42133892205094736,False
+Lymphoid,expression_pcr_ridge,64|10000.0,0.4166894299822373,False
+Lymphoid,expression_pcr_ridge,64|100000.0,0.3738075652775039,False
+Lymphoid,expression_pcr_ridge,128|100.0,0.42597141328618754,False
+Lymphoid,expression_pcr_ridge,128|1000.0,0.4293910092237346,False
+Lymphoid,expression_pcr_ridge,128|10000.0,0.4222330908896818,False
+Lymphoid,expression_pcr_ridge,128|100000.0,0.37755887825554385,False
+Lymphoid,expression_pcr_ridge,256|100.0,0.4197467635111095,False
+Lymphoid,expression_pcr_ridge,256|1000.0,0.4322200729816314,True
+Lymphoid,expression_pcr_ridge,256|10000.0,0.4306440742842785,False
+Lymphoid,expression_pcr_ridge,256|100000.0,0.37890759921436157,False
+Lymphoid,multitask_reduced_rank_ridge,16|100.0,0.3433585605708885,False
+Lymphoid,multitask_reduced_rank_ridge,32|100.0,0.3588688878543469,False
+Lymphoid,multitask_reduced_rank_ridge,64|100.0,0.3707669207084993,False
+Lymphoid,multitask_reduced_rank_ridge,128|100.0,0.3816876789965194,False
+Lymphoid,multitask_reduced_rank_ridge,16|1000.0,0.3776273409890836,False
+Lymphoid,multitask_reduced_rank_ridge,32|1000.0,0.40759556474201475,False
+Lymphoid,multitask_reduced_rank_ridge,64|1000.0,0.41338630840145846,False
+Lymphoid,multitask_reduced_rank_ridge,128|1000.0,0.41541524473120994,False
+Lymphoid,multitask_reduced_rank_ridge,16|10000.0,0.385059086817225,False
+Lymphoid,multitask_reduced_rank_ridge,32|10000.0,0.4056518606481151,False
+Lymphoid,multitask_reduced_rank_ridge,64|10000.0,0.41732010682016557,False
+Lymphoid,multitask_reduced_rank_ridge,128|10000.0,0.42832395988405975,True
+Lymphoid,multitask_reduced_rank_ridge,16|100000.0,0.34467511291573777,False
+Lymphoid,multitask_reduced_rank_ridge,32|100000.0,0.3698240140535376,False
+Lymphoid,multitask_reduced_rank_ridge,64|100000.0,0.37493875023733075,False
+Lymphoid,multitask_reduced_rank_ridge,128|100000.0,0.3784414709473001,False
+Lymphoid,per_target_elastic_net_shared,0.0001,0.37523127539685885,False
+Lymphoid,per_target_elastic_net_shared,0.001,0.381524434513661,False
+Lymphoid,per_target_elastic_net_shared,0.01,0.40042688041821844,False
+Lymphoid,per_target_elastic_net_shared,0.1,0.4149824505498956,True
+Myeloid,expression_pcr_ridge,32|100.0,0.40688909625312514,False
+Myeloid,expression_pcr_ridge,32|1000.0,0.4060460015574511,False
+Myeloid,expression_pcr_ridge,32|10000.0,0.40697049357551257,False
+Myeloid,expression_pcr_ridge,32|100000.0,0.368936211873,False
+Myeloid,expression_pcr_ridge,64|100.0,0.4255914504126062,False
+Myeloid,expression_pcr_ridge,64|1000.0,0.4280111787833259,False
+Myeloid,expression_pcr_ridge,64|10000.0,0.42204701426888497,False
+Myeloid,expression_pcr_ridge,64|100000.0,0.3725873736052004,False
+Myeloid,expression_pcr_ridge,128|100.0,0.43259030640456786,False
+Myeloid,expression_pcr_ridge,128|1000.0,0.4366957767289567,False
+Myeloid,expression_pcr_ridge,128|10000.0,0.4307419795826526,False
+Myeloid,expression_pcr_ridge,128|100000.0,0.38108150522446965,False
+Myeloid,expression_pcr_ridge,256|100.0,0.4238864804534533,False
+Myeloid,expression_pcr_ridge,256|1000.0,0.43211324366594905,False
+Myeloid,expression_pcr_ridge,256|10000.0,0.4376850315205278,True
+Myeloid,expression_pcr_ridge,256|100000.0,0.3838818452669468,False
+Myeloid,multitask_reduced_rank_ridge,16|100.0,0.3443052764068548,False
+Myeloid,multitask_reduced_rank_ridge,32|100.0,0.3725680526056317,False
+Myeloid,multitask_reduced_rank_ridge,64|100.0,0.3773198326438878,False
+Myeloid,multitask_reduced_rank_ridge,128|100.0,0.3743647604124349,False
+Myeloid,multitask_reduced_rank_ridge,16|1000.0,0.38616986036065887,False
+Myeloid,multitask_reduced_rank_ridge,32|1000.0,0.41428589311774316,False
+Myeloid,multitask_reduced_rank_ridge,64|1000.0,0.4217122092039793,False
+Myeloid,multitask_reduced_rank_ridge,128|1000.0,0.42036852562082255,False
+Myeloid,multitask_reduced_rank_ridge,16|10000.0,0.3988050951726419,False
+Myeloid,multitask_reduced_rank_ridge,32|10000.0,0.4170167187146574,False
+Myeloid,multitask_reduced_rank_ridge,64|10000.0,0.4318526617578887,False
+Myeloid,multitask_reduced_rank_ridge,128|10000.0,0.43827119856045704,True
+Myeloid,multitask_reduced_rank_ridge,16|100000.0,0.3488293937022729,False
+Myeloid,multitask_reduced_rank_ridge,32|100000.0,0.3732483026064035,False
+Myeloid,multitask_reduced_rank_ridge,64|100000.0,0.3786181508328627,False
+Myeloid,multitask_reduced_rank_ridge,128|100000.0,0.38281383940884695,False
+Myeloid,per_target_elastic_net_shared,0.0001,0.36933518812851296,False
+Myeloid,per_target_elastic_net_shared,0.001,0.375153984816629,False
+Myeloid,per_target_elastic_net_shared,0.01,0.3982063724052076,False
+Myeloid,per_target_elastic_net_shared,0.1,0.42105626125835766,True
+Ovary/Fallopian Tube,expression_pcr_ridge,32|100.0,0.4068193273165042,False
+Ovary/Fallopian Tube,expression_pcr_ridge,32|1000.0,0.407372595625252,False
+Ovary/Fallopian Tube,expression_pcr_ridge,32|10000.0,0.4070749103518835,False
+Ovary/Fallopian Tube,expression_pcr_ridge,32|100000.0,0.36972575695770843,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|100.0,0.4230644717740195,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|1000.0,0.4234407854065071,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|10000.0,0.4216292149243326,False
+Ovary/Fallopian Tube,expression_pcr_ridge,64|100000.0,0.3796741532125803,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|100.0,0.4415165568946381,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|1000.0,0.443323955917248,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|10000.0,0.43579656782929727,False
+Ovary/Fallopian Tube,expression_pcr_ridge,128|100000.0,0.3848731546532767,False
+Ovary/Fallopian Tube,expression_pcr_ridge,256|100.0,0.4347557386954989,False
+Ovary/Fallopian Tube,expression_pcr_ridge,256|1000.0,0.44309754456129585,False
+Ovary/Fallopian Tube,expression_pcr_ridge,256|10000.0,0.4451101115309405,True
+Ovary/Fallopian Tube,expression_pcr_ridge,256|100000.0,0.38802229435471247,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,16|100.0,0.35214285950782354,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,32|100.0,0.3744871715840424,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,64|100.0,0.389564901409501,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,128|100.0,0.38674183594843753,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,16|1000.0,0.38275852370207014,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,32|1000.0,0.42188984811293095,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,64|1000.0,0.42967012442669705,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,128|1000.0,0.42848650427703866,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,16|10000.0,0.39857939361260764,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,32|10000.0,0.41778996160989185,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,64|10000.0,0.4340641266953107,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,128|10000.0,0.4382889804079038,True
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,16|100000.0,0.35621182667022555,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,32|100000.0,0.3752713806380151,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,64|100000.0,0.383246479232561,False
+Ovary/Fallopian Tube,multitask_reduced_rank_ridge,128|100000.0,0.38738454927360033,False
+Ovary/Fallopian Tube,per_target_elastic_net_shared,0.0001,0.37848594952884657,False
+Ovary/Fallopian Tube,per_target_elastic_net_shared,0.001,0.38040093285836984,False
+Ovary/Fallopian Tube,per_target_elastic_net_shared,0.01,0.4105651777926867,False
+Ovary/Fallopian Tube,per_target_elastic_net_shared,0.1,0.4280747619008441,True
+Pancreas,expression_pcr_ridge,32|100.0,0.4108393066778827,False
+Pancreas,expression_pcr_ridge,32|1000.0,0.4114371138297655,False
+Pancreas,expression_pcr_ridge,32|10000.0,0.4071682627823679,False
+Pancreas,expression_pcr_ridge,32|100000.0,0.37182995312662953,False
+Pancreas,expression_pcr_ridge,64|100.0,0.43092537701172134,False
+Pancreas,expression_pcr_ridge,64|1000.0,0.43200775650316103,False
+Pancreas,expression_pcr_ridge,64|10000.0,0.4283007019310536,False
+Pancreas,expression_pcr_ridge,64|100000.0,0.37900238825911714,False
+Pancreas,expression_pcr_ridge,128|100.0,0.4398386775501522,False
+Pancreas,expression_pcr_ridge,128|1000.0,0.44107565134338056,False
+Pancreas,expression_pcr_ridge,128|10000.0,0.43950131332550235,False
+Pancreas,expression_pcr_ridge,128|100000.0,0.3852254329003401,False
+Pancreas,expression_pcr_ridge,256|100.0,0.4318019885359366,False
+Pancreas,expression_pcr_ridge,256|1000.0,0.4396296067239067,False
+Pancreas,expression_pcr_ridge,256|10000.0,0.4428436054521827,True
+Pancreas,expression_pcr_ridge,256|100000.0,0.3876312789412527,False
+Pancreas,multitask_reduced_rank_ridge,16|100.0,0.36579243989111965,False
+Pancreas,multitask_reduced_rank_ridge,32|100.0,0.3767760177389473,False
+Pancreas,multitask_reduced_rank_ridge,64|100.0,0.38822293735778707,False
+Pancreas,multitask_reduced_rank_ridge,128|100.0,0.3968892051855922,False
+Pancreas,multitask_reduced_rank_ridge,16|1000.0,0.3935953388933412,False
+Pancreas,multitask_reduced_rank_ridge,32|1000.0,0.4164559422971321,False
+Pancreas,multitask_reduced_rank_ridge,64|1000.0,0.43030207967171885,False
+Pancreas,multitask_reduced_rank_ridge,128|1000.0,0.4291749000526664,False
+Pancreas,multitask_reduced_rank_ridge,16|10000.0,0.3972816629553057,False
+Pancreas,multitask_reduced_rank_ridge,32|10000.0,0.42107790706470205,False
+Pancreas,multitask_reduced_rank_ridge,64|10000.0,0.4367799786356777,False
+Pancreas,multitask_reduced_rank_ridge,128|10000.0,0.44216759576975806,True
+Pancreas,multitask_reduced_rank_ridge,16|100000.0,0.36012784886681143,False
+Pancreas,multitask_reduced_rank_ridge,32|100000.0,0.37614345305716695,False
+Pancreas,multitask_reduced_rank_ridge,64|100000.0,0.3838226985544311,False
+Pancreas,multitask_reduced_rank_ridge,128|100000.0,0.3878132575965961,False
+Pancreas,per_target_elastic_net_shared,0.0001,0.3711199481908553,False
+Pancreas,per_target_elastic_net_shared,0.001,0.3773884504328268,False
+Pancreas,per_target_elastic_net_shared,0.01,0.402496886505612,False
+Pancreas,per_target_elastic_net_shared,0.1,0.4294614982890615,True
+Peripheral Nervous System,expression_pcr_ridge,32|100.0,0.42290567381794053,False
+Peripheral Nervous System,expression_pcr_ridge,32|1000.0,0.4232917381400619,False
+Peripheral Nervous System,expression_pcr_ridge,32|10000.0,0.4187912150948494,False
+Peripheral Nervous System,expression_pcr_ridge,32|100000.0,0.3801678948117364,False
+Peripheral Nervous System,expression_pcr_ridge,64|100.0,0.4317310345820075,False
+Peripheral Nervous System,expression_pcr_ridge,64|1000.0,0.43320654479569504,False
+Peripheral Nervous System,expression_pcr_ridge,64|10000.0,0.43204306280302135,False
+Peripheral Nervous System,expression_pcr_ridge,64|100000.0,0.38359273690148227,False
+Peripheral Nervous System,expression_pcr_ridge,128|100.0,0.4413022342328477,False
+Peripheral Nervous System,expression_pcr_ridge,128|1000.0,0.44301950517529914,False
+Peripheral Nervous System,expression_pcr_ridge,128|10000.0,0.438288427425571,False
+Peripheral Nervous System,expression_pcr_ridge,128|100000.0,0.389439993574496,False
+Peripheral Nervous System,expression_pcr_ridge,256|100.0,0.4260512991020412,False
+Peripheral Nervous System,expression_pcr_ridge,256|1000.0,0.43673182630881685,False
+Peripheral Nervous System,expression_pcr_ridge,256|10000.0,0.44498205610478353,True
+Peripheral Nervous System,expression_pcr_ridge,256|100000.0,0.3935966996446698,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,16|100.0,0.35026536528711705,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,32|100.0,0.36770298815559976,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,64|100.0,0.3831522105820873,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,128|100.0,0.3863440328711992,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,16|1000.0,0.3844575647062577,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,32|1000.0,0.4136778124146013,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,64|1000.0,0.43051794003573884,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,128|1000.0,0.4272652546423033,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,16|10000.0,0.4005416655010401,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,32|10000.0,0.42485301420326665,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,64|10000.0,0.43867668047523595,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,128|10000.0,0.44001291537946485,True
+Peripheral Nervous System,multitask_reduced_rank_ridge,16|100000.0,0.35877514662152216,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,32|100000.0,0.38188753915468815,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,64|100000.0,0.3891394933074145,False
+Peripheral Nervous System,multitask_reduced_rank_ridge,128|100000.0,0.39284544391301063,False
+Peripheral Nervous System,per_target_elastic_net_shared,0.0001,0.3739421236499152,False
+Peripheral Nervous System,per_target_elastic_net_shared,0.001,0.37928212292546876,False
+Peripheral Nervous System,per_target_elastic_net_shared,0.01,0.4087708553704872,False
+Peripheral Nervous System,per_target_elastic_net_shared,0.1,0.4273147432341657,True
+Skin,expression_pcr_ridge,32|100.0,0.4002824737111084,False
+Skin,expression_pcr_ridge,32|1000.0,0.4016631468437438,False
+Skin,expression_pcr_ridge,32|10000.0,0.40078461693021616,False
+Skin,expression_pcr_ridge,32|100000.0,0.3692702080172306,False
+Skin,expression_pcr_ridge,64|100.0,0.43192780841449196,False
+Skin,expression_pcr_ridge,64|1000.0,0.4299987838860742,False
+Skin,expression_pcr_ridge,64|10000.0,0.4251138813227457,False
+Skin,expression_pcr_ridge,64|100000.0,0.3787129114820843,False
+Skin,expression_pcr_ridge,128|100.0,0.42839496919507764,False
+Skin,expression_pcr_ridge,128|1000.0,0.43313265250568944,False
+Skin,expression_pcr_ridge,128|10000.0,0.4325405709885699,False
+Skin,expression_pcr_ridge,128|100000.0,0.3797003008799604,False
+Skin,expression_pcr_ridge,256|100.0,0.41601702152975856,False
+Skin,expression_pcr_ridge,256|1000.0,0.4292779051384353,False
+Skin,expression_pcr_ridge,256|10000.0,0.43841838892097473,True
+Skin,expression_pcr_ridge,256|100000.0,0.3847048337703608,False
+Skin,multitask_reduced_rank_ridge,16|100.0,0.35101957710071935,False
+Skin,multitask_reduced_rank_ridge,32|100.0,0.3688071503695732,False
+Skin,multitask_reduced_rank_ridge,64|100.0,0.37555444535667765,False
+Skin,multitask_reduced_rank_ridge,128|100.0,0.37010747085046053,False
+Skin,multitask_reduced_rank_ridge,16|1000.0,0.38481110872275004,False
+Skin,multitask_reduced_rank_ridge,32|1000.0,0.407335923763451,False
+Skin,multitask_reduced_rank_ridge,64|1000.0,0.42291599006921493,False
+Skin,multitask_reduced_rank_ridge,128|1000.0,0.41871982568935123,False
+Skin,multitask_reduced_rank_ridge,16|10000.0,0.39519400351815936,False
+Skin,multitask_reduced_rank_ridge,32|10000.0,0.4190690228450079,False
+Skin,multitask_reduced_rank_ridge,64|10000.0,0.4311754267182612,False
+Skin,multitask_reduced_rank_ridge,128|10000.0,0.4351650001187745,True
+Skin,multitask_reduced_rank_ridge,16|100000.0,0.35639064080603144,False
+Skin,multitask_reduced_rank_ridge,32|100000.0,0.3712930294540309,False
+Skin,multitask_reduced_rank_ridge,64|100000.0,0.3823718848100007,False
+Skin,multitask_reduced_rank_ridge,128|100000.0,0.3831970604304703,False
+Skin,per_target_elastic_net_shared,0.0001,0.36650165677534213,False
+Skin,per_target_elastic_net_shared,0.001,0.3704468681981183,False
+Skin,per_target_elastic_net_shared,0.01,0.4033688335788078,False
+Skin,per_target_elastic_net_shared,0.1,0.4269643172084464,True
+Soft Tissue,expression_pcr_ridge,32|100.0,0.43070288457427613,False
+Soft Tissue,expression_pcr_ridge,32|1000.0,0.43055614013518295,False
+Soft Tissue,expression_pcr_ridge,32|10000.0,0.42537341649641897,False
+Soft Tissue,expression_pcr_ridge,32|100000.0,0.3856583207518412,False
+Soft Tissue,expression_pcr_ridge,64|100.0,0.44217502307641643,False
+Soft Tissue,expression_pcr_ridge,64|1000.0,0.4435370409222816,False
+Soft Tissue,expression_pcr_ridge,64|10000.0,0.4404315077427547,False
+Soft Tissue,expression_pcr_ridge,64|100000.0,0.3933192645811526,False
+Soft Tissue,expression_pcr_ridge,128|100.0,0.44811384173090185,False
+Soft Tissue,expression_pcr_ridge,128|1000.0,0.44967577249971913,False
+Soft Tissue,expression_pcr_ridge,128|10000.0,0.44851207437325874,False
+Soft Tissue,expression_pcr_ridge,128|100000.0,0.3984972584363774,False
+Soft Tissue,expression_pcr_ridge,256|100.0,0.4299410675258808,False
+Soft Tissue,expression_pcr_ridge,256|1000.0,0.43802893399465925,False
+Soft Tissue,expression_pcr_ridge,256|10000.0,0.4516068810671008,True
+Soft Tissue,expression_pcr_ridge,256|100000.0,0.3995251031081906,False
+Soft Tissue,multitask_reduced_rank_ridge,16|100.0,0.3607286070844818,False
+Soft Tissue,multitask_reduced_rank_ridge,32|100.0,0.3763152199209601,False
+Soft Tissue,multitask_reduced_rank_ridge,64|100.0,0.38633186784830514,False
+Soft Tissue,multitask_reduced_rank_ridge,128|100.0,0.3895221734152162,False
+Soft Tissue,multitask_reduced_rank_ridge,16|1000.0,0.40195444720613077,False
+Soft Tissue,multitask_reduced_rank_ridge,32|1000.0,0.41834971119440234,False
+Soft Tissue,multitask_reduced_rank_ridge,64|1000.0,0.42813154610988663,False
+Soft Tissue,multitask_reduced_rank_ridge,128|1000.0,0.4279905857241592,False
+Soft Tissue,multitask_reduced_rank_ridge,16|10000.0,0.4074215874924362,False
+Soft Tissue,multitask_reduced_rank_ridge,32|10000.0,0.43397826027377273,False
+Soft Tissue,multitask_reduced_rank_ridge,64|10000.0,0.4472811380238941,False
+Soft Tissue,multitask_reduced_rank_ridge,128|10000.0,0.4493921848373152,True
+Soft Tissue,multitask_reduced_rank_ridge,16|100000.0,0.37254099249352174,False
+Soft Tissue,multitask_reduced_rank_ridge,32|100000.0,0.3895343849131889,False
+Soft Tissue,multitask_reduced_rank_ridge,64|100000.0,0.3966362357831044,False
+Soft Tissue,multitask_reduced_rank_ridge,128|100000.0,0.39903216373200473,False
+Soft Tissue,per_target_elastic_net_shared,0.0001,0.3749821352496993,False
+Soft Tissue,per_target_elastic_net_shared,0.001,0.3791580682341809,False
+Soft Tissue,per_target_elastic_net_shared,0.01,0.4065026854440012,False
+Soft Tissue,per_target_elastic_net_shared,0.1,0.43266998947647817,True
+Uterus,expression_pcr_ridge,32|100.0,0.4239051207592346,False
+Uterus,expression_pcr_ridge,32|1000.0,0.424503087343571,False
+Uterus,expression_pcr_ridge,32|10000.0,0.42266553651448907,False
+Uterus,expression_pcr_ridge,32|100000.0,0.3844992515538767,False
+Uterus,expression_pcr_ridge,64|100.0,0.4441953233359782,False
+Uterus,expression_pcr_ridge,64|1000.0,0.44408241684792943,False
+Uterus,expression_pcr_ridge,64|10000.0,0.4398034257968887,False
+Uterus,expression_pcr_ridge,64|100000.0,0.3934673652569672,False
+Uterus,expression_pcr_ridge,128|100.0,0.4489310850331918,False
+Uterus,expression_pcr_ridge,128|1000.0,0.45115917770814035,True
+Uterus,expression_pcr_ridge,128|10000.0,0.44744513849355305,False
+Uterus,expression_pcr_ridge,128|100000.0,0.3997221522372709,False
+Uterus,expression_pcr_ridge,256|100.0,0.4376951379772817,False
+Uterus,expression_pcr_ridge,256|1000.0,0.449945308340167,False
+Uterus,expression_pcr_ridge,256|10000.0,0.44971477797899195,False
+Uterus,expression_pcr_ridge,256|100000.0,0.40097865998158033,False
+Uterus,multitask_reduced_rank_ridge,16|100.0,0.36614919112077876,False
+Uterus,multitask_reduced_rank_ridge,32|100.0,0.38001312575241086,False
+Uterus,multitask_reduced_rank_ridge,64|100.0,0.4003323476257434,False
+Uterus,multitask_reduced_rank_ridge,128|100.0,0.39570412320113085,False
+Uterus,multitask_reduced_rank_ridge,16|1000.0,0.3999121414211054,False
+Uterus,multitask_reduced_rank_ridge,32|1000.0,0.42249115158135925,False
+Uterus,multitask_reduced_rank_ridge,64|1000.0,0.43776278449705175,False
+Uterus,multitask_reduced_rank_ridge,128|1000.0,0.43468986495697587,False
+Uterus,multitask_reduced_rank_ridge,16|10000.0,0.41392982010603857,False
+Uterus,multitask_reduced_rank_ridge,32|10000.0,0.43423012371789793,False
+Uterus,multitask_reduced_rank_ridge,64|10000.0,0.44609178745494316,False
+Uterus,multitask_reduced_rank_ridge,128|10000.0,0.44803090922687105,True
+Uterus,multitask_reduced_rank_ridge,16|100000.0,0.3782140664190672,False
+Uterus,multitask_reduced_rank_ridge,32|100000.0,0.3882875241373594,False
+Uterus,multitask_reduced_rank_ridge,64|100000.0,0.398007893312937,False
+Uterus,multitask_reduced_rank_ridge,128|100000.0,0.40183804644423,False
+Uterus,per_target_elastic_net_shared,0.0001,0.3753901021251383,False
+Uterus,per_target_elastic_net_shared,0.001,0.38018876631746257,False
+Uterus,per_target_elastic_net_shared,0.01,0.41147873028043863,False
+Uterus,per_target_elastic_net_shared,0.1,0.4353040320285917,True

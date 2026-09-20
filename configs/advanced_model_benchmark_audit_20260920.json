@@ -1,0 +1,44 @@
+{
+  "status": "post_run_methodological_audit",
+  "date": "2026-09-20",
+  "internal_run_sha256": "cd7d017ad7705edba069dc5b0471357924b2fb0c6dd343df8f742a449dbc39c7",
+  "scope": {
+    "input_model_n": 873,
+    "heldout_model_n": 805,
+    "heldout_patient_n": 780,
+    "heldout_lineage_n": 19,
+    "target_n": 1204,
+    "primary_target_n": 911,
+    "expression_observed_n": 4678,
+    "expression_imputed_n": 1338
+  },
+  "protocol_history": [
+    "Initial protocol committed in f78b8eb; canonical target universe corrected in 48fda5a before formal fitting.",
+    "Structured batching clarified in 266c3ae; per-batch optimizer update fixed in 24cd68a.",
+    "Solver iteration limit and tolerance amended in 4b48a6d after the first full execution failed its convergence check.",
+    "Biliary outer-fold performance was inspected during debugging; a diagnostic absolute-target variant was also inspected, but the final run retained the original residual target.",
+    "Therefore the protocol status frozen_before_model_implementation_and_result_access does not describe the entire development history. Treat this as a development benchmark, not untouched prospective confirmation."
+  ],
+  "numerical_audit": {
+    "elastic_net": "All 456 recorded paths met relative coefficient-change stopping rules, not a dual-gap or per-target KKT certificate. Small synthetic agreement with sklearn does not establish full-data optimization accuracy.",
+    "restart_implementation": "The current restart expression cancels the momentum update whenever the coefficient step is nonzero and momentum exceeds one. It behaves as an unaccelerated proximal solver; do not claim effective FISTA acceleration. The objective is unchanged.",
+    "missing_labels": "Elastic Net fits observation-mask groups with separate intercept centering; reduced-rank ridge imputes centered training residuals by zero.",
+    "selection": "PCR, RRR and shared-alpha Elastic Net use inner NDCG; DeepDEP uses first inner fold MSE for epoch selection. Tuning budgets and optimization targets are not identical."
+  },
+  "deepdep_reproduction_boundary": [
+    "Same-data adaptation, not exact published Exp-DeepDEP reproduction.",
+    "DepMap processed four-modality intersection supplies 4678 of 6016 expression features; 1338 positions use official CCLE reference means. These are not all unavailable in the raw expression release.",
+    "New Chronos release, residual targets, whole-lineage holdout, structured cell-by-all-target batches, and non-KIRC-only pretraining differ from the original model.",
+    "Poor adaptation performance cannot establish inferiority of the original DeepDEP publication."
+  ],
+  "tcga_pretraining_correction": {
+    "source_samples_used": 8829,
+    "kirc_source_samples_excluded": 603,
+    "kirc_patients_excluded": 533,
+    "historical_flag_tcga_kirc_expression_values_read_false_is_literal_overstatement": true,
+    "actual_behavior": "Full numerical source rows were parsed before selecting non-KIRC columns. No excluded KIRC values entered training matrices, normalization statistics, model selection or new outcome evaluation. KIRC matrix header supplied exclusion IDs; file hashing also read bytes.",
+    "preserved_historical_audit_sha256": "4523f3f783774c5c81aa5b7f0d7db822eacf32feba35e62a18bbc5ecd1870465"
+  },
+  "external_scope": "Primary shared-alpha Elastic Net, PCR, RRR, adapted DeepDEP and prior; secondary targetwise-MSE Elastic Net not externally refitted. The Sanger cohort was previously inspected and is not a new Locked Test.",
+  "interpretation": "No complex method meets the internal positive-95%-interval primary-NDCG superiority gate. A secondary Spearman gain alone cannot change that prespecified conclusion."
+}

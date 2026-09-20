@@ -133,6 +133,39 @@ def verify_claims(root: Path) -> None:
             raise ValueError(f"锁定Test关键结果发生变化：{name}")
 
 
+def verify_advanced_comparison(root: Path) -> None:
+    internal = root / "results/historical/advanced_model_benchmark_v1"
+    external = root / "results/historical/sanger_advanced_benchmark_v1"
+    audit = json.loads((root / "configs/advanced_model_benchmark_audit_20260920.json").read_text())
+    if sha256(internal / "run.json") != audit["internal_run_sha256"]:
+        raise ValueError("高级模型审计与内部运行不匹配")
+    external_run = json.loads((external / "run.json").read_text())
+    if external_run["internal_run_sha256"] != sha256(internal / "run.json"):
+        raise ValueError("外部比较不是对应内部选参运行")
+    for directory, expected_n, expected_methods in ((internal, 805, 6), (external, 64, 5)):
+        metrics = pd.read_csv(directory / "per_model_metrics.csv.gz")
+        counts = metrics.groupby("method").ModelID.nunique()
+        if len(counts) != expected_methods or not counts.eq(expected_n).all():
+            raise ValueError("方法覆盖不一致")
+        if metrics.duplicated(["ModelID", "method"]).any():
+            raise ValueError("逐模型结果重复")
+        observed = metrics.groupby(["heldout_lineage", "method"]).ndcg_at_10.mean().groupby("method").mean()
+        summary = pd.read_csv(directory / "overall_summary.csv")
+        stored = summary.loc[summary.estimand.eq("lineage_equal")].set_index("method").ndcg_at_10
+        if ((observed - stored).abs() > 1e-12).any():
+            raise ValueError("癌系等权结果不能从逐模型记录复算")
+        convergence = pd.read_csv(directory / "elastic_convergence.csv")
+        if not convergence.converged.all():
+            raise ValueError("存在未达到停止条件的Elastic Net路径")
+    intervals = pd.read_csv(internal / "bootstrap.csv")
+    primary = intervals.loc[intervals.estimand.eq("lineage_equal") & intervals.metric.eq("ndcg_at_10")]
+    if (primary.ci_low > 0).any():
+        raise ValueError("高级模型主结论与区间不一致")
+    if external_run["sanger_labels_used_for_tuning"]:
+        raise ValueError("外部标签用于调参")
+    print("【高级模型审计】内部805｜外部64｜覆盖及均值一致｜无可靠主指标增益", flush=True)
+
+
 def verify_portability(root: Path) -> None:
     offenders = []
     for base in (root / "scripts", root / "configs"):
@@ -175,7 +208,7 @@ def main():
     root = Path(__file__).resolve().parents[1]
     manifest = json.loads(args.manifest.read_text())
     print("【阶段 1/4】核验发布快照文件和内部哈希", flush=True)
-    for relative in manifest["required_scripts"] + manifest["frozen_protocols"]:
+    for relative in manifest["required_scripts"] + manifest["frozen_protocols"] + manifest.get("methodological_audits", []):
         if not (root / relative).exists():
             raise FileNotFoundError(root / relative)
     checked = 0
@@ -185,6 +218,7 @@ def main():
 
     print("【阶段 2/4】核验冻结候选、结论边界和一次性Test协议", flush=True)
     verify_claims(root)
+    verify_advanced_comparison(root)
     print("【科学边界】候选20｜RNAi复现3｜亚型特异方向1｜患者功能真值0", flush=True)
 
     print("【阶段 3/4】核验环境与机器路径可移植性", flush=True)

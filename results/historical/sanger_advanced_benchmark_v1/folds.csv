@@ -1,0 +1,14 @@
+heldout_lineage,external_n,train_n,calibration_n,patient_overlap_n
+Bone,1,846,179,0
+Bowel,7,823,165,0
+Breast,10,839,170,0
+CNS/Brain,2,805,160,0
+Esophagus/Stomach,8,823,158,0
+Head and Neck,3,817,166,0
+Kidney,1,850,183,0
+Lung,5,774,152,0
+Ovary/Fallopian Tube,9,837,168,0
+Pancreas,6,838,168,0
+Peripheral Nervous System,6,851,180,0
+Skin,2,811,182,0
+Uterus,4,850,180,0

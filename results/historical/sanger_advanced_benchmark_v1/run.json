@@ -1,0 +1,35 @@
+{
+  "status": "sanger_advanced_primary_comparison_complete",
+  "created_utc": "2026-09-20T06:35:23.421812+00:00",
+  "elapsed_seconds": 133.6390574540128,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "internal_run_sha256": "cd7d017ad7705edba069dc5b0471357924b2fb0c6dd343df8f742a449dbc39c7",
+  "script_sha256": "3846b0f50036762aebf0a977b768bc166d28a45bb8aee528d09f0c09ea73ebfd",
+  "methods_script_sha256": "fd986c0c67548a26dd4ec18a8fa95c3255a9e5eaabc35777e4d6f7c7bff5f9e4",
+  "frozen_matrices_sha256": "dddf7592b01534821734369f592bc8ab5f3874d1c22d553e438d6a1d4030c6ab",
+  "primary_target_n": 871,
+  "model_n": 64,
+  "lineage_n": 13,
+  "sanger_labels_used_for_tuning": false,
+  "label_audit": {
+    "source_gene_n": 17995,
+    "exact_overlap_gene_n": 1148
+  },
+  "limitations": [
+    "Primary shared-alpha Elastic Net only; secondary targetwise-MSE variant not externally refitted.",
+    "Previously examined Sanger cohort; not a new untouched test set.",
+    "Shared 911-target universe may shrink due to Sanger coverage.",
+    "Calibration uses non-target paired Broad/Sanger labels; cross-platform scores are descriptive.",
+    "No patient functional validation."
+  ],
+  "output_sha256": {
+    "per_model_metrics.csv.gz": "58a55f40d275f2bc9d138a6b7ccd993f57f4d277827704421ebb0c58fbad2787",
+    "overall_summary.csv": "2ebbbc341de888eb7db0f2b40cc966a31df3457144396ba4e8adf782ba48958c",
+    "lineage_summary.csv": "75d5ef602455885ead858b35bef289b551dcafa2c4806facf6fee32c696055b7",
+    "paired_deltas.csv.gz": "1972f9fd9f1fd82ecd05d8055bda0adb4273a41342b30d44083c7648243460e5",
+    "bootstrap.csv": "220bcadc39e7e915bb000181988208d41b8333efd24c17deba823572a3e19a03",
+    "folds.csv": "cdcf40c0df14f265c22e37255a75c734f5a04a7cb4a2d44f4cde24fe6b3f3946",
+    "elastic_convergence.csv": "781111957d9d66a67b6bf331768c0063984d2f41bfaba4153af878c75006adb9",
+    "excluded_models.csv": "b46752db86848239b4659db43cc6a5d13c64fbc23351faaa432d6489aeff74d6"
+  }
+}

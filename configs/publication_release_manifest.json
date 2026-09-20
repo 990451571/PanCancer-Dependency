@@ -1,17 +1,20 @@
 {
   "release_name": "PanCancer-Dependency computational publication package",
-  "version": "2026-09-16-v2",
+  "version": "2026-09-20-v3",
   "snapshot_directories": [
     "results/historical/ccrcc_primary_functional_audit_v1",
     "results/historical/selective_dependency_benchmark_v1",
     "results/historical/sanger_baseline_benchmark_v1",
     "results/historical/final_evidence_synthesis_v2",
     "results/historical/final_figures_v2",
-    "results/historical/tcga_locked_test_v1"
+    "results/historical/tcga_locked_test_v1",
+    "results/historical/advanced_model_benchmark_v1",
+    "results/historical/sanger_advanced_benchmark_v1"
   ],
   "frozen_protocols": [
     "configs/tcga_locked_test_protocol_20260916.json",
-    "configs/dependency_benchmark_protocol_20260916.json"
+    "configs/dependency_benchmark_protocol_20260916.json",
+    "configs/advanced_model_benchmark_protocol_20260917.json"
   ],
   "required_scripts": [
     "scripts/audit_ccrcc_primary_functional_resources.py",
@@ -22,8 +25,17 @@
     "scripts/run_sanger_baseline_benchmark.py",
     "scripts/runtime_paths.py",
     "scripts/verify_external_inputs.py",
-    "scripts/verify_publication_release.py"
+    "scripts/verify_publication_release.py",
+    "scripts/run_advanced_model_benchmark.py",
+    "scripts/advanced_model_methods.py",
+    "scripts/run_sanger_advanced_benchmark.py",
+    "scripts/prepare_advanced_model_benchmark.py",
+    "scripts/prepare_tcga_pancan_pretraining.py",
+    "scripts/pretrain_exp_deepdep.py"
   ],
   "release_claim": "Cross-platform expression-based selective-dependency prioritization with fair baseline comparison and unseen-patient stability confirmation.",
-  "claim_ceiling": "No patient functional dependency, therapeutic-window, efficacy or safety claim."
+  "claim_ceiling": "No patient functional dependency, therapeutic-window, efficacy or safety claim.",
+  "methodological_audits": [
+    "configs/advanced_model_benchmark_audit_20260920.json"
+  ]
 }

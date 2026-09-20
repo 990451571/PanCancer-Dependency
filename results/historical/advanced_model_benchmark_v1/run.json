@@ -1,0 +1,403 @@
+{
+  "status": "advanced_same_data_benchmark_complete",
+  "created_utc": "2026-09-17T09:00:45.831506+00:00",
+  "elapsed_seconds": 2803.441654631,
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "torch": "2.11.0+cu130",
+  "protocol_sha256": "16da1bf75d1fdbc97a121a70be3630cee65afed021b1de4c976e797409676d50",
+  "input_audit_sha256": "6a0fbc7f4a032cc086cb89a2ac25fe9d97e41a817c701a18f0c825fa832c8514",
+  "input_matrix_sha256": "08c622ae91d8829ab1ff8a6ae6508fcfc796b4e40c2afb5d783b9f115df6e63b",
+  "pretrained_encoder_sha256": "453cab2cb878836bd6e0a8412b02e43255fb5f2795c42453f83fc7c08dfc0806",
+  "script_sha256": "4f7fe4f5b598f35007edc395dbc28fd925c886b9e0f000a15657d8f254579346",
+  "methods_script_sha256": "fd986c0c67548a26dd4ec18a8fa95c3255a9e5eaabc35777e4d6f7c7bff5f9e4",
+  "model_n": 805,
+  "lineage_n": 19,
+  "target_n": 1204,
+  "primary_target_n": 911,
+  "selected_parameters": {
+    "Biliary Tract": {
+      "expression_pcr_ridge": [
+        128,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 73,
+        "0.1": 1131
+      }
+    },
+    "Bladder/Urinary Tract": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 62,
+        "0.1": 1142
+      }
+    },
+    "Bone": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 64,
+        "0.1": 1140
+      }
+    },
+    "Bowel": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 85,
+        "0.1": 1119
+      }
+    },
+    "Breast": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 75,
+        "0.1": 1129
+      }
+    },
+    "CNS/Brain": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 55,
+        "0.1": 1149
+      }
+    },
+    "Esophagus/Stomach": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 67,
+        "0.1": 1137
+      }
+    },
+    "Head and Neck": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 70,
+        "0.1": 1134
+      }
+    },
+    "Kidney": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 66,
+        "0.1": 1138
+      }
+    },
+    "Liver": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 74,
+        "0.1": 1130
+      }
+    },
+    "Lung": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 63,
+        "0.1": 1141
+      }
+    },
+    "Lymphoid": {
+      "expression_pcr_ridge": [
+        256,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 1,
+        "0.01": 54,
+        "0.1": 1149
+      }
+    },
+    "Myeloid": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 46,
+        "0.1": 1158
+      }
+    },
+    "Ovary/Fallopian Tube": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 68,
+        "0.1": 1136
+      }
+    },
+    "Pancreas": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 71,
+        "0.1": 1133
+      }
+    },
+    "Peripheral Nervous System": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 77,
+        "0.1": 1127
+      }
+    },
+    "Skin": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 64,
+        "0.1": 1140
+      }
+    },
+    "Soft Tissue": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 75,
+        "0.1": 1129
+      }
+    },
+    "Uterus": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "multitask_reduced_rank_ridge": [
+        128,
+        10000.0
+      ],
+      "per_target_elastic_net_shared": [
+        0.1
+      ],
+      "per_target_elastic_net_targetwise_counts": {
+        "0.0001": 0,
+        "0.001": 0,
+        "0.01": 76,
+        "0.1": 1128
+      }
+    }
+  },
+  "deep_seeds": [
+    20260917,
+    20260918,
+    20260919
+  ],
+  "tcga_kirc_locked_test_read": false,
+  "limitations": [
+    "Exp-DeepDEP is a same-data adaptation, not a byte-identical rerun of the 2021 model.",
+    "The shared target universe is restricted to official DeepDEP default DepOIs.",
+    "Common-essential labels are release-wide rather than fold-estimated.",
+    "Cell-line ranking accuracy does not establish patient functional accuracy."
+  ],
+  "output_sha256": {
+    "bootstrap.csv": "7218de8552daf953c900b452600f3ab45a90e5ada56599f8f9d4f5557db134ce",
+    "deep_training.csv": "c6389e01a8d8f76662505d70dae36c87d1ddcf2ceb662954badc27ed74cc078f",
+    "elastic_convergence.csv": "c87613b024b3975bb6b7b1f3f8e6a78e4832c2f7c2490ec82df90fdd1e74d381",
+    "lineage_summary.csv": "6b66ef1c1ab9c9833f121420075582243be5383b9a33d66fdd30a397b8b2f261",
+    "overall_summary.csv": "5a0f83767a8474957ee1634ea69fc5cad4e7335824f7a50e3d90b8c269bd5360",
+    "paired_deltas.csv.gz": "bddf17c6fb83f23aca1ace9a852ec498c770af712ddfffa1d02c0646e97d00b8",
+    "per_model_metrics.csv.gz": "9d1d1b07a5fee3f1d1589aba7cdccef4e259544c5f88afcc6f0bf6d8890d51a4",
+    "runtime.csv": "7e5deb5a92054f882f1886d65283e8c079ad67829e8601b874744dfb95ac71bf",
+    "tuning.csv": "9bd69f59844b798e742c6c80d02d0ecbc5d3168d71f8d67c7aa210f8ac5530bf"
+  }
+}

@@ -6,7 +6,8 @@
     "numpy": "1.23.0",
     "pandas": "2.2.3",
     "torch": "2.11.0+cu130",
-    "matplotlib": "3.9.2"
+    "matplotlib": "3.9.2",
+    "pyreadr": "0.5.3"
   },
   "cuda_runtime_reported_by_torch": "13.0",
   "gpu_used": "NVIDIA GeForce RTX 5070 Ti",
