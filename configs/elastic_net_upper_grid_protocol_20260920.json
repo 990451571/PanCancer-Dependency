@@ -1,0 +1,23 @@
+{
+  "purpose": "Determine whether the historical shared-alpha upper boundary limits Elastic Net, using certified inner fits.",
+  "scope": "Upper-grid development sensitivity, not full recertification of smaller historical alphas or a new independent test.",
+  "alphas": [0.1, 0.2, 0.5, 1.0],
+  "l1_ratio": 0.5,
+  "inner_folds": 5,
+  "seed": 20260917,
+  "outer_splits": "results/historical/selective_dependency_benchmark_v1/splits.csv.gz",
+  "selection": "Mean inner heldout-lineage NDCG@10; exact ties prefer larger alpha. Reuse historical folds and seeds.",
+  "primary_targets": "Same 911 non-common-essential genes within 1204 shared targets.",
+  "solver": "CUDA float64 certified working-set proximal gradient on historical float32-centered designs; every target must pass full-feature KKT and strong-convexity objective-gap bound, including excluded working-set features.",
+  "kkt_absolute_tolerance": 1e-6,
+  "relative_suboptimality_bound_tolerance": 1e-7,
+  "maximum_refinement_iterations": 10000,
+  "maximum_working_set_passes": 30,
+  "target_batch_size": 32,
+  "working_set_add_per_target": 16,
+  "comparisons": ["certified expanded-grid vs certified fixed-alpha 0.1", "certified expanded-grid vs historical PCR-ridge"],
+  "bootstrap_draws": 20000,
+  "external_gate": "Only consider another Sanger refit if internal lineage-equal NDCG gain over certified fixed-alpha has positive 95% interval; otherwise report internal sensitivity and stop.",
+  "test_rule": "No TCGA KIRC Locked Test access. Outer labels used only for scoring after inner selection; do not change grid after viewing outer results.",
+  "failure_rule": "Fail closed if any full-feature certificate fails; checkpoint completed folds with input/protocol/script hashes for exact resume."
+}
