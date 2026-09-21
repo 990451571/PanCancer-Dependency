@@ -1,0 +1,52 @@
+{
+  "warmup_updates": 20,
+  "timed_updates": 200,
+  "seconds": 0.40576070599490777,
+  "seconds_per_update": 0.0020288035299745387,
+  "pairs_per_batch": 500,
+  "peak_allocated_gpu_bytes": 203646464,
+  "training_model_n": 674,
+  "observed_training_pair_n": 807595,
+  "status": "training_only_runtime_audit",
+  "created_utc": "2026-09-21T06:43:05.652607+00:00",
+  "signature": {
+    "files": {
+      "configs/deepdep_recovered_comparison_protocol_20260921.json": "dc7b4ec187ad0fe09b1e54a242075bffd12f376edd1e4756a62a084a8a417fc0",
+      "data/processed/advanced_model_benchmark_expression_recovered_v1/audit.json": "66b528e7ea69791fb5c53c4ac1ba98b2ce3e6921c35778540903fc7ee75265c3",
+      "data/processed/advanced_model_benchmark_expression_recovered_v1/benchmark_inputs.npz": "74961c3a34f3c6151f359002ff8de311a340a07a54b5bdf082e1dba65f626db9",
+      "data/processed/tcga_pancan_deepdep_pretrain_v1/expression_encoder.pt": "453cab2cb878836bd6e0a8412b02e43255fb5f2795c42453f83fc7c08dfc0806",
+      "results/historical/selective_dependency_benchmark_v1/splits.csv.gz": "62d533df639843d9b23a4d94a76e2348b9cd6cb92dcaafa8a895becb99d24fae",
+      "data/processed/depmap_baseline_24q4_v1/models.csv": "0480c58279537f1579eec99a60b869a3254b682c75c1bde6ead546b1d5a9366c",
+      "scripts/run_deepdep_recovered_comparison.py": "a29d024c46ca8fd5e96fc9113301c9fbb2edbb8dd305563d7c138979d01bca65",
+      "scripts/deepdep_pair_training.py": "48b43543756f38b502eb3dcd0d5f9ed89e85f917581387ca3a067424ab3aa9a0",
+      "scripts/advanced_model_methods.py": "141f337111fa0d7895be8e931fb55a458f12833f6b376cde0e4471c5a6d1ccbc",
+      "scripts/run_advanced_model_benchmark.py": "4f7fe4f5b598f35007edc395dbc28fd925c886b9e0f000a15657d8f254579346",
+      "scripts/run_selective_dependency.py": "4477c430833279b00bc4d5cf106741b5477d6101f8e5dbc460edef60c137875e",
+      "scripts/run_selective_dependency_benchmark.py": "0b8e27941ca162866cedad40eb252d68f5902c36dcaaee30fcdc18766a1b355f",
+      "scripts/run_depmap_baseline.py": "8c221c7cb7c060b7cd98e243d086e8e322de02d96a0c8dd323cf11c894884762"
+    },
+    "environment": {
+      "python": "3.10.20",
+      "torch": "2.11.0+cu130",
+      "numpy": "1.23.0",
+      "pandas": "2.2.3",
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "tf32_matmul": false
+    }
+  },
+  "outer_lineage": "Biliary Tract",
+  "heldout_predictions_computed": false,
+  "one_variant_update_only_hours": 31.981720712596964,
+  "both_variants_update_only_hours": 63.96344142519393,
+  "source_runtime_cache_sha256": "18beecb89d1d956022475320004d28ce03dff1b119a86df2b9cd2292b3c39fe9",
+  "output_sha256": {
+    "timing.csv": "4eade3f44a4ffeb43ef99438286f8f49e9aad136fc3391c70c61ac1f51e2d530"
+  },
+  "verification": {
+    "synthetic_missing_label_pair_filter": true,
+    "paired_vs_cartesian_forward_check": true,
+    "epoch_restart_prediction_max_difference": 0.0,
+    "synthetic_nested_pipeline_completed": true,
+    "formal_19_lineage_training_started": false
+  }
+}

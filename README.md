@@ -195,6 +195,14 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 
 方案见 `configs/deepdep_recovered_comparison_protocol_20260921.json`。按每个内层拟合与外层重拟合都运行最多 100 epochs 计算，单个 DeepDEP 版本的上限为 56,749,800 次更新，两个目标版本合计 113,499,600 次；这是次数上限，不是耗时预测。本步没有启动新模型训练，也没有产生新性能结果。完整运行前必须先在预定训练子集完成 GPU 计时，若成本不现实，需在查看新模型留出表现前记录资源驱动的方案修订。PCR 与深度模型可以匹配数据和评价规则，不能声称计算量或搜索空间完全相等。
 
+### DeepDEP 配对训练入口与成本核验（入口就绪，等待手动启动）
+
+已实现 `scripts/run_deepdep_recovered_comparison.py` 和 `scripts/deepdep_pair_training.py`：每批 500 个有效“细胞系—靶点”样本、五折训练内选参、三种子集成，同时运行 PCR、残差主分析与绝对依赖次分析。`--dry-run` 检查输入，`--benchmark` 仅做训练子集计时，`--train` 才启动正式比较。训练使用 GPU，终端打印中文进度、训练 MSE、选参结果及最终配对区间；每个完整 epoch 原子保存模型、优化器和随机状态。同一命令可恢复中断，最多重跑未完成的 epoch；代码、输入或环境变化时拒绝混用断点。正式结果存在时拒绝覆盖。
+
+已通过配对前向计算、缺失标签排除、合成数据完整选参/汇总流程与续跑核验，续跑对照的预测最大差异为零。正式数据仅进行了预定训练子集的 20 次预热和 200 次 GPU 更新计时，没有评价留出集。实测每次更新约 **2.03 毫秒**；按满预算外推，单个 DeepDEP 版本约 **32.0 小时**、两个版本约 **64.0 小时**，另有验证、PCR 和存盘开销。外层选出的 epoch 较少时实际工作量会下降，短计时也不能保证长时间吞吐一致。计时记录位于 `results/historical/deepdep_recovered_runtime_v1/`。
+
+正式训练尚未启动。启动命令为 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python -u scripts/run_deepdep_recovered_comparison.py --train`，须在项目根目录运行。最终结果目录为 `outputs/deepdep_recovered_comparison_v1/`，过程断点在 `outputs/.deepdep_recovered_comparison_v1_work/`，完整完成后自动清理过程断点。原冻结训练预算保持不变，未因计时结果修改模型设置。
+
 ## 最终成果
 
 ### 方法层面的结论
@@ -246,7 +254,7 @@ GRB2、CFLAR、YRDC 和 CHMP7 目前只有三个冻结 Sanger 肾癌模型一致
 
 ## 下一步工作
 
-DeepDEP 表达恢复与比较设计已完成。下一步实现每批 500 对样本的训练入口，并仅在预定训练子集做 20 次预热、200 次 GPU 更新计时；据实核算完整方案成本后，再安排正式 PCR/DeepDEP 比较。不能用新留出表现决定资源预算或随意缩短某个方法的训练。Elastic Net 更小 α 的完整认证、独立环境重跑仍未完成；新模型不得再次使用已经访问的 Locked Test 进行选择或确认。
+DeepDEP 输入恢复、配对训练入口及成本核验已完成。下一步由用户手动启动冻结的 PCR/DeepDEP 比较；训练完成后核验三种子与五折覆盖，先判断残差主分析相对新 PCR 的配对区间，再独立解释绝对依赖次分析。不能把次分析更好的结果替换成主结果，也不能利用患者 Locked Test 调参。Elastic Net 更小 α 的完整认证及独立环境重跑仍未完成。
 
 如果目标是把论文结论从“计算优先排序”提升为“ccRCC 功能靶点”，下一步所需的不是继续训练相似模型，而是新的实验数据：优先在患者来源 ccRCC 类器官或短期原代模型中对 PAX8、HNF1B、FERMT2、CCND1 等候选进行 loss-of-function 验证，并在正常肾类器官中使用相同扰动和可比较终点评估治疗窗。
 

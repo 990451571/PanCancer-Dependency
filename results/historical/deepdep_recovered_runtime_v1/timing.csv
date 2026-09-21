@@ -1,0 +1,2 @@
+warmup_updates,timed_updates,seconds,seconds_per_update,pairs_per_batch,peak_allocated_gpu_bytes,training_model_n,observed_training_pair_n,one_variant_update_only_hours,both_variants_update_only_hours
+20,200,0.40576070599490777,0.0020288035299745387,500,203646464,674,807595,31.981720712596964,63.96344142519393

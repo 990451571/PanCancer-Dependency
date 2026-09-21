@@ -1,6 +1,6 @@
 {
   "release_name": "PanCancer-Dependency computational publication package",
-  "version": "2026-09-21-v6",
+  "version": "2026-09-21-v7",
   "snapshot_directories": [
     "results/historical/ccrcc_primary_functional_audit_v1",
     "results/historical/selective_dependency_benchmark_v1",
@@ -12,7 +12,8 @@
     "results/historical/sanger_advanced_benchmark_v1",
     "results/historical/elastic_net_numerical_audit_v1",
     "results/historical/elastic_net_upper_grid_v1",
-    "results/historical/deepdep_expression_recovery_v1"
+    "results/historical/deepdep_expression_recovery_v1",
+    "results/historical/deepdep_recovered_runtime_v1"
   ],
   "frozen_protocols": [
     "configs/tcga_locked_test_protocol_20260916.json",
@@ -41,7 +42,9 @@
     "scripts/audit_elastic_net_numerics.py",
     "scripts/certified_elastic_net.py",
     "scripts/run_elastic_net_upper_grid.py",
-    "scripts/prepare_deepdep_expression_recovery.py"
+    "scripts/prepare_deepdep_expression_recovery.py",
+    "scripts/deepdep_pair_training.py",
+    "scripts/run_deepdep_recovered_comparison.py"
   ],
   "release_claim": "Cross-platform expression-based selective-dependency prioritization with fair baseline comparison and unseen-patient stability confirmation.",
   "claim_ceiling": "No patient functional dependency, therapeutic-window, efficacy or safety claim.",
