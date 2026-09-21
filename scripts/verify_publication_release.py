@@ -194,6 +194,31 @@ def verify_elastic_numerical_audit(root: Path) -> None:
     print("【数值审计】19癌系×1204靶点精化证书通过｜历史指标复算一致", flush=True)
 
 
+def verify_elastic_upper_grid(root: Path) -> None:
+    directory = root / "results/historical/elastic_net_upper_grid_v1"
+    protocol_path = root / "configs/elastic_net_upper_grid_protocol_20260920.json"
+    protocol = json.loads(protocol_path.read_text())
+    run = json.loads((directory / "run.json").read_text())
+    if sha256(protocol_path) != run["signature_sha256"][str(protocol_path.relative_to(root))]:
+        raise ValueError("扩展网格协议哈希不一致")
+    cert = pd.read_csv(directory / "certificates.csv")
+    if not cert.target_n.eq(1204).all() or cert[["maximum_kkt", "maximum_relative_bound"]].isna().any().any():
+        raise ValueError("扩展网格数值证书不完整")
+    if (cert.maximum_kkt > protocol["kkt_absolute_tolerance"]).any() or (cert.maximum_relative_bound > protocol["relative_suboptimality_bound_tolerance"]).any():
+        raise ValueError("扩展网格存在未认证拟合")
+    inner = cert.loc[cert.scope.eq("inner")]
+    if len(inner) != 19 * 5 * 4 or inner.duplicated(["heldout_lineage", "inner_fold", "alpha"]).any():
+        raise ValueError("内层路径覆盖错误")
+    tuning = pd.read_csv(directory / "tuning.csv")
+    if len(tuning) != 19 * 4:
+        raise ValueError("扩展网格选参记录不完整")
+    for lineage, frame in tuning.groupby("heldout_lineage"):
+        expected = frame.sort_values(["inner_lineage_equal_ndcg", "alpha"], ascending=[False, False]).iloc[0].alpha
+        if run["selected_alphas"][lineage] != expected or frame.selected.sum() != 1:
+            raise ValueError("参数未按固定内层规则选择")
+    print("【上界审计】19癌系×5内层折×4个α｜逐靶点数值条件全部通过", flush=True)
+
+
 def verify_portability(root: Path) -> None:
     offenders = []
     for base in (root / "scripts", root / "configs"):
@@ -249,6 +274,8 @@ def main():
     verify_advanced_comparison(root)
     if "results/historical/elastic_net_numerical_audit_v1" in manifest["snapshot_directories"]:
         verify_elastic_numerical_audit(root)
+    if "results/historical/elastic_net_upper_grid_v1" in manifest["snapshot_directories"]:
+        verify_elastic_upper_grid(root)
     print("【科学边界】候选20｜RNAi复现3｜亚型特异方向1｜患者功能真值0", flush=True)
 
     print("【阶段 3/4】核验环境与机器路径可移植性", flush=True)

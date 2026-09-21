@@ -1,6 +1,6 @@
 {
   "release_name": "PanCancer-Dependency computational publication package",
-  "version": "2026-09-20-v4",
+  "version": "2026-09-21-v5",
   "snapshot_directories": [
     "results/historical/ccrcc_primary_functional_audit_v1",
     "results/historical/selective_dependency_benchmark_v1",
@@ -10,13 +10,15 @@
     "results/historical/tcga_locked_test_v1",
     "results/historical/advanced_model_benchmark_v1",
     "results/historical/sanger_advanced_benchmark_v1",
-    "results/historical/elastic_net_numerical_audit_v1"
+    "results/historical/elastic_net_numerical_audit_v1",
+    "results/historical/elastic_net_upper_grid_v1"
   ],
   "frozen_protocols": [
     "configs/tcga_locked_test_protocol_20260916.json",
     "configs/dependency_benchmark_protocol_20260916.json",
     "configs/advanced_model_benchmark_protocol_20260917.json",
-    "configs/elastic_net_numerical_audit_protocol_20260920.json"
+    "configs/elastic_net_numerical_audit_protocol_20260920.json",
+    "configs/elastic_net_upper_grid_protocol_20260920.json"
   ],
   "required_scripts": [
     "scripts/audit_ccrcc_primary_functional_resources.py",
@@ -34,7 +36,9 @@
     "scripts/prepare_advanced_model_benchmark.py",
     "scripts/prepare_tcga_pancan_pretraining.py",
     "scripts/pretrain_exp_deepdep.py",
-    "scripts/audit_elastic_net_numerics.py"
+    "scripts/audit_elastic_net_numerics.py",
+    "scripts/certified_elastic_net.py",
+    "scripts/run_elastic_net_upper_grid.py"
   ],
   "release_claim": "Cross-platform expression-based selective-dependency prioritization with fair baseline comparison and unseen-patient stability confirmation.",
   "claim_ceiling": "No patient functional dependency, therapeutic-window, efficacy or safety claim.",
