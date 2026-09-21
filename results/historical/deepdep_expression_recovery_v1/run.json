@@ -1,0 +1,48 @@
+{
+  "status": "expression_feature_recovery_complete_no_model_fitted",
+  "created_utc": "2026-09-21T05:58:36.797781+00:00",
+  "elapsed_seconds": 9.60898445697967,
+  "device_for_numerical_checks": "NVIDIA GeForce RTX 5070 Ti",
+  "model_n": 873,
+  "expression_feature_n": 6016,
+  "previous_observed_n": 4678,
+  "recovered_feature_n": 706,
+  "observed_feature_n": 5384,
+  "imputed_feature_n": 632,
+  "feature_status_counts": {
+    "retained_observed": 4678,
+    "recovered_from_expression_only": 706,
+    "approved_absent_from_raw_expression": 380,
+    "unresolved_hgnc_symbol": 248,
+    "ambiguous_hgnc_alias": 4
+  },
+  "retained_expression_max_abs_difference": 0.0,
+  "non_expression_arrays_unchanged": true,
+  "tcga_kirc_test_read": false,
+  "target_n": 1204,
+  "primary_target_n": 911,
+  "sources": {
+    "raw_expression_name": "OmicsExpressionProteinCodingGenesTPMLogp1.csv",
+    "raw_expression_sha256": "2a71dc94110efcc0221eae821bb93a9f03b54bea16f005818911a09d33383d56",
+    "hgnc_sha256": "6a1423507780773fbcb373eaef84dba5f9357b36e7219db2aeaae13d8a42d62b",
+    "historical_input_sha256": "08c622ae91d8829ab1ff8a6ae6508fcfc796b4e40c2afb5d783b9f115df6e63b",
+    "historical_audit_sha256": "6a0fbc7f4a032cc086cb89a2ac25fe9d97e41a817c701a18f0c825fa832c8514",
+    "script_sha256": "a8cfacbb9e7b0eeaae0f23509c767fc89a9c13bee4736e1cf9a32a961563a03c"
+  },
+  "recovered_input_sha256": "74961c3a34f3c6151f359002ff8de311a340a07a54b5bdf082e1dba65f626db9",
+  "rules": [
+    "Original 873-model order and 1204 targets retained; no target-based feature filtering.",
+    "Same HGNC canonicalization and duplicate-column mean as the baseline builder.",
+    "Unresolved or ambiguous genes are not guessed; still-missing values retain official CCLE means.",
+    "Raw log2(TPM+1) values used unchanged; no TCGA file read."
+  ],
+  "limitations": [
+    "More complete does not mean all official features are observed.",
+    "Recovered features were excluded by the old shared-modality gene intersection, not absent from raw expression.",
+    "This input audit gives no model-performance or patient-function evidence."
+  ],
+  "output_sha256": {
+    "coverage_summary.csv": "67237c2b481eeb81653960db55d036d87dcc3b202324523bbf909964fba77099",
+    "feature_recovery.csv.gz": "0d5a0170bb519d759f5339e0ee219851d9a975a1539ccdd24e22b920f43c0936"
+  }
+}

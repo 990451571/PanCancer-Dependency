@@ -1,0 +1,112 @@
+{
+  "name": "Recovered-expression Exp-DeepDEP and PCR comparison",
+  "date": "2026-09-21",
+  "status": "design_frozen_before_new_model_training; execution_requires_training_only_runtime_audit",
+  "scope": "Same-data adaptation with official pair minibatching; not an exact historical-paper reproduction.",
+  "inputs": {
+    "directory": "data/processed/advanced_model_benchmark_expression_recovered_v1",
+    "matrix_sha256": "74961c3a34f3c6151f359002ff8de311a340a07a54b5bdf082e1dba65f626db9",
+    "audit_sha256": "66b528e7ea69791fb5c53c4ac1ba98b2ce3e6921c35778540903fc7ee75265c3",
+    "models": 873,
+    "outer_heldout_models": 805,
+    "outer_lineages": 19,
+    "targets": 1204,
+    "primary_targets": 911,
+    "expression_positions": 6016,
+    "observed_positions": 5384,
+    "imputed_positions": 632,
+    "feature_policy": "Both PCR and DeepDEP use the exact same recovered matrix; remaining missing positions keep official reference means. No fuzzy mapping or outcome-based feature selection."
+  },
+  "source_reference": {
+    "commit": "14d15cd5a4f970f3613f9681c544df0a6449bb3a",
+    "url": "https://raw.githubusercontent.com/chenlab-gccri/DeepDEP/14d15cd5a4f970f3613f9681c544df0a6449bb3a/code/TrainNewModel.py",
+    "sha256": "dacb49fd4d79e62b79159f3f75e2ce0106ad328614b414f98f250feb76c5bc3a"
+  },
+  "outer_split": "results/historical/selective_dependency_benchmark_v1/splits.csv.gz",
+  "inner_selection": {
+    "folds": 5,
+    "seed_rule": "20260917 + sorted outer-lineage index (zero based)",
+    "grouping": "Reuse patient-connected whole-lineage folds from historical benchmark.",
+    "metric": "Non-common-essential within-model residual NDCG@10, averaged equally by inner heldout lineage.",
+    "deep_rule": "For each frozen checkpoint, average predictions of three seeds, then score; pool all five inner folds. Select the checkpoint with maximum lineage-equal NDCG; ties choose fewer epochs.",
+    "outer_refit": "Refit three seeds on all outer training models for the selected epoch count; ensemble predictions."
+  },
+  "models": {
+    "pcr_ridge": {
+      "ranks": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "alphas": [
+        100,
+        1000,
+        10000,
+        100000
+      ],
+      "selection": "Same five inner folds and NDCG; ties prefer lower rank then higher alpha."
+    },
+    "exp_deepdep_residual_primary": {
+      "training_target": "Dependency minus training gene mean"
+    },
+    "exp_deepdep_absolute_secondary": {
+      "training_target": "Absolute dependency",
+      "ranking_conversion": "Subtract the corresponding training gene mean from predictions and truth before selective ranking; never substitute for the primary result."
+    }
+  },
+  "deep_training": {
+    "architecture": "6016-500-200-50 expression encoder; 3115-1000-100-50 fingerprint encoder; concatenation then 250-250-1; hidden ReLU, linear output.",
+    "optimizer": "Adam lr=0.001, betas=(0.9,0.999), eps=1e-7; no optimizer search.",
+    "batch": "500 observed (cell line, target) pairs; uniformly shuffled without replacement each epoch; one optimizer step per batch.",
+    "maximum_epochs": 100,
+    "selection_checkpoints": [
+      1,
+      2,
+      5,
+      10,
+      20,
+      40,
+      60,
+      80,
+      100
+    ],
+    "seeds": [
+      20260917,
+      20260918,
+      20260919
+    ],
+    "pretraining": "Reuse the existing non-KIRC 8829-tumor expression autoencoder and verify its hash. No KIRC re-pretraining.",
+    "encoder_sha256": "453cab2cb878836bd6e0a8412b02e43255fb5f2795c42453f83fc7c08dfc0806",
+    "validation_rule": "No test-based early stopping. Train to maximum or a checkpoint selected exclusively from inner folds for the outer refit.",
+    "initialization": "Reuse the audited encoder; He-uniform for all new linear layers including the output, zero biases; not claimed bit-identical to legacy Keras."
+  },
+  "budget": {
+    "per_variant_maximum_optimizer_steps": 56749800,
+    "both_deep_variants_maximum_optimizer_steps": 113499600,
+    "equivalent_structured_32_model_steps_per_variant": 759300,
+    "pair_to_structured_step_ratio": 74.73962860529436,
+    "meaning": "Maximum assumes all 5 inner fits plus outer refit run 100 epochs, three seeds, all 19 outer lineages. Actual outer epochs may be lower.",
+    "runtime_gate": "Before full training, measure 20 warmup plus 200 timed GPU updates on the first sorted outer lineage first inner training fold only. Report expected compute cost; do not change model settings based on heldout performance. If the runtime is impractical, record a versioned resource-driven protocol amendment before examining any new heldout model performance; the nominal budget is not an instruction to launch both full runs immediately.",
+    "fairness_boundary": "Match data, folds, ranking selection and exposure limits; analytic PCR and neural models do not have equal FLOPs or equal search spaces."
+  },
+  "evaluation": {
+    "primary": "Lineage-equal residual NDCG@10 over 911 targets",
+    "secondary": [
+      "selective_precision_at_10",
+      "top10_overlap",
+      "spearman",
+      "regret"
+    ],
+    "uncertainty": "20000 paired bootstrap draws by lineage and patient, CUDA, seed 20260921",
+    "claim_gate": "Primary DeepDEP must have a positive paired 95% NDCG interval versus newly fitted PCR; otherwise no superiority claim.",
+    "external": "A positive internal result may motivate a separately frozen Sanger feature-coverage audit; existing restricted-expression Sanger results cannot be relabeled as this comparison."
+  },
+  "limitations": [
+    "Post-hoc development comparison on previously inspected holdouts.",
+    "632 expression positions remain imputed; two observed positions duplicate canonical genes.",
+    "DepMap release, targets, grouping, pretraining population and checkpoint selection differ from original publication.",
+    "Changing features and batching together does not isolate their individual causal effects.",
+    "No TCGA KIRC Locked Test access, no patient functional validation."
+  ]
+}

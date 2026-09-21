@@ -219,6 +219,27 @@ def verify_elastic_upper_grid(root: Path) -> None:
     print("【上界审计】19癌系×5内层折×4个α｜逐靶点数值条件全部通过", flush=True)
 
 
+def verify_deepdep_expression_recovery(root: Path) -> None:
+    directory = root / "results/historical/deepdep_expression_recovery_v1"
+    run = json.loads((directory / "run.json").read_text())
+    frame = pd.read_csv(directory / "feature_recovery.csv.gz")
+    if len(frame) != 6016 or frame.feature_index.tolist() != list(range(6016)):
+        raise ValueError("DeepDEP特征顺序或数量改变")
+    expected = {"retained_observed": 4678, "recovered_from_expression_only": 706,
+                "approved_absent_from_raw_expression": 380, "unresolved_hgnc_symbol": 248,
+                "ambiguous_hgnc_alias": 4}
+    if frame.status.value_counts().to_dict() != expected:
+        raise ValueError("DeepDEP特征恢复分类不一致")
+    if int(frame.now_observed.sum()) != 5384 or run["retained_expression_max_abs_difference"] != 0:
+        raise ValueError("DeepDEP实测覆盖或历史一致性改变")
+    if run["tcga_kirc_test_read"] or not run["non_expression_arrays_unchanged"]:
+        raise ValueError("DeepDEP输入修复超出许可范围")
+    protocol = json.loads((root / "configs/deepdep_recovered_comparison_protocol_20260921.json").read_text())
+    if protocol["inputs"]["matrix_sha256"] != run["recovered_input_sha256"]:
+        raise ValueError("下一轮方案未绑定恢复后的输入")
+    print("【DeepDEP输入】恢复706｜实测5384｜填补632｜无新性能结论", flush=True)
+
+
 def verify_portability(root: Path) -> None:
     offenders = []
     for base in (root / "scripts", root / "configs"):
@@ -276,6 +297,8 @@ def main():
         verify_elastic_numerical_audit(root)
     if "results/historical/elastic_net_upper_grid_v1" in manifest["snapshot_directories"]:
         verify_elastic_upper_grid(root)
+    if "results/historical/deepdep_expression_recovery_v1" in manifest["snapshot_directories"]:
+        verify_deepdep_expression_recovery(root)
     print("【科学边界】候选20｜RNAi复现3｜亚型特异方向1｜患者功能真值0", flush=True)
 
     print("【阶段 3/4】核验环境与机器路径可移植性", flush=True)

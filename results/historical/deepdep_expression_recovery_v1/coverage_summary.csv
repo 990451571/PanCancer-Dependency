@@ -1,0 +1,6 @@
+status,feature_n
+retained_observed,4678
+recovered_from_expression_only,706
+approved_absent_from_raw_expression,380
+unresolved_hgnc_symbol,248
+ambiguous_hgnc_alias,4
