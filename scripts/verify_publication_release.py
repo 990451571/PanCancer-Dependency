@@ -240,6 +240,57 @@ def verify_deepdep_expression_recovery(root: Path) -> None:
     print("【DeepDEP输入】恢复706｜实测5384｜填补632｜无新性能结论", flush=True)
 
 
+def verify_deepdep_recovered_results(root: Path) -> None:
+    directory = root / "results/historical/deepdep_recovered_comparison_v1"
+    run = json.loads((directory / "run.json").read_text())
+    protocol_path = root / "configs/deepdep_recovered_comparison_protocol_20260921.json"
+    protocol = json.loads(protocol_path.read_text())
+    if sha256(protocol_path) != run["signature"]["files"][str(protocol_path.relative_to(root))]:
+        raise ValueError("DeepDEP训练协议与结果不匹配")
+    metrics = pd.read_csv(directory / "per_model_metrics.csv.gz")
+    training = pd.read_csv(directory / "training.csv.gz")
+    tuning = pd.read_csv(directory / "tuning.csv.gz")
+    variants = ["exp_deepdep_residual_primary", "exp_deepdep_absolute_secondary"]
+    methods = ["expression_pcr_ridge", *variants]
+    if set(metrics.method) != set(methods) or not metrics.groupby("method").ModelID.nunique().eq(805).all():
+        raise ValueError("DeepDEP比较的三方法覆盖不一致")
+    if metrics.duplicated(["ModelID", "method"]).any() or metrics.heldout_lineage.nunique() != 19:
+        raise ValueError("DeepDEP模型重复或癌系缺失")
+    fields = ["ndcg_at_10", "selective_precision_at_10", "top10_overlap", "spearman", "regret"]
+    if metrics[fields].isna().any().any() or metrics[fields].isin([float("inf"), -float("inf")]).any().any():
+        raise ValueError("DeepDEP评价存在非有限值")
+    groups = training.groupby(["outer_lineage", "scope", "inner_fold", "variant", "seed"])
+    expected = {(lineage, scope, fold, variant, seed)
+                for lineage in metrics.heldout_lineage.unique()
+                for scope in ("inner", "outer")
+                for fold in (range(1, 6) if scope == "inner" else [0])
+                for variant in variants for seed in protocol["deep_training"]["seeds"]}
+    if set(groups.groups) != expected or len(expected) != 684:
+        raise ValueError("DeepDEP五折或三种子拟合不完整")
+    for (lineage, scope, fold, variant, seed), frame in groups:
+        end = 100 if scope == "inner" else run["selected_parameters"][lineage][variant]
+        if frame.epoch.tolist() != list(range(1, end + 1)):
+            raise ValueError("DeepDEP训练epoch不连续或外层重拟合轮数错误")
+    for lineage, frame in tuning.groupby("outer_lineage"):
+        for method, current in frame.groupby("method"):
+            if method == "expression_pcr_ridge":
+                values = current.groupby(["rank", "alpha"]).ndcg.mean()
+                selected = list(sorted(values.index, key=lambda c: (-values[c], c[0], -c[1]))[0])
+            else:
+                values = current.groupby("epoch").ndcg.mean()
+                selected = int(sorted(values.index, key=lambda e: (-values[e], e))[0])
+            if selected != run["selected_parameters"][lineage][method]:
+                raise ValueError("DeepDEP/PCR参数不符合训练内选择规则")
+    summary = pd.read_csv(directory / "overall_summary.csv")
+    recomputed = metrics.groupby(["heldout_lineage", "method"])[fields].mean().groupby("method").mean()
+    stored = summary.loc[summary.estimand.eq("lineage_equal")].set_index("method")[fields]
+    if ((recomputed-stored).abs() > 1e-12).any().any():
+        raise ValueError("DeepDEP总体指标不能从逐模型记录复算")
+    if run["tcga_kirc_locked_test_read"]:
+        raise ValueError("DeepDEP比较访问了患者Locked Test")
+    print("【DeepDEP正式结果】684次拟合完整｜三方法805模型｜选参与汇总复算一致", flush=True)
+
+
 def verify_portability(root: Path) -> None:
     offenders = []
     for base in (root / "scripts", root / "configs"):
@@ -299,6 +350,8 @@ def main():
         verify_elastic_upper_grid(root)
     if "results/historical/deepdep_expression_recovery_v1" in manifest["snapshot_directories"]:
         verify_deepdep_expression_recovery(root)
+    if "results/historical/deepdep_recovered_comparison_v1" in manifest["snapshot_directories"]:
+        verify_deepdep_recovered_results(root)
     print("【科学边界】候选20｜RNAi复现3｜亚型特异方向1｜患者功能真值0", flush=True)
 
     print("【阶段 3/4】核验环境与机器路径可移植性", flush=True)

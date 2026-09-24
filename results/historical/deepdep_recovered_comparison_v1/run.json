@@ -1,0 +1,243 @@
+{
+  "status": "recovered_expression_comparison_complete",
+  "created_utc": "2026-09-23T15:40:29.606032+00:00",
+  "signature": {
+    "files": {
+      "configs/deepdep_recovered_comparison_protocol_20260921.json": "dc7b4ec187ad0fe09b1e54a242075bffd12f376edd1e4756a62a084a8a417fc0",
+      "data/processed/advanced_model_benchmark_expression_recovered_v1/audit.json": "66b528e7ea69791fb5c53c4ac1ba98b2ce3e6921c35778540903fc7ee75265c3",
+      "data/processed/advanced_model_benchmark_expression_recovered_v1/benchmark_inputs.npz": "74961c3a34f3c6151f359002ff8de311a340a07a54b5bdf082e1dba65f626db9",
+      "data/processed/tcga_pancan_deepdep_pretrain_v1/expression_encoder.pt": "453cab2cb878836bd6e0a8412b02e43255fb5f2795c42453f83fc7c08dfc0806",
+      "results/historical/selective_dependency_benchmark_v1/splits.csv.gz": "62d533df639843d9b23a4d94a76e2348b9cd6cb92dcaafa8a895becb99d24fae",
+      "data/processed/depmap_baseline_24q4_v1/models.csv": "0480c58279537f1579eec99a60b869a3254b682c75c1bde6ead546b1d5a9366c",
+      "scripts/run_deepdep_recovered_comparison.py": "a29d024c46ca8fd5e96fc9113301c9fbb2edbb8dd305563d7c138979d01bca65",
+      "scripts/deepdep_pair_training.py": "48b43543756f38b502eb3dcd0d5f9ed89e85f917581387ca3a067424ab3aa9a0",
+      "scripts/advanced_model_methods.py": "141f337111fa0d7895be8e931fb55a458f12833f6b376cde0e4471c5a6d1ccbc",
+      "scripts/run_advanced_model_benchmark.py": "4f7fe4f5b598f35007edc395dbc28fd925c886b9e0f000a15657d8f254579346",
+      "scripts/run_selective_dependency.py": "4477c430833279b00bc4d5cf106741b5477d6101f8e5dbc460edef60c137875e",
+      "scripts/run_selective_dependency_benchmark.py": "0b8e27941ca162866cedad40eb252d68f5902c36dcaaee30fcdc18766a1b355f",
+      "scripts/run_depmap_baseline.py": "8c221c7cb7c060b7cd98e243d086e8e322de02d96a0c8dd323cf11c894884762"
+    },
+    "environment": {
+      "python": "3.10.20",
+      "torch": "2.11.0+cu130",
+      "numpy": "1.23.0",
+      "pandas": "2.2.3",
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "tf32_matmul": false
+    }
+  },
+  "runtime_audit": {
+    "warmup_updates": 20,
+    "timed_updates": 200,
+    "seconds": 0.40576070599490777,
+    "seconds_per_update": 0.0020288035299745387,
+    "pairs_per_batch": 500,
+    "peak_allocated_gpu_bytes": 203646464,
+    "training_model_n": 674,
+    "observed_training_pair_n": 807595,
+    "status": "training_only_runtime_audit",
+    "created_utc": "2026-09-21T06:43:05.652607+00:00",
+    "signature": {
+      "files": {
+        "configs/deepdep_recovered_comparison_protocol_20260921.json": "dc7b4ec187ad0fe09b1e54a242075bffd12f376edd1e4756a62a084a8a417fc0",
+        "data/processed/advanced_model_benchmark_expression_recovered_v1/audit.json": "66b528e7ea69791fb5c53c4ac1ba98b2ce3e6921c35778540903fc7ee75265c3",
+        "data/processed/advanced_model_benchmark_expression_recovered_v1/benchmark_inputs.npz": "74961c3a34f3c6151f359002ff8de311a340a07a54b5bdf082e1dba65f626db9",
+        "data/processed/tcga_pancan_deepdep_pretrain_v1/expression_encoder.pt": "453cab2cb878836bd6e0a8412b02e43255fb5f2795c42453f83fc7c08dfc0806",
+        "results/historical/selective_dependency_benchmark_v1/splits.csv.gz": "62d533df639843d9b23a4d94a76e2348b9cd6cb92dcaafa8a895becb99d24fae",
+        "data/processed/depmap_baseline_24q4_v1/models.csv": "0480c58279537f1579eec99a60b869a3254b682c75c1bde6ead546b1d5a9366c",
+        "scripts/run_deepdep_recovered_comparison.py": "a29d024c46ca8fd5e96fc9113301c9fbb2edbb8dd305563d7c138979d01bca65",
+        "scripts/deepdep_pair_training.py": "48b43543756f38b502eb3dcd0d5f9ed89e85f917581387ca3a067424ab3aa9a0",
+        "scripts/advanced_model_methods.py": "141f337111fa0d7895be8e931fb55a458f12833f6b376cde0e4471c5a6d1ccbc",
+        "scripts/run_advanced_model_benchmark.py": "4f7fe4f5b598f35007edc395dbc28fd925c886b9e0f000a15657d8f254579346",
+        "scripts/run_selective_dependency.py": "4477c430833279b00bc4d5cf106741b5477d6101f8e5dbc460edef60c137875e",
+        "scripts/run_selective_dependency_benchmark.py": "0b8e27941ca162866cedad40eb252d68f5902c36dcaaee30fcdc18766a1b355f",
+        "scripts/run_depmap_baseline.py": "8c221c7cb7c060b7cd98e243d086e8e322de02d96a0c8dd323cf11c894884762"
+      },
+      "environment": {
+        "python": "3.10.20",
+        "torch": "2.11.0+cu130",
+        "numpy": "1.23.0",
+        "pandas": "2.2.3",
+        "device": "NVIDIA GeForce RTX 5070 Ti",
+        "tf32_matmul": false
+      }
+    },
+    "outer_lineage": "Biliary Tract",
+    "heldout_predictions_computed": false,
+    "one_variant_update_only_hours": 31.981720712596964,
+    "both_variants_update_only_hours": 63.96344142519393
+  },
+  "selected_parameters": {
+    "Biliary Tract": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 5,
+      "exp_deepdep_absolute_secondary": 60
+    },
+    "Bladder/Urinary Tract": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 5,
+      "exp_deepdep_absolute_secondary": 100
+    },
+    "Bone": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "exp_deepdep_residual_primary": 40,
+      "exp_deepdep_absolute_secondary": 20
+    },
+    "Bowel": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 5,
+      "exp_deepdep_absolute_secondary": 20
+    },
+    "Breast": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "exp_deepdep_residual_primary": 40,
+      "exp_deepdep_absolute_secondary": 60
+    },
+    "CNS/Brain": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "exp_deepdep_residual_primary": 60,
+      "exp_deepdep_absolute_secondary": 20
+    },
+    "Esophagus/Stomach": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 60,
+      "exp_deepdep_absolute_secondary": 40
+    },
+    "Head and Neck": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "exp_deepdep_residual_primary": 20,
+      "exp_deepdep_absolute_secondary": 60
+    },
+    "Kidney": {
+      "expression_pcr_ridge": [
+        128,
+        1000.0
+      ],
+      "exp_deepdep_residual_primary": 60,
+      "exp_deepdep_absolute_secondary": 20
+    },
+    "Liver": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 20,
+      "exp_deepdep_absolute_secondary": 60
+    },
+    "Lung": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 40,
+      "exp_deepdep_absolute_secondary": 40
+    },
+    "Lymphoid": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 60,
+      "exp_deepdep_absolute_secondary": 40
+    },
+    "Myeloid": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 40,
+      "exp_deepdep_absolute_secondary": 60
+    },
+    "Ovary/Fallopian Tube": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 20,
+      "exp_deepdep_absolute_secondary": 40
+    },
+    "Pancreas": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 40,
+      "exp_deepdep_absolute_secondary": 10
+    },
+    "Peripheral Nervous System": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 5,
+      "exp_deepdep_absolute_secondary": 20
+    },
+    "Skin": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 100,
+      "exp_deepdep_absolute_secondary": 100
+    },
+    "Soft Tissue": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 40,
+      "exp_deepdep_absolute_secondary": 80
+    },
+    "Uterus": {
+      "expression_pcr_ridge": [
+        256,
+        10000.0
+      ],
+      "exp_deepdep_residual_primary": 20,
+      "exp_deepdep_absolute_secondary": 40
+    }
+  },
+  "model_n": 805,
+  "lineage_n": 19,
+  "tcga_kirc_locked_test_read": false,
+  "limitations": [
+    "Post-hoc development comparison on previously inspected holdouts.",
+    "632 expression positions remain imputed; two observed positions duplicate canonical genes.",
+    "DepMap release, targets, grouping, pretraining population and checkpoint selection differ from original publication.",
+    "Changing features and batching together does not isolate their individual causal effects.",
+    "No TCGA KIRC Locked Test access, no patient functional validation."
+  ],
+  "output_sha256": {
+    "per_model_metrics.csv.gz": "be7e6f4421ab2f76d73b46e8b5edda3c1dc53adfce345b0dbae661df7278d325",
+    "overall_summary.csv": "bb7ccd9e099c08fe14d5a60cc04865398dd455df1eeca43be843c37dc427978d",
+    "lineage_summary.csv": "1293b645512623a412d80acfb1c3b2ca84c7eeca00283b1260f28746a0cae6ec",
+    "paired_deltas.csv.gz": "db87120a644474854ea066a23f247718c98aa7dcf2ef62ac1f14c11ec8212ca8",
+    "bootstrap.csv": "beb85881fedbc59266f2647d1d503b48cd1b6bc27bf0e30a007c502dd8fdad54",
+    "tuning.csv.gz": "529b9ff4fb5c44945019e1f9ab056bb87131a42d0c45a3ef5b444df613e8f175",
+    "training.csv.gz": "3c13f42223340496c6c2b02b909fc198698a7367386112a5c5ffd780cf5950a8"
+  }
+}

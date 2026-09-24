@@ -1,6 +1,6 @@
 {
   "release_name": "PanCancer-Dependency computational publication package",
-  "version": "2026-09-21-v7",
+  "version": "2026-09-24-v8",
   "snapshot_directories": [
     "results/historical/ccrcc_primary_functional_audit_v1",
     "results/historical/selective_dependency_benchmark_v1",
@@ -13,7 +13,8 @@
     "results/historical/elastic_net_numerical_audit_v1",
     "results/historical/elastic_net_upper_grid_v1",
     "results/historical/deepdep_expression_recovery_v1",
-    "results/historical/deepdep_recovered_runtime_v1"
+    "results/historical/deepdep_recovered_runtime_v1",
+    "results/historical/deepdep_recovered_comparison_v1"
   ],
   "frozen_protocols": [
     "configs/tcga_locked_test_protocol_20260916.json",
