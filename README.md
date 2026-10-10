@@ -276,6 +276,16 @@ GRB2、CFLAR、YRDC 和 CHMP7 目前只有三个冻结 Sanger 肾癌模型一致
 
 如果目标是把论文结论从“计算优先排序”提升为“ccRCC 功能靶点”，下一步所需的不是继续训练相似模型，而是新的实验数据：优先在患者来源 ccRCC 类器官或短期原代模型中对 PAX8、HNF1B、FERMT2、CCND1 等候选进行 loss-of-function 验证，并在正常肾类器官中使用相同扰动和可比较终点评估治疗窗。
 
+## 学术汇报
+
+已将项目目的、公开数据与评价设计、跨平台结果、强基线比较、恢复表达后的 DeepDEP 正式结果，以及历史患者候选的支持与风险整理为 28 页学术汇报。汇报区分不同基因空间和历史患者模型，保留负结果与患者功能验证的结论边界。
+
+- [可编辑 PPTX](ppt/PanCancer_Dependency_学术汇报.pptx)：正文、统计图与流程图均为原生文本或形状，可在 WPS 中逐项编辑；已通过本机 WPS 打开及 PDF 导出检查。
+- [PDF 预览](ppt/PanCancer_Dependency_学术汇报.pdf)：由 WPS 从同一 PPTX 导出。
+- [复建脚本](ppt/build_presentation.py)：主要模型图读取版本化 CSV；历史摘要数字来自本 README 和各页标注的结果目录。依赖 `python-pptx`、`Pillow`；当前预览字体使用 Windows 微软雅黑路径，跨平台复建需调整字体路径。
+
+汇报结果截至 2026-09-24，制作版本为 2026-10-10；文献资源审计结论限于原冻结范围。图形为自制可编辑示意和结果可视化，未使用 AI 生成实验图像。
+
 ## 使用说明
 
 在 WSL 中使用 `/home/liliang/miniconda3/envs/rl_genrisk/bin/python`。精简依赖见 `requirements.txt`；全新安装环境尚未验证。
