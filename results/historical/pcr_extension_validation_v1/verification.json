@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "snapshot_file_n": 45,
+  "model_reload_prediction_storage_max_error": 2.3735513998701663e-07,
+  "test_patient_overlap": 0,
+  "checks": [
+    "source/output/script hashes",
+    "snapshot integrity",
+    "GPU model reload",
+    "all patient Top10 recomputation",
+    "Train-only candidate ordering",
+    "50 patient-cluster draws per uncertainty type",
+    "barcode/UMI provenance",
+    "pseudobulk conservation/detection/CPM",
+    "mixture donor identity",
+    "PNG/PDF signatures"
+  ]
+}

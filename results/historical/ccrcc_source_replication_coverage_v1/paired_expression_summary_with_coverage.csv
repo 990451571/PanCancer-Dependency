@@ -1,0 +1,59 @@
+qc,Gene,matched_donor_record_n,valid_paired_donor_n,both_zero_donor_n,median_log2_cpm_ratio,positive_donor_n,negative_donor_n,pcr_discovery_rank,historical_frozen_candidate,gene_symbol_measured,interpretation
+author_only,ADSL,5,5,0,-0.0407443998740465,2,3,15.0,False,True,Measured; zero values are distinguishable from absence
+author_only,BRAT1,5,5,0,-0.3288078584896456,2,3,14.0,False,True,Measured; zero values are distinguishable from absence
+author_only,CCND1,5,5,0,1.5814905701778736,4,1,,True,True,Measured; zero values are distinguishable from absence
+author_only,CFLAR,5,5,0,0.1948337533447696,3,2,,True,True,Measured; zero values are distinguishable from absence
+author_only,CHMP7,5,5,0,-0.2529663331570457,2,3,,True,True,Measured; zero values are distinguishable from absence
+author_only,EEFSEC,5,5,0,-0.1586041255638555,1,4,12.0,True,True,Measured; zero values are distinguishable from absence
+author_only,EP300,5,5,0,-0.3139247443734762,2,3,11.0,False,True,Measured; zero values are distinguishable from absence
+author_only,FERMT2,5,5,0,-0.5094866789787249,1,4,,True,True,Measured; zero values are distinguishable from absence
+author_only,FOXA1,5,5,5,0.0,0,0,8.0,True,True,Measured; zero values are distinguishable from absence
+author_only,GCN1,5,0,0,,0,0,,True,False,Symbol absent; no alias mapping; expression and paired effect are unavailable
+author_only,GRB2,5,5,0,-0.0077440133446873,2,3,18.0,True,True,Measured; zero values are distinguishable from absence
+author_only,HNF1B,5,5,0,-1.9343606523190529,0,5,,True,True,Measured; zero values are distinguishable from absence
+author_only,HSD17B12,5,5,0,-0.796296392559082,0,5,10.0,True,True,Measured; zero values are distinguishable from absence
+author_only,MRPL33,5,5,0,-1.2488833082784774,0,5,1.0,False,True,Measured; zero values are distinguishable from absence
+author_only,MRPL57,5,0,0,,0,0,7.0,False,False,Symbol absent; no alias mapping; expression and paired effect are unavailable
+author_only,PAX8,5,5,0,-1.9534904301902256,0,5,,True,True,Measured; zero values are distinguishable from absence
+author_only,PSTK,5,5,1,0.0,2,2,20.0,True,True,Measured; zero values are distinguishable from absence
+author_only,RAD9A,5,5,0,-1.3111924770350305,1,4,19.0,False,True,Measured; zero values are distinguishable from absence
+author_only,SEPHS2,5,5,0,-1.0517028607929566,0,5,2.0,True,True,Measured; zero values are distinguishable from absence
+author_only,SEPSECS,5,5,0,0.4349127922148477,4,1,9.0,True,True,Measured; zero values are distinguishable from absence
+author_only,SLC33A1,5,5,0,0.749584756605523,3,2,17.0,True,True,Measured; zero values are distinguishable from absence
+author_only,SMG7,5,5,0,-0.2248927346984698,1,4,6.0,False,True,Measured; zero values are distinguishable from absence
+author_only,SNAP23,5,5,0,0.0388809687791525,4,1,13.0,False,True,Measured; zero values are distinguishable from absence
+author_only,UBC,5,5,0,0.1766685679710772,4,1,16.0,False,True,Measured; zero values are distinguishable from absence
+author_only,UBR5,5,5,0,0.2771293048655561,3,2,,True,True,Measured; zero values are distinguishable from absence
+author_only,UXS1,5,5,0,-1.6681075335101323,0,5,,True,True,Measured; zero values are distinguishable from absence
+author_only,WDR73,5,5,0,0.4459975838048735,3,2,3.0,True,True,Measured; zero values are distinguishable from absence
+author_only,YPEL5,5,5,0,-0.6069843437460283,1,4,5.0,True,True,Measured; zero values are distinguishable from absence
+author_only,YRDC,5,5,0,-0.5167744176060853,2,3,4.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,ADSL,5,5,0,0.010534583905884,3,2,15.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,BRAT1,5,5,0,-0.39604281500996,2,3,14.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,CCND1,5,5,0,1.573263136508293,4,1,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,CFLAR,5,5,0,0.106038111566131,3,2,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,CHMP7,5,5,0,0.1264562267043527,3,2,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,EEFSEC,5,5,0,-0.2148816337487383,1,4,12.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,EP300,5,5,0,-0.3825930560918307,2,3,11.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,FERMT2,5,5,0,-0.4138718886782573,1,4,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,FOXA1,5,5,5,0.0,0,0,8.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,GCN1,5,0,0,,0,0,,True,False,Symbol absent; no alias mapping; expression and paired effect are unavailable
+extra_qc,GRB2,5,5,0,0.016932834375264,3,2,18.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,HNF1B,5,5,0,-1.894265084263132,0,5,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,HSD17B12,5,5,0,-0.8928394937935168,0,5,10.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,MRPL33,5,5,0,-1.234526297071849,0,5,1.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,MRPL57,5,0,0,,0,0,7.0,False,False,Symbol absent; no alias mapping; expression and paired effect are unavailable
+extra_qc,PAX8,5,5,0,-2.037558894398875,0,5,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,PSTK,5,5,1,0.0,2,2,20.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,RAD9A,5,5,0,-1.5510944915704652,0,5,19.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,SEPHS2,5,5,0,-0.8550861913756482,0,5,2.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,SEPSECS,5,5,0,0.3235353053674321,3,2,9.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,SLC33A1,5,5,0,0.6344271358018113,3,2,17.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,SMG7,5,5,0,-0.2931964608150417,2,3,6.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,SNAP23,5,5,0,0.0498232400940059,3,2,13.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,UBC,5,5,0,0.1835767716275038,4,1,16.0,False,True,Measured; zero values are distinguishable from absence
+extra_qc,UBR5,5,5,0,0.2496988262961013,3,2,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,UXS1,5,5,0,-1.6970205635629665,0,5,,True,True,Measured; zero values are distinguishable from absence
+extra_qc,WDR73,5,5,0,0.3002051284533193,3,2,3.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,YPEL5,5,5,0,-0.501816017122014,1,4,5.0,True,True,Measured; zero values are distinguishable from absence
+extra_qc,YRDC,5,5,0,-0.502467977113997,2,3,4.0,True,True,Measured; zero values are distinguishable from absence

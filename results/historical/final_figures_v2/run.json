@@ -28,15 +28,15 @@
     "locked_test_run": "437007f387a5b7fa6dd7c5257f44699bf3fdcc9634afc814407f7fcc670a8ae8"
   },
   "output_sha256": {
-    "figure1_validation_and_evidence_ceiling.png": "07933442aba0cd68077c80596603005deaf39b8bda37aa90b6997853d29c2027",
-    "figure1_validation_and_evidence_ceiling.pdf": "099eb82a069f5a17f88401d8928197988ee4cb60df061aa019d8928824e52bb2",
-    "figure2_candidate_evidence_matrix.png": "9b3d4a17a8d7bf75f7061018734acd9178ca92fe5eceff98aa7aeed0e4d6628d",
-    "figure2_candidate_evidence_matrix.pdf": "b597ac2637b463a7db0c85a731cd60fbdb10c6d3421f6ed07ecf0c661f1388bd",
-    "figure3_dependency_vs_normal_kidney_exposure.png": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd",
-    "figure3_dependency_vs_normal_kidney_exposure.pdf": "c6034b25bba8923d70c3fb0055384b96969a46e46d1468ca500bc192047dcaa0",
-    "figure4_baseline_generalization.png": "374619f401dafdbc295d87a65a3f9bff34dac12dafd8a99b6c2ef750c2fd3129",
-    "figure4_baseline_generalization.pdf": "bc3f53cd222c6f581002979524c0dc282ee78b0ff5152ca3fdde68fe543d79e0",
-    "figure_manifest.csv": "ccf2d24e27588720f7d47de45b9e53429d9d4816a00bba06efb3b17c1e41337a"
+    "图01_模型验证表现与患者证据边界.png": "b3fc123575f22b201b4d5d0f4cf91109d59e34b7ab343f51de8c5b5834e2a11e",
+    "图01_模型验证表现与患者证据边界.pdf": "7230019e54385de02a100e28e3b9d671b4ee839caca73365829246f95b335566",
+    "图02_ccRCC候选基因多层证据矩阵.png": "3b74e4ebe65f74a475b9039415d0642516b6ee580feef4afb96360a465acf088",
+    "图02_ccRCC候选基因多层证据矩阵.pdf": "dd36a03dc11c88e7e58df076114f286da613ca7dbf6c939d662eee2aa42a4268",
+    "图03_肿瘤基因依赖与正常肾表达风险.png": "4ab9dadddcd5546482f614043ac281c79c906c7b8d306d601dc658db7d0eaf32",
+    "图03_肿瘤基因依赖与正常肾表达风险.pdf": "9b0e1fd50efe6963509cb404703681ff99cfbae9490a5f8485cff710f4915747",
+    "图04_基线模型跨癌系与跨平台表现比较.png": "e68a5c8df0161efdaa0c54301e10c2d6f76d0191302cdd05f41fb403bd83406e",
+    "图04_基线模型跨癌系与跨平台表现比较.pdf": "3be35484a7cc7912acc847070ebfad6737992982b6356e0af5c9f5548786ffef",
+    "figure_manifest.csv": "e63f2c9e185d24ada4d1dafd06dce375740ebd2239534b5d5629bf8b3c589d1a"
   },
   "script_sha256": "5d7021e08920237f1523981d75961cdf47a21b044607fed4b15685eba61c2069",
   "limitations": [
@@ -44,5 +44,25 @@
     "Patient-transfer agreement is stability without functional ground truth.",
     "GTEx expression is normal-tissue exposure, not drug toxicity.",
     "The evidence matrix deliberately does not collapse heterogeneous evidence into a score."
-  ]
+  ],
+  "render_revision": {
+    "date": "2026-10-13",
+    "reference": "ppt/MechDec.pptx",
+    "renderer": "scripts/redraw_mechdec_figures.py",
+    "renderer_sha256": "479e2c9876afbf73cac3930f71cee8e69d3118a830a388eab27a34a0206faa9e",
+    "previous_run_sha256": "b4896f89c94ea589bcdb69c9397c0284aee1579e0c31163bb703554a9b1e659f",
+    "analysis_unchanged": true,
+    "status": "mechdec_style_redraw"
+  },
+  "filename_revision": {
+    "language": "Chinese",
+    "date": "2026-10-13",
+    "image_contents_unchanged": true,
+    "mapping": {
+      "figure1_validation_and_evidence_ceiling": "图01_模型验证表现与患者证据边界",
+      "figure2_candidate_evidence_matrix": "图02_ccRCC候选基因多层证据矩阵",
+      "figure3_dependency_vs_normal_kidney_exposure": "图03_肿瘤基因依赖与正常肾表达风险",
+      "figure4_baseline_generalization": "图04_基线模型跨癌系与跨平台表现比较"
+    }
+  }
 }

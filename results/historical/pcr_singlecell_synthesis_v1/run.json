@@ -1,0 +1,47 @@
+{
+  "status": "complete",
+  "pcr_run_sha256": "a65758d3bf14fe1021ccccba98833cbab78937ee637892175fb6238fd93c79b3",
+  "singlecell_run_sha256": "549f208f0a2ae5b0cf2b8bd032864ec013e876de062930ccb9127c99e1ed69b3",
+  "script_sha256": "d530aba4982b5747b1cd59c97eb9e8aa0f0a3831e1ba6aa31c3f957a6e31b3ec",
+  "candidate_reranking": false,
+  "locked_test_accessed": false,
+  "figure_n": 3,
+  "claim_ceiling": "Patient development ranking stability and descriptive independent expression sources",
+  "output_sha256": {
+    "bootstrap_overlap_summary.csv": "21af0b24c5894cea2f5117342ec5ce21e3b603c21fea580f9346d469dff2ed3c",
+    "bootstrap_per_patient_mean_overlap.csv": "3b8bfc63d71f12385a52f54f2d23e8d61f2236df9ced63b2bd74ceb71f4c8650",
+    "candidate_qc_source_summary.csv": "f70bcada513127b8187dd166cdf12d8e69d34e76b74caeae21826cf8b758ea93",
+    "domain_diagnostic_summary.csv": "b91d49d1a2b7804cbe380a5508e6cdd0730993cd7ee6bb261e58ef3c684b37b9",
+    "extension_summary.json": "1ceb097e9099cbff382632dd384eba46a3f7aa280f3eb9aea4c208c76035431f",
+    "图05_PCR患者迁移的排序稳定性与映射敏感性.pdf": "38be6356fe6be2058501420d3703b5f363e6e91c112363e6f20c79da9a9fc8c1",
+    "图05_PCR患者迁移的排序稳定性与映射敏感性.png": "dcfd0b6d364fc565c35e87c09becbab42477e987ce326e6110ddb37ca47a8d0f",
+    "图06_GSE159115候选基因的细胞来源与表达检出.pdf": "54722cf6c1b79378caaaef8bd7af81895b064c48b4c7ba8da313cea030aa15aa",
+    "图06_GSE159115候选基因的细胞来源与表达检出.png": "a25ad415a309feb1bfe13d6313a7dbb8ddf5df50a56de8399fbb170f7d955f82",
+    "图07_细胞混合对排序的影响与样本标签核查.pdf": "7ee3cc341c3d4d97759071a6257c34e2766f3320ce469248ac47d63e692aeb5a",
+    "图07_细胞混合对排序的影响与样本标签核查.png": "09da6e60eedf14d74e018d9a9a2690793505df6bc6e24ea4818b0f2227054fea",
+    "mapping_overlap_summary.csv": "1e51614e45f7f0925105bd8d2ae3505139e49e32154d0b8701a35a544e98e193",
+    "mixture_overlap_summary.csv": "05bea908ed82b1b8a2a2079a7bd99628709a35767907f8cfe53c74adc23e9e2f",
+    "pcr_candidate_evidence_table.csv": "e3185ffbbf267f9a21785359443c0f189a4b43cb9ee918e92d854efe7b694ad1",
+    "pcr_input_feature_cell_sources.csv.gz": "ec174ab8a2f65eef717a1bb162d1c3034c03aa529384bc6ec131cf7c5439a362",
+    "qc_retention_by_label.csv": "377c7f6b05c91730f5349ce33ec00e439ccf251197d49bd40b44d24e47b66d64"
+  },
+  "render_revision": {
+    "date": "2026-10-13",
+    "reference": "ppt/MechDec.pptx",
+    "renderer": "scripts/redraw_mechdec_figures.py",
+    "renderer_sha256": "479e2c9876afbf73cac3930f71cee8e69d3118a830a388eab27a34a0206faa9e",
+    "previous_run_sha256": "4b67f486bf2c5536c4fceace2ca64dc02e905c4c34a577e28b74778b4296febe",
+    "analysis_unchanged": true,
+    "status": "mechdec_style_redraw"
+  },
+  "filename_revision": {
+    "language": "Chinese",
+    "date": "2026-10-13",
+    "image_contents_unchanged": true,
+    "mapping": {
+      "figure1_pcr_transfer_stability": "图05_PCR患者迁移的排序稳定性与映射敏感性",
+      "figure2_candidate_cell_sources": "图06_GSE159115候选基因的细胞来源与表达检出",
+      "figure3_mixture_and_source_audit": "图07_细胞混合对排序的影响与样本标签核查"
+    }
+  }
+}

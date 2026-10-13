@@ -130,7 +130,7 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 
 论文图件 v2 包含 4 张 300 dpi PNG 和 4 份矢量 PDF，分别展示公平 baseline、内部与外部复现、Locked Test 稳定性、证据递减、候选证据矩阵和功能—正常肾暴露关系。发布校验脚本已核对 6 个版本化结果目录中的 38 个文件哈希、冻结候选、结论上限、两份冻结协议、环境版本和图像文件签名。外部输入校验覆盖 9 个主流程文件，共 1.33 GiB。关键脚本已移除个人机器绝对路径，并固定公开数据与软件版本。
 
-相关产物位于 `outputs/final_evidence_synthesis_v2/`、`outputs/final_figures_v2/`、`results/historical/` 和 `configs/publication_release_manifest.json`。v1 仍保留用于追踪 Test 解锁前后的变化。
+相关产物位于 `outputs/final_evidence_synthesis_v2/`、`outputs/final_figures_v2/`、`results/historical/` 和 `configs/publication_release_manifest.json`。v1 的证据表与运行记录仍保留用于追踪 Test 解锁前后的变化；旧版图件已删除，图件以 v2 为准。
 
 ### 阶段九：强 baseline、公平比较与既有工作定位
 
@@ -221,6 +221,119 @@ DRIVE-only RNAi 数据包含 397 个模型，其中映射出 8 个 ccRCC。冻�
 
 本轮只提供细胞系开发比较证据，没有使用患者 Locked Test，也没有新增患者功能真值。历史冻结候选仍来自历史模型，不自动变成新 PCR 的候选。关键结果已保存到 `results/historical/deepdep_recovered_comparison_v1/`；后续不再仅凭复杂度增加训练量，优先整理统一比较表、癌系差异和计算成本，形成可审查的模型选择结论。
 
+### PCR 患者迁移、重采样与单细胞来源扩展（2026-10-10 完成）
+
+本阶段按新开发协议完成 **PCR 基线拟合 → 患者映射/训练样本不确定性 → 独立单细胞表达来源解释**。使用历史全基因空间基准中 Kidney 外层的训练内选参（rank=256、α=10000），在 850 个非 Kidney 模型、824 位细胞系来源患者上拟合 PCR；训练集合与历史选参集合完全相同。输入为原基线 15,835 个表达基因，患者排序空间为其中 14,349 个 TCGA 覆盖、非 common-essential 且有足够训练依赖标签的基因，**不是恢复 DeepDEP 比较中的 911 个评价基因空间**。历史完整癌系基准已有 PCR 评价，本轮不把患者表达稳定性当作新的预测准确率。新实现与原核 PCR 在真实输入上的最大预测差为 5.83×10⁻¹⁴，输入特征贡献可重构预测。
+
+患者仅包括历史 Train 156 位和 Validation 53 位，未加载或预测 Locked Test 表达。主映射为非 Kidney 均值平移；Kidney 均值平移和原始 Xena 表达为预设敏感性分析，没有根据结果选映射。新 PCR 前20按 **Train Top-10 出现频率降序、Train 平均预测残差升序、基因名升序**生成；Validation、单细胞结果和历史功能证据均不参与重排。前三为 MRPL33、SEPHS2、WDR73；新列表与历史冻结前20重叠11个，但两者属于不同模型的候选集，历史列表及其证据等级保持原样。
+
+| 诊断 | Train | Validation | 解释 |
+|---|---:|---:|---|
+| 非 Kidney / Kidney 两种映射的患者 Top-10 平均重叠 | 0.4090 | 0.3358 | 表达参考域选择仍影响具体候选 |
+| 原始表达 / 非 Kidney 映射的患者 Top-10 平均重叠 | 0.1545 | 0.1264 | 不经映射的输入与主分析差异明显 |
+| 训练患者重采样后重拟合 PCR，与固定模型的平均 Top-10 重叠 | 0.2748 | 0.2534 | 模型训练样本构成的不稳定性较大 |
+| TCGA Train 重采样后重估映射、PCR 固定的平均 Top-10 重叠 | 0.9291 | 0.9189 | 当前均值映射内的抽样波动相对较小 |
+
+训练重采样在每个癌系内按患者有放回抽取、保留同患者的全部模型，并重新拟合标准化、PCA和岭回归；映射重采样只抽 TCGA Train 患者。两种分析各50次，固定超参数、不做重采样内调参。每位患者的平均重叠先跨50次计算，再做患者等权汇总；表中的差异不能解释为功能准确率，也不是两种不确定性贡献的严格方差分解。主映射下 Train–Validation 活跃候选频率 Spearman 为 0.5510，正频率 Top-100 重叠为 0.77。频率不足100个的敏感性映射不补零凑满名单，另报实际名单长度与 Jaccard。所有 p025/p975 汇总字段是经验分位数，不能称为已校准的置信区间或依赖概率。
+
+单细胞来源为 [GSE159115](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE159115) 的原始10x计数及作者 ccRCC/normal 注释，排除 chRCC。13个样本涉及8位供者；作者 ccRCC 队列7位、正常队列5位，其中4位供者在两队列均有样本，同一正常供者的皮质/髓质先合并。26,894个作者注释细胞与原始条形码和UMI计数匹配；追加 ≥200检出基因、线粒体比例≤20% 的 QC 后保留24,708个。按供者×作者队列×细胞类别汇总原始计数、CPM和检出率，组内至少20细胞；不把细胞当作独立供者，不做细胞级显著性声明。另保存每个 PCR 候选前20个输入特征的线性贡献及其细胞来源；这只能解释模型使用了哪些表达信号，不能认定因果调控机制。
+
+**来源审计发现8/13样本的 GEO 肿瘤/正常组织字段与作者注释队列冲突。** 两套标签均保存，没有静默更正；肿瘤细胞称为“作者注释肿瘤细胞”，未独立进行CNV恶性确认。已同时报告全作者队列及仅GEO—作者一致样本的结果；后者只有3位肿瘤供者、1位正常供者，不能支持确证性肿瘤—正常比较。额外QC对正常DCT、TAL等细胞影响很大，已补充仅使用作者QC的候选表达敏感性表。单细胞表达按原始基因符号匹配，覆盖94.03%的PCR输入特征；重复符号计数求和、未匹配特征按模型训练均值填补，未猜测别名。缺失特征与未检出表达分别记录。
+
+7位作者ccRCC供者中，将肿瘤和非肿瘤细胞的CPM按RNA比例混合，再对每种场景进行供者均值映射。在共同的13,515基因排序空间内，25%、50%、75%非肿瘤RNA混合与肿瘤细胞单独场景的Top-10平均重叠分别为 **0.4857、0.3143、0.1286**；实际全部细胞汇总场景为0.2286。仅标签一致的3位肿瘤供者中，三个混合场景分别为0.40、0.20、0.10。该结果是细胞混合敏感性的探索，不是实测TCGA纯度校正或患者依赖验证；单细胞CPM与DepMap TPM尺度不等价，场景均值映射也会去掉部分组间均值差异。
+
+**本轮结论：PCR提供了可复用的患者开发基线，但具体Top-10仍对训练样本、表达参考域和细胞混合敏感。单细胞来源解释没有把计算候选升级为功能靶点。** MRPL33等候选也在多种非肿瘤细胞中表达，不能据此认定肿瘤选择性或治疗窗；历史YPEL5反向证据等限制仍适用。
+
+协议见 `configs/pcr_transfer_singlecell_protocol_20261010.json`，源标签冲突的分析修订见 `configs/singlecell_source_audit_amendment_20261010.json`。结果分别在 `outputs/pcr_patient_extension_v1/`、`outputs/ccrcc_singlecell_extension_v1/`、`outputs/pcr_singlecell_synthesis_v1/`；可复用PCR模型和大矩阵留在本地输出目录，关键表与3张300dpi PNG/矢量PDF的紧凑快照保存在 `results/historical/` 同名目录。`run.json`记录完整产物，`snapshot.json`只校验纳入Git的子集。独立SVD数值对照、缺失标签、零方差、模型保存读取、患者分组重采样和GPU稀疏计数测试通过；完整发布检查通过45个快照文件、所有患者Top-10复算、输入/脚本哈希、供者计数守恒与图件签名。保存后的float32预测与模型重算的最大差为2.37×10⁻⁷，所有Top-10完全一致。
+
+### PCR 排序不稳定性来源审计（2026-10-10 完成）
+
+按预先冻结的 `configs/pcr_instability_audit_protocol_20261010.json` 完成四项诊断：统一基因均值参照、标准化/PCA/回归的配对条件对照、Top10/20/50 边界检查，以及全部19个历史 DepMap 整癌系留出的功能关系评价。TCGA 使用原有209位 Train/Validation 患者和50次来源患者抽样，逐基因完全复现旧版 Top10 纳入次数；功能评价覆盖805个模型、780位来源患者，每癌系20次抽样。共430次来源患者抽样，每次均运行六组对照；沿用各外层历史训练内选参，不重新选模型或候选，不读取 Locked Test 表达。
+
+统一参照的残差等于“重采样模型的残差＋重采样训练基因均值－原训练基因均值”。以下均为重采样名单与原模型名单的平均 Top10 重叠；TCGA 按患者等权，DepMap 先患者等权、再癌系等权。
+
+| 条件对照 | TCGA Train | TCGA Validation | DepMap 19癌系 |
+|---|---:|---:|---:|
+| 全部重拟合，使用抽样自身基因均值（旧定义） | 0.2748 | 0.2534 | 0.6247 |
+| 全部重拟合，统一原训练基因均值 | 0.2745 | 0.2539 | 0.6218 |
+| 仅改变基因均值参照，原始预测固定 | 0.9079 | 0.8954 | 0.9393 |
+| 标准化和 PCA 固定，仅重拟合回归 | 0.4179 | 0.4026 | 0.6496 |
+| 标准化固定，重拟合 PCA 和回归 | 0.3076 | 0.2907 | 0.6250 |
+| PCA 载荷固定，重拟合标准化和回归 | 0.3713 | 0.3531 | 0.6447 |
+
+**基因均值参照漂移不是 TCGA 排序不稳定的主要来源。** 统一参照几乎不改变旧结果；固定标准化与 PCA 后，Validation Top10 重叠仍只有0.4026，说明回归拟合也有明显抽样波动。固定标准化的 PCA 重拟合与原子空间平均平方典型相关为0.6957，平均主角度30.70°，比较对载荷符号和子空间旋转不敏感。预测变化的四个有序条件差及全部有符号交叉项均保存，重构误差通过校验；这些对照依赖顺序且彼此相关，不能解释为可相加的因果贡献百分比。固定 PCA 的对照仅用于诊断，没有据此选择新部署模型。
+
+扩大名单不能解决细节排序波动：统一参照下，Validation Top20/Top50 平均重叠分别为0.2800/0.3038，Train 为0.2979/0.3196。Validation 第11名减第10名残差的中位数为0.00387，第10名残差±0.01内平均有5.68个基因；但该边界间隔与 Top10 稳定性的 Spearman 仅0.0834（Train 0.1938），不足以单独判定名单可靠性。更大名单的重叠还受到名单长度的机械影响。
+
+**稳定性在已有细胞系功能标签上有诊断价值，但没有成为已校准的患者依赖概率。** 统一参照 Top10 稳定性与原模型功能 NDCG 的全体患者 Spearman 为0.3774，平均癌系内 Spearman 为0.3128。按预设的癌系内平均秩上/下三分组，高稳定性组减低稳定性组的癌系等权 NDCG 差为0.1098；2000次癌系簇抽样的描述性95%区间为[0.0815, 0.1399]，19癌系均有有效分组。同一患者的多个模型先合并，抽样次数不当作独立样本；训练集重叠和既有开发数据复用限制该区间的确认性解释。六组对照、三种名单长度和并列秩组大小全部保留，没有按功能结果选择阈值。原模型癌系等权 NDCG 为0.4406，全重拟合统一参照的抽样平均为0.4103，本轮没有证明新预测模型优于原模型。
+
+基因覆盖单独审计：历史基准使用所有比较方法共有的有限预测空间，本轮使用六组 PCR 对照共有、训练标签≥20且该模型有功能标签的空间。804/805个模型的原始 NDCG 与历史一致到数值精度；周围神经系统模型 ACH-002283 多纳入80个基因，NDCG 从0.3459变为0.2035。核查确认历史 expression-kNN 的选中邻居在这些基因上没有标签，导致历史多方法共同空间将其排除；本轮保留它们符合预设 PCR 审计规则。独立核 PCR 的最大预测差仅6.40×10⁻¹⁵，恢复历史有限预测掩码后 NDCG 完全复现，故该差异来自评价空间，不能宣称为模型性能变化。
+
+完整输出在 `outputs/pcr_instability_audit_v1/` 和 `outputs/pcr_instability_synthesis_v1/`，逐次/逐癌系表留在本地；紧凑表和三组300dpi PNG/矢量PDF在 `results/historical/` 同名目录。[配对对照图](results/historical/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.png)、[功能关系图](results/historical/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.png)、[候选边界图](results/historical/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.png)可直接审查。发布检查通过19个快照文件、20组案例、430次抽样哈希复放、患者隔离、旧抽样一致性、汇总复算与有序交叉项重构（最大误差4.73×10⁻¹⁶）；核查记录在 `results/historical/pcr_instability_validation_v1/`。路径命名失败的初次局部输出保留在 `outputs/pcr_instability_audit_v1_initial/`，不属于正式结果。
+
+### 新单细胞队列的细胞来源复核（2026-10-10 完成）
+
+按 `configs/ccrcc_source_replication_protocol_20261010.json`，在 [GSE178481](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE178481) 的独立研究中复核冻结候选及模型输入特征的表达来源。原研究为 [Alchahin等，Nature Communications 2022](https://www.nature.com/articles/s41467-022-33375-w)，逐细胞注释由[作者仓库](https://github.com/shenglinmei/ccRCC.analysis)提供；GEO样本字段、作者条形码和原始计数均锁定哈希。队列选择基于元数据完整性，不依据候选表达结果选择。作者的 `Tumor` 注释保留，未在本轮独立重新推断CNV。
+
+元数据审计后排除整个 PR1 供者（GEO 标记pRCC）和 PR9 供者（化疗/血栓相关记录）。主分析为未治疗、无转移记录的PR2–PR8：16个样本、7位供者，其中6位有肿瘤、6位有邻近正常肾组织，5位配对。另5个样本来自BM1/BM2两位有转移病史的供者，单独作为敏感性分析；这些文件是原发肾组织，不能称为骨转移灶。21个纳入样本均通过组织标签核查，正常组织没有作者标注的Tumor细胞；逐细胞 UMI 和检出基因数与作者值完全一致，线粒体比例误差<10⁻⁸。主队列103,504个作者注释细胞追加≥200检出基因、线粒体比例≤20%的QC后保留102,720个。作者注释细胞全集的敏感性结果同时保存；同供者多个肿瘤区域先合并，再按供者×组织×细胞类别汇总，未将区域或细胞作为独立样本。
+
+新PCR前20和历史冻结前20的并集为29个符号，分别保留集合与排序标记。直接符号匹配可测27个；**MRPL57、GCN1未被该计数文件覆盖，不能当作零表达或反向证据，也没有猜测别名。** 新PCR候选19/20可测，历史候选19/20可测。来源表保留`gene_present`标记；原始配对汇总的`paired_donor_n`为结构上匹配的供者记录数，包含缺失符号。完整解释应使用 `ccrcc_source_replication_coverage_v1/paired_expression_summary_with_coverage.csv` 的 `valid_paired_donor_n`：两个缺失基因均为0，效应估计缺失；另报两组织均零表达的供者数，避免把低检出解释成肿瘤特异性。
+
+与旧GSE159115作者队列比较，27个共同可测候选的供者等权肿瘤细胞中位CPM秩相关为0.7825；旧队列的标签冲突仍保留，不能将它当作无误差的金标准。新队列中MRPL33、SEPHS2等在多种非肿瘤细胞及邻近正常肾上皮也有表达。5位配对供者的作者肿瘤细胞与邻近正常近端小管细胞比较如下，效应为`log2((肿瘤CPM+1)/(正常CPM+1))`，均仅作描述：
+
+| 候选 | 配对中位表达比（log2） | 肿瘤表达较高的供者数 |
+|---|---:|---:|
+| MRPL33（新PCR第1） | -1.2345 | 0/5 |
+| SEPHS2（新PCR第2） | -0.8551 | 0/5 |
+| WDR73（新PCR第3） | 0.3002 | 3/5 |
+| PAX8（历史候选） | -2.0376 | 0/5 |
+| HNF1B（历史候选） | -1.8943 | 0/5 |
+| CCND1（历史候选） | 1.5733 | 4/5 |
+
+MRPL33、SEPHS2在仅作者注释细胞的敏感性分析中也均为0/5肿瘤表达较高。上述结果不能证明表达较低就不依赖该基因，也不能根据表达较高认定功能选择性或治疗窗；邻近正常组织不是健康志愿者肾组织。未进行细胞级p值分析，未据新结果重排候选或更改历史证据等级。
+
+固定PCR模型的混合敏感性在6位主队列肿瘤供者中复算：非肿瘤RNA比例25%、50%、75%与肿瘤细胞单独场景的Top10平均重叠分别为0.7167、0.5167、0.4000，实际全部细胞汇总场景为0.2500。两位转移病史供者分别为0.80、0.70、0.45和0.20，样本量不足以作组间确认性比较。新队列直接符号匹配覆盖92.61%的PCR输入特征，共同场景排序空间13,310个基因；旧队列为13,515个，跨研究的重叠数值不能当作同一基因空间的精确性能差异。未覆盖输入特征按冻结模型的训练均值填补；单细胞CPM与bulk TPM尺度不等价，各场景供者均值映射仍是探索性处理，没有新增功能标签或准确率结论。
+
+**本轮完成了组织标签一致的新研究来源复核，并再次显示正常肾细胞表达和细胞混合会限制患者候选的解释。** 结果没有把计算候选升级为功能靶点。原始计数、细胞元数据和完整伪bulk矩阵保留在本地 `data/raw/gse178481/` 与 `outputs/ccrcc_source_replication_v1/`；紧凑结果在 `results/historical/ccrcc_source_replication_v1/`、`ccrcc_source_replication_synthesis_v1/` 和 `ccrcc_source_replication_coverage_v1/`。[细胞来源图](results/historical/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.png)与[配对表达图](results/historical/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.png)均提供300dpi PNG及矢量PDF。验证通过25个快照文件、21个样本来源、计数与供者合并守恒、冻结候选顺序、缺失符号/有效配对数和输入/脚本哈希，核验记录在 `results/historical/ccrcc_source_replication_validation_v1/`。未重新训练模型，未访问Locked Test表达。
+
+### 重要结果图的 MechDec 风格重绘（2026-10-13 完成）
+
+参照 `ppt/MechDec.pptx` 内的科学结果图，将12张重要图统一为白底、细灰坐标轴、低饱和蓝/青绿/暖黄/红/紫配色及小写面板编号。迁移分布图增加患者散点与半小提琴，证据矩阵改为支持圆点/风险叉号，跨平台基线改为并列点线图；独立单细胞来源图以颜色表达原有CPM统计，未测基因明确用叉号标记。未改变统计输入、候选排序、变换公式或误差区间；未训练模型，未重新访问患者Locked Test，仅复用已发布汇总。
+
+全部新图仍保存在原目录，已按内容改为中文文件名（总览图已删除）：`results/historical/final_figures_v2/`（4张）、`pcr_singlecell_synthesis_v1/`（3张）、`pcr_instability_synthesis_v1/`（3张）、`ccrcc_source_replication_synthesis_v1/`（2张），`outputs/` 对应目录同步更新。每张提供300dpi PNG及PDF，PDF文字和线条可缩放，密集散点层为明确设置的栅格层。原路径中的旧图已替换，`final_figures_v1/` 两处共12个旧PNG/PDF已直接删除；表格与历史分析记录保留。相关运行记录追加渲染修订并刷新图件哈希，原分析脚本及训练记录不变。
+
+[绘图来源与图注](results/historical/mechdec_figure_redraw_20261013/render_manifest.json)、[替换/删除记录](results/historical/mechdec_figure_redraw_20261013/replacement_audit.json)及[核验记录](results/historical/mechdec_figure_redraw_20261013/verification.json)可直接审查。核验命令：`python scripts/verify_mechdec_figures.py`；重绘入口为 `scripts/redraw_mechdec_figures.py`（先生成待审图，`--install`安装核验后的图件，已有结果拒绝覆盖）。参考MechDec文件保持原样，本次不改写已有学术汇报PPT中的原生图形。
+
+### 肿瘤与正常肾功能验证设计（2026-10-10 完成设计，尚未执行实验）
+
+本轮把计算候选转化为可审查的实验设计；没有取得实体模型、订购试剂或产生功能结果。实验室模型条件尚未提供，默认设计为同一供者的成人ccRCC与邻近正常近端小管类器官。患者来源肾癌及正常肾模型有[已发表培养方案](https://doi.org/10.1016/j.omtm.2024.101368)，但培养成功率、肿瘤纯度及正常组织状态仍须逐例核实。已有肾癌细胞系可先做技术可行性；不同来源正常细胞不能冒充同供者配对。公共单细胞供者不代表本项目拥有实体样本。
+
+**固定验证面板，不重排历史名单。** 主面板为PAX8、HNF1B、FERMT2、CCND1：前两者重点检查正常肾风险，FERMT2检查肾相关依赖是否具有肿瘤差异，CCND1检查已有文献与较弱跨平台功能证据的落差。探索面板为新PCR前三名MRPL33、SEPHS2、WDR73，独立报告，不并入主面板确认性结论。单细胞表达差异不用于设定功能效应量；没有使用Locked Test进行设计或新增选择。
+
+**先导阶段：3对新供者。** 每基因3条独立CRISPRi向导；3条非靶向对照、mock、实验室已验证的阳性扰动对照。先校准约40%、70%、90%抑制档位，记录两种组织中实际RNA及蛋白抑制率；名义诱导剂量相同不等于靶点抑制相同。主筛选只使用预先校准的一个档位，渐进抑制和分子质控另计资源。采用CRISPRi是为了减少核酸酶切割造成的[拷贝数相关假依赖](https://pubmed.ncbi.nlm.nih.gov/27260156/)；部分抑制与完全敲除可有不同表型，参见[部分基因抑制研究](https://pmc.ncbi.nlm.nih.gov/articles/PMC10464129/)。向导仍须按实际模型的基因组、TSS及脱靶风险设计，模板中的向导ID不能用于订购。
+
+每供者2次独立培养运行，每次3块96孔板；每板同时放置肿瘤和正常肾的26种条件各1孔，随机分配到内部60孔，边缘36孔作缓冲，内部余8孔预留。总计18块板、936检测孔；三块板是技术重复，两个运行也不是新增供者。纵向活细胞计数在诱导前D0、D7、D14进行，分子抑制质控须覆盖起效阶段及D7；凋亡、增殖和ATP作为辅助终点。若使用破坏性测量，须增加独立时间点板，不能复用上述预算。培养基采用各模型适宜条件，记录培养基与基线增殖，并检查培养基敏感性，避免把培养条件伤害当作选择性。
+
+**分析单位与终点。** 对每条向导定义 `L=-log2[(N处理,D14/N处理,D0)/(N非靶向,D14/N非靶向,D0)]`，正值表示相对细胞积累减少；主差异为同供者 `Δ=L肿瘤-L正常`。技术重复先按预定规则汇总，向导与运行等权汇总到供者；供者数才是n。该终点包含停滞和死亡，不能单凭L声称杀伤。零计数须按检测下限报告为删失，不能任意加伪计数；阳性对照失败、污染、预先定义的成像失败或靶点抑制失败按盲态QC处理，报告全部排除与失败模型。不能根据效应大小排除供者或择优挑向导。
+
+肿瘤与正常模型增殖不同会影响细胞积累终点，因此同时报告基线、非靶向增长、凋亡及[增长率校正指标](https://pmc.ncbi.nlm.nih.gov/articles/PMC4887336/)；对照不增长时不计算GR，也不据常规终点独自声称已纠正增殖差异。正常近端小管身份与功能保留须有模型适用的标记和功能读出，例如LRP2/SLC34A1、摄取功能；“正常细胞数未下降”不能替代完整肾安全性。
+
+**确认阶段及判定规则。** 先导用于决定实验是否可行，不用于确认靶点。4个主基因均保留在确认家族；每基因至少2条独立向导，按靶点抑制和序列质量选定，不能按先导细胞存活表型择优。确认使用新供者，先冻结抑制档位、终点时间、分析与排除规则，再开始收集确认结果。建议的效应阈值是设计假设，须在确认前结合实验可行性明确记录：
+
+| 条件 | 需满足的方向性界限 | 含义 |
+|---|---|---|
+| 肿瘤功能效应 | 肿瘤L下置信界>1 | 相对非靶向细胞积累至少减少50% |
+| 配对差异 | Δ下置信界>0.5 | 肿瘤损伤超出正常肾的预设差异 |
+| 正常肾保护 | 正常L上置信界<log2(1/0.8)=0.3219 | 排除超过20%的相对细胞积累损失 |
+
+采用4基因×3界限的保守Bonferroni控制，每个方向性界限α=0.05/12；每基因三条件必须同时成立。至少两条向导方向一致、抑制程度可比，再用独立RNAi或其他正交扰动以及抗扰动等位基因救援复核；[多向导及救援的验证原则](https://pmc.ncbi.nlm.nih.gov/articles/PMC6741428/)用于减少脱靶和克隆伪影。上述界限仅支持特定模型和抑制档位下的实验选择性；正常功能读出受损或增殖校正不支持时降级解释，不能称临床治疗窗。肿瘤与正常均受损应报告为共同/谱系依赖；靶点抑制失败应报告技术不确定；阴性正常检验不等于正常安全。
+
+**样本量没有用表达数据冒充功能方差。** [power_sensitivity.csv](results/historical/functional_validation_design_v1/power_sensitivity.csv)包含36个假设情景，使用非中心t解析计算，无模拟数据。按每基因三项联合检验的失败概率分配，为联合功效下界80%或90%规划各项功效；满足三项的n应取所选三个情景所需n的最大值。它不保证四基因全部通过，也不包括救援/正交复核成功概率。例如Δ均值1、供者差值SD=0.5、零假设界限0.5时需要21个完整配对；正常L均值0.1、SD=0.2、保护界限0.3219时需18对。若同时假定肿瘤L均值1.5、SD=0.5，三项取最大值为21对，假定20%配对模型失败则招募27对。所有均值、SD和失败率都是规划假设，实际确认n暂未固定；3对先导不足以可靠确定方差，应结合更多可行性样本或外部功能数据保守更新并冻结。
+
+可审查产物为[设计配置](configs/functional_validation_design_20261010.json)、[板位模板](results/historical/functional_validation_design_v1/pilot_plate_layout.csv)、[分组解码键](results/historical/functional_validation_design_v1/allocation_key.csv)、[模型库存空表](results/historical/functional_validation_design_v1/model_inventory_blank_template.csv)、[抑制校准空表](results/historical/functional_validation_design_v1/engagement_calibration_blank_template.csv)、[观测空表](results/historical/functional_validation_design_v1/observations_blank_template.csv)与[核验记录](results/historical/functional_validation_design_v1/design_validation.json)。实测字段全部为空，PLACEHOLDER供者不是实际样本。成像分析人员在QC锁定前保持分组盲态，解码键与分析数据分开管理；上传正式模型信息后生成新的冻结版本，不能覆盖当前模板。18块先导板预算不包括校准、分子质控、破坏性辅助读出、正交扰动、救援或确认阶段。
+
+核验命令：`python scripts/verify_functional_validation_design.py`。生成其他版本：`python scripts/prepare_functional_validation_design.py --output-dir results/historical/functional_validation_design_v2`，已有目录拒绝覆盖。下一步先填真实模型库存及平台能力，完成培养、身份、污染和抑制校准，随后冻结实验室适配版本；当前设计尚未进入湿实验执行。
+
 ## 最终成果
 
 ### 方法层面的结论
@@ -272,7 +385,7 @@ GRB2、CFLAR、YRDC 和 CHMP7 目前只有三个冻结 Sanger 肾癌模型一致
 
 ## 下一步工作
 
-本轮 PCR/DeepDEP 比较与完整性审计已完成，主分析和次分析均未超过 PCR，当前没有依据继续追加同类深度训练或直接进入该模型的 Sanger 重算。下一步整理统一方法比较表、逐癌系配对图和计算成本，明确不同基因空间不能混在同一胜负表中。若后续决定以新 PCR 重新生成患者候选，应另立协议并标为开发分析，不能沿用历史候选或已访问的 Locked Test 作为新模型的独立证据。Elastic Net 更小 α 的完整认证及独立环境重跑仍未完成。
+PCR/DeepDEP 比较、PCR患者迁移/单细胞来源扩展、排序不稳定性来源审计，以及GSE178481标签一致队列的来源复核已完成。统一基因参照没有消除患者名单波动；新队列确认正常肾细胞表达暴露，仍未提供患者功能真值。下一步优先把现有候选证据整理为肿瘤模型与正常肾对照的最小功能验证方案，并预先冻结模型后开展真正新增模型/供者的验证。不能沿用已访问的Locked Test作为新模型独立证据，不能依据表达或条件对照重新排列候选。不同基因空间和历史/新PCR候选须分开报告。Elastic Net更小α的完整认证及第二台机器独立重跑仍未完成；新单细胞隔离环境运行不等于第二台机器的clean-room复现。
 
 如果目标是把论文结论从“计算优先排序”提升为“ccRCC 功能靶点”，下一步所需的不是继续训练相似模型，而是新的实验数据：优先在患者来源 ccRCC 类器官或短期原代模型中对 PAX8、HNF1B、FERMT2、CCND1 等候选进行 loss-of-function 验证，并在正常肾类器官中使用相同扰动和可比较终点评估治疗窗。
 
@@ -296,11 +409,16 @@ GRB2、CFLAR、YRDC 和 CHMP7 目前只有三个冻结 Sanger 肾癌模型一致
 - 模型计算默认 `--device cuda`，使用现有环境中的 PyTorch CUDA；不可用时明确报错，不自动退回 CPU。文件读写、注释处理和结果整理仍使用 CPU。运行记录保存实际设备与数值精度。
 - 新版输入：`data/processed/depmap_baseline_24q4_v1/`，包含 873 个癌症模型和 15,835 个四模态共有基因，明确 ccRCC 12 个模型。来源、筛选规则和校验和见该目录的 `audit.json`。
 - 新版入口读取 NPZ；历史 `run_depmap_lolo_validation.py` 读取旧 TSV，二者输入不兼容。
-- 正式训练由用户手动启动。输出目录已存在时拒绝覆盖。训练入口用于评价，不保存可部署的最终模型。
+- 正式训练由用户手动启动。输出目录已存在时拒绝覆盖。历史训练入口用于评价；新PCR扩展保存研究用途的可复用模型，不代表临床可部署模型。
 - 主要结果为 `metrics.csv`，必要明细与运行信息保存在同目录的压缩表、`tuning.csv`、`splits.csv` 和 `run.json`；启用 `--alpha-scan` 时另有 `alpha_scan.csv`。`run.json` 的 `feature_configs` 逐方法记录该配置包含哪些特征块，是消融结果可复现的必要依据。
 - 原始输入和常规运行输出不纳入 Git；关键论文结果与图件的版本化快照保存在 `results/historical/`。
 - 一条命令核验发布快照：`python scripts/verify_publication_release.py`。
 - 完整重跑前设置 `PANCANCER_SOURCE_ROOT=/absolute/path/to/rl-genrisk-main`，再用 `python scripts/verify_external_inputs.py` 核验外部输入。
+- PCR扩展入口：`python scripts/run_pcr_patient_extension.py --dry-run`先检查，`--train`执行GPU拟合与两类50次重采样；已有正式结果时拒绝覆盖，新版本使用`--output-dir`。
+- PCR不稳定性审计入口：`python scripts/verify_pcr_instability_methods.py`核对计算，`python scripts/run_pcr_instability_audit.py --train`执行GPU审计；已完成结果拒绝覆盖，`--resume`仅复用签名完全一致的完整案例。`python scripts/summarize_pcr_instability_audit.py`生成图表和紧凑快照，`python scripts/verify_pcr_instability_release.py --snapshots-only`可核验版本化子集；完整核验及覆盖差异核查分别使用同名脚本去掉`--snapshots-only`和`python scripts/verify_pcr_instability_coverage.py`。默认核验只打印结果，使用`--report 新路径.json`可保存新记录并拒绝覆盖已有文件。
+- 单细胞扩展使用独立环境：在共享现有CUDA PyTorch的venv中安装`requirements-singlecell-extension.txt`，保留原PCR环境。先用`python scripts/prepare_ccrcc_singlecell.py`下载并锁定GEO输入，再运行`python scripts/run_ccrcc_singlecell_extension.py`；用`python scripts/summarize_pcr_singlecell_extension.py --snapshot`生成综合图表及紧凑快照。
+- 新队列复核使用同一单细胞环境：`python scripts/prepare_ccrcc_replication.py`锁定公开输入；`python scripts/verify_ccrcc_replication_methods.py`验证计数汇总；`python scripts/run_ccrcc_source_replication.py`执行GPU汇总与冻结模型推断；`python scripts/summarize_ccrcc_source_replication.py`生成图表及快照；`python scripts/audit_ccrcc_replication_coverage.py`补充有效配对与符号覆盖。正式结果与快照均拒绝覆盖。`python scripts/verify_ccrcc_source_replication.py`复核完整产物，`--snapshots-only`只检查版本化子集，`--report 新路径.json`可另存不覆盖的记录。
+- 仅核验版本化扩展快照（不读大矩阵、不需要GPU）：`python scripts/verify_pcr_singlecell_release.py --snapshots-only`；完整本机输入、GPU模型和产物核验去掉`--snapshots-only`。独立数值测试在单细胞环境运行`python scripts/verify_pcr_extension_methods.py`。
 
 ## 长期协作规则
 

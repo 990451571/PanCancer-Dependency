@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "script_sha256": {
+    "prepare_ccrcc_replication.py": "28be0d1e78f6d1d954f46e75b21427b03e01cde880ce1198b5f757019298f163",
+    "verify_ccrcc_replication_methods.py": "885c29003af13f9398f6130b9afa54dc573c5379365b168635aadba7976981df",
+    "verify_ccrcc_source_replication.py": "a35df0750a0a490adcad6b71180f8a65673f0c9b7c2e9c2c473d1efe5b0b0b4a",
+    "audit_ccrcc_replication_coverage.py": "0de956786155d3d39e7b1a34c5b259297e428f337b0d4afe0304b4d409af2c82"
+  },
+  "upstream_run_sha256": {
+    "ccrcc_source_replication_v1": "e16d33105b4a503ed6d08e94001ff3ae9665abb0805f80d64751037fbaa35d13",
+    "ccrcc_source_replication_synthesis_v1": "b9604ddee3c6a0a72eb61e56e23b8d0ae8f147eb8100f83635737ad2ced0918a",
+    "ccrcc_source_replication_coverage_v1": "2f7870d7ec25e5a37659e3c4bf93bcae87f8d256a54d5bd9f1b0b8586611f634"
+  },
+  "method_check": "Independent NumPy comparison of streamed CUDA group sums, detection and QC",
+  "output_sha256": {
+    "verification.json": "619a72ed6404397448128c0224825e6e72bc90b559a356ad50f4da2f5507d9b8",
+    "verification_with_coverage.json": "d69a0fcfc007e34c890923e931174c5d1352ca984259924a408000ec330baefc"
+  }
+}

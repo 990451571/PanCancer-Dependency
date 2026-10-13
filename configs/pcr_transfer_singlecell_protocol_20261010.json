@@ -1,0 +1,50 @@
+{
+  "name": "PCR patient transfer, sensitivity and cell-source interpretation v1",
+  "date": "2026-10-10",
+  "status": "development_protocol_written_before_new_predictions_not_prospective_confirmation",
+  "scope": "Complete computational extension using existing DepMap/TCGA development data and independent GEO single-cell expression; no patient functional labels",
+  "pcr": {
+    "expression_space": "15835 baseline genes, distinct from recovered DeepDEP 6016 feature positions",
+    "targets": "TCGA-covered release-wide non-common-essential genes with observed training dependency",
+    "training": "non-Kidney DepMap 24Q4 models, purging patients shared with Kidney",
+    "hyperparameters": "Reuse historical Kidney outer-fold PCR config selected only within non-Kidney training data in selective_dependency_benchmark_v1/tuning.csv; validate source hash and training cohort",
+    "rank": 256,
+    "alpha": 10000.0,
+    "target": "dependency minus training gene mean; lower is stronger predicted selective dependency",
+    "top_k": 10,
+    "patient_splits": ["train", "validation"],
+    "test_policy": "Never load or predict TCGA Locked Test expression; check identifiers against metadata only",
+    "candidate_policy": "New PCR development candidates are separate from historical frozen 20; discovery uses Train only; no reranking by Validation or single-cell results"
+  },
+  "mapping": {
+    "primary": "nonkidney_mean_shift_clip0",
+    "sensitivities": ["kidney_mean_shift_clip0", "raw_xena_log_expression"],
+    "fit": "TCGA Train mean only; Kidney reference expression is an explicitly labeled unlabeled sensitivity",
+    "no_winner_selection": true
+  },
+  "uncertainty": {
+    "seed": 20261010,
+    "draws": 50,
+    "source_sampling": "Sample non-Kidney DepMap patients with replacement within each lineage; include all models for each selected patient, refit standardization/PCA/PCR at fixed hyperparameters",
+    "source_mapping": "Keep historical expression bridge fixed while resampling training models, to separate model-fit from mapping uncertainty",
+    "mapping_sampling": "Resample TCGA Train patients with replacement, refit non-Kidney mean shift, hold PCR fixed",
+    "outputs": ["per-patient top10 overlap", "candidate inclusion frequency", "rank percentiles", "mapped-feature out-of-domain fraction", "training-PCA residual distance"],
+    "interpretation": "Descriptive resampling stability, not calibrated probability of functional dependency; 50 draws are a bounded initial analysis"
+  },
+  "singlecell": {
+    "accession": "GSE159115",
+    "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE159115",
+    "data": "Author-supplied 10x raw counts and ccRCC/normal cell annotation; exclude chRCC tumor samples",
+    "selection": "Select by metadata completeness and ccRCC/normal coverage before inspecting candidate expression",
+    "annotation": "Preserve author annotation; audit identity joins and marker expression; never infer malignancy from a candidate alone",
+    "qc": "Use author-annotated cells with >=200 detected genes and <=20% mitochondrial counts; show excluded counts by sample and label; no new doublet classifier",
+    "unit": "donor x tissue x broad cell group; cells are not independent biological replicates",
+    "minimum_group_cells": 20,
+    "aggregation": "Sum raw counts and normalize pseudobulk to CPM; detection fraction from raw counts",
+    "report": "Patient-level expression/detection and equal-donor group summaries for Train-discovered PCR top20 plus historical frozen20 (separate flags)",
+    "mixture_sensitivity": "Within each ccRCC donor compare tumor-cell and all-cell pseudobulk, plus 25/50/75% nonmalignant RNA mixtures; align each scenario to non-Kidney reference by a scenario-specific donor-mean shift; report exploratory rankings only",
+    "constraints": "No new model or mapping selection from single-cell outcomes; cross-protocol scRNA CPM and DepMap TPM do not establish dependency accuracy; normal tissues may be paired with tumor donors and are not automatically independent healthy controls"
+  },
+  "deliverables": ["reusable PCR model", "new PCR patient candidate tables", "mapping/model-fit sensitivity tables", "single-cell source evidence", "exploratory mixture sensitivity", "figures", "input/output provenance and hashes", "README final results"],
+  "limitations": ["Existing development datasets have been examined historically", "No new functional dependency truth", "No clinical efficacy or safety claim", "Single-cell independent expression cohort is not independent dependency validation"]
+}

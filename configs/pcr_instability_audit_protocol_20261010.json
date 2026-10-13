@@ -1,0 +1,62 @@
+{
+  "name": "PCR ranking instability source audit v1",
+  "date": "2026-10-10",
+  "status": "development_diagnostic_protocol_before_audit_results",
+  "scope": "First four recommended steps: reference alignment, preprocessing/PCA/regression controls, boundary margins, and functional-label checks in existing DepMap holdouts. New single-cell cohort replication is a subsequent task",
+  "no_model_selection": true,
+  "no_candidate_reranking": true,
+  "no_tcga_locked_test_expression_access": true,
+  "patient_case": {
+    "training": "Exact 850-model historical non-Kidney patient-purged cohort",
+    "evaluation": "209 historical TCGA Train/Validation patients from the existing expression bridge",
+    "parameters": "Historical PCR rank256 alpha10000; no retuning",
+    "draws": 50,
+    "seed": 20261010,
+    "replay": "Same RNG stream as pcr_patient_extension_v1, including consumption of TCGA Train mapping sample after each source draw",
+    "reference": "Original non-Kidney training gene mean; bootstrap raw prediction = local residual + bootstrap mean; common-reference residual = raw prediction - original mean",
+    "universe": "Exactly the existing 14349-gene patient ranking universe"
+  },
+  "paired_controls": {
+    "full_refit_local_reference": "Original resampled standardization/PCA/regression with its own resampled target mean, reproducing the old estimand",
+    "full_refit_common_reference": "Identical raw prediction expressed relative to original training gene mean",
+    "reference_shift_only": "Fixed original raw prediction, subtract resampled target mean; no model fit changed",
+    "fixed_geometry_beta_refit": "Original standardization and PCA scores; refit regression/intercepts on sampled patients, original target reference",
+    "fixed_scaler_pca_beta_refit": "Original feature standardization, refit PCA and regression on sampled patients, original target reference",
+    "refit_scaler_fixed_pca_beta_refit": "Resampled feature standardization, original PCA loading matrix, refit regression/intercepts, original target reference"
+  },
+  "component_audit": {
+    "ordered_identity": "local full - base = (fixed geometry - base) + (fixed scaler PCA refit - fixed geometry) + (common full - fixed scaler PCA refit) + (local full - common full)",
+    "outputs": "Component prediction mean-square and pairwise signed cross-products, plus exact reconstruction check. Order-dependent conditional contrasts, not causal or orthogonal variance fractions",
+    "pca_comparison": "Principal angles/squared singular values of cross-loading matrices; invariant to column sign flips and within-subspace orthogonal rotation",
+    "standardization": "Report normalized expression-mean drift and log-SD drift descriptively"
+  },
+  "ranking_diagnostics": {
+    "top_k": [10, 20, 50],
+    "direction": "Lower residual stronger predicted selectivity",
+    "boundary": "Score at rank k+1 minus score at rank k; count genes within +/-0.01 of score at rank k",
+    "ties": "Stable original gene order, with exact ties reported",
+    "not_probabilities": "Selection frequencies and rank percentiles describe resampling stability, not calibrated functional probabilities"
+  },
+  "functional_cases": {
+    "dataset": "Existing DepMap24Q4 baseline matrix; development reuse, not a newly untouched test",
+    "outer_cases": "All 19 historical whole-lineage holdouts with >=20 models, patient-overlap purged",
+    "hyperparameters": "Each historical outer-lineage PCR config selected only in that fold's training data; unchanged",
+    "draws_per_case": 20,
+    "seed": 20261011,
+    "ranking_universe": "Non-common-essential genes with >=20 observed training outcomes; per-model observed heldout-label mask used for paired scoring. Report coverage differences against historical universe",
+    "truth_reference": "Original outer-training gene mean for all controls; lower true residual stronger selectivity",
+    "metrics": ["NDCG@10", "true Top10 overlap", "selective_precision@10 at residual<=-0.5", "Top10/20/50 resampling overlap", "boundary gaps"],
+    "control_budget": "All six controls and three k values on the same sampled patients; no functional scores select controls or parameters",
+    "association": "Patient-equal metrics after grouping models by patient within lineage; report overall Spearman and mean within-lineage Spearman; no p-values from bootstrap draws treated as independent subjects",
+    "high_low": "Within each lineage, predefine high/low stability by average-rank upper/lower thirds; report lineage-equal high-minus-low NDCG descriptive contrast; retain tie-induced group sizes",
+    "intervals": "2000 GPU lineage-cluster draws over the 19 per-lineage contrasts, seed20261012; descriptive intervals, overlapping training sets and historical development reuse limit confirmation"
+  },
+  "limitations": [
+    "Reference-only contrast may not capture the entire change in the resampled target estimand",
+    "PCA subspace overlap is calculated in standardized feature-coordinate space; raw feature metrics differ under scaler refit",
+    "50 patient-case and 20 functional-case draws are bounded diagnostic budgets",
+    "Larger candidate lists mechanically raise overlap; stability is not accuracy",
+    "Existing external and development cohorts have been examined previously",
+    "Neither model-selection changes nor clinical/functional claims follow automatically from this audit"
+  ]
+}

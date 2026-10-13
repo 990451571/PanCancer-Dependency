@@ -1,0 +1,27 @@
+accession,sample_id,condition,Stage,treatment,metastasic sites,donor,scope,exclusion_reason,filename
+GSM5392398,RCC-PR6-Normal,Normal,ccRCC,No,NA,PR6,primary,,GSM5392398_RCC-PR6-Normal.count.csv.gz
+GSM5392399,RCC-PR6-PTumor,Tumor,ccRCC,No,No,PR6,primary,,GSM5392399_RCC-PR6-PTumor.count.csv.gz
+GSM5392400,RCC-PR8-Normal,Normal,ccRCC,No,NA,PR8,primary,,GSM5392400_RCC-PR8-Normal.count.csv.gz
+GSM5392401,RCC-PR7-PTumor,Tumor,ccRCC,No,No,PR7,primary,,GSM5392401_RCC-PR7-PTumor.count.csv.gz
+GSM5392402,RCC-PR9-Normal,Normal,ccRCC,No,NA,PR9,excluded,chemotherapy/thrombus donor,
+GSM5392403,RCC-PR9-PTumor,Tumor,ccRCC,chemotherapy for collicular lymphoma,No,PR9,excluded,chemotherapy/thrombus donor,
+GSM5392404,RCC-PR9-PTumor2,Tumor,ccRCC,Primary RCC tumor Thrombus,No,PR9,excluded,chemotherapy/thrombus donor,
+GSM5392405,RCC-PR5-Normal,Normal,ccRCC,No,NA,PR5,primary,,GSM5392405_RCC-PR5-Normal.count.csv.gz
+GSM5392406,RCC-PR5-PTumor1,Tumor,ccRCC,No,No,PR5,primary,,GSM5392406_RCC-PR5-PTumor1.count.csv.gz
+GSM5392407,RCC-PR5-PTumor2,Tumor,ccRCC,No,No,PR5,primary,,GSM5392407_RCC-PR5-PTumor2.count.csv.gz
+GSM5392408,RCC-PR5-PTumor3,Tumor,ccRCC,No,No,PR5,primary,,GSM5392408_RCC-PR5-PTumor3.count.csv.gz
+GSM5392409,RCC-BM1-PTumor,Tumor,ccRCC,No,Bone,BM1,metastatic_status,,GSM5392409_RCC-BM1-PTumor.count.csv.gz
+GSM5392410,RCC-BM1-Normal,Normal,ccRCC,No,NA,BM1,metastatic_status,,GSM5392410_RCC-BM1-Normal.count.csv.gz
+GSM5392411,RCC-BM2-PTumor1,Tumor,ccRCC,No,"Bone, lung, adrenal gland, kidney",BM2,metastatic_status,,GSM5392411_RCC-BM2-PTumor1.count.csv.gz
+GSM5392412,RCC-BM2-PTumor2,Tumor,ccRCC,No,"Bone, lung, adrenal gland, kidney",BM2,metastatic_status,,GSM5392412_RCC-BM2-PTumor2.count.csv.gz
+GSM5392413,RCC-BM2-Normal,Normal,ccRCC,No,NA,BM2,metastatic_status,,GSM5392413_RCC-BM2-Normal.count.csv.gz
+GSM5392414,RCC-PR1-Normal,Normal,pRCC,No,NA,PR1,excluded,pRCC,
+GSM5392415,RCC-PR1-PTumor,Tumor,pRCC,No,No,PR1,excluded,pRCC,
+GSM5392416,RCC-PR2-Normal,Normal,ccRCC,No,NA,PR2,primary,,GSM5392416_RCC-PR2-Normal.count.csv.gz
+GSM5392417,RCC-PR2-PTumor,Tumor,ccRCC,No,No,PR2,primary,,GSM5392417_RCC-PR2-PTumor.count.csv.gz
+GSM5392418,RCC-PR4-Normal,Normal,ccRCC,No,NA,PR4,primary,,GSM5392418_RCC-PR4-Normal.count.csv.gz
+GSM5392419,RCC-PR4-PTumor,Tumor,ccRCC,No,No,PR4,primary,,GSM5392419_RCC-PR4-PTumor.count.csv.gz
+GSM5392420,RCC-PR3-Normal,Normal,ccRCC,No,NA,PR3,primary,,GSM5392420_RCC-PR3-Normal.count.csv.gz
+GSM5392421,RCC-PR3-PTumor1,Tumor,ccRCC,No,No,PR3,primary,,GSM5392421_RCC-PR3-PTumor1.count.csv.gz
+GSM5392422,RCC-PR3-PTumor2,Tumor,ccRCC,No,No,PR3,primary,,GSM5392422_RCC-PR3-PTumor2.count.csv.gz
+GSM5392423,RCC-PR3-PTumor3,Tumor,ccRCC,No,No,PR3,primary,,GSM5392423_RCC-PR3-PTumor3.count.csv.gz

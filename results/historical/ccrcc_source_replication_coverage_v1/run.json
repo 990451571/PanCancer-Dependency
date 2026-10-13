@@ -1,0 +1,15 @@
+{
+  "status": "passed_coverage_audit",
+  "upstream_run_sha256": "e16d33105b4a503ed6d08e94001ff3ae9665abb0805f80d64751037fbaa35d13",
+  "script_sha256": "0de956786155d3d39e7b1a34c5b259297e428f337b0d4afe0304b4d409af2c82",
+  "missing_candidate_symbols": [
+    "MRPL57",
+    "GCN1"
+  ],
+  "cross_study_valid_candidate_n": 27,
+  "note": "Original paired_expression_summary.csv paired_donor_n counts structurally matched donor records including missing symbols. This table adds valid measured pair counts; absent symbols have no effect estimate. No model or candidate changes.",
+  "output_sha256": {
+    "candidate_gene_coverage.csv": "ab23fb95085cae821bb66980765755a65bfb422045fb53778cd35f873c85385f",
+    "paired_expression_summary_with_coverage.csv": "66d6fe69298a77cc9d61c7bc4d757a512bb4de377a9715f5e00be007285709a7"
+  }
+}

@@ -1,0 +1,9 @@
+scope,scenario,count,mean,min,max
+metastatic_status,nonmalignant_rna_25pct,2,0.8,0.8,0.8
+metastatic_status,nonmalignant_rna_50pct,2,0.7,0.7,0.7
+metastatic_status,nonmalignant_rna_75pct,2,0.44999999999999996,0.3,0.6
+metastatic_status,observed_all_cells,2,0.2,0.1,0.3
+primary,nonmalignant_rna_25pct,6,0.7166666666666667,0.6,0.8
+primary,nonmalignant_rna_50pct,6,0.5166666666666667,0.4,0.7
+primary,nonmalignant_rna_75pct,6,0.39999999999999997,0.3,0.6
+primary,observed_all_cells,6,0.25,0.1,0.6

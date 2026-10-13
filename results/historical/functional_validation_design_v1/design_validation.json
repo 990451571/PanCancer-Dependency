@@ -1,0 +1,41 @@
+{
+  "status": "design_draft_not_executed",
+  "seed": 20261010,
+  "measurements_present": false,
+  "pilot_donor_pairs": 3,
+  "independent_runs": 2,
+  "plates": 18,
+  "assay_wells": 936,
+  "edge_buffer_wells": 648,
+  "unused_interior_wells": 144,
+  "observation_template_rows": 2808,
+  "power_scenarios": 36,
+  "numerical_method": "statsmodels TTestPower noncentral-t; CPU closed-form planning",
+  "additional_resources_not_in_plate_budget": [
+    "engagement calibration",
+    "molecular QC",
+    "destructive readouts",
+    "orthogonal perturbation",
+    "rescue",
+    "confirmation"
+  ],
+  "checks": [
+    "unique interior allocation",
+    "paired tissues on each plate",
+    "balanced conditions",
+    "empty outcome fields",
+    "power target achieved after rounding"
+  ],
+  "sha256": {
+    "results/historical/final_evidence_synthesis_v2/candidate_evidence_matrix.csv": "6601aeb00698c89c1dbf909047643820c7f87b6b295a7771c823d97b90e39895",
+    "results/historical/ccrcc_source_replication_coverage_v1/paired_expression_summary_with_coverage.csv": "66d6fe69298a77cc9d61c7bc4d757a512bb4de377a9715f5e00be007285709a7",
+    "configs/functional_validation_design_20261010.json": "611c2d295882c599bc6398e6d67436582ec318ceb99e3d9409546fbda128fb0d",
+    "scripts/prepare_functional_validation_design.py": "9d07bb75ecc0aa9f2c5ce206f151cf2f882498ad9f45b5ac2ac3fc5290373959",
+    "results/historical/functional_validation_design_v1/allocation_key.csv": "e3b22d8481928e3c80f62e624cd6fac4a103854d5bc53aa9e1d69cf8dfe9f3b0",
+    "results/historical/functional_validation_design_v1/engagement_calibration_blank_template.csv": "986a2c8480212799ddf23863741e0f617ee1ff5ba882cedd088fb3ce3e6b570c",
+    "results/historical/functional_validation_design_v1/model_inventory_blank_template.csv": "3c721321b3d3f1dc0c577a327a6afb5abfd54c8f8e414db1f4a653dc276a61b0",
+    "results/historical/functional_validation_design_v1/observations_blank_template.csv": "6ba878c8fdb4338a7e6009ae67f54f21ad932d35526fbeb80a57de1de7c8a43b",
+    "results/historical/functional_validation_design_v1/pilot_plate_layout.csv": "763b1f2463f9f0ce4ef2171c1d772299ee2679e78324ccc943a874e055a648c5",
+    "results/historical/functional_validation_design_v1/power_sensitivity.csv": "2018c8b5bc407c0d0b02f8fd3891c75995af2105aa0fed24a006df01ebfef415"
+  }
+}

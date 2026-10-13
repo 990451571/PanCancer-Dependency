@@ -1,0 +1,377 @@
+{
+  "status": "installed",
+  "analysis_unchanged": true,
+  "replaced": [
+    "outputs/final_figures_v2/图01_模型验证表现与患者证据边界.png",
+    "results/historical/final_figures_v2/图01_模型验证表现与患者证据边界.png",
+    "outputs/final_figures_v2/图01_模型验证表现与患者证据边界.pdf",
+    "results/historical/final_figures_v2/图01_模型验证表现与患者证据边界.pdf",
+    "outputs/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.png",
+    "results/historical/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.png",
+    "outputs/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.pdf",
+    "results/historical/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.pdf",
+    "outputs/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.png",
+    "results/historical/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.png",
+    "outputs/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.pdf",
+    "results/historical/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.pdf",
+    "outputs/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.png",
+    "results/historical/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.png",
+    "outputs/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.pdf",
+    "results/historical/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.pdf",
+    "outputs/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.png",
+    "results/historical/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.png",
+    "outputs/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.pdf",
+    "results/historical/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.pdf",
+    "outputs/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.png",
+    "results/historical/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.png",
+    "outputs/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.pdf",
+    "results/historical/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.pdf",
+    "outputs/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.png",
+    "results/historical/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.png",
+    "outputs/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.pdf",
+    "results/historical/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.pdf",
+    "outputs/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.png",
+    "results/historical/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.png",
+    "outputs/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.pdf",
+    "results/historical/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.pdf",
+    "outputs/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.png",
+    "results/historical/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.png",
+    "outputs/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.pdf",
+    "results/historical/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.pdf",
+    "outputs/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.png",
+    "results/historical/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.png",
+    "outputs/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.pdf",
+    "results/historical/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.pdf",
+    "outputs/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.png",
+    "results/historical/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.png",
+    "outputs/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.pdf",
+    "results/historical/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.pdf",
+    "outputs/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.png",
+    "results/historical/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.png",
+    "outputs/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.pdf",
+    "results/historical/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.pdf"
+  ],
+  "previous_images": [
+    {
+      "path": "outputs/final_figures_v2/图01_模型验证表现与患者证据边界.png",
+      "old_sha256": "07933442aba0cd68077c80596603005deaf39b8bda37aa90b6997853d29c2027",
+      "original_path": "outputs/final_figures_v2/figure1_validation_and_evidence_ceiling.png"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图01_模型验证表现与患者证据边界.png",
+      "old_sha256": "07933442aba0cd68077c80596603005deaf39b8bda37aa90b6997853d29c2027",
+      "original_path": "results/historical/final_figures_v2/figure1_validation_and_evidence_ceiling.png"
+    },
+    {
+      "path": "outputs/final_figures_v2/图01_模型验证表现与患者证据边界.pdf",
+      "old_sha256": "099eb82a069f5a17f88401d8928197988ee4cb60df061aa019d8928824e52bb2",
+      "original_path": "outputs/final_figures_v2/figure1_validation_and_evidence_ceiling.pdf"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图01_模型验证表现与患者证据边界.pdf",
+      "old_sha256": "099eb82a069f5a17f88401d8928197988ee4cb60df061aa019d8928824e52bb2",
+      "original_path": "results/historical/final_figures_v2/figure1_validation_and_evidence_ceiling.pdf"
+    },
+    {
+      "path": "outputs/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.png",
+      "old_sha256": "9b3d4a17a8d7bf75f7061018734acd9178ca92fe5eceff98aa7aeed0e4d6628d",
+      "original_path": "outputs/final_figures_v2/figure2_candidate_evidence_matrix.png"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.png",
+      "old_sha256": "9b3d4a17a8d7bf75f7061018734acd9178ca92fe5eceff98aa7aeed0e4d6628d",
+      "original_path": "results/historical/final_figures_v2/figure2_candidate_evidence_matrix.png"
+    },
+    {
+      "path": "outputs/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.pdf",
+      "old_sha256": "b597ac2637b463a7db0c85a731cd60fbdb10c6d3421f6ed07ecf0c661f1388bd",
+      "original_path": "outputs/final_figures_v2/figure2_candidate_evidence_matrix.pdf"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图02_ccRCC候选基因多层证据矩阵.pdf",
+      "old_sha256": "b597ac2637b463a7db0c85a731cd60fbdb10c6d3421f6ed07ecf0c661f1388bd",
+      "original_path": "results/historical/final_figures_v2/figure2_candidate_evidence_matrix.pdf"
+    },
+    {
+      "path": "outputs/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.png",
+      "old_sha256": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd",
+      "original_path": "outputs/final_figures_v2/figure3_dependency_vs_normal_kidney_exposure.png"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.png",
+      "old_sha256": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd",
+      "original_path": "results/historical/final_figures_v2/figure3_dependency_vs_normal_kidney_exposure.png"
+    },
+    {
+      "path": "outputs/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.pdf",
+      "old_sha256": "c6034b25bba8923d70c3fb0055384b96969a46e46d1468ca500bc192047dcaa0",
+      "original_path": "outputs/final_figures_v2/figure3_dependency_vs_normal_kidney_exposure.pdf"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图03_肿瘤基因依赖与正常肾表达风险.pdf",
+      "old_sha256": "c6034b25bba8923d70c3fb0055384b96969a46e46d1468ca500bc192047dcaa0",
+      "original_path": "results/historical/final_figures_v2/figure3_dependency_vs_normal_kidney_exposure.pdf"
+    },
+    {
+      "path": "outputs/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.png",
+      "old_sha256": "374619f401dafdbc295d87a65a3f9bff34dac12dafd8a99b6c2ef750c2fd3129",
+      "original_path": "outputs/final_figures_v2/figure4_baseline_generalization.png"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.png",
+      "old_sha256": "374619f401dafdbc295d87a65a3f9bff34dac12dafd8a99b6c2ef750c2fd3129",
+      "original_path": "results/historical/final_figures_v2/figure4_baseline_generalization.png"
+    },
+    {
+      "path": "outputs/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.pdf",
+      "old_sha256": "bc3f53cd222c6f581002979524c0dc282ee78b0ff5152ca3fdde68fe543d79e0",
+      "original_path": "outputs/final_figures_v2/figure4_baseline_generalization.pdf"
+    },
+    {
+      "path": "results/historical/final_figures_v2/图04_基线模型跨癌系与跨平台表现比较.pdf",
+      "old_sha256": "bc3f53cd222c6f581002979524c0dc282ee78b0ff5152ca3fdde68fe543d79e0",
+      "original_path": "results/historical/final_figures_v2/figure4_baseline_generalization.pdf"
+    },
+    {
+      "path": "outputs/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.png",
+      "old_sha256": "a4fb17e97d18e0da79f6fa4fef408823519df1cd465e500fad7a7cf4c9f49c84",
+      "original_path": "outputs/pcr_singlecell_synthesis_v1/figure1_pcr_transfer_stability.png"
+    },
+    {
+      "path": "results/historical/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.png",
+      "old_sha256": "a4fb17e97d18e0da79f6fa4fef408823519df1cd465e500fad7a7cf4c9f49c84",
+      "original_path": "results/historical/pcr_singlecell_synthesis_v1/figure1_pcr_transfer_stability.png"
+    },
+    {
+      "path": "outputs/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.pdf",
+      "old_sha256": "02172978833daac5ac0f171d87f40620e2d1dd27e3d077c49e6cf69a36c8c94a",
+      "original_path": "outputs/pcr_singlecell_synthesis_v1/figure1_pcr_transfer_stability.pdf"
+    },
+    {
+      "path": "results/historical/pcr_singlecell_synthesis_v1/图05_PCR患者迁移的排序稳定性与映射敏感性.pdf",
+      "old_sha256": "02172978833daac5ac0f171d87f40620e2d1dd27e3d077c49e6cf69a36c8c94a",
+      "original_path": "results/historical/pcr_singlecell_synthesis_v1/figure1_pcr_transfer_stability.pdf"
+    },
+    {
+      "path": "outputs/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.png",
+      "old_sha256": "ea71338fe970aff03b8f1d8ca03c2bd0a84552f18795aea03121dbb5c4c6542e",
+      "original_path": "outputs/pcr_singlecell_synthesis_v1/figure2_candidate_cell_sources.png"
+    },
+    {
+      "path": "results/historical/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.png",
+      "old_sha256": "ea71338fe970aff03b8f1d8ca03c2bd0a84552f18795aea03121dbb5c4c6542e",
+      "original_path": "results/historical/pcr_singlecell_synthesis_v1/figure2_candidate_cell_sources.png"
+    },
+    {
+      "path": "outputs/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.pdf",
+      "old_sha256": "2e84161bd085e2c146575442acbf2e54088c0fc930eca34c6b0820ce9d079faf",
+      "original_path": "outputs/pcr_singlecell_synthesis_v1/figure2_candidate_cell_sources.pdf"
+    },
+    {
+      "path": "results/historical/pcr_singlecell_synthesis_v1/图06_GSE159115候选基因的细胞来源与表达检出.pdf",
+      "old_sha256": "2e84161bd085e2c146575442acbf2e54088c0fc930eca34c6b0820ce9d079faf",
+      "original_path": "results/historical/pcr_singlecell_synthesis_v1/figure2_candidate_cell_sources.pdf"
+    },
+    {
+      "path": "outputs/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.png",
+      "old_sha256": "802dc1bd02a17302b1cd4ffd6e16156cd5212275f8e693ccad5a284cfa9b6a74",
+      "original_path": "outputs/pcr_singlecell_synthesis_v1/figure3_mixture_and_source_audit.png"
+    },
+    {
+      "path": "results/historical/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.png",
+      "old_sha256": "802dc1bd02a17302b1cd4ffd6e16156cd5212275f8e693ccad5a284cfa9b6a74",
+      "original_path": "results/historical/pcr_singlecell_synthesis_v1/figure3_mixture_and_source_audit.png"
+    },
+    {
+      "path": "outputs/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.pdf",
+      "old_sha256": "54bd4e70ea9d4b74e9768c07b7f9cd33e26d28d3ba8d418246ed4180079198fc",
+      "original_path": "outputs/pcr_singlecell_synthesis_v1/figure3_mixture_and_source_audit.pdf"
+    },
+    {
+      "path": "results/historical/pcr_singlecell_synthesis_v1/图07_细胞混合对排序的影响与样本标签核查.pdf",
+      "old_sha256": "54bd4e70ea9d4b74e9768c07b7f9cd33e26d28d3ba8d418246ed4180079198fc",
+      "original_path": "results/historical/pcr_singlecell_synthesis_v1/figure3_mixture_and_source_audit.pdf"
+    },
+    {
+      "path": "outputs/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.png",
+      "old_sha256": "c157bd16a40c350a0a65e39c9085e016c55ab4a717b15c059fb25790d96345c0",
+      "original_path": "outputs/pcr_instability_synthesis_v1/paired_controls.png"
+    },
+    {
+      "path": "results/historical/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.png",
+      "old_sha256": "c157bd16a40c350a0a65e39c9085e016c55ab4a717b15c059fb25790d96345c0",
+      "original_path": "results/historical/pcr_instability_synthesis_v1/paired_controls.png"
+    },
+    {
+      "path": "outputs/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.pdf",
+      "old_sha256": "1a6d4b8c2951aa8a827b42abbb8b6280553ff083326714c21b65de0c476276f5",
+      "original_path": "outputs/pcr_instability_synthesis_v1/paired_controls.pdf"
+    },
+    {
+      "path": "results/historical/pcr_instability_synthesis_v1/图08_PCR排序不稳定性的来源对照.pdf",
+      "old_sha256": "1a6d4b8c2951aa8a827b42abbb8b6280553ff083326714c21b65de0c476276f5",
+      "original_path": "results/historical/pcr_instability_synthesis_v1/paired_controls.pdf"
+    },
+    {
+      "path": "outputs/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.png",
+      "old_sha256": "1c3c1c22eca655d7fe6160fa05148dcdf24fb50be46f5fa5a0516ea4932c06d0",
+      "original_path": "outputs/pcr_instability_synthesis_v1/functional_stability.png"
+    },
+    {
+      "path": "results/historical/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.png",
+      "old_sha256": "1c3c1c22eca655d7fe6160fa05148dcdf24fb50be46f5fa5a0516ea4932c06d0",
+      "original_path": "results/historical/pcr_instability_synthesis_v1/functional_stability.png"
+    },
+    {
+      "path": "outputs/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.pdf",
+      "old_sha256": "b4d4ddba00b558c9236e14c70313145b470b6fb9dd48ea40f3de7e9efb318137",
+      "original_path": "outputs/pcr_instability_synthesis_v1/functional_stability.pdf"
+    },
+    {
+      "path": "results/historical/pcr_instability_synthesis_v1/图09_排序稳定性与功能预测表现的关系.pdf",
+      "old_sha256": "b4d4ddba00b558c9236e14c70313145b470b6fb9dd48ea40f3de7e9efb318137",
+      "original_path": "results/historical/pcr_instability_synthesis_v1/functional_stability.pdf"
+    },
+    {
+      "path": "outputs/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.png",
+      "old_sha256": "ebd23fe02d9acc55b5328dbc4b38b99b4aff13859fad360a940d9d4e33cf679b",
+      "original_path": "outputs/pcr_instability_synthesis_v1/boundary_stability.png"
+    },
+    {
+      "path": "results/historical/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.png",
+      "old_sha256": "ebd23fe02d9acc55b5328dbc4b38b99b4aff13859fad360a940d9d4e33cf679b",
+      "original_path": "results/historical/pcr_instability_synthesis_v1/boundary_stability.png"
+    },
+    {
+      "path": "outputs/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.pdf",
+      "old_sha256": "5d22e38bf00dea2e6cd8bcdbe44f046ff3d162ccdeb6bba8dccdea985dfd5c6b",
+      "original_path": "outputs/pcr_instability_synthesis_v1/boundary_stability.pdf"
+    },
+    {
+      "path": "results/historical/pcr_instability_synthesis_v1/图10_候选排名边界间隔与排序稳定性.pdf",
+      "old_sha256": "5d22e38bf00dea2e6cd8bcdbe44f046ff3d162ccdeb6bba8dccdea985dfd5c6b",
+      "original_path": "results/historical/pcr_instability_synthesis_v1/boundary_stability.pdf"
+    },
+    {
+      "path": "outputs/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.png",
+      "old_sha256": "e5cfb54346b2dfd22c7162d76fd7bf9b90cd16cb2fc56f4d5a6d2108b737954d",
+      "original_path": "outputs/ccrcc_source_replication_synthesis_v1/candidate_cell_sources.png"
+    },
+    {
+      "path": "results/historical/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.png",
+      "old_sha256": "e5cfb54346b2dfd22c7162d76fd7bf9b90cd16cb2fc56f4d5a6d2108b737954d",
+      "original_path": "results/historical/ccrcc_source_replication_synthesis_v1/candidate_cell_sources.png"
+    },
+    {
+      "path": "outputs/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.pdf",
+      "old_sha256": "51427448cba66088a9f65b509b139027bff8f6d17b2f67bcca1de96159262a0e",
+      "original_path": "outputs/ccrcc_source_replication_synthesis_v1/candidate_cell_sources.pdf"
+    },
+    {
+      "path": "results/historical/ccrcc_source_replication_synthesis_v1/图11_GSE178481独立队列候选基因的细胞来源.pdf",
+      "old_sha256": "51427448cba66088a9f65b509b139027bff8f6d17b2f67bcca1de96159262a0e",
+      "original_path": "results/historical/ccrcc_source_replication_synthesis_v1/candidate_cell_sources.pdf"
+    },
+    {
+      "path": "outputs/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.png",
+      "old_sha256": "6c1105143adccbd8caaa1c3b1d6baa9c49911a3001ae49c9d4d75135c432e451",
+      "original_path": "outputs/ccrcc_source_replication_synthesis_v1/paired_expression.png"
+    },
+    {
+      "path": "results/historical/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.png",
+      "old_sha256": "6c1105143adccbd8caaa1c3b1d6baa9c49911a3001ae49c9d4d75135c432e451",
+      "original_path": "results/historical/ccrcc_source_replication_synthesis_v1/paired_expression.png"
+    },
+    {
+      "path": "outputs/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.pdf",
+      "old_sha256": "32c5eb15c559eab8a61904bcfe57210c5b81050a8668cb24b3807e6e5c783e5e",
+      "original_path": "outputs/ccrcc_source_replication_synthesis_v1/paired_expression.pdf"
+    },
+    {
+      "path": "results/historical/ccrcc_source_replication_synthesis_v1/图12_肿瘤与正常肾的配对供者表达比较.pdf",
+      "old_sha256": "32c5eb15c559eab8a61904bcfe57210c5b81050a8668cb24b3807e6e5c783e5e",
+      "original_path": "results/historical/ccrcc_source_replication_synthesis_v1/paired_expression.pdf"
+    }
+  ],
+  "deleted_obsolete_images": [
+    {
+      "path": "outputs/final_figures_v1/figure1_validation_and_evidence_ceiling.pdf",
+      "old_sha256": "4d754f6e053ad788afa15bf458c3835c93de4e7fd8d8e667b2db4a4449254be2"
+    },
+    {
+      "path": "outputs/final_figures_v1/figure1_validation_and_evidence_ceiling.png",
+      "old_sha256": "a80932273edd003ff94eade1dd1ab745f3d39054795772fab7444335ce151949"
+    },
+    {
+      "path": "outputs/final_figures_v1/figure2_candidate_evidence_matrix.pdf",
+      "old_sha256": "60184db89a0337b4782fff5203007a750ebcdb5381c83433cfe89afca306cbe6"
+    },
+    {
+      "path": "outputs/final_figures_v1/figure2_candidate_evidence_matrix.png",
+      "old_sha256": "9a5f5048773c5d6f0abbc29915b65161ff39e61b7433a8b687b9401b7c88e0e1"
+    },
+    {
+      "path": "outputs/final_figures_v1/figure3_dependency_vs_normal_kidney_exposure.pdf",
+      "old_sha256": "e8d00e8c3ab66db2f27d95e113e68f20f51807406eead652e0636592e964bd0b"
+    },
+    {
+      "path": "outputs/final_figures_v1/figure3_dependency_vs_normal_kidney_exposure.png",
+      "old_sha256": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd"
+    },
+    {
+      "path": "results/historical/final_figures_v1/figure1_validation_and_evidence_ceiling.pdf",
+      "old_sha256": "4d754f6e053ad788afa15bf458c3835c93de4e7fd8d8e667b2db4a4449254be2"
+    },
+    {
+      "path": "results/historical/final_figures_v1/figure1_validation_and_evidence_ceiling.png",
+      "old_sha256": "a80932273edd003ff94eade1dd1ab745f3d39054795772fab7444335ce151949"
+    },
+    {
+      "path": "results/historical/final_figures_v1/figure2_candidate_evidence_matrix.pdf",
+      "old_sha256": "60184db89a0337b4782fff5203007a750ebcdb5381c83433cfe89afca306cbe6"
+    },
+    {
+      "path": "results/historical/final_figures_v1/figure2_candidate_evidence_matrix.png",
+      "old_sha256": "9a5f5048773c5d6f0abbc29915b65161ff39e61b7433a8b687b9401b7c88e0e1"
+    },
+    {
+      "path": "results/historical/final_figures_v1/figure3_dependency_vs_normal_kidney_exposure.pdf",
+      "old_sha256": "e8d00e8c3ab66db2f27d95e113e68f20f51807406eead652e0636592e964bd0b"
+    },
+    {
+      "path": "results/historical/final_figures_v1/figure3_dependency_vs_normal_kidney_exposure.png",
+      "old_sha256": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd"
+    }
+  ],
+  "source_sha256": {
+    "results/historical/final_evidence_synthesis_v2/candidate_evidence_matrix.csv": "6601aeb00698c89c1dbf909047643820c7f87b6b295a7771c823d97b90e39895",
+    "outputs/selective_dependency_benchmark_v1/overall_summary.csv": "04f346d218870fd8317b01a993fd01aaa890e56d68cdd2622fdd938604568da7",
+    "outputs/sanger_baseline_benchmark_v1/overall_summary.csv": "c928e3dc080041d10334583b677071d17320b5bf1a01c5f93e945822f5c92bf2",
+    "outputs/selective_dependency_analysis_v1/bootstrap.csv": "a52680a1c1681728ad65c27db7ab0f099f24163ef437153c8d2caa10b8d804b8",
+    "outputs/sanger_selective_dependency_v1/bootstrap.csv": "d0ad1ddedd55ae792cd3d97b59e7f2d7e212b67d90a414011ddc0fa4a0a49047",
+    "outputs/tcga_patient_transfer_v1/cohort_stability.csv": "99b82a575646a52baae77ed9a5bbb37afbbdf987f5c198786ec9c47e2d0ae22f",
+    "outputs/tcga_patient_transfer_v1/input_sensitivity.csv": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d",
+    "results/historical/tcga_locked_test_v1/run.json": "437007f387a5b7fa6dd7c5257f44699bf3fdcc9634afc814407f7fcc670a8ae8",
+    "outputs/pcr_patient_extension_v1/mapping_sensitivity.csv": "6f41bcb7842deafffba391b05269f600d6ae1ec78a9982d7ac2a57085013146a",
+    "outputs/pcr_singlecell_synthesis_v1/bootstrap_per_patient_mean_overlap.csv": "3b8bfc63d71f12385a52f54f2d23e8d61f2236df9ced63b2bd74ceb71f4c8650",
+    "outputs/pcr_patient_extension_v1/candidate_summary.csv.gz": "da8a4638a84aa8b8f7b3df66fc94ab3fc6af54bc498a776c3c2ae64bc9b6dd84",
+    "outputs/pcr_patient_extension_v1/pcr_discovery_top20.csv": "bd679b9101b323aa2b4069c4c230027ae3a73dd9c39c3614795ad1a37b69ceba",
+    "outputs/pcr_patient_extension_v1/domain_diagnostics.csv": "d58a3ed1d555707b81d9b1e1bafb01aff12b9944ae64c83746da314f7db80cb6",
+    "outputs/ccrcc_singlecell_extension_v1/candidate_cell_source_summary.csv": "e0030ad469a9a8ecf484b84569bdcf6b4cf03ccbc4998cc5f048d92f37cd8ed1",
+    "outputs/ccrcc_singlecell_extension_v1/mixture_sensitivity.csv": "67a85ad2cc075dc76d7bd1998c97921ae6bbbc2e8474184a7db243bd66ec2187",
+    "outputs/ccrcc_singlecell_extension_v1/sample_source_audit.csv": "706221a6d5ca1323c88597d77bac9aed0458b6d634022a831607817783dbb638",
+    "outputs/pcr_instability_audit_v1/object_summary.csv.gz": "4b6ea30049a18cbf17082e7ddd462180aa466c502df2443268693cf2d3348084",
+    "outputs/pcr_instability_audit_v1/functional_associations.csv": "abe1abfad74b9e3a71f30980e1119a95d30c5e1b50ae8373dd243d1fd0e99b0e",
+    "outputs/ccrcc_source_replication_v1/candidate_sets.csv": "86258bd2b12feb9ad2d10c0bd1aa767837f729ebe2971706cfc6971d1e61cace",
+    "outputs/ccrcc_source_replication_v1/cell_source_summary.csv.gz": "cb1a32c48c26bd529e48ba661925ad93ab7e8ba7f01f88c4f66aa1659c8d6159",
+    "outputs/ccrcc_source_replication_v1/paired_tumor_proximal_expression.csv": "19ae3c14c4f6d095ae701abc04b66283ae7dba12bec4031bbc264f48bea46f05"
+  },
+  "render_manifest_sha256": "db921933e9ed8428162d94e6ceeb717ac2c6cb0ab7169ec580f912b27697afa4",
+  "filename_revision": {
+    "image_contents_unchanged": true,
+    "deleted_overviews": [
+      "results/historical/mechdec_figure_redraw_20261013/figure_overview.jpg",
+      "outputs/mechdec_redraw_20261013_review2/figure_overview.jpg"
+    ]
+  }
+}

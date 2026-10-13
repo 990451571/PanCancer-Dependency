@@ -23,12 +23,6 @@
     "input_sensitivity": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d"
   },
   "output_sha256": {
-    "figure1_validation_and_evidence_ceiling.png": "a80932273edd003ff94eade1dd1ab745f3d39054795772fab7444335ce151949",
-    "figure1_validation_and_evidence_ceiling.pdf": "4d754f6e053ad788afa15bf458c3835c93de4e7fd8d8e667b2db4a4449254be2",
-    "figure2_candidate_evidence_matrix.png": "9a5f5048773c5d6f0abbc29915b65161ff39e61b7433a8b687b9401b7c88e0e1",
-    "figure2_candidate_evidence_matrix.pdf": "60184db89a0337b4782fff5203007a750ebcdb5381c83433cfe89afca306cbe6",
-    "figure3_dependency_vs_normal_kidney_exposure.png": "b142cd0d8b1261b3388620afde1dc455b21f103e30f80efdf606e55f5d1867dd",
-    "figure3_dependency_vs_normal_kidney_exposure.pdf": "e8d00e8c3ab66db2f27d95e113e68f20f51807406eead652e0636592e964bd0b",
     "figure_manifest.csv": "1d3d1510a8f2bd7d58c709058f9d7e8a15304962d2fac07d1ad6e9bdc06bc0eb"
   },
   "script_sha256": "c89c88d5f7892ca16cbee3a6c79d8dc8b8519d7b2b661fe092d07ce7e3e0d3a9",
@@ -37,5 +31,14 @@
     "Patient-transfer agreement is stability without functional ground truth.",
     "GTEx expression is normal-tissue exposure, not drug toxicity.",
     "The evidence matrix deliberately does not collapse heterogeneous evidence into a score."
-  ]
+  ],
+  "render_revision": {
+    "date": "2026-10-13",
+    "reference": "ppt/MechDec.pptx",
+    "renderer": "scripts/redraw_mechdec_figures.py",
+    "renderer_sha256": "479e2c9876afbf73cac3930f71cee8e69d3118a830a388eab27a34a0206faa9e",
+    "previous_run_sha256": "24eeb396116fc5527528e477786ea9d2024ab8c272a67b52e5a1aec2f4030010",
+    "analysis_unchanged": true,
+    "status": "retired_images_use_final_figures_v2"
+  }
 }

@@ -1,0 +1,42 @@
+{
+  "signature": {
+    "run_pcr_instability_audit.py": "1d63b1fac960330ac2852cb8de2e21f2698de1466c7c70ae30c8461212b074ae",
+    "pcr_instability_methods.py": "4c191f9394312ddfdadd6abdba064de69769ee1b73ede1a2eeed171911ca6c64",
+    "pcr_instability_audit_protocol_20261010.json": "6e464c5203861a26a1febc41d314b984ccc664c1f64c88fc03ae75d3a48388fe",
+    "matrices.npz": "4dd2c0294e8b9e594ea2708bf1bdd800d7821c43fef88a2681f1c575f991b26d",
+    "patient_run.json": "a65758d3bf14fe1021ccccba98833cbab78937ee637892175fb6238fd93c79b3",
+    "bridge_run.json": "1b5137812aa09bb7fe9762e7f693ebd2b6d903eb5c5dadfb1006429186288d61"
+  },
+  "cases": {
+    "TCGA": "e9da5e630fc9039a9c66db4bc5437f6b2111bb5d4a0115da5e5cccaa31fe558c",
+    "Biliary Tract": "cdbedea9220b1edc05ceedc5c6b0c75ce1374fb94de56e3d7b98b4cf4c433dfd",
+    "Bladder/Urinary Tract": "360ee7d52eced1b54e855abf5f303fa69da444a77a7fcf2d8fcc33c428242308",
+    "Bone": "cefdacc8caf9fd0209ce6d81d43c22810566d084883fec752c95500358a216c1",
+    "Bowel": "60f81936c74d8c72a7bc30c040813e84fe80bd634734c8282da3a8afff0e761a",
+    "Breast": "5e9f90a0de62dbb88d07a3252147fc4be792009ee89b0411b40ed92b98cf6191",
+    "CNS/Brain": "e0e5cb25c30ea1cb02e74ea49d14456ee7198b63fe49a0f94e4f4e46210ced95",
+    "Esophagus/Stomach": "e3a0b8271fa7b3bd87c9ad7c8830cf10da4159c69f56aa75c946a7bcb5848c96",
+    "Head and Neck": "eeff02d36e555602b27b2e43645ac3bbe17dcc083afb6c551f0bc0df7a9aa822",
+    "Kidney": "23dfec1aa58982106002aafd7b75cacab5b5a526010e1c69e6fad915febb8a2c",
+    "Liver": "c944af5f0197c30f3d1c090feb67c04cadae95aa34ba57f7cef886d999cbdbda",
+    "Lung": "b3a28dc3a5c2579e6be23a97fe4d13b61c6007bc0d2329da11bea458f8299e22",
+    "Lymphoid": "4997bae75bf2276a88c922b109eb80b0def6cc74a2e8f9e5479ae9b8d0bb6db1",
+    "Myeloid": "17b822c72717a28c5638cf025af7e81b0694697150abe91800ebe0db1a7d04fb",
+    "Ovary/Fallopian Tube": "a7bfe1e3b232be83ba796d9a243c9979d8f4c05c0a613d4b5c8224cbc0d6dc06",
+    "Pancreas": "a6c2c5e37f786e74e99035ea6010184d65c439eed6608b3bc1c7d994b6cca233",
+    "Peripheral Nervous System": "fd82dd524877c9b2f1d418eb4ee009cc34d39214c3c9c8e1a23735c2c0086988",
+    "Skin": "0b9e8e3e0c580cbc78c2e3e83a9f3f0d967e78c1ed2706df889e13f49a11677c",
+    "Soft Tissue": "e9f4ad60e4c548880c7dc5f88e190a76f6193d773c08a35c9c14017ada8d6794",
+    "Uterus": "8f322d9796edd385eb6172a9647d13703d9eb1483ff9dee4ba0b96c46cca7204"
+  },
+  "functional_seed_rule": "20261011 + zero-based sorted lineage index",
+  "elapsed_seconds": 915.8127085170709,
+  "locked_test_expression_access": false,
+  "candidate_reranking": false,
+  "output_sha256": {
+    "cohort_summary.csv": "c1247f2707a10b04f822bb2d3504d80e61b809567a99dc808a204777f54e7860",
+    "functional_associations.csv": "abe1abfad74b9e3a71f30980e1119a95d30c5e1b50ae8373dd243d1fd0e99b0e",
+    "lineage_contrasts.csv": "f98b460c2471c650002d5d446837b990154640327d65ad5d9f94f7d90b8941ce",
+    "object_summary.csv.gz": "4b6ea30049a18cbf17082e7ddd462180aa466c502df2443268693cf2d3348084"
+  }
+}

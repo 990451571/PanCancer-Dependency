@@ -1,0 +1,12 @@
+# Optional, isolated single-cell environment. Keep the existing CUDA torch build.
+# PCR generation was run in the original requirements.txt environment (NumPy 1.23).
+# Install this file in a separate venv with --system-site-packages, sharing CUDA torch.
+numpy==2.0.2
+pandas==2.2.3
+scipy==1.13.1
+scanpy==1.11.5
+anndata==0.11.4
+h5py==3.16.0
+matplotlib==3.9.2
+scikit-learn==1.7.2
+numba==0.60.0

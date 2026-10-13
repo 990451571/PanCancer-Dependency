@@ -1,0 +1,7 @@
+donor_id,tissue,model_id,availability,histology,authentication,mycoplasma_status,passage,proximal_identity,tumor_identity,medium_id,baseline_growth,consent_approval_reference
+PLACEHOLDER_D001,tumor,,unknown,,,,,,,,,
+PLACEHOLDER_D001,normal,,unknown,,,,,,,,,
+PLACEHOLDER_D002,tumor,,unknown,,,,,,,,,
+PLACEHOLDER_D002,normal,,unknown,,,,,,,,,
+PLACEHOLDER_D003,tumor,,unknown,,,,,,,,,
+PLACEHOLDER_D003,normal,,unknown,,,,,,,,,

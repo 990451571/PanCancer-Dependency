@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "figures": [
+    {
+      "group": "final_figures_v2",
+      "old_stem": "figure1_validation_and_evidence_ceiling",
+      "chinese_stem": "图01_模型验证表现与患者证据边界"
+    },
+    {
+      "group": "final_figures_v2",
+      "old_stem": "figure2_candidate_evidence_matrix",
+      "chinese_stem": "图02_ccRCC候选基因多层证据矩阵"
+    },
+    {
+      "group": "final_figures_v2",
+      "old_stem": "figure3_dependency_vs_normal_kidney_exposure",
+      "chinese_stem": "图03_肿瘤基因依赖与正常肾表达风险"
+    },
+    {
+      "group": "final_figures_v2",
+      "old_stem": "figure4_baseline_generalization",
+      "chinese_stem": "图04_基线模型跨癌系与跨平台表现比较"
+    },
+    {
+      "group": "pcr_singlecell_synthesis_v1",
+      "old_stem": "figure1_pcr_transfer_stability",
+      "chinese_stem": "图05_PCR患者迁移的排序稳定性与映射敏感性"
+    },
+    {
+      "group": "pcr_singlecell_synthesis_v1",
+      "old_stem": "figure2_candidate_cell_sources",
+      "chinese_stem": "图06_GSE159115候选基因的细胞来源与表达检出"
+    },
+    {
+      "group": "pcr_singlecell_synthesis_v1",
+      "old_stem": "figure3_mixture_and_source_audit",
+      "chinese_stem": "图07_细胞混合对排序的影响与样本标签核查"
+    },
+    {
+      "group": "pcr_instability_synthesis_v1",
+      "old_stem": "paired_controls",
+      "chinese_stem": "图08_PCR排序不稳定性的来源对照"
+    },
+    {
+      "group": "pcr_instability_synthesis_v1",
+      "old_stem": "functional_stability",
+      "chinese_stem": "图09_排序稳定性与功能预测表现的关系"
+    },
+    {
+      "group": "pcr_instability_synthesis_v1",
+      "old_stem": "boundary_stability",
+      "chinese_stem": "图10_候选排名边界间隔与排序稳定性"
+    },
+    {
+      "group": "ccrcc_source_replication_synthesis_v1",
+      "old_stem": "candidate_cell_sources",
+      "chinese_stem": "图11_GSE178481独立队列候选基因的细胞来源"
+    },
+    {
+      "group": "ccrcc_source_replication_synthesis_v1",
+      "old_stem": "paired_expression",
+      "chinese_stem": "图12_肿瘤与正常肾的配对供者表达比较"
+    }
+  ],
+  "renamed_file_n": 72,
+  "deleted_overviews": [
+    "results/historical/mechdec_figure_redraw_20261013/figure_overview.jpg",
+    "outputs/mechdec_redraw_20261013_review2/figure_overview.jpg"
+  ]
+}

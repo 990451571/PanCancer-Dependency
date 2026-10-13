@@ -1,0 +1,10 @@
+{
+  "type": "compact_result_snapshot",
+  "upstream_output_dir": "outputs/ccrcc_source_replication_coverage_v1",
+  "upstream_run_sha256": "2f7870d7ec25e5a37659e3c4bf93bcae87f8d256a54d5bd9f1b0b8586611f634",
+  "included_sha256": {
+    "candidate_gene_coverage.csv": "ab23fb95085cae821bb66980765755a65bfb422045fb53778cd35f873c85385f",
+    "paired_expression_summary_with_coverage.csv": "66d6fe69298a77cc9d61c7bc4d757a512bb4de377a9715f5e00be007285709a7",
+    "run.json": "2f7870d7ec25e5a37659e3c4bf93bcae87f8d256a54d5bd9f1b0b8586611f634"
+  }
+}

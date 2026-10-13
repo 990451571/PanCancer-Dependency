@@ -1,0 +1,34 @@
+{
+  "upstream_run_sha256": "e16d33105b4a503ed6d08e94001ff3ae9665abb0805f80d64751037fbaa35d13",
+  "script_sha256": "501eb82b52575baa6ea85f490aa189a3c72339c42406697af7235aa60abd3915",
+  "limitations": [
+    "Expression is not functional dependency; adjacent normal is not healthy volunteer tissue"
+  ],
+  "output_sha256": {
+    "图11_GSE178481独立队列候选基因的细胞来源.pdf": "03f6a3d80c71e75fa2dc09c7dc7e458ec72341a7bf58e10a946cd22aa72bcba7",
+    "图11_GSE178481独立队列候选基因的细胞来源.png": "f972c73cdc70b5c9e801225d2bb93bdeb78a5210f2f08974a3d2cc963145f3a7",
+    "candidate_exposure_audit.csv": "7a1715975e9bd8e0796191dda510e452ddfb884ff2e3a18681abf189a31c49fd",
+    "mixture_summary.csv": "72ed0f99171b2e3a0e7a0d12bed0a00b86fea77fb5264433c2e062c93198447f",
+    "图12_肿瘤与正常肾的配对供者表达比较.pdf": "eab8712547143f08f4fe2c8a12a89ab538eebd210cc887c43f60f74cf3e596d4",
+    "图12_肿瘤与正常肾的配对供者表达比较.png": "f7ab633b48d1a803af168b83831e6e51638afdc4f92dd3902429cda0f8d344a0",
+    "qc_group_coverage.csv": "6e86edd8252157deccb3b3dc76c06c34c66f688ef6cbefe5dff351c036033eed"
+  },
+  "render_revision": {
+    "date": "2026-10-13",
+    "reference": "ppt/MechDec.pptx",
+    "renderer": "scripts/redraw_mechdec_figures.py",
+    "renderer_sha256": "479e2c9876afbf73cac3930f71cee8e69d3118a830a388eab27a34a0206faa9e",
+    "previous_run_sha256": "b9604ddee3c6a0a72eb61e56e23b8d0ae8f147eb8100f83635737ad2ced0918a",
+    "analysis_unchanged": true,
+    "status": "mechdec_style_redraw"
+  },
+  "filename_revision": {
+    "language": "Chinese",
+    "date": "2026-10-13",
+    "image_contents_unchanged": true,
+    "mapping": {
+      "candidate_cell_sources": "图11_GSE178481独立队列候选基因的细胞来源",
+      "paired_expression": "图12_肿瘤与正常肾的配对供者表达比较"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "status": "complete_descriptive_singlecell_and_exploratory_mixture_analysis",
+  "protocol_sha256": "0027b75a2342a426ae06677bd4a76425dbf9837b4666848c587607451a66261c",
+  "source_audit_amendment_sha256": "875802d19dd290005842c3141a0fa1fd99e09929d3277d6546973b7db338c7b3",
+  "input_sha256": {
+    "source_manifest": "ff397fc0d9fe35a814ef654dd9805ac4c5d92f84f8d22b19217a660ff93830ab",
+    "pcr_run": "a65758d3bf14fe1021ccccba98833cbab78937ee637892175fb6238fd93c79b3",
+    "historical_candidates": "6601aeb00698c89c1dbf909047643820c7f87b6b295a7771c823d97b90e39895"
+  },
+  "script_sha256": {
+    "run_ccrcc_singlecell_extension.py": "1f85ff106a5b882b7ab23c69c4f804b32917c7b7a702222bcefd5bf0e4d2eed4",
+    "pcr_transfer_methods.py": "028f163485a5ca07104b6ba02e64b73de535ddbd95f2170201b3bbb64f22995d"
+  },
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "torch": "2.11.0+cu130",
+  "scanpy": "1.11.5",
+  "numpy": "2.0.2",
+  "elapsed_seconds": 11.677586504025385,
+  "sample_n": 13,
+  "donor_n": 8,
+  "author_ccrcc_donor_n": 7,
+  "author_normal_donor_n": 5,
+  "annotated_cell_n": 26894,
+  "retained_cell_n": 24708,
+  "geo_author_discordant_sample_n": 8,
+  "mixture_donor_n": 7,
+  "mixture_ranking_gene_n": 13515,
+  "model_feature_coverage": 0.9403220713609094,
+  "candidate_gene_n": 29,
+  "limitations": [
+    "Author-cohort and GEO tissue labels conflict; preserved rather than silently corrected",
+    "Tumor labels are author-annotated, not independently CNV-confirmed",
+    "20% mitochondrial QC may disproportionately exclude renal epithelium",
+    "Normal source includes adjacent renal tissue and repeated samples from donors",
+    "scRNA CPM and DepMap TPM are not directly interchangeable; mixture mapping is exploratory",
+    "Scenario-specific mean alignment removes mean differences and does not calibrate predictions",
+    "No dependency labels, no functional accuracy, toxicity or therapeutic window inferred"
+  ],
+  "output_sha256": {
+    "annotation_marker_audit.csv": "5b4ad66c01d911ee487323c7be3cb00bf0b58cb6680925a7b9d9f447dee5b922",
+    "candidate_cell_source_summary.csv": "e0030ad469a9a8ecf484b84569bdcf6b4cf03ccbc4998cc5f048d92f37cd8ed1",
+    "candidate_donor_cell_sources.csv.gz": "b196ae332fab601158702702084c6064bf1401b1b5c69c74bd626675f5c35509",
+    "candidate_qc_sensitivity.csv.gz": "561991e1c01a2e0cbbb975f38edf1e8d28b599ca662ec68c30e63acedcd84116",
+    "candidate_sets.csv": "86258bd2b12feb9ad2d10c0bd1aa767837f729ebe2971706cfc6971d1e61cace",
+    "cell_metadata_qc.csv.gz": "605fa40600b3d186e5ff33bcd42e241707930fdafed30518ce9b3564830b9145",
+    "mixture_domain_diagnostics.csv": "a9645da89d2b96c4cb256ac8e60684116fc2e4a99453fa851e9c920ebbcb379f",
+    "mixture_patient_top10.csv": "61120eb532f42b17d2575acf0f71b9ef832b93b3f88eb46d519e5dde609a3ca3",
+    "mixture_sensitivity.csv": "67a85ad2cc075dc76d7bd1998c97921ae6bbbc2e8474184a7db243bd66ec2187",
+    "predictor_feature_donor_cell_sources.csv.gz": "37454790ae3d8cc8c74b2d5af2f0670281f28a7ed6f80437c6299027ec5c700c",
+    "pseudobulk_counts.npz": "2f7c604c5aff6399388e329c3e3de9bc3927c95af4898f72fdaf0929a951d3b3",
+    "pseudobulk_groups.csv": "4079dba95d83e98a65a7e448eab2fa66b008fba4dcfb27f24f7d92c6ec2d7dd3",
+    "qc_by_sample_label.csv": "6d4c2e530f26fab8f6c7b503e2a21059b0c3996773ad8586cfd3591ea78b0aee",
+    "sample_source_audit.csv": "706221a6d5ca1323c88597d77bac9aed0458b6d634022a831607817783dbb638"
+  }
+}

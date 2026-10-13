@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "exception_n": 1,
+  "records": [
+    {
+      "case": "Peripheral Nervous System",
+      "ModelID": "ACH-002283",
+      "added_gene_n": 80,
+      "cause": "Historical multi-method common mask excluded genes missing all labels among expression-kNN neighbors; audit PCR-only common mask retains them",
+      "maximum_independent_prediction_error": 6.3976601794024646e-15,
+      "historical_mask_ndcg": 0.3459054210399056,
+      "audit_mask_ndcg": 0.2035360449804036
+    }
+  ]
+}

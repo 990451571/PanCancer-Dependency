@@ -1,0 +1,156 @@
+{
+  "status": "staged_for_visual_review",
+  "date": "2026-10-13",
+  "reference": "ppt/MechDec.pptx",
+  "reference_sha256": "1f90a26f37bdcd5ddef6dbec341725802b4c9610a225e0e22148238c7c7bf954",
+  "renderer_sha256": "479e2c9876afbf73cac3930f71cee8e69d3118a830a388eab27a34a0206faa9e",
+  "figures": [
+    {
+      "group": "final_figures_v2",
+      "stem": "图01_模型验证表现与患者证据边界",
+      "interpretation": "Frozen validation statistics; original bootstrap intervals; patient stability is not accuracy.",
+      "png_sha256": "b3fc123575f22b201b4d5d0f4cf91109d59e34b7ab343f51de8c5b5834e2a11e",
+      "pdf_sha256": "7230019e54385de02a100e28e3b9d671b4ee839caca73365829246f95b335566",
+      "original_stem": "figure1_validation_and_evidence_ceiling"
+    },
+    {
+      "group": "final_figures_v2",
+      "stem": "图02_ccRCC候选基因多层证据矩阵",
+      "interpretation": "All 20 candidates and 11 criteria retained; hollow cells are not proof of absence.",
+      "png_sha256": "3b74e4ebe65f74a475b9039415d0642516b6ee580feef4afb96360a465acf088",
+      "pdf_sha256": "dd36a03dc11c88e7e58df076114f286da613ca7dbf6c939d662eee2aa42a4268",
+      "original_stem": "figure2_candidate_evidence_matrix"
+    },
+    {
+      "group": "final_figures_v2",
+      "stem": "图03_肿瘤基因依赖与正常肾表达风险",
+      "interpretation": "RNAi intervals unchanged; normal expression is exposure, not toxicity.",
+      "png_sha256": "4ab9dadddcd5546482f614043ac281c79c906c7b8d306d601dc658db7d0eaf32",
+      "pdf_sha256": "9b0e1fd50efe6963509cb404703681ff99cfbae9490a5f8485cff710f4915747",
+      "original_stem": "figure3_dependency_vs_normal_kidney_exposure"
+    },
+    {
+      "group": "final_figures_v2",
+      "stem": "图04_基线模型跨癌系与跨平台表现比较",
+      "interpretation": "Original lineage-equal point estimates, no new uncertainty estimates or cross-dataset paired inference.",
+      "png_sha256": "e68a5c8df0161efdaa0c54301e10c2d6f76d0191302cdd05f41fb403bd83406e",
+      "pdf_sha256": "3be35484a7cc7912acc847070ebfad6737992982b6356e0af5c9f5548786ffef",
+      "original_stem": "figure4_baseline_generalization"
+    },
+    {
+      "group": "pcr_singlecell_synthesis_v1",
+      "stem": "图05_PCR患者迁移的排序稳定性与映射敏感性",
+      "interpretation": "209 development patients; draw averages kept separate from independent patient counts.",
+      "png_sha256": "dcfd0b6d364fc565c35e87c09becbab42477e987ce326e6110ddb37ca47a8d0f",
+      "pdf_sha256": "38be6356fe6be2058501420d3703b5f363e6e91c112363e6f20c79da9a9fc8c1",
+      "original_stem": "figure1_pcr_transfer_stability"
+    },
+    {
+      "group": "pcr_singlecell_synthesis_v1",
+      "stem": "图06_GSE159115候选基因的细胞来源与表达检出",
+      "interpretation": "Frozen PCR order; expression is not dependency. 8/13 GEO-author tissue labels conflict; dot area = donor-mean detection.",
+      "png_sha256": "a25ad415a309feb1bfe13d6313a7dbb8ddf5df50a56de8399fbb170f7d955f82",
+      "pdf_sha256": "54722cf6c1b79378caaaef8bd7af81895b064c48b4c7ba8da313cea030aa15aa",
+      "original_stem": "figure2_candidate_cell_sources"
+    },
+    {
+      "group": "pcr_singlecell_synthesis_v1",
+      "stem": "图07_细胞混合对排序的影响与样本标签核查",
+      "interpretation": "All 7 donor curves and all 13 tissue-label audit records retained.",
+      "png_sha256": "09da6e60eedf14d74e018d9a9a2690793505df6bc6e24ea4818b0f2227054fea",
+      "pdf_sha256": "7ee3cc341c3d4d97759071a6257c34e2766f3320ce469248ac47d63e692aeb5a",
+      "original_stem": "figure3_mixture_and_source_audit"
+    },
+    {
+      "group": "pcr_instability_synthesis_v1",
+      "stem": "图08_PCR排序不稳定性的来源对照",
+      "interpretation": "Same six conditional contrasts and three list lengths; not additive causal contributions.",
+      "png_sha256": "e71687933896665e71d088ff91cd6da2110369620e28a2e4853112edb6ea2a71",
+      "pdf_sha256": "dc09ae46fa97df1a5752a178438d9152fbfdb53d063ca5db2779caae6fc4dc9f",
+      "original_stem": "paired_controls"
+    },
+    {
+      "group": "pcr_instability_synthesis_v1",
+      "stem": "图09_排序稳定性与功能预测表现的关系",
+      "interpretation": "Original correlations and bootstrap bounds; no patient probability calibration.",
+      "png_sha256": "0b545295db53443a38e1775b69da9f00d8384a813a6e464abfbb52aeb4dd3a72",
+      "pdf_sha256": "454bf07a3d343dab2511e413ed1d7d2cc088b123a3c76f557313ed01a77acb46",
+      "original_stem": "functional_stability"
+    },
+    {
+      "group": "pcr_instability_synthesis_v1",
+      "stem": "图10_候选排名边界间隔与排序稳定性",
+      "interpretation": "Every patient observation retained; original symmetric-log axis and bounds.",
+      "png_sha256": "0dea6b3729b96ca4b59a0d1b93abbfa3b9ccf2dd1b1a51d7badfd47fcb769393",
+      "pdf_sha256": "0016b800cfb5399566a801b2710665aa344619e315b54cf6b495037d911e74e1",
+      "original_stem": "boundary_stability"
+    },
+    {
+      "group": "ccrcc_source_replication_synthesis_v1",
+      "stem": "图11_GSE178481独立队列候选基因的细胞来源",
+      "interpretation": "Frozen PCR order; expression is not dependency. 6 tumor / 6 normal donors; crosses = missing, including MRPL57; not zero expression.",
+      "png_sha256": "f972c73cdc70b5c9e801225d2bb93bdeb78a5210f2f08974a3d2cc963145f3a7",
+      "pdf_sha256": "03f6a3d80c71e75fa2dc09c7dc7e458ec72341a7bf58e10a946cd22aa72bcba7",
+      "original_stem": "candidate_cell_sources"
+    },
+    {
+      "group": "ccrcc_source_replication_synthesis_v1",
+      "stem": "图12_肿瘤与正常肾的配对供者表达比较",
+      "interpretation": "Five donor-level values; missing gene explicit; no cell-level significance tests.",
+      "png_sha256": "f7ab633b48d1a803af168b83831e6e51638afdc4f92dd3902429cda0f8d344a0",
+      "pdf_sha256": "eab8712547143f08f4fe2c8a12a89ab538eebd210cc887c43f60f74cf3e596d4",
+      "original_stem": "paired_expression"
+    }
+  ],
+  "source_sha256": {
+    "results/historical/final_evidence_synthesis_v2/candidate_evidence_matrix.csv": "6601aeb00698c89c1dbf909047643820c7f87b6b295a7771c823d97b90e39895",
+    "outputs/selective_dependency_benchmark_v1/overall_summary.csv": "04f346d218870fd8317b01a993fd01aaa890e56d68cdd2622fdd938604568da7",
+    "outputs/sanger_baseline_benchmark_v1/overall_summary.csv": "c928e3dc080041d10334583b677071d17320b5bf1a01c5f93e945822f5c92bf2",
+    "outputs/selective_dependency_analysis_v1/bootstrap.csv": "a52680a1c1681728ad65c27db7ab0f099f24163ef437153c8d2caa10b8d804b8",
+    "outputs/sanger_selective_dependency_v1/bootstrap.csv": "d0ad1ddedd55ae792cd3d97b59e7f2d7e212b67d90a414011ddc0fa4a0a49047",
+    "outputs/tcga_patient_transfer_v1/cohort_stability.csv": "99b82a575646a52baae77ed9a5bbb37afbbdf987f5c198786ec9c47e2d0ae22f",
+    "outputs/tcga_patient_transfer_v1/input_sensitivity.csv": "87425fdcc2bc2f49c0f2ec010a144d7e1b879033a51298dc8e9ee8e957f2f75d",
+    "results/historical/tcga_locked_test_v1/run.json": "437007f387a5b7fa6dd7c5257f44699bf3fdcc9634afc814407f7fcc670a8ae8",
+    "outputs/pcr_patient_extension_v1/mapping_sensitivity.csv": "6f41bcb7842deafffba391b05269f600d6ae1ec78a9982d7ac2a57085013146a",
+    "outputs/pcr_singlecell_synthesis_v1/bootstrap_per_patient_mean_overlap.csv": "3b8bfc63d71f12385a52f54f2d23e8d61f2236df9ced63b2bd74ceb71f4c8650",
+    "outputs/pcr_patient_extension_v1/candidate_summary.csv.gz": "da8a4638a84aa8b8f7b3df66fc94ab3fc6af54bc498a776c3c2ae64bc9b6dd84",
+    "outputs/pcr_patient_extension_v1/pcr_discovery_top20.csv": "bd679b9101b323aa2b4069c4c230027ae3a73dd9c39c3614795ad1a37b69ceba",
+    "outputs/pcr_patient_extension_v1/domain_diagnostics.csv": "d58a3ed1d555707b81d9b1e1bafb01aff12b9944ae64c83746da314f7db80cb6",
+    "outputs/ccrcc_singlecell_extension_v1/candidate_cell_source_summary.csv": "e0030ad469a9a8ecf484b84569bdcf6b4cf03ccbc4998cc5f048d92f37cd8ed1",
+    "outputs/ccrcc_singlecell_extension_v1/mixture_sensitivity.csv": "67a85ad2cc075dc76d7bd1998c97921ae6bbbc2e8474184a7db243bd66ec2187",
+    "outputs/ccrcc_singlecell_extension_v1/sample_source_audit.csv": "706221a6d5ca1323c88597d77bac9aed0458b6d634022a831607817783dbb638",
+    "outputs/pcr_instability_audit_v1/object_summary.csv.gz": "4b6ea30049a18cbf17082e7ddd462180aa466c502df2443268693cf2d3348084",
+    "outputs/pcr_instability_audit_v1/functional_associations.csv": "abe1abfad74b9e3a71f30980e1119a95d30c5e1b50ae8373dd243d1fd0e99b0e",
+    "outputs/ccrcc_source_replication_v1/candidate_sets.csv": "86258bd2b12feb9ad2d10c0bd1aa767837f729ebe2971706cfc6971d1e61cace",
+    "outputs/ccrcc_source_replication_v1/cell_source_summary.csv.gz": "cb1a32c48c26bd529e48ba661925ad93ab7e8ba7f01f88c4f66aa1659c8d6159",
+    "outputs/ccrcc_source_replication_v1/paired_tumor_proximal_expression.csv": "19ae3c14c4f6d095ae701abc04b66283ae7dba12bec4031bbc264f48bea46f05"
+  },
+  "palette": [
+    "#6599B7",
+    "#68A69B",
+    "#D7AD63",
+    "#BC6765",
+    "#A18CAF",
+    "#A6A6A6"
+  ],
+  "formats": [
+    "PNG 300dpi",
+    "PDF vector text/lines"
+  ],
+  "changes": [
+    "white background",
+    "muted palette",
+    "fine axes",
+    "lowercase panel letters",
+    "patient observations retained",
+    "matrix uses symbols",
+    "missing values explicitly marked"
+  ],
+  "analysis_unchanged": true,
+  "new_test_access": false,
+  "filename_revision": {
+    "language": "Chinese",
+    "overview_removed": true,
+    "individual_figure_n": 12
+  }
+}

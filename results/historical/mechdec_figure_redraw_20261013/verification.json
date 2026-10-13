@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "figure_n": 12,
+  "installed_artifact_n": 48,
+  "deleted_obsolete_artifact_n": 12,
+  "source_file_n": 21,
+  "reference_unchanged": true,
+  "source_data_unchanged": true,
+  "png_dpi": 300,
+  "pdf_embedded_truetype_fonts": true,
+  "visual_review": "All 12 PNG files inspected at full resolution",
+  "scope": "Rendering and provenance only; no model refit or new biological validation"
+}

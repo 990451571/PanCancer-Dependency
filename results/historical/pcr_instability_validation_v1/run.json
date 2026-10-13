@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "audit_run_sha256": "ab3d0e7bbe027ff5da495c1371b67d226d86437ff54c386d1ec7f27370bee44e",
+  "synthesis_run_sha256": "317bc498428b2c75fa529eca34439a7fc3aeefb50af0865a949fd466bf01ab4f",
+  "script_sha256": {
+    "verify_pcr_instability_methods.py": "4a8fa9eb9a7781888dc1625da753c7dbd48537e0252696d78366a965110cf5d2",
+    "verify_pcr_instability_release.py": "77bd396d865d1dd4a1c8aa1ae2bd22e78f81984fa5f4fc470a5be393cf19d600",
+    "verify_pcr_instability_coverage.py": "df4aadb34d780a3fae47d9525b40f974e8fc6a43fcd12fa8fbab9b4f925ec5f4"
+  },
+  "method_checks": "Independent NumPy SVD, identity controls, rotation invariance, reference translation, scoring, path encoding",
+  "historical_publication_release": "passed",
+  "output_sha256": {
+    "historical_coverage.json": "59e527657d9662302ef642ebd4971c4c9d5f206f74012c888ce9d200711139aa",
+    "verification.json": "d492fed30a13b1f79293de0b4bdc4428e58a0e060fb4c141ca60372237cfa199"
+  }
+}

@@ -1,0 +1,14 @@
+sample_id,donor,author_cohort,geo_tissue,geo_subtype,geo_author_concordant,annotated_cells,retained_cells,excluded_cells,raw_umi_max_difference,raw_detected_gene_max_difference,mitochondrial_fraction_max_difference
+SI_18854,SS_2005,author_ccrcc,Tumor,Clear Cell RCC,True,1665,1636,29,0.0,1,4.996003610813204e-16
+SI_18855,SS_2006,author_ccrcc,Benign Adjacent,,False,1362,1321,41,0.0,1,4.996003610813204e-16
+SI_18856,SS_2006,author_normal,Tumor,Clear Cell RCC,False,736,320,416,0.0,2,5.551115123125783e-16
+SI_19703,SS_2007,author_ccrcc,Benign Adjacent,,False,3331,3269,62,0.0,1,4.996003610813204e-16
+SI_19704,SS_2007,author_normal,Tumor,Clear Cell RCC,False,689,229,460,0.0,2,4.996003610813204e-16
+SI_21255,SS_2014,author_normal,Benign Adjacent Cortex,,True,1020,677,343,0.0,1,4.996003610813204e-16
+SI_21256,SS_2014,author_normal,Benign Adjacent Medulla,,True,551,456,95,0.0,2,4.996003610813204e-16
+SI_22368,SS_2017,author_ccrcc,Benign Adjacent,,False,2808,2789,19,0.0,1,4.85722573273506e-16
+SI_22369,SS_2017,author_normal,Tumor,Clear Cell RCC,False,1504,1305,199,0.0,1,4.996003610813204e-16
+SI_22604,SS_2022,author_ccrcc,Benign Adjacent,,False,1923,1922,1,0.0,1,4.996003610813204e-16
+SI_22605,SS_2022,author_normal,Tumor,Clear Cell RCC,False,1646,1272,374,0.0,2,5.551115123125783e-16
+SI_23459,SS_2023,author_ccrcc,Tumor,Clear Cell RCC,True,6108,5961,147,0.0,2,4.996003610813204e-16
+SI_23843,SS_2026,author_ccrcc,Tumor,Clear Cell RCC,True,3551,3551,0,0.0,1,4.3021142204224816e-16

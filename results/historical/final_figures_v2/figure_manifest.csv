@@ -1,5 +1,5 @@
 figure,stem,caption
-Figure 1,figure1_validation_and_evidence_ceiling,"Fair whole-lineage baseline performance, internal and external NDCG@10 gains, locked patient stability, and evidence attrition. Patient stability is not functional accuracy."
-Figure 2,figure2_candidate_evidence_matrix,Frozen top-20 candidate evidence matrix retaining discovery order and descriptive locked-Test expression-direction replication. Blue denotes support; red denotes opposition or normal-kidney liability.
-Figure 3,figure3_dependency_vs_normal_kidney_exposure,"DRIVE ccRCC dependency strength versus GTEx normal-kidney exposure for covered candidates. Expression indicates exposure, not toxicity, and no therapeutic-window threshold is defined."
-Figure 4,figure4_baseline_generalization,Lineage-equal selective-dependency NDCG@10 across the internal DepMap whole-lineage and external Sanger benchmarks. PCR-ridge and tuned kernel ridge outperform the historical frozen model.
+Figure 1,图01_模型验证表现与患者证据边界,"Fair whole-lineage baseline performance, internal and external NDCG@10 gains, locked patient stability, and evidence attrition. Patient stability is not functional accuracy."
+Figure 2,图02_ccRCC候选基因多层证据矩阵,Frozen top-20 candidate evidence matrix retaining discovery order and descriptive locked-Test expression-direction replication. Teal circles denote support; red crosses denote opposition or normal-kidney liability.
+Figure 3,图03_肿瘤基因依赖与正常肾表达风险,"DRIVE ccRCC dependency strength versus GTEx normal-kidney exposure for covered candidates. Expression indicates exposure, not toxicity, and no therapeutic-window threshold is defined."
+Figure 4,图04_基线模型跨癌系与跨平台表现比较,Lineage-equal selective-dependency NDCG@10 across the internal DepMap whole-lineage and external Sanger benchmarks. PCR-ridge and tuned kernel ridge outperform the historical frozen model.

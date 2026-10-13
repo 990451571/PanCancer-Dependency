@@ -1,0 +1,23 @@
+{
+  "type": "compact_result_snapshot",
+  "upstream_output_dir": "/mnt/e/Projects/PanCancer-Dependency/outputs/pcr_patient_extension_v1",
+  "upstream_run_sha256": "a65758d3bf14fe1021ccccba98833cbab78937ee637892175fb6238fd93c79b3",
+  "included_sha256": {
+    "bootstrap_cohort_frequency.csv.gz": "a7818a294aac9f61bd39075b2968f5514a3118353178dc8ce4ab64079f28852b",
+    "bootstrap_patient_overlap.csv.gz": "d0c4a2e50e476b4ac9e92f45fb6d3df4e1a2f3d302e92994e80dbab3bc3d75a2",
+    "candidate_patient_uncertainty.csv.gz": "6815be48b7851400ab8972a4d997ef2c00f51d210b550290fe9c34d959ff035f",
+    "candidate_summary.csv.gz": "da8a4638a84aa8b8f7b3df66fc94ab3fc6af54bc498a776c3c2ae64bc9b6dd84",
+    "cohort_stability.csv": "460892a272f2290371598798ea6d62a354ef8328cba8ae5360d834525ee0a3e0",
+    "domain_diagnostics.csv": "d58a3ed1d555707b81d9b1e1bafb01aff12b9944ae64c83746da314f7db80cb6",
+    "mapping_sensitivity.csv": "6f41bcb7842deafffba391b05269f600d6ae1ec78a9982d7ac2a57085013146a",
+    "patient_top10.csv.gz": "b3f3270585768096e9d1adae15b462c957adb7d86ea69b27d28723f7738bcce3",
+    "pcr_candidate_input_features.csv": "98f8809126fda55b48c5cd851ee374609217b52078454466fe89a6eea7dbc442",
+    "pcr_discovery_top20.csv": "bd679b9101b323aa2b4069c4c230027ae3a73dd9c39c3614795ad1a37b69ceba",
+    "ranking_universe.npz": "8e864f2e602ffd9aabfd4dae6227e7db85be6173b871ea40ddd3c061d33a923c",
+    "run.json": "a65758d3bf14fe1021ccccba98833cbab78937ee637892175fb6238fd93c79b3",
+    "source_patient_bootstrap_inclusion.npz": "922e467a4f584531d527133fdab25db3475817b4e9bfc6ba6ed35512b8bd1184",
+    "tcga_train_mapping_bootstrap_inclusion.npz": "ec40c496f8c4bf2868bd2bfc732e560ab11423775bda5785b696e18ac38b12d4",
+    "training_models.csv": "69b403ded006fc7ad144db90c6bb14cd4625ca107e5ab42228490ef72f535b5e"
+  },
+  "note": "Upstream run.json lists large outputs retained locally; snapshot.json verifies the included subset"
+}

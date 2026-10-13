@@ -1,0 +1,21 @@
+{
+  "status": "frozen_after_metadata_audit_before_candidate_expression_analysis",
+  "dataset": "GSE178481",
+  "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE178481",
+  "author_annotations": "https://github.com/shenglinmei/ccRCC.analysis",
+  "primary": "GEO Stage ccRCC, PR2/3/4/5/6/7/8; untreated nonmetastatic primary tissue and adjacent normal; merge multiple tumor regions within donor",
+  "excluded_donors": {"PR1": "GEO Stage pRCC", "PR9": "chemotherapy and thrombus-related metadata; exclude whole donor"},
+  "sensitivity": "BM1/BM2 metastatic-status primary tissues and adjacent normal, kept separate",
+  "annotation": "Preserve author ano.l1; Tumor means author-annotated tumor, not a new independent CNV call",
+  "qc": "Author-selected cells are the input; additionally >=200 detected features and mitochondrial fraction <=0.20; author-only sensitivity also reported",
+  "minimum_group_cells": 20,
+  "aggregation": "Raw UMI sums by donor x tissue x broad cell type, CPM from total RNA; detection fractions; donor equal summaries; cells and regions are not independent subjects",
+  "raw_audit": "Exact barcode match, nonnegative integer counts, match author TotalUMI/gene.num/MT.ratio, sample suffix and GEO condition concordance; retain metadata exclusions",
+  "candidates": "Existing PCR discovery20 plus historical frozen20, preserve separate set flags and rank; add frozen top input features and canonical marker audit; no reranking",
+  "paired_summary": "Within five paired primary donors compare author tumor cells in tumor tissue versus proximal tubule cells in adjacent normal: log2((CPM+1)/(CPM+1)), median and individual directions; descriptive, no cell-level p-values",
+  "cross_study": "Compare equal-donor author_tumor median CPM ranks and broad cell exposure against GSE159115; old study labels remain flagged, never treated as clean reference",
+  "prediction_mixture": "Secondary descriptive sensitivity on fixed model, same 25/50/75 percent non-tumor RNA mixtures and observed-all cells as prior study; common covered gene universe and mapping re-estimated by scenario; no functional truth",
+  "locked_test_access": false,
+  "model_refitting": false,
+  "limitations": ["small donor groups", "adjacent normal is not healthy-volunteer tissue", "author labels not independently re-inferred", "single-cell CPM and bulk TPM are not equivalent", "study independence does not prove anonymous donor identities are genetically distinct", "expression is not dependency or therapeutic window"]
+}

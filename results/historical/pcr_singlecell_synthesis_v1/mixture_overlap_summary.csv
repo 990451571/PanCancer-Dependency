@@ -1,0 +1,9 @@
+scenario,n,mean,median,p025,p975,min,max,scope
+nonmalignant_rna_25pct,7,0.4857142857142857,0.5,0.315,0.7549999999999999,0.3,0.8,author_cohort
+nonmalignant_rna_50pct,7,0.31428571428571433,0.3,0.115,0.5,0.1,0.5,author_cohort
+nonmalignant_rna_75pct,7,0.1285714285714286,0.1,0.015000000000000003,0.2,0.0,0.2,author_cohort
+observed_all_cells,7,0.22857142857142856,0.2,0.030000000000000006,0.4699999999999999,0.0,0.5,author_cohort
+nonmalignant_rna_25pct,3,0.4000000000000001,0.4,0.305,0.495,0.3,0.5,geo_author_concordant_only
+nonmalignant_rna_50pct,3,0.20000000000000004,0.2,0.10500000000000001,0.295,0.1,0.3,geo_author_concordant_only
+nonmalignant_rna_75pct,3,0.10000000000000002,0.1,0.005000000000000001,0.195,0.0,0.2,geo_author_concordant_only
+observed_all_cells,3,0.2333333333333333,0.2,0.2,0.295,0.2,0.3,geo_author_concordant_only

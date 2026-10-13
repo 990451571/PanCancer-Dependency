@@ -1,0 +1,218 @@
+{
+  "pcr": {
+    "training_model_n": 850,
+    "training_patient_n": 824,
+    "patient_n": 209,
+    "ranking_gene_n": 14349,
+    "pcr_rank": 256,
+    "alpha": 10000.0,
+    "bootstrap_draws": 50,
+    "locked_test_overlap": 0
+  },
+  "singlecell": {
+    "sample_n": 13,
+    "donor_n": 8,
+    "author_ccrcc_donor_n": 7,
+    "author_normal_donor_n": 5,
+    "retained_cell_n": 24708,
+    "geo_author_discordant_sample_n": 8,
+    "mixture_donor_n": 7,
+    "model_feature_coverage": 0.9403220713609094
+  },
+  "mapping_overlap": [
+    {
+      "comparison": "kidney_mean_shift_clip0_vs_nonkidney_mean_shift_clip0",
+      "split": "train",
+      "n": 156,
+      "mean": 0.40897435897435896,
+      "median": 0.4,
+      "p025": 0.1,
+      "p975": 0.9,
+      "min": 0.0,
+      "max": 1.0
+    },
+    {
+      "comparison": "kidney_mean_shift_clip0_vs_nonkidney_mean_shift_clip0",
+      "split": "validation",
+      "n": 53,
+      "mean": 0.3358490566037736,
+      "median": 0.3,
+      "p025": 0.1,
+      "p975": 0.6699999999999995,
+      "min": 0.1,
+      "max": 0.7
+    },
+    {
+      "comparison": "raw_xena_log_expression_vs_nonkidney_mean_shift_clip0",
+      "split": "train",
+      "n": 156,
+      "mean": 0.1544871794871795,
+      "median": 0.1,
+      "p025": 0.0,
+      "p975": 0.5,
+      "min": 0.0,
+      "max": 0.8
+    },
+    {
+      "comparison": "raw_xena_log_expression_vs_nonkidney_mean_shift_clip0",
+      "split": "validation",
+      "n": 53,
+      "mean": 0.12641509433962264,
+      "median": 0.1,
+      "p025": 0.0,
+      "p975": 0.3,
+      "min": 0.0,
+      "max": 0.4
+    }
+  ],
+  "bootstrap_overlap": [
+    {
+      "kind": "source_patient_bootstrap",
+      "split": "train",
+      "n": 156,
+      "mean": 0.27475641025641023,
+      "median": 0.262,
+      "p025": 0.134,
+      "p975": 0.479,
+      "min": 0.1,
+      "max": 0.504
+    },
+    {
+      "kind": "source_patient_bootstrap",
+      "split": "validation",
+      "n": 53,
+      "mean": 0.25335849056603776,
+      "median": 0.242,
+      "p025": 0.1346,
+      "p975": 0.44279999999999986,
+      "min": 0.12200000000000001,
+      "max": 0.462
+    },
+    {
+      "kind": "tcga_train_mapping_bootstrap",
+      "split": "train",
+      "n": 156,
+      "mean": 0.9290897435897435,
+      "median": 0.934,
+      "p025": 0.84675,
+      "p975": 1.0,
+      "min": 0.8240000000000001,
+      "max": 1.0
+    },
+    {
+      "kind": "tcga_train_mapping_bootstrap",
+      "split": "validation",
+      "n": 53,
+      "mean": 0.9189433962264152,
+      "median": 0.93,
+      "p025": 0.8246,
+      "p975": 0.9938,
+      "min": 0.8,
+      "max": 1.0
+    }
+  ],
+  "mixture_overlap": [
+    {
+      "scenario": "nonmalignant_rna_25pct",
+      "n": 7,
+      "mean": 0.4857142857142857,
+      "median": 0.5,
+      "p025": 0.315,
+      "p975": 0.7549999999999999,
+      "min": 0.3,
+      "max": 0.8,
+      "scope": "author_cohort"
+    },
+    {
+      "scenario": "nonmalignant_rna_50pct",
+      "n": 7,
+      "mean": 0.31428571428571433,
+      "median": 0.3,
+      "p025": 0.115,
+      "p975": 0.5,
+      "min": 0.1,
+      "max": 0.5,
+      "scope": "author_cohort"
+    },
+    {
+      "scenario": "nonmalignant_rna_75pct",
+      "n": 7,
+      "mean": 0.1285714285714286,
+      "median": 0.1,
+      "p025": 0.015000000000000003,
+      "p975": 0.2,
+      "min": 0.0,
+      "max": 0.2,
+      "scope": "author_cohort"
+    },
+    {
+      "scenario": "observed_all_cells",
+      "n": 7,
+      "mean": 0.22857142857142856,
+      "median": 0.2,
+      "p025": 0.030000000000000006,
+      "p975": 0.4699999999999999,
+      "min": 0.0,
+      "max": 0.5,
+      "scope": "author_cohort"
+    },
+    {
+      "scenario": "nonmalignant_rna_25pct",
+      "n": 3,
+      "mean": 0.4000000000000001,
+      "median": 0.4,
+      "p025": 0.305,
+      "p975": 0.495,
+      "min": 0.3,
+      "max": 0.5,
+      "scope": "geo_author_concordant_only"
+    },
+    {
+      "scenario": "nonmalignant_rna_50pct",
+      "n": 3,
+      "mean": 0.20000000000000004,
+      "median": 0.2,
+      "p025": 0.10500000000000001,
+      "p975": 0.295,
+      "min": 0.1,
+      "max": 0.3,
+      "scope": "geo_author_concordant_only"
+    },
+    {
+      "scenario": "nonmalignant_rna_75pct",
+      "n": 3,
+      "mean": 0.10000000000000002,
+      "median": 0.1,
+      "p025": 0.005000000000000001,
+      "p975": 0.195,
+      "min": 0.0,
+      "max": 0.2,
+      "scope": "geo_author_concordant_only"
+    },
+    {
+      "scenario": "observed_all_cells",
+      "n": 3,
+      "mean": 0.2333333333333333,
+      "median": 0.2,
+      "p025": 0.2,
+      "p975": 0.295,
+      "min": 0.2,
+      "max": 0.3,
+      "scope": "geo_author_concordant_only"
+    }
+  ],
+  "primary_cohort_stability": [
+    {
+      "method": "nonkidney_mean_shift_clip0",
+      "active_gene_n": 349,
+      "active_frequency_spearman": 0.5509795009743119,
+      "positive_top100_train_n": 100,
+      "positive_top100_validation_n": 100,
+      "positive_top100_shared_n": 77,
+      "positive_top100_jaccard": 0.6260162601626016,
+      "top100_frequency_overlap": 0.77
+    }
+  ],
+  "pcr_top20_historical_overlap_n": 11,
+  "status": "development_and_descriptive_analysis_complete_not_patient_functional_validation"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "compact_result_snapshot",
+  "upstream_output_dir": "outputs/ccrcc_source_replication_v1",
+  "upstream_run_sha256": "e16d33105b4a503ed6d08e94001ff3ae9665abb0805f80d64751037fbaa35d13",
+  "included_sha256": {
+    "annotation_marker_audit.csv.gz": "c1c940498608daf1db88adcf7367c2b7221de1ee96276957f0a40b3a151d0be1",
+    "candidate_donor_cell_sources.csv.gz": "6009fd50962354ee4d285a277b77060b14d6409fe6d0f5c937197e9a8a0dc2cc",
+    "candidate_sets.csv": "86258bd2b12feb9ad2d10c0bd1aa767837f729ebe2971706cfc6971d1e61cace",
+    "cell_source_summary.csv.gz": "cb1a32c48c26bd529e48ba661925ad93ab7e8ba7f01f88c4f66aa1659c8d6159",
+    "cross_study_candidate_expression.csv": "bc8fde078f0aef8cf32342e5d815d48770e6d0039998e994fd6288972a1ecd3f",
+    "mixture_patient_top10.csv": "6ef155acf91286386349eea6188313a40d9e7c76d3070d593322321fd928a2c1",
+    "mixture_sensitivity.csv": "161f7ba662907df42ffb2e9917bbb570ba14c4a26ce00539700559739500473f",
+    "paired_expression_summary.csv": "91ceef90718ce07bfbcb0426f354fed2cf221b33ea447fc97d627388d96fe981",
+    "paired_tumor_proximal_expression.csv": "19ae3c14c4f6d095ae701abc04b66283ae7dba12bec4031bbc264f48bea46f05",
+    "predictor_feature_donor_cell_sources.csv.gz": "82dfa4d8a756c4554475aa9c6090ce60b948075ba4bd5ef67d1d49974b12eb23",
+    "pseudobulk_groups.csv": "2566b5619732b941a14ad60dce999be8b1c6508c4aaa73b98b2dc1a758eec457",
+    "run.json": "e16d33105b4a503ed6d08e94001ff3ae9665abb0805f80d64751037fbaa35d13",
+    "sample_inventory.csv": "bfcf3aff9755f13f391469acf9f1053e996853c1ef93ae842596deb8514f66aa",
+    "sample_source_audit.csv": "6e3bfb0cff6ded85f43f35766abb27942c8667d4442c0ffff722daca7025b086"
+  }
+}

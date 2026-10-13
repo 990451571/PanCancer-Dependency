@@ -1,0 +1,39 @@
+{
+  "upstream_run_sha256": "ab3d0e7bbe027ff5da495c1371b67d226d86437ff54c386d1ec7f27370bee44e",
+  "script_sha256": "d62b3e6b7db159c658b99a63651d8018a91117bbe2c4b02066336963595eb9c9",
+  "note": "Conditional contrasts; intervals descriptive; no candidate reranking or clinical probability calibration",
+  "output_sha256": {
+    "图10_候选排名边界间隔与排序稳定性.pdf": "0016b800cfb5399566a801b2710665aa344619e315b54cf6b495037d911e74e1",
+    "图10_候选排名边界间隔与排序稳定性.png": "0dea6b3729b96ca4b59a0d1b93abbfa3b9ccf2dd1b1a51d7badfd47fcb769393",
+    "component_cross_products.csv": "a4325cd5d05a648cae4c1c9dcb55b49bf683d3ab293e3cb41cab898de6ccfab7",
+    "functional_lineage_equal_summary.csv": "0d559200165a6c0f48e725333f02e7ff77b5b166dc88a9459613d12bc1e81320",
+    "functional_lineage_summary.csv": "4fa9a865025b845f2017ec812d55dfd2709f5de8f2fd37a80fab9d445b8488bb",
+    "图09_排序稳定性与功能预测表现的关系.pdf": "454bf07a3d343dab2511e413ed1d7d2cc088b123a3c76f557313ed01a77acb46",
+    "图09_排序稳定性与功能预测表现的关系.png": "0b545295db53443a38e1775b69da9f00d8384a813a6e464abfbb52aeb4dd3a72",
+    "geometry_summary.csv": "1e2a0a8faf4d1b18b68bb6f5414323a0e2d3b222d2aa0ae3f29d8a5e4ff7f453",
+    "historical_coverage_comparison.csv.gz": "fcfcf18e149a94bc3510c8d5d23eb85431a583a71fe220fd83b9caf74fafebec",
+    "图08_PCR排序不稳定性的来源对照.pdf": "dc09ae46fa97df1a5752a178438d9152fbfdb53d063ca5db2779caae6fc4dc9f",
+    "图08_PCR排序不稳定性的来源对照.png": "e71687933896665e71d088ff91cd6da2110369620e28a2e4853112edb6ea2a71",
+    "patient_boundary_summary.csv": "577805b4df6cd47736301a834cd33324c3bb28ed64919cc4b72da2be5b406e80",
+    "patient_gap_stability.csv": "58369c88f02514de581db8d6b44960cc0d826d093f18bf3dd734db611e612b51"
+  },
+  "render_revision": {
+    "date": "2026-10-13",
+    "reference": "ppt/MechDec.pptx",
+    "renderer": "scripts/redraw_mechdec_figures.py",
+    "renderer_sha256": "479e2c9876afbf73cac3930f71cee8e69d3118a830a388eab27a34a0206faa9e",
+    "previous_run_sha256": "317bc498428b2c75fa529eca34439a7fc3aeefb50af0865a949fd466bf01ab4f",
+    "analysis_unchanged": true,
+    "status": "mechdec_style_redraw"
+  },
+  "filename_revision": {
+    "language": "Chinese",
+    "date": "2026-10-13",
+    "image_contents_unchanged": true,
+    "mapping": {
+      "paired_controls": "图08_PCR排序不稳定性的来源对照",
+      "functional_stability": "图09_排序稳定性与功能预测表现的关系",
+      "boundary_stability": "图10_候选排名边界间隔与排序稳定性"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "snapshot_file_n": 22,
+  "sample_n": 21,
+  "primary_donor_n": 7,
+  "primary_tumor_donor_n": 6,
+  "primary_normal_donor_n": 6,
+  "paired_donor_n": 5,
+  "raw_count_and_donor_pooling_verified": true,
+  "maximum_umi_pooling_error": 0.0,
+  "frozen_candidates_preserved": true,
+  "locked_test_access": false
+}

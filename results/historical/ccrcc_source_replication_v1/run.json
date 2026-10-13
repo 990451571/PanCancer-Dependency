@@ -1,0 +1,54 @@
+{
+  "status": "complete_descriptive_source_replication",
+  "protocol_sha256": "b8589a63a86aac3470ba6db61b83c0ab29f58799082805cabe2333059d9d947e",
+  "input_sha256": {
+    "source_manifest": "40e60444c949cff8c2d94e138f6a8a63e0be232b4e53beeb58ac736b8445c1d2",
+    "pcr_run": "a65758d3bf14fe1021ccccba98833cbab78937ee637892175fb6238fd93c79b3",
+    "old_singlecell_run": "549f208f0a2ae5b0cf2b8bd032864ec013e876de062930ccb9127c99e1ed69b3"
+  },
+  "script_sha256": {
+    "run_ccrcc_source_replication.py": "7ee8e7f6eb1d312e1e11db6f56e63de8e3d5551c5d5b7d5b527e53a4d51d1bfa",
+    "pcr_transfer_methods.py": "028f163485a5ca07104b6ba02e64b73de535ddbd95f2170201b3bbb64f22995d"
+  },
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "torch": "2.11.0+cu130",
+  "numpy": "2.0.2",
+  "elapsed_seconds": 308.8012264409999,
+  "primary_sample_n": 16,
+  "primary_donor_n": 7,
+  "primary_annotated_cell_n": 103504,
+  "primary_retained_cell_n": 102720,
+  "source_concordant": true,
+  "paired_donor_n": 5,
+  "cross_study_candidate_cpm_spearman": 0.7824759669854788,
+  "mixture_coverage": {
+    "primary": {
+      "ranking_gene_n": 13310,
+      "feature_coverage": 0.9261130407325545
+    },
+    "metastatic_status": {
+      "ranking_gene_n": 13310,
+      "feature_coverage": 0.9261130407325545
+    }
+  },
+  "locked_test_access": false,
+  "model_refitting": false,
+  "candidate_reranking": false,
+  "output_sha256": {
+    "annotation_marker_audit.csv.gz": "c1c940498608daf1db88adcf7367c2b7221de1ee96276957f0a40b3a151d0be1",
+    "candidate_donor_cell_sources.csv.gz": "6009fd50962354ee4d285a277b77060b14d6409fe6d0f5c937197e9a8a0dc2cc",
+    "candidate_sets.csv": "86258bd2b12feb9ad2d10c0bd1aa767837f729ebe2971706cfc6971d1e61cace",
+    "cell_metadata_qc.csv.gz": "6639471847cf8c56acbaabd86ca371650bdd1edde72798caeea1c1e4497701c7",
+    "cell_source_summary.csv.gz": "cb1a32c48c26bd529e48ba661925ad93ab7e8ba7f01f88c4f66aa1659c8d6159",
+    "cross_study_candidate_expression.csv": "bc8fde078f0aef8cf32342e5d815d48770e6d0039998e994fd6288972a1ecd3f",
+    "mixture_patient_top10.csv": "6ef155acf91286386349eea6188313a40d9e7c76d3070d593322321fd928a2c1",
+    "mixture_sensitivity.csv": "161f7ba662907df42ffb2e9917bbb570ba14c4a26ce00539700559739500473f",
+    "paired_expression_summary.csv": "91ceef90718ce07bfbcb0426f354fed2cf221b33ea447fc97d627388d96fe981",
+    "paired_tumor_proximal_expression.csv": "19ae3c14c4f6d095ae701abc04b66283ae7dba12bec4031bbc264f48bea46f05",
+    "predictor_feature_donor_cell_sources.csv.gz": "82dfa4d8a756c4554475aa9c6090ce60b948075ba4bd5ef67d1d49974b12eb23",
+    "pseudobulk_counts.npz": "623fd5eb62b0dd25ec109e7b6e2241ce96e2d7757863baebc0f81ebfe8fd6ba6",
+    "pseudobulk_groups.csv": "2566b5619732b941a14ad60dce999be8b1c6508c4aaa73b98b2dc1a758eec457",
+    "sample_inventory.csv": "bfcf3aff9755f13f391469acf9f1053e996853c1ef93ae842596deb8514f66aa",
+    "sample_source_audit.csv": "6e3bfb0cff6ded85f43f35766abb27942c8667d4442c0ffff722daca7025b086"
+  }
+}

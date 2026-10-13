@@ -1,0 +1,4 @@
+method,active_gene_n,active_frequency_spearman,positive_top100_train_n,positive_top100_validation_n,positive_top100_shared_n,positive_top100_jaccard,top100_frequency_overlap
+nonkidney_mean_shift_clip0,349,0.5509795009743119,100,100,77,0.6260162601626016,0.77
+kidney_mean_shift_clip0,186,0.5268451942497474,100,91,64,0.5039370078740157,
+raw_xena_log_expression,66,0.7801696888800077,64,30,28,0.42424242424242425,

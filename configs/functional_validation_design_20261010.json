@@ -1,0 +1,23 @@
+{
+  "status": "design_draft_not_executed",
+  "seed": 20261010,
+  "core_genes": ["PAX8", "HNF1B", "FERMT2", "CCND1"],
+  "exploratory_genes": ["MRPL33", "SEPHS2", "WDR73"],
+  "pilot_donor_pairs": 3,
+  "independent_runs": 2,
+  "pilot_guides_per_gene": 3,
+  "confirm_guides_per_gene": 2,
+  "confirm_donor_pairs": null,
+  "family_alpha": 0.05,
+  "selectivity_margin_log2": 0.5,
+  "normal_loss_margin_log2": 0.3219280948873623,
+  "tumor_loss_margin_log2": 1.0,
+  "engagement_calibration_targets_fraction": [0.4, 0.7, 0.9],
+  "readout_days_after_pre_induction_baseline": [0, 7, 14],
+  "default_model": "same_donor_adult_ccRCC_and_adjacent_normal_proximal_tubuloids",
+  "lab_model_availability": "not_reported",
+  "guide_sequences": "pending_model_genome_TSS_and_off_target_validation",
+  "threshold_status": "proposed_planning_assumptions_freeze_after_feasibility_before_confirmation",
+  "locked_test_access": false,
+  "candidate_reranking": false
+}

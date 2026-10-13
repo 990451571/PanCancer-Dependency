@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-10",
+  "stage": "Source metadata inspection before candidate single-cell expression analysis",
+  "observation": "GSE159115 ccRCC_anno and normal_anno sample assignments conflict with GEO SOFT tissue characteristics for several paired samples; patient identifiers agree",
+  "decision": "Preserve author cohort labels and GEO tissue fields separately; label tumor cells as author-annotated, not independently CNV-confirmed. Audit barcode and UMI joins. Do not silently overwrite source metadata",
+  "analyses": ["author-cohort descriptive cell-source analysis", "GEO-author concordant-sample-only sensitivity"],
+  "interpretation": "Normal epithelial expression and tumor-normal comparisons from discordant cohorts are descriptive and source-label-dependent. Concordant normal donors may be too few for any confirmatory tumor-normal contrast",
+  "stop_rule": "Reject duplicate/missing barcode joins or inconsistent donor identifiers; if raw and annotation UMI totals disagree, investigate before using the sample"
+}

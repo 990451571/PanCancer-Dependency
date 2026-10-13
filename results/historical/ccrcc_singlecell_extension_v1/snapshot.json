@@ -1,0 +1,21 @@
+{
+  "type": "compact_result_snapshot",
+  "upstream_output_dir": "/mnt/e/Projects/PanCancer-Dependency/outputs/ccrcc_singlecell_extension_v1",
+  "upstream_run_sha256": "549f208f0a2ae5b0cf2b8bd032864ec013e876de062930ccb9127c99e1ed69b3",
+  "included_sha256": {
+    "annotation_marker_audit.csv": "5b4ad66c01d911ee487323c7be3cb00bf0b58cb6680925a7b9d9f447dee5b922",
+    "candidate_cell_source_summary.csv": "e0030ad469a9a8ecf484b84569bdcf6b4cf03ccbc4998cc5f048d92f37cd8ed1",
+    "candidate_donor_cell_sources.csv.gz": "b196ae332fab601158702702084c6064bf1401b1b5c69c74bd626675f5c35509",
+    "candidate_qc_sensitivity.csv.gz": "561991e1c01a2e0cbbb975f38edf1e8d28b599ca662ec68c30e63acedcd84116",
+    "candidate_sets.csv": "86258bd2b12feb9ad2d10c0bd1aa767837f729ebe2971706cfc6971d1e61cace",
+    "mixture_domain_diagnostics.csv": "a9645da89d2b96c4cb256ac8e60684116fc2e4a99453fa851e9c920ebbcb379f",
+    "mixture_patient_top10.csv": "61120eb532f42b17d2575acf0f71b9ef832b93b3f88eb46d519e5dde609a3ca3",
+    "mixture_sensitivity.csv": "67a85ad2cc075dc76d7bd1998c97921ae6bbbc2e8474184a7db243bd66ec2187",
+    "predictor_feature_donor_cell_sources.csv.gz": "37454790ae3d8cc8c74b2d5af2f0670281f28a7ed6f80437c6299027ec5c700c",
+    "pseudobulk_groups.csv": "4079dba95d83e98a65a7e448eab2fa66b008fba4dcfb27f24f7d92c6ec2d7dd3",
+    "qc_by_sample_label.csv": "6d4c2e530f26fab8f6c7b503e2a21059b0c3996773ad8586cfd3591ea78b0aee",
+    "run.json": "549f208f0a2ae5b0cf2b8bd032864ec013e876de062930ccb9127c99e1ed69b3",
+    "sample_source_audit.csv": "706221a6d5ca1323c88597d77bac9aed0458b6d634022a831607817783dbb638"
+  },
+  "note": "Upstream run.json lists large outputs retained locally; snapshot.json verifies the included subset"
+}

@@ -1,0 +1,5 @@
+comparison,split,n,mean,median,p025,p975,min,max
+kidney_mean_shift_clip0_vs_nonkidney_mean_shift_clip0,train,156,0.40897435897435896,0.4,0.1,0.9,0.0,1.0
+kidney_mean_shift_clip0_vs_nonkidney_mean_shift_clip0,validation,53,0.3358490566037736,0.3,0.1,0.6699999999999995,0.1,0.7
+raw_xena_log_expression_vs_nonkidney_mean_shift_clip0,train,156,0.1544871794871795,0.1,0.0,0.5,0.0,0.8
+raw_xena_log_expression_vs_nonkidney_mean_shift_clip0,validation,53,0.12641509433962264,0.1,0.0,0.3,0.0,0.4

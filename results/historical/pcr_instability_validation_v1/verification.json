@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "snapshot_files": 19,
+  "cases": 20,
+  "paired_source_draws": 430,
+  "maximum_cross_product_identity_error": 4.727121472036799e-16,
+  "original_bootstrap_replay": true,
+  "patient_purge": true,
+  "locked_test_expression_access": false,
+  "candidate_reranking": false
+}

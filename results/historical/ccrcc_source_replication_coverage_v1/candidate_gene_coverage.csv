@@ -1,0 +1,30 @@
+Gene,pcr_discovery_rank,historical_frozen_candidate,gene_symbol_measured,interpretation
+MRPL33,1.0,False,True,Measured; zero values are distinguishable from absence
+SEPHS2,2.0,True,True,Measured; zero values are distinguishable from absence
+WDR73,3.0,True,True,Measured; zero values are distinguishable from absence
+YRDC,4.0,True,True,Measured; zero values are distinguishable from absence
+YPEL5,5.0,True,True,Measured; zero values are distinguishable from absence
+SMG7,6.0,False,True,Measured; zero values are distinguishable from absence
+MRPL57,7.0,False,False,Symbol absent; no alias mapping; expression and paired effect are unavailable
+FOXA1,8.0,True,True,Measured; zero values are distinguishable from absence
+SEPSECS,9.0,True,True,Measured; zero values are distinguishable from absence
+HSD17B12,10.0,True,True,Measured; zero values are distinguishable from absence
+EP300,11.0,False,True,Measured; zero values are distinguishable from absence
+EEFSEC,12.0,True,True,Measured; zero values are distinguishable from absence
+SNAP23,13.0,False,True,Measured; zero values are distinguishable from absence
+BRAT1,14.0,False,True,Measured; zero values are distinguishable from absence
+ADSL,15.0,False,True,Measured; zero values are distinguishable from absence
+UBC,16.0,False,True,Measured; zero values are distinguishable from absence
+SLC33A1,17.0,True,True,Measured; zero values are distinguishable from absence
+GRB2,18.0,True,True,Measured; zero values are distinguishable from absence
+RAD9A,19.0,False,True,Measured; zero values are distinguishable from absence
+PSTK,20.0,True,True,Measured; zero values are distinguishable from absence
+HNF1B,,True,True,Measured; zero values are distinguishable from absence
+CFLAR,,True,True,Measured; zero values are distinguishable from absence
+PAX8,,True,True,Measured; zero values are distinguishable from absence
+CHMP7,,True,True,Measured; zero values are distinguishable from absence
+UBR5,,True,True,Measured; zero values are distinguishable from absence
+CCND1,,True,True,Measured; zero values are distinguishable from absence
+GCN1,,True,False,Symbol absent; no alias mapping; expression and paired effect are unavailable
+UXS1,,True,True,Measured; zero values are distinguishable from absence
+FERMT2,,True,True,Measured; zero values are distinguishable from absence

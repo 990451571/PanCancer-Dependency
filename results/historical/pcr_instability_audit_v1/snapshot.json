@@ -1,0 +1,12 @@
+{
+  "type": "compact_result_snapshot",
+  "upstream_output_dir": "outputs/pcr_instability_audit_v1",
+  "upstream_run_sha256": "ab3d0e7bbe027ff5da495c1371b67d226d86437ff54c386d1ec7f27370bee44e",
+  "included_sha256": {
+    "cohort_summary.csv": "c1247f2707a10b04f822bb2d3504d80e61b809567a99dc808a204777f54e7860",
+    "functional_associations.csv": "abe1abfad74b9e3a71f30980e1119a95d30c5e1b50ae8373dd243d1fd0e99b0e",
+    "lineage_contrasts.csv": "f98b460c2471c650002d5d446837b990154640327d65ad5d9f94f7d90b8941ce",
+    "object_summary.csv.gz": "4b6ea30049a18cbf17082e7ddd462180aa466c502df2443268693cf2d3348084",
+    "run.json": "ab3d0e7bbe027ff5da495c1371b67d226d86437ff54c386d1ec7f27370bee44e"
+  }
+}
